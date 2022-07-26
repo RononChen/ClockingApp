@@ -1,0 +1,53 @@
+<resources>
+    <string name="app_name">ClockingApp</string>
+    <string name="form_title">Formulaire d\'enregistrement des employés</string>
+    <string name="start">Enregistrer un employé</string>
+    <string name="registration_title">Veillez saisir les informations de l\'employé</string>
+    <string name="register_button">Enregistrer</string>
+    <string name="register_name_hint">Nom</string>
+    <string name="register_lastname_hint">Nom</string>
+    <string name="register_firstname_hint">Prénom</string>
+
+    <string name="male">Masculin</string>
+    <string name="female">Féminin</string>
+    <string name="Email">Email</string>
+    <string name="register_username">Username</string>
+    <string name="register_password">Mot de passe</string>
+    <string name="register_password_confirm">Confirmer le mot de passe</string>
+    <string name="reset_button">Annuler</string>
+    <string name="register_number_hint">Matricule </string>
+    <string name="birthdate">Date de naissance</string>
+    <string name="register_picture">Ajouter une photo</string>
+    <string name="login_password_hint">Mot de passe</string>
+    <string name="login_username_hint">Username</string>
+    <string name="login">Identifiez vous pour accéder  au menu</string>
+
+        <string name="login_button_text">S\'authentifier</string>
+    <string name="menu_delete_button">Supprimer  employé</string>
+    <string name="menu_update_button">Modifier  employé</string>
+    <string name="menu_search_button">Rechercher employé</string>
+    <string name="menu_report_employee_button"> Etat-présence-employé</string>
+    <string name="menu_report_all_button">Etat_présence-all</string>
+    <string name="menu_statistic_service_button">Statistiques-service</string>
+    <string name="menu_statistic_all_button">Statistiques-employé</string>
+    <string name="menu_clock_button">Pointer</string>
+    <string name="suppression_d_employ">Suppression d\'employé</string>
+    <string name="matricule">Matricule</string>
+    <string name="nom">Nom</string>
+    <string name="nom_">Nom</string>
+    <string name="pr_nom_s">Prénom(s)</string>
+    <string name="pr_nom_sk">Prénom(s)</string>
+    <string name="sexe">Sexe</string>
+    <string name="sexe_i">Sexe</string>
+    <string name="date_de_naissance">Date de naissance</string>
+    <string name="date_de_naissance_">Date de naissance</string>
+    <string name="service">Service</string>
+    <string name="service_">Service</string>
+    <string name="heure_de_d_but">Heure de début</string>
+    <string name="heure_de_fin">Heure de fin</string>
+    <string name="modifier">Modifier</string>
+    <string name="actualiser">Actualiser</string>
+    <string name="omg">omg</string>
+
+
+</resources>

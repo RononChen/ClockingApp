@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/start"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="@dimen/four_step"
+    tools:context=".Login"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/ScrollView02"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent">
+
+        <LinearLayout
+            android:id="@+id/LinearLayout02"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:orientation="vertical">
+
+    <TextView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        android:gravity="center"
+        />
+
+    <Button
+        android:id="@+id/menu_register"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="@string/start"
+         android:gravity="center"/>
+    <Button
+        android:id="@+id/menu_delete"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="@string/menu_delete_button"
+        android:gravity="center"/>
+    <Button
+        android:id="@+id/menu_update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="@string/menu_update_button"
+        android:gravity="center"/>
+    <Button
+        android:id="@+id/menu_search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="@string/menu_search_button"
+        android:gravity="center"/>
+    <Button
+        android:id="@+id/menu_clock"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="@string/menu_clock_button"
+        android:gravity="center"/>
+    <Button
+        android:id="@+id/menu_presence_report_employee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="@string/menu_report_employee_button"
+        android:gravity="center"/>
+    <Button
+        android:id="@+id/menu_presence_report_chief"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="@string/menu_report_all_button"
+        android:gravity="center"/>
+    <Button
+        android:id="@+id/menu_statistic_employee"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="@string/menu_statistic_all_button"
+        android:gravity="center"/>
+    <Button
+        android:id="@+id/menu_statistic_service"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="60dp"
+        android:text="@string/menu_statistic_service_button"
+        android:gravity="center"/>
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>

@@ -1,0 +1,80 @@
+<resources>
+<style name="Button" parent="@android:style/Widget.Button">
+
+    <item name="android:textSize">@dimen/large_text</item>
+
+    <item name="android:textColor">@color/white</item>
+
+    <item name="android:background">@drawable/button_bg</item>
+
+    <item name="android:layout_width">fill_parent</item>
+
+    <item name="android:layout_height">wrap_content</item>
+
+    <item name="android:layout_centerHorizontal">true</item>
+
+</style>
+<style name="EditText" parent="@android:style/Widget.EditText">
+
+<item name="android:textSize">@dimen/small_text</item>
+
+
+<!--item name="android:background">@drawable/edit_text_bg</item-->
+
+<item name="android:paddingLeft">@dimen/edittext_padding_l</item>
+
+<item name="android:paddingTop">@dimen/edittext_padding_tb</item>
+
+<item name="android:paddingBottom">@dimen/edittext_padding_tb</item>
+
+<item name="android:textAppearance">?android:textAppearanceLarge</item>
+
+<item name="android:layout_width">fill_parent</item>
+
+<item name="android:layout_height">wrap_content</item>
+
+<item name="android:layout_marginTop">@dimen/one_step</item>
+
+<item name="android:maxLines">1</item>
+
+<item name="android:singleLine">true</item>
+
+<item name="android:drawablePadding">@dimen/edittext_drawable_padding_l</item>
+    <style name="AppTheme.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+    </style>
+
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" >
+        <item name="colorControlNormal">@color/whiteTextColor</item>
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+
+
+
+    <style name="parent">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="modifiedEditText" parent="parent">
+        <item name="android:textSize">@dimen/newsMoreTextSize</item>
+        <item name="android:backgroundTint">@color/primaryTextColor</item>
+    </style>
+
+
+    <style name="centreLocatorCardDesign">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_centerInParent">true</item>
+        <item name="android:layout_marginBottom">5dp</item>
+        <item name="android:layout_marginTop">5dp</item>
+        <item name="android:layout_marginLeft">5dp</item>
+        <item name="android:layout_marginRight">5dp</item>
+        <item name="android:layout_gravity">center</item>
+    </style>
+
+</style>
+</resources>
