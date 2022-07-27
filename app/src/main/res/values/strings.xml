@@ -22,7 +22,7 @@
     <string name="login_username_hint">Username</string>
     <string name="login">Identifiez vous pour accéder  au menu</string>
 
-        <string name="login_button_text">S\'authentifier</string>
+    <string name="login_button_text">S\'authentifier</string>
     <string name="menu_delete_button">Supprimer  employé</string>
     <string name="menu_update_button">Modifier  employé</string>
     <string name="menu_search_button">Rechercher employé</string>
@@ -48,6 +48,7 @@
     <string name="modifier">Modifier</string>
     <string name="actualiser">Actualiser</string>
     <string name="omg">omg</string>
+    <string name="LAUNCH_URL">LAUNCH URL</string>
 
 
 </resources>

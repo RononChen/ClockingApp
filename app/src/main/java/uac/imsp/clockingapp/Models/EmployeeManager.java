@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteStatement;
 import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 
 public class EmployeeManager {
     public final static int   CAN_NOT_LOGIN=15;
@@ -145,10 +146,28 @@ public int connectUser(Employee employee,String password){
 un tableau contenant les emplyés vérifiant le motif de recherche*/
 
     //c'est une méthode de classe
-    public  static Employee[] search(String data){
+    public  Employee[] search(String data){
+        String query="SELECT matricule, nom,prenom,photo " +
+                "FROM employe JOIN service ON id_service=id_service_ref " +
+                "WHERE CONCAT(matricule,nom,prenom,service) " +
+                "LIKE '%'+?+'%'";
 
-        return null;
+        ArrayList <Employee> employeeSet= new ArrayList<>();
+        Employee employee;
+        Cursor cursor=Database.rawQuery(query,null);
+        //cursor.moveToFirst();
+        while (cursor.moveToNext())
+        {
+            employee = new Employee(cursor.getInt(0));
+            employee.setLastname(cursor.getString(1));
+            employee.setFirstname(cursor.getString(2));
+            employee.setPicture(cursor.getBlob(3));
+            employeeSet.add(employee);
+        }
+        return employeeSet.toArray(new Employee[employeeSet.size()]);
+
     }
+
 
     public boolean exists(@NonNull Employee employee){
 
@@ -206,7 +225,36 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
         return employee.toArray(new String[employee.size()]);
 
 
+
     }
+    public Hashtable<String,Double> getReport(String start,String end){
+        String service;
+        int count;
+        int total;
+        double frequence;
+
+        Hashtable<String,Double> row = new Hashtable<>();
+        String query="SELECT nom, COUNT(*) FROM" +
+                " (SELECT * FROM employe " +
+                "JOIN pointage AS relation ON matricule = matricule_ref) " +
+                " JOIN jour ON id_jour= R.id_jour_ref " +
+                "WHERE heure_arrivee IS NOT NULL AND date_jour BETWEEN ? AND ? "+
+                "GROUP BY nom ";
+        String [] selectArgs={start,end};
+        total=getAllEmployees().length;
+        Cursor cursor=Database.rawQuery(query,selectArgs);
+        if(total!=0)
+        {
+            while (cursor.moveToNext()) {
+                service = cursor.getString(0);
+                count = cursor.getInt(2);
+                frequence=count/total;
+                row.put(service, frequence);
+            }
+        }
+        return  row;
+    }
+
 
 
 }

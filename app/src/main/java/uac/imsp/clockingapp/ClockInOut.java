@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 
@@ -23,32 +24,29 @@ import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
 
-import uac.imsp.clockingapp.Models.ClockingManager;
-import uac.imsp.clockingapp.Models.Employee;
+import uac.imsp.clockingapp.Controller.ClockingInOutController;
+import uac.imsp.clockingapp.Controller.IClockInOutController;
+import uac.imsp.clockingapp.View.IClockInOutView;
 
-public class ClockInOut extends AppCompatActivity implements View.OnClickListener {
+public class ClockInOut extends AppCompatActivity
+        implements View.OnClickListener, IClockInOutView {
 
 
     SurfaceView surfaceView;
     TextView txtBarcodeValue;
-    private BarcodeDetector barcodeDetector;
     private CameraSource cameraSource;
     private static final int REQUEST_CAMERA_PERMISSION = 201;
     Button btnAction;
     String intentData = "";
-    private Employee employee;
-    private ClockingManager datasource;
+    IClockInOutController clockInOutPresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        datasource=new ClockingManager(this);
-        datasource.open();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scanner);
         initViews();
 
-
-
+        clockInOutPresenter = new ClockingInOutController(this);
     }
 
     private void initViews() {
@@ -59,11 +57,37 @@ public class ClockInOut extends AppCompatActivity implements View.OnClickListene
     }
 
 
-    private void initialiseDetectorsAndSources() {
-         String msg="Scannez votre code QR pour pointer";
 
-        Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
-        barcodeDetector = new BarcodeDetector.Builder(this)
+    @Override
+    protected void onPause() {
+        super.onPause();
+        cameraSource.release();
+    }
+
+    @Override
+    protected void onResume() {
+
+        super.onResume();
+        onLoad("");
+
+    }
+
+    @Override
+    public void onClick(View v) {
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(intentData));
+        if (intentData.length() > 0) {
+            startActivity(intent);
+        }
+    }
+
+
+    @Override
+    public void onLoad(String welcome) {
+
+        Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
+        // initialise detectors and sources
+
+        BarcodeDetector barcodeDetector = new BarcodeDetector.Builder(this)
                 .setBarcodeFormats(Barcode.ALL_FORMATS)
                 .build();
 
@@ -91,7 +115,7 @@ public class ClockInOut extends AppCompatActivity implements View.OnClickListene
             public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
             }
 
-            @Override
+             @Override
             public void surfaceDestroyed(SurfaceHolder holder) {
                 cameraSource.stop();
             }
@@ -105,64 +129,37 @@ public class ClockInOut extends AppCompatActivity implements View.OnClickListene
             }
 
             @Override
-            public void receiveDetections(Detector.Detections<Barcode> detections) {
+            public void receiveDetections(@NonNull Detector.Detections<Barcode> detections) {
                 final SparseArray<Barcode> barcodes = detections.getDetectedItems();
                 if (barcodes.size() != 0) {
-                    txtBarcodeValue.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            int number=0;
-                            btnAction.setText("LAUNCH URL");
-                            intentData = barcodes.valueAt(0).displayValue;
-                            txtBarcodeValue.setText(intentData);
-                            number=Integer.parseInt(txtBarcodeValue.getText().toString());
-                            employee=new Employee(number);
-                            clock();
-                            datasource.close();
-                        }
+                    //@Override
+                    txtBarcodeValue.post(() -> {
+                        int number;
+                        btnAction.setText(R.string.LAUNCH_URL);
+                        intentData = barcodes.valueAt(0).displayValue;
+                        txtBarcodeValue.setText(intentData);
+                        number=Integer.parseInt(txtBarcodeValue.getText().toString());
+                        //Start clocking
+                        clockInOutPresenter.onClocking(number);
                     });
                 }
             }
         });
+
+
     }
 
 
-    @Override
-    protected void onPause() {
-        super.onPause();
-        cameraSource.release();
+    public void onClockingSuccessful(String message) {
+        //Intent intent=new Intent(this,Menu.cl)
+      Toast.makeText(this,message,Toast.LENGTH_LONG).show();
+      //startActivity(intent);
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        initialiseDetectorsAndSources();
-    }
 
-    @Override
-    public void onClick(View v) {
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(intentData));
-        if (intentData.length() > 0) {
-            startActivity(intent);
-        }
-    }
-    public boolean clock(){
-        String message="";
-        if (datasource.hasNotClockedIn(employee)) {
 
-            datasource.clockIn(employee);
-            message="Entrée marquée avec succès";
-        }
-        else if (datasource.hasNotClockedOut(employee)) {
-            datasource.clockOut(employee);
-            message="Sortie marquée avec succès";
-        }
-        else {
-            message="Vous avez déjà marqué votre entrée-sortie";
-            Toast.makeText(this,message,Toast.LENGTH_LONG).show();
-            return false;
-        }
+    public void onClockingError(String message) {
         Toast.makeText(this,message,Toast.LENGTH_LONG).show();
-        return  true;
+
     }
 }

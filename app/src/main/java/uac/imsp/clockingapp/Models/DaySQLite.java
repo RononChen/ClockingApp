@@ -10,9 +10,12 @@ public class DaySQLite extends SQLiteOpenHelper {
     public static final int DATABASE_VERSION = 1;
     public static final String TABLE_JOUR = "jour";
     public static final String COL_DATE_JOUR= "date_jour";
+    public static final String COL_ID_JOUR="id_jout";
 
     private static final String CREATE_JOUR = "CREATE TABLE " + TABLE_JOUR + " (" +
-            COL_DATE_JOUR + " TEXT  NOT NULL PRIMARY KEY)" ;
+            COL_ID_JOUR + " TEXT  NOT NULL PRIMARY KEY AUTOINCREMENT , " +
+            COL_DATE_JOUR+" TEXT )" ;
+
 
 
     public DaySQLite(Context context) {

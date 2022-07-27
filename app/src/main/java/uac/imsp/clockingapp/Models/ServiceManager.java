@@ -66,6 +66,7 @@ public class ServiceManager {
     public String[] getAllServices(){
         ArrayList <String> service= new ArrayList<>();
 
+
         String query="SELECT nom FROM service";
         Cursor cursor=Database.rawQuery(query,null);
         //cursor.moveToFirst();
@@ -76,6 +77,29 @@ public class ServiceManager {
 
 
     }
+
+
+
+    public Service[] getAllService(){
+        ArrayList <Service> serviceSet= new ArrayList<>();
+        Service service;
+
+        String query="SELECT * FROM service";
+        Cursor cursor=Database.rawQuery(query,null);
+        //cursor.moveToFirst();
+        while (cursor.moveToNext())
+
+        {
+            service = new Service(cursor.getInt(0));
+            service.setName(cursor.getString(1));
+            serviceSet.add(service);
+        }
+        return serviceSet.toArray(new Service[serviceSet.size()]);
+
+    }
+
+
+
 
 
     /*public int  searchService(String name){

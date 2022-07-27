@@ -12,15 +12,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import uac.imsp.clockingapp.Controller.ILoginController;
 import uac.imsp.clockingapp.Controller.LoginController;
-import uac.imsp.clockingapp.Models.EmployeeManager;
 import uac.imsp.clockingapp.View.ILoginView;
 
 public class Login extends AppCompatActivity
                    implements View.OnClickListener ,
         ILoginView {
     private EditText Username,Password;
-    private EmployeeManager datasource;
     ILoginController loginPresenter;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,13 +27,8 @@ public class Login extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        datasource= new EmployeeManager(this);
-        datasource.open();
-        Username=findViewById(R.id.login_username);
-        Password=findViewById((R.id.login_password));
-        Button login = findViewById(R.id.login_button);
-        login.setOnClickListener(this);
-        datasource.close();
+
+        initView();
         loginPresenter = new LoginController(this);
 
     }
@@ -57,5 +51,12 @@ public class Login extends AppCompatActivity
     public void onLoginError(String message) {
 
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+    }
+    public void initView(){
+        Username=findViewById(R.id.login_username);
+        Password=findViewById((R.id.login_password));
+        Button login = findViewById(R.id.login_button);
+        login.setOnClickListener(this);
+
     }
 }
