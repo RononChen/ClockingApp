@@ -12,8 +12,10 @@ import uac.imsp.clockingapp.View.IConsultStatisticsView;
 
 public class ConsultStatisticsController implements IConsultStatisticsController {
 
+
     private IConsultStatisticsView consultStatisticsView;
     private String startDate,endDate;
+    private Employee employee;
     public ConsultStatisticsController(IConsultStatisticsView consultStatisticsView){
         this.consultStatisticsView=consultStatisticsView;
         consultStatisticsView.onConsultStatistics("Choix du type de statistique",
@@ -87,8 +89,22 @@ public class ConsultStatisticsController implements IConsultStatisticsController
     @Override
     public void OnEmployeeSelected(int number) {
         int month=-1;
-        Employee employee = new Employee(number);
+        employee = new Employee(number);
         consultStatisticsView.onEmployeeSelected("Sélectionnez le mois",month);
 
+
+
     }
+
+    @Override
+    public void onMonthSelected(int month,Hashtable<Integer,Boolean> report) {
+        EmployeeManager employeeManager;
+        employeeManager = new EmployeeManager((Context) consultStatisticsView);
+        employeeManager.open();
+        //noinspection UnusedAssignment
+        report=employeeManager.getPresenceReportForEmployee(employee,month);
+        employeeManager.close();
+
+    }
+
 }

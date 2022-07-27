@@ -1,5 +1,7 @@
 package uac.imsp.clockingapp.Controller;
 
+import java.util.Hashtable;
+
 public interface IConsultStatisticsController {
     String formatDate(int year,int month,int day );
     void onConsultStatisticsByService();
@@ -14,5 +16,6 @@ public interface IConsultStatisticsController {
 
    // void onConsultStatisticsByEmployee();
 
+    void onMonthSelected(int month,Hashtable <Integer,Boolean> report);
 }
 

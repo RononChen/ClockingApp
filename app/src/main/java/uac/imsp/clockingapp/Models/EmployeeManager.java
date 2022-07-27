@@ -255,23 +255,43 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
         }
         return  row;
     }
-   // presence report in a month for an employee
-public Hashtable<Integer,Boolean> getPresenceReportForEmployee(
-        Employee employee,int month){
+   // presence report in a month for an employee (satursday and sunday aren't concerned)
+public Hashtable<Integer,Character> getPresenceReportForEmployee(
+        Employee employee,int month)
+        {
+            String date;
+            int index;
+            Hashtable<Integer,String> numberMonth = new Hashtable<>();
 
-String query="SELECT STRFTIME('%d',date_jour) ,heure_arrivee FROM" +
-        " (SELECT * FROM employe " +
-        "JOIN pointage AS relation ON matricule = matricule_ref) " +
-        " JOIN jour ON id_jour= R.id_jour_ref " +
-        "WHERE heure_arrivee IS NOT NULL AND date_jour B "+
-        "GROUP BY nom ";
 
-    String [] selectArgs={start,end};
-    total=getAllEmployees().length;
-    Cursor cursor=Database.rawQuery(query,selectArgs);
 
-    return new int[0];
+        int numberOfDay=0,i;//in  the month
+        Cursor cursor;
 
+
+        String query="SELECT  DATE('%m',date_jour,'START OF MONTH','+1 MONTH','-1 DAY' ) ," +
+                     "STRFTIME('%d',date_jour)  ,heure_arrivee" +
+                        "  FROM (SELECT * FROM employe " +
+                       "JOIN pointage AS relation ON matricule = matricule_ref) " +
+                         " JOIN jour ON id_jour= R.id_jour_ref " +
+                        "WHERE  matricule=? AND STRF('%m',date_jour)=? " +
+                       "AND STRFTIME('%Y',date_jour) =STRF('%Y','MOW')";
+
+    String [] selectArgs={
+            String.valueOf(employee.getRegistrationNumber()),
+            String.valueOf(month)
+    };
+
+     cursor=Database.rawQuery(query,selectArgs);
+     if(cursor.moveToFirst())
+         numberOfDay=Integer.parseInt(cursor.getString(0));
+
+
+     while(cursor.moveToNext()){
+         index=cursor.getInt(1);
+         date=cursor.getString(2);
+         numberMonth.put(index,date);
+     }
 }
 
 

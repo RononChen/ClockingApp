@@ -1,13 +1,14 @@
 package uac.imsp.clockingapp.Models;
 
-public class Day implements IDay{
+public class Day  implements IDay{
+
 
     private int Id;
     private  String Date;
 
-    public Day( ) {
-        //Id++;
+    public Day(String date ) {
 
+  this.Date=date;
     }
 
     public  String getDate(){
@@ -20,4 +21,6 @@ public class Day implements IDay{
     public int getId(){
         return Id;
     }
+
+
 }
