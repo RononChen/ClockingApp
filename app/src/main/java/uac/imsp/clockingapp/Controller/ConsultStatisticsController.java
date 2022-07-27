@@ -4,6 +4,7 @@ import android.content.Context;
 
 import java.util.Hashtable;
 
+import uac.imsp.clockingapp.Models.Employee;
 import uac.imsp.clockingapp.Models.EmployeeManager;
 import uac.imsp.clockingapp.Models.Service;
 import uac.imsp.clockingapp.Models.ServiceManager;
@@ -19,6 +20,7 @@ public class ConsultStatisticsController implements IConsultStatisticsController
                 "Voulez vous consulter par service ou par employé ?");
 
     }
+
 
 
     @Override
@@ -76,9 +78,17 @@ public class ConsultStatisticsController implements IConsultStatisticsController
         endDate=formatDate( year, month, day);
         employeeManager =new EmployeeManager((Context) consultStatisticsView);
         employeeManager.open();
-       rowSet= employeeManager.getReport(startDate,endDate);
+       rowSet= employeeManager.getStatisticsByService(startDate,endDate);
        employeeManager.close();
        consultStatisticsView.onEndDateSelected(rowSet);
+
+    }
+
+    @Override
+    public void OnEmployeeSelected(int number) {
+        int month=-1;
+        Employee employee = new Employee(number);
+        consultStatisticsView.onEmployeeSelected("Sélectionnez le mois",month);
 
     }
 }

@@ -227,7 +227,8 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
 
 
     }
-    public Hashtable<String,Double> getReport(String start,String end){
+    public Hashtable<String,Double> getStatisticsByService(String start,String end){
+
         String service;
         int count;
         int total;
@@ -254,7 +255,24 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
         }
         return  row;
     }
+   // presence report in a month for an employee
+public Hashtable<Integer,Boolean> getPresenceReportForEmployee(
+        Employee employee,int month){
 
+String query="SELECT STRFTIME('%d',date_jour) ,heure_arrivee FROM" +
+        " (SELECT * FROM employe " +
+        "JOIN pointage AS relation ON matricule = matricule_ref) " +
+        " JOIN jour ON id_jour= R.id_jour_ref " +
+        "WHERE heure_arrivee IS NOT NULL AND date_jour B "+
+        "GROUP BY nom ";
+
+    String [] selectArgs={start,end};
+    total=getAllEmployees().length;
+    Cursor cursor=Database.rawQuery(query,selectArgs);
+
+    return new int[0];
+
+}
 
 
 }

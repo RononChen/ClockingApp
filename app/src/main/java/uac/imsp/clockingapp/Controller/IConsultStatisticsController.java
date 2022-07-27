@@ -9,5 +9,10 @@ public interface IConsultStatisticsController {
     void onStartDateSelected(int year,int month,int day);
     void onEndDateSelected(int year,int month,int day);
 
+    //Quand l'employé est sélectiooné on recupère son matricule
+    void OnEmployeeSelected(int matricule);
+
+   // void onConsultStatisticsByEmployee();
+
 }
 
