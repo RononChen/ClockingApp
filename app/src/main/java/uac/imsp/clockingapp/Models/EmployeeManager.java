@@ -256,26 +256,23 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
         return  row;
     }
    // presence report in a month for an employee (satursday and sunday aren't concerned)
-public Hashtable<Integer,Character> getPresenceReportForEmployee(
+public Hashtable<String,Character> getPresenceReportForEmployee(
         Employee employee,int month)
         {
+
+            /*late and weekenddays are not already taken into account*/
+            String off=getPlanning(employee).getStartTime();
             String date;
-            int index;
-            Hashtable<Integer,String> numberMonth = new Hashtable<>();
 
-
-
-        int numberOfDay=0,i;//in  the month
+            Hashtable<String,Character> report = new Hashtable<>();
         Cursor cursor;
 
-
-        String query="SELECT  DATE('%m',date_jour,'START OF MONTH','+1 MONTH','-1 DAY' ) ," +
-                     "STRFTIME('%d',date_jour)  ,heure_arrivee" +
-                        "  FROM (SELECT * FROM employe " +
+        String query="SELECT  date_jour  , heure_arrivee" +
+                                        "  FROM (SELECT * FROM employe " +
                        "JOIN pointage AS relation ON matricule = matricule_ref) " +
                          " JOIN jour ON id_jour= R.id_jour_ref " +
                         "WHERE  matricule=? AND STRF('%m',date_jour)=? " +
-                       "AND STRFTIME('%Y',date_jour) =STRF('%Y','MOW')";
+                       "AND STRFTIME('%Y',date_jour) =STRF('%Y','NOW')";
 
     String [] selectArgs={
             String.valueOf(employee.getRegistrationNumber()),
@@ -283,17 +280,32 @@ public Hashtable<Integer,Character> getPresenceReportForEmployee(
     };
 
      cursor=Database.rawQuery(query,selectArgs);
-     if(cursor.moveToFirst())
-         numberOfDay=Integer.parseInt(cursor.getString(0));
-
 
      while(cursor.moveToNext()){
-         index=cursor.getInt(1);
-         date=cursor.getString(2);
-         numberMonth.put(index,date);
+
+         date=cursor.getString(0);//the date
+       if((Integer.parseInt(date.split("-")[0]) <=
+               Integer.parseInt(off.split("[-]")[0]))  ||
+               (Integer.parseInt(date.split("-")[0]) ==
+               Integer.parseInt(off.split("[-]")[0])&&
+                       (Integer.parseInt(date.split("-")[1]) <=
+                       Integer.parseInt(off.split("[-]")[1])) ))
+           report.put(date,'P');
+       else
+           report.put(date,'R');
+
+
      }
+return  report;
 }
 
+    public int  getDayNumberInWeek(String date){
+        String query="SELECT STRF('%w',?)";
+        Cursor cursor = Database.rawQuery(query,
+                new String[]{date}
+        );
+        return Integer.parseInt(cursor.getString(0));
+    }
 
 }
 

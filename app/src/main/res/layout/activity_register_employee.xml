@@ -191,6 +191,7 @@
 
                 style="@style/Button"
 
+
                 android:layout_gravity="center"
 
                 android:layout_marginTop="@dimen/four_step"

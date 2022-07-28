@@ -1,6 +1,7 @@
 package uac.imsp.clockingapp.Models;
 
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 
@@ -28,6 +29,7 @@ public class DayManager {
         SQLiteStatement statement= Database.compileStatement(query);
         statement.bindString(1,day.getDate());
     }
+
 
 
 

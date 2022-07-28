@@ -90,6 +90,7 @@ public class ConsultStatisticsController implements IConsultStatisticsController
     public void OnEmployeeSelected(int number) {
         int month=-1;
         employee = new Employee(number);
+
         consultStatisticsView.onEmployeeSelected("Sélectionnez le mois",month);
 
 
@@ -97,10 +98,11 @@ public class ConsultStatisticsController implements IConsultStatisticsController
     }
 
     @Override
-    public void onMonthSelected(int month,Hashtable<Integer,Boolean> report) {
+    public void onMonthSelected(int month,Hashtable<String,Character> report) {
         EmployeeManager employeeManager;
         employeeManager = new EmployeeManager((Context) consultStatisticsView);
         employeeManager.open();
+
         //noinspection UnusedAssignment
         report=employeeManager.getPresenceReportForEmployee(employee,month);
         employeeManager.close();

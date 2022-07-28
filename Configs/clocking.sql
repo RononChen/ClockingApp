@@ -15,10 +15,10 @@ CREATE TABLE employe (
 	photo                BLOB NOT   ,
 	username                TEXT  NOT NULL   ,
 	password             TEXT  NOT NULL   ,
-	id_service_ref       INTEGER    ,
 	--Not already addede
-	type                 TEXT NOT NULL,
-	id_planning_ref INTEGER ,
+    	type                 TEXT NOT NULL,
+	id_service_ref       INTEGER    ,
+		id_planning_ref INTEGER ,
 	FOREIGN KEY employe( id_service_ref ) REFERENCES service( id_service ) ,
 	FOREIGN KEY employe( id_planning_ref ) REFERENCES planning( id_planning ) 
 	
@@ -31,6 +31,7 @@ CREATE TABLE jour (
  );
 
 CREATE TABLE pointage (
+
 	id_pointage          INTEGER NOT NULL  PRIMARY KEY AUTOINCREMENT ,
 	heure_entree         TEXT    ,
 	heure_sortie         TEXT   ,

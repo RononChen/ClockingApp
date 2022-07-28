@@ -20,7 +20,7 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
     public static final String COL_PHOTO = "photo";
     public static final String COL_USERNAME = "username";
     public static final String COL_PASSWORD = "password";
-
+    public static final String COL_TYPE="type";
     public static final String COL_ID_PLANNING_REF= "id_planning_ref";
         public static final String COL_ID_PLANNING="id_planning";
    private static final String COL_ID_SERVICE_REF = "id_service_ref";

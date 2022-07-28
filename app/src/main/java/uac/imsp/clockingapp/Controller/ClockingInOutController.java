@@ -22,10 +22,11 @@ private  IClockInOutView clockInOutView;
 
         @Override
     public void onClocking(int number) {
-        //Take time account later
+        //Take into time account later
             Employee employee;
             EmployeeManager employeeManager;
             ClockingManager clockingManager;
+
             employee = new Employee(number);
             //connection to  database , employee table
             employeeManager = new EmployeeManager((Context) clockInOutView);

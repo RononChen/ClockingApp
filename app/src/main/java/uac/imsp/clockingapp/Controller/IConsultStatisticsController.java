@@ -16,6 +16,7 @@ public interface IConsultStatisticsController {
 
    // void onConsultStatisticsByEmployee();
 
-    void onMonthSelected(int month,Hashtable <Integer,Boolean> report);
+    void onMonthSelected(int month,Hashtable <String,Character> report);
+
 }
 

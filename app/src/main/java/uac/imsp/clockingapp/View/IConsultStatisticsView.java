@@ -14,3 +14,4 @@ public interface IConsultStatisticsView {
     void onEndDateSelected(Hashtable<String,Double> rowSet);
     void onEmployeeSelected(String message,int mounth);
 }
+

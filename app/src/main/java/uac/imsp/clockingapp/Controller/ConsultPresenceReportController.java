@@ -23,9 +23,10 @@ public class ConsultPresenceReportController implements  IConsultPresenceReportC
     }
 
     @Override
-    public  Hashtable <Integer,Character> onMonthSelected(int month) {
+    public  Hashtable <String ,Character> onMonthSelected(int month) {
 
-                Hashtable <Integer,Character> report;
+
+                Hashtable <String,Character> report;
         EmployeeManager employeeManager;
         employeeManager=new EmployeeManager((Context) consultPresenceReportView);
         employeeManager.open();
