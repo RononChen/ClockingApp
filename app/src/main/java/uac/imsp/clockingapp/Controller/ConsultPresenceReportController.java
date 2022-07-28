@@ -23,6 +23,8 @@ public class ConsultPresenceReportController implements  IConsultPresenceReportC
     @Override
     public void onConsultPresenceReport(int number) {
         employee = new Employee(number);
+        /*if(Objects.equals(employee.getType(), Employee.SIMPLE))
+            onConsultOwnStatistics();*/
         consultPresenceReportView.onEmployeeSelected("Sélectionnez le mois");
     }
 
