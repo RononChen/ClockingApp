@@ -15,6 +15,7 @@ import uac.imsp.clockingapp.View.ILoginView;
 public class LoginController  implements  ILoginController{
     //public final static String type = null;
     public static  String EmployeeType;
+    public static  int CurrentEmployee;
     ILoginView loginView;
     public LoginController(ILoginView loginView) {
         this.loginView = loginView;
@@ -50,6 +51,7 @@ public class LoginController  implements  ILoginController{
               else {
                 loginView.onLoginSuccess("Authentification réussie");
                 EmployeeType =employee.getType();
+                CurrentEmployee=employee.getRegistrationNumber();
             }
 
 

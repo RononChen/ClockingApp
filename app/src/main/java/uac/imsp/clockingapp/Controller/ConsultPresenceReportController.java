@@ -1,5 +1,7 @@
 package uac.imsp.clockingapp.Controller;
 
+import static uac.imsp.clockingapp.Controller.LoginController.CurrentEmployee;
+
 import android.content.Context;
 
 import java.text.ParseException;
@@ -67,5 +69,21 @@ for (index=1;index<=n;index++)
 }
 
 return table;
+    }
+
+    @Override
+    public void onConsultOwnStatistics()   {
+
+        onConsultPresenceReport(CurrentEmployee);
+    }
+
+    @Override
+    public Hashtable < Hashtable<Integer,String>,
+            Character>  onOwnMonthSelected() throws ParseException {
+
+     int month=0;
+     onMonthSelected(month);
+     return  onMonthSelected(month);
+
     }
 }
