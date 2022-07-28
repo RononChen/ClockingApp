@@ -36,6 +36,7 @@ public class RegisterEmployeeController implements  IRegisterEmployeeController
 
     IRegisterEmployeeView registerEmployeeView;
 
+
     public RegisterEmployeeController(IRegisterEmployeeView registerEmployeeView) {
         this.registerEmployeeView = registerEmployeeView;
     }
@@ -56,7 +57,7 @@ public class RegisterEmployeeController implements  IRegisterEmployeeController
                                    String firstname, String gender, String birthdate,String mail,
                                    String username, String password, String passwordConfirm,
                                    String selectedService, String startTime, String endTime,
-                                   byte[] picture) {
+                                   byte[] picture,String type) {
         int registerCode;
         int n= number.equals("")?-1:Integer.parseInt(number);
         Service service;
@@ -65,7 +66,7 @@ public class RegisterEmployeeController implements  IRegisterEmployeeController
         EmployeeManager employeeManager;
 
         Employee employee=new Employee(n,lastname,firstname,gender.charAt(0),
-                birthdate,mail,picture,username,password);
+                birthdate,mail,username,password,type);
    registerCode=employee.isValid();
    if(registerCode==EMPTY_NUMBER)
        registerEmployeeView.onRegisterEmployeeError("Matricule requis !");

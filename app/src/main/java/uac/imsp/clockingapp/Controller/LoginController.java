@@ -13,6 +13,8 @@ import uac.imsp.clockingapp.Models.EmployeeManager;
 import uac.imsp.clockingapp.View.ILoginView;
 
 public class LoginController  implements  ILoginController{
+    //public final static String type = null;
+    public static  String EmployeeType;
     ILoginView loginView;
     public LoginController(ILoginView loginView) {
         this.loginView = loginView;
@@ -45,8 +47,11 @@ public class LoginController  implements  ILoginController{
 
             if(loginCode==CAN_NOT_LOGIN)
                 loginView.onLoginError("Username ou mot de passe incorrect !");
-              else
-            loginView.onLoginSuccess("Authentification réussie");
+              else {
+                loginView.onLoginSuccess("Authentification réussie");
+                EmployeeType =employee.getType();
+            }
+
 
         }
 

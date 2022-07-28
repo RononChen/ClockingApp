@@ -21,17 +21,14 @@
     <string name="login_password_hint">Mot de passe</string>
     <string name="login_username_hint">Username</string>
     <string name="login">Identifiez vous pour accéder  au menu</string>
-
     <string name="login_button_text">S\'authentifier</string>
     <string name="menu_delete_button">Supprimer  employé</string>
     <string name="menu_update_button">Modifier  employé</string>
-    <string name="menu_search_button">Rechercher employé</string>
-    <string name="menu_report_employee_button"> Etat-présence-employé</string>
-    <string name="menu_report_all_button">Etat_présence-all</string>
-    <string name="menu_statistic_service_button">Statistiques-service</string>
-    <string name="menu_statistic_all_button">Statistiques-employé</string>
+    <string name="menu_search_button">Rechercher  employé</string>
+    <string name="menu_report_employee_button">Consulter états de présence </string>
+    <string name="menu_statistics">Consulter statistiques</string>
     <string name="menu_clock_button">Pointer</string>
-    <string name="suppression_d_employ">Suppression d\'employé</string>
+        <string name="suppression_d_employ">Suppression d\'employé</string>
     <string name="matricule">Matricule</string>
     <string name="nom">Nom</string>
     <string name="nom_">Nom</string>
@@ -49,6 +46,7 @@
     <string name="actualiser">Actualiser</string>
     <string name="omg">omg</string>
     <string name="LAUNCH_URL">LAUNCH URL</string>
+    <string name="consult_stat">Consulter statistiques</string>
 
 
 </resources>

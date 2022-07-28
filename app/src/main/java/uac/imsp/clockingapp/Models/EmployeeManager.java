@@ -40,8 +40,10 @@ public int connectUser(Employee employee,String password){
         String [] selectArgs={employee.getUsername()};
         Cursor cursor = Database.rawQuery(query,selectArgs);
                  cursor.moveToFirst();
-        if(cursor.getCount()==1 && cursor.getString(1).equals(password))
+        if(cursor.getCount()==1 && cursor.getString(1).equals(password)) {
+            setInformations(employee);
             return 0;
+        }
         return CAN_NOT_LOGIN;
 
 }
@@ -80,7 +82,7 @@ public int connectUser(Employee employee,String password){
         SQLiteStatement statement  ;
                 statement=Database.compileStatement(query);
         statement.bindString(1, mailAddress);
-        statement.bindLong(2, employee.RegistrationNumber);
+        statement.bindLong(2, employee.getRegistrationNumber());
         return true;
     }
 
@@ -90,7 +92,7 @@ public int connectUser(Employee employee,String password){
         SQLiteStatement statement ;
         statement=Database.compileStatement(query);
         statement.bindBlob(1, picture);
-        statement.bindLong(2, employee.RegistrationNumber);
+        statement.bindLong(2, employee.getRegistrationNumber());
         statement.executeUpdateDelete();
         return true;
     }
@@ -101,7 +103,7 @@ public int connectUser(Employee employee,String password){
         SQLiteStatement statement ;
         statement=Database.compileStatement(query);
         statement.bindBlob(1, employee.getQRCode());
-        statement.bindLong(2, employee.RegistrationNumber);
+        statement.bindLong(2, employee.getRegistrationNumber());
         statement.executeUpdateDelete();
 
     }
@@ -133,7 +135,7 @@ public int connectUser(Employee employee,String password){
         SQLiteStatement statement ;
 
         statement = Database.compileStatement(query);
-        statement.bindLong(1,employee.RegistrationNumber);
+        statement.bindLong(1,employee.getRegistrationNumber());
         statement.executeUpdateDelete();
         return true;
     }
@@ -181,8 +183,8 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
 
     public void setInformations(Employee employee){
 
-        String query="SELECT nom,prenom,sexe,photo FROM employe WHERE matricule=?";
-        String [] selectArgs={
+        String query="SELECT nom,prenom,sexe,photo,type FROM employe WHERE matricule=?";
+                String [] selectArgs={
                 Integer.valueOf(employee.getRegistrationNumber()).toString()
         };
         Cursor cursor =Database.rawQuery(query,selectArgs);
@@ -191,6 +193,7 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
         employee.setFirstname(cursor.getString(1));
         employee.setGender(cursor.getString(2).charAt(0));
         employee.setPicture(cursor.getBlob(3));
+        employee.setType(cursor.getString(4));
 
     }
    /* public void update(Employee employee){
@@ -311,6 +314,7 @@ return  report;
         );
         return Integer.parseInt(cursor.getString(0));
     }
+    //public String
 
 }
 

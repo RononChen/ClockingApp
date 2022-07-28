@@ -16,24 +16,28 @@ public class Employee implements IEmployee{
                     EMPTY_PICTURE=7,
                    EMPTY_QRCODE=8, EMPTY_PASSWORD=9,
                             INVALID_PASSWORD=10,EMPTY_MAIL=13,INVALID_MAIL=12
+
                     ;
 
+public  final static String SIMPLE="simple", HEAD="Directeur",CHIEF="Chef personnel";
 
 
     //Les infos personnelles sur l'employé
-    protected int RegistrationNumber;
-    protected String Firstname;
+    private int RegistrationNumber;
+    private String Firstname;
 
-    protected String Lastname;
-    protected char Gender;
-    protected String Birthdate;
+    private String Lastname;
+    private char Gender;
+    private String Birthdate;
 
-    protected String MailAddress;
-    protected byte[] Picture;
-    protected byte[] QRCode;
+    private String MailAddress;
+    private byte[] Picture;
+    private byte[] QRCode;
 
-    protected String Username;
-    protected String Password;
+    private String Username;
+    private String Password;
+    private String Type;
+
 
 
     //Constructeurs
@@ -41,7 +45,8 @@ public class Employee implements IEmployee{
 
     public Employee(int registrationNumber, String firstname,
                     String lastname, char gender, String birthdate,
-                    String mailAddress, byte[] picture,  String username, String password) {
+                    String mailAddress, byte[] picture,  String username,
+                    String password,String type) {
 
         RegistrationNumber = registrationNumber;
 
@@ -53,13 +58,16 @@ public class Employee implements IEmployee{
         Picture = picture;
         Username = username;
         Password = password;
+        Type=type;
 
     }
 
-    public Employee(int registrationNumber, String firstname, String lastname, char gender, String birthdate,
-                    String mailAddress, String username, String password) {
+    public Employee(int registrationNumber, String firstname, String lastname,
+                    char gender, String birthdate, String mailAddress, String username,
+                    String password,String type) {
 
-        this(registrationNumber, firstname, lastname, gender, birthdate, mailAddress, null,  username, password);
+        this(registrationNumber, firstname, lastname, gender,
+                birthdate, mailAddress, null,  username, password,type);
 
 
     }
@@ -110,6 +118,7 @@ public class Employee implements IEmployee{
     public  String getPassword(){
         return  Password;
     }
+    public String getType(){ return Type;}
 
     @Override
     public int isValid() {
@@ -186,7 +195,9 @@ public class Employee implements IEmployee{
     public void setQRCode(byte[] qRCode) {
         QRCode = qRCode;
     }
-
+    public void setType(String type){
+        Type=type;
+    }
 
     public  boolean hasInvalidUsername() {
 

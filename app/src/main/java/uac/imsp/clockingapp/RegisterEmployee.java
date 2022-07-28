@@ -41,6 +41,7 @@ public class RegisterEmployee extends AppCompatActivity
 {
     IRegisterEmployeeController registerEmployeePresenter;
 
+    private  RadioGroup Type;
     private EditText Lastname, Firstname, Email, Username, Password, PasswordConfirm,Number, Birthdate;
     private String Birth;
     DatePickerDialog picker;
@@ -51,6 +52,7 @@ public class RegisterEmployee extends AppCompatActivity
     private  final Spinner spinnerServices = findViewById(R.id.register_service);
     private int Start=6,End=18;
     private  TextView StartTime,EndTime;
+
 
 
     @SuppressLint("DefaultLocale")
@@ -137,7 +139,9 @@ public class RegisterEmployee extends AppCompatActivity
             registerEmployeePresenter.onRegisterEmployee(toString(Number), toString(Lastname),
                                         toString(Firstname),gend,toString(Email),Birth,toString(Username),
                     toString(Password),toString(PasswordConfirm),SelectedService,
-                    String.valueOf(Start),String.valueOf(End),Picture);
+                    String.valueOf(Start),String.valueOf(End),Picture,"");
+
+
 
         }
         else if (v.getId() == R.id.register_reset_button)
@@ -242,6 +246,7 @@ public class RegisterEmployee extends AppCompatActivity
         Email = findViewById(R.id.register_email);
         Username = findViewById(R.id.register_username);
         Password = findViewById(R.id.register_password);
+        Type=findViewById(R.id.register_gender);//to be changed
         PasswordConfirm = findViewById(R.id.register_password_confirm);
         PreviewImage = findViewById(R.id.register_preview_image);
         Button register = findViewById(R.id.register_button);
