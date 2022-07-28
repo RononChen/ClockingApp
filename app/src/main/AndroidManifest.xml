@@ -16,6 +16,9 @@
         android:theme="@style/Theme.ClockingApp"
         tools:targetApi="31">
         <activity
+            android:name=".ConsultPresenceReport"
+            android:exported="false" />
+        <activity
             android:name=".ConsultStatistics"
             android:exported="false" />
         <activity

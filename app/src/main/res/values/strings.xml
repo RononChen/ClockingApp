@@ -28,7 +28,7 @@
     <string name="menu_report_employee_button">Consulter états de présence </string>
     <string name="menu_statistics">Consulter statistiques</string>
     <string name="menu_clock_button">Pointer</string>
-        <string name="suppression_d_employ">Suppression d\'employé</string>
+    <string name="suppression_d_employ">Suppression d\'employé</string>
     <string name="matricule">Matricule</string>
     <string name="nom">Nom</string>
     <string name="nom_">Nom</string>
