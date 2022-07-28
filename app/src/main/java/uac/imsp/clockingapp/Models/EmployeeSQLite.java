@@ -1,5 +1,7 @@
 package uac.imsp.clockingapp.Models;
 
+import static uac.imsp.clockingapp.Models.Employee.SIMPLE;
+
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -26,8 +28,8 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
    private static final String COL_ID_SERVICE_REF = "id_service_ref";
     private static final String COL_ID_SERVICE = "id_service";
 
-    private static final String super_user="INSERT INTO employe(matricule,username,password)" +
-            " VALUES (?,?,?)";
+    private static final String super_user="INSERT INTO employe(matricule,username,password,type)" +
+            " VALUES (?,?,?,?)";
 
     private static final String CREATE_EMPLOYEE = "CREATE TABLE " + TABLE_EMPLOYE + " (" +
             COL_MATRICULE + " INTEGER NOT NULL  PRIMARY KEY, " +
@@ -40,6 +42,7 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
             COL_PHOTO + "  BLOB ," +
             COL_USERNAME + " TEXT NOT NULL ," +
             COL_PASSWORD + " TEXT NOT NULL , " +
+            COL_TYPE+" TEXT NOT NULL, "+
             COL_ID_PLANNING_REF + " TEXT  , " +
             COL_ID_SERVICE_REF + " INTEGER  ," +
             " FOREIGN KEY(" + COL_ID_SERVICE_REF +
@@ -65,6 +68,7 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
        statement.bindLong(1,1);
        statement.bindString(2,"User10");
        statement.bindString(3,"password");
+       statement.bindString(4,SIMPLE);
         statement.execute();
 
 

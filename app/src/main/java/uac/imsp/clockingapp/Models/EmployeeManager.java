@@ -158,6 +158,7 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
         Employee employee;
         Cursor cursor=Database.rawQuery(query,null);
         //cursor.moveToFirst();
+
         while (cursor.moveToNext())
         {
             employee = new Employee(cursor.getInt(0));
@@ -188,17 +189,19 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
                 Integer.valueOf(employee.getRegistrationNumber()).toString()
         };
         Cursor cursor =Database.rawQuery(query,selectArgs);
-        cursor.moveToFirst();
-         employee.setLastname(cursor.getString(0));
-        employee.setFirstname(cursor.getString(1));
-        employee.setGender(cursor.getString(2).charAt(0));
-        employee.setPicture(cursor.getBlob(3));
-        employee.setType(cursor.getString(4));
+       if( cursor.moveToFirst()) {
+           employee.setLastname(cursor.getString(0));
+           employee.setFirstname(cursor.getString(1));
+           employee.setGender(cursor.getString(2).charAt(0));
+           employee.setPicture(cursor.getBlob(3));
+           employee.setType(cursor.getString(4));
+       }
 
     }
-   /* public void update(Employee employee){
 
-    }*/
+
+
+
     public void update(@NonNull Employee employee, @NonNull Service service){
         String query="UPDATE employe SET id_service_ref=? WHERE matricule=?";
         SQLiteStatement statement=Database.compileStatement(query);
