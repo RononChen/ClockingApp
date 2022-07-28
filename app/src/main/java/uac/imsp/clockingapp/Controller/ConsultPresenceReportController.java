@@ -2,8 +2,10 @@ package uac.imsp.clockingapp.Controller;
 
 import android.content.Context;
 
+import java.text.ParseException;
 import java.util.Hashtable;
 
+import uac.imsp.clockingapp.Models.Day;
 import uac.imsp.clockingapp.Models.Employee;
 import uac.imsp.clockingapp.Models.EmployeeManager;
 import uac.imsp.clockingapp.View.IConsultPresenceReportView;
@@ -22,16 +24,48 @@ public class ConsultPresenceReportController implements  IConsultPresenceReportC
         consultPresenceReportView.onEmployeeSelected("Sélectionnez le mois");
     }
 
-    @Override
-    public  Hashtable <String ,Character> onMonthSelected(int month) {
 
+    public Hashtable < Hashtable<Integer,String>,
+            Character>  onMonthSelected(int month) throws ParseException {
 
-                Hashtable <String,Character> report;
+        final String [] WEEK_DAYS = {"Lundi","Mardi","Mercredi","Jeudi","Vendredi"};
+
+        Hashtable <Day,Character> report;
+        Hashtable <Integer,String> one;
         EmployeeManager employeeManager;
         employeeManager=new EmployeeManager((Context) consultPresenceReportView);
         employeeManager.open();
         report=employeeManager.getPresenceReportForEmployee(employee,month);
         employeeManager.close();
-        return  report;
+
+
+        Hashtable < Hashtable<Integer,String>,
+                Character>table = new Hashtable<>();
+        one = new Hashtable<>();
+Day d;
+
+int n,w,index;
+char value;
+d=new Day(month,1);
+n=d.getLenthOfMonth();
+for (index=1;index<=n;index++)
+{
+  d=new Day(month,index);
+  if(d.isWeekEnd())
+      continue;;
+      w=d.getLenthOfMonth();
+      index=d.getDayOfWeek()-1;
+      one.put(w,WEEK_DAYS[index]);
+      try {
+          value = report.getOrDefault(d, 'A');
+          table.put(one, value);
+      }
+      catch (NullPointerException ignored){
+
+      }
+
+}
+
+return table;
     }
 }

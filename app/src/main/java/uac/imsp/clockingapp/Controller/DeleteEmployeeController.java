@@ -20,7 +20,6 @@ private Employee employee;
  private Service service;
 
 
-
     @SuppressWarnings("UnusedAssignment")
     @Override
     public String[] onLoad(String[] serviceList) {
@@ -59,9 +58,6 @@ private Employee employee;
         deleteEmployeeView.onDeleteSucessful("Suppression effectuée avec succès");
 
     }
-
-
-
 
     @Override
     public void onNumberSelected(int number) {

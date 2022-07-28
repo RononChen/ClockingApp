@@ -4,6 +4,7 @@ import android.content.Context;
 
 import java.util.Hashtable;
 
+import uac.imsp.clockingapp.Models.Day;
 import uac.imsp.clockingapp.Models.Employee;
 import uac.imsp.clockingapp.Models.EmployeeManager;
 import uac.imsp.clockingapp.Models.Service;
@@ -98,7 +99,7 @@ public class ConsultStatisticsController implements IConsultStatisticsController
     }
 
     @Override
-    public void onMonthSelected(int month,Hashtable<String,Character> report) {
+    public void onMonthSelected(int month, Hashtable<Day, Character> report) {
         EmployeeManager employeeManager;
         employeeManager = new EmployeeManager((Context) consultStatisticsView);
         employeeManager.open();
@@ -108,5 +109,6 @@ public class ConsultStatisticsController implements IConsultStatisticsController
         employeeManager.close();
 
     }
+
 
 }

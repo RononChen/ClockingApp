@@ -256,15 +256,16 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
         return  row;
     }
    // presence report in a month for an employee (satursday and sunday aren't concerned)
-public Hashtable<String,Character> getPresenceReportForEmployee(
+public Hashtable<Day,Character> getPresenceReportForEmployee(
         Employee employee,int month)
         {
 
             /*late and weekenddays are not already taken into account*/
             String off=getPlanning(employee).getStartTime();
             String date;
+            Day day;
 
-            Hashtable<String,Character> report = new Hashtable<>();
+            Hashtable<Day,Character> report = new Hashtable<>();
         Cursor cursor;
 
         String query="SELECT  date_jour  , heure_arrivee" +
@@ -283,16 +284,20 @@ public Hashtable<String,Character> getPresenceReportForEmployee(
 
      while(cursor.moveToNext()){
 
+
          date=cursor.getString(0);//the date
+         day=new Day(date);
+
        if((Integer.parseInt(date.split("-")[0]) <=
                Integer.parseInt(off.split("[-]")[0]))  ||
                (Integer.parseInt(date.split("-")[0]) ==
                Integer.parseInt(off.split("[-]")[0])&&
                        (Integer.parseInt(date.split("-")[1]) <=
                        Integer.parseInt(off.split("[-]")[1])) ))
-           report.put(date,'P');
+
+           report.put(day,'P');
        else
-           report.put(date,'R');
+           report.put(day,'R');
 
 
      }
