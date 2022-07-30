@@ -118,7 +118,7 @@ public class RegisterEmployee extends AppCompatActivity
             registerEmployeePresenter.onRegisterEmployee(toString(Number), toString(Lastname),
                     toString(Firstname),gend,Birth,toString(Email),toString(Username),
                     toString(Password),toString(PasswordConfirm),SelectedService,
-                    String.valueOf(Start),String.valueOf(End),Picture,SelectedType);
+                    Start,End,Picture,SelectedType);
 
 
 
@@ -210,7 +210,8 @@ public class RegisterEmployee extends AppCompatActivity
 
     }
     public void initView(){
-        //new controller instane created
+
+        //new controller instance created
         registerEmployeePresenter = new RegisterEmployeeController(this);
         // The view gets service list from the controller
         String[] services = registerEmployeePresenter.onLoad();
@@ -255,26 +256,15 @@ public class RegisterEmployee extends AppCompatActivity
 
         start.setFormatter(this);
         end.setFormatter(this);
-        initNumberPicker(start,0,3);
-        initNumberPicker(end,0,3);
+        initNumberPicker(start,6,9);
+        initNumberPicker(end,16,19);
     }
 
     public void initNumberPicker(NumberPicker n,int min,int max ){
-
-        int number;
-         if(n!=null) {
+                 if(n!=null) {
             n.setMinValue(min);
-
-
             n.setMaxValue(max);
-            Toast.makeText(this,"nfkfk",Toast.LENGTH_SHORT).show();
-            //n.setValue(9);
-            //n.setWrapSelectorWheel(true);
-            //n.setDisplayedValues(new String[]{"1","2","3","4"});
-            //for(number=min;number<=max;number++)
-                //n.setValue(number);
-
-
+            n.setWrapSelectorWheel(true);
             n.setOnValueChangedListener(this);
 
 
@@ -291,7 +281,7 @@ public class RegisterEmployee extends AppCompatActivity
         Start=newVal;
         else if (picker.getId()==R.id.register_planning_end_choose)
             End=newVal;
-        Toast.makeText(this,"gjhj",Toast.LENGTH_SHORT).show();
+        Toast.makeText(this,"new :"+newVal,Toast.LENGTH_LONG).show();
 
     }
 

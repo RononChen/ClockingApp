@@ -56,7 +56,7 @@ public class RegisterEmployeeController implements  IRegisterEmployeeController
     public void onRegisterEmployee(String number, String lastname,
                                    String firstname, String gender, String birthdate,String mail,
                                    String username, String password, String passwordConfirm,
-                                   String selectedService, String startTime, String endTime,
+                                   String selectedService, int startTime, int endTime,
                                    byte[] picture,String type) {
         int registerCode;
         int n;
@@ -107,6 +107,7 @@ public class RegisterEmployeeController implements  IRegisterEmployeeController
    else if(!Objects.equals(password, passwordConfirm))
        registerEmployeeView.onRegisterEmployeeError("Vérifier le mot de passe et resssayer !");
    else{
+
        employeeManager = new EmployeeManager((Context) registerEmployeeView);
        employeeManager.open();
 
@@ -117,7 +118,7 @@ public class RegisterEmployeeController implements  IRegisterEmployeeController
        else {
            qrCode = generateQRCode(number);
            employee.setQRCode(qrCode);
-           planning = new Planning(startTime, endTime);
+           planning = new Planning(formatTime(startTime), formatTime(endTime));
            planningManager = new PlanningManager((Context) registerEmployeeView);
            planningManager.open();
            planningManager.create(planning);
@@ -160,6 +161,11 @@ public class RegisterEmployeeController implements  IRegisterEmployeeController
         }
         return new byte[0];
     }
-
+public String formatTime(int time) {
+  if(time <10)
+      return "0"+time+":"+"0";
+  else
+      return time+":"+"0";
+}
 
 }
