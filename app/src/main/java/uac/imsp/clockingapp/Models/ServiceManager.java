@@ -67,6 +67,7 @@ public class ServiceManager {
         ArrayList <String> service= new ArrayList<>();
 
 
+        open();
         String query="SELECT nom FROM service";
         Cursor cursor=Database.rawQuery(query,null);
         //cursor.moveToFirst();

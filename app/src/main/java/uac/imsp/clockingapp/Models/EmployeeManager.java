@@ -55,7 +55,9 @@ public int connectUser(Employee employee,String password){
     public void create (Employee employee){
        open();
         SQLiteStatement statement;
-        String query = "INSERT INTO employe (matricule,nom,prenom,sexe,birthdate,couriel,photo,username,password) VALUES(?,?,?,?,?,?,?,?,?) ";
+        String query = "INSERT INTO employe (matricule,nom,prenom,sexe,birthdate," +
+                "couriel,qr_code,photo,username,password,type) VALUES(?,?,?,?,?,?,?,?,?,?,?) ";
+
                 statement=Database.compileStatement(query);
         statement.bindLong(1,employee.getRegistrationNumber());
 
@@ -68,6 +70,7 @@ public int connectUser(Employee employee,String password){
          statement.bindBlob(8,employee.getQRCode());
         statement.bindString(9,employee.getUsername());
         statement.bindString(10,employee.getPassword());
+        statement.bindString(11,employee.getType());
 
         statement.executeInsert();
 
@@ -174,10 +177,16 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
 
     public boolean exists(@NonNull Employee employee){
 
-       String query ="SELECT matricule FROM employe WHERE matricule=?";
-       String [] selectArg={Integer.valueOf(employee.getRegistrationNumber()).toString()};
+       String query ="SELECT matricule FROM employe WHERE matricule=? OR username=? OR couriel=?";
+       String [] selectArg={Integer.valueOf(employee.getRegistrationNumber()).toString(),
+                             employee.getUsername(),
+               employee.getMailAddress()
+       };
         Cursor cursor = Database.rawQuery(query,selectArg);
-        return cursor.getColumnCount()==1;
+
+
+        return cursor.getCount()==1;
+
 
     }
 

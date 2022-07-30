@@ -3,20 +3,20 @@ CREATE TABLE service (
 	nom                  TEXT NOT NULL    
  );
 
+
 CREATE TABLE employe ( 
 	matricule            INTEGER NOT NULL  PRIMARY KEY  ,
 	nom                 TEXT NOT NULL    ,
 	prenom               TEXT NOT NULL    ,
 	sexe                 CHAR(1) NOT NULL    ,
-	couriel                TEXT NOT NULL    ,
-	qr_code              BLOB NOT NULL    ,
+	couriel                TEXT  UNIQUE NOT NULL    ,
+	qr_code              BLOB UNIQUE NOT NULL    ,
 
 	--Picture can be NULL
 	photo                BLOB NOT   ,
-	username                TEXT  NOT NULL   ,
+	username                TEXT UNIQUE NOT NULL   ,
 	password             TEXT  NOT NULL   ,
-	--Not already addede
-    	type                 TEXT NOT NULL,
+    	type                 TEXT DEFAULT 'Simple',
 	id_service_ref       INTEGER    ,
 		id_planning_ref INTEGER ,
 	FOREIGN KEY employe( id_service_ref ) REFERENCES service( id_service ) ,

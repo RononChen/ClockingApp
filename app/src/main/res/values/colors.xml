@@ -20,4 +20,17 @@
     <color name="signupColor">#066e8a</color>
     <color name="whiteTextColor">#fff</color>
     <color name="primaryTextColor">#00a5ff</color>
+
+
+
+
+
+
+    <color name="appOrange">#ff9800</color>
+    <color name="appOrangeDark">#ef6c00</color>
+    <color name="red">#D81B60</color>
+        <color name="bar">#ffff8800</color>
+
+
+
 </resources>

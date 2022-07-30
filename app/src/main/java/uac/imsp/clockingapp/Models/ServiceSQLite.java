@@ -8,7 +8,7 @@ public class ServiceSQLite  extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "Clocking_database.db";
     private static final int DATABASE_VERSION = 1;
-    private static final String TABLE_SERVICE = "service";
+        private static final String TABLE_SERVICE = "service";
     private static final String COL_ID_SERVICE = "id_service";
     private static final String COL_NOM_SERVICE="nom";
 

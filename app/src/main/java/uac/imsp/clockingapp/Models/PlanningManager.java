@@ -50,8 +50,8 @@ public class PlanningManager {
     public boolean searchPlanning(Planning planning){
 
         String query="SELECT id_planning FROM planning WHERE heure_debut_officielle=? " +
-                "AND heure_fn_officielle=?" ;
-        String [] selectArgs={
+                "AND heure_fin_officielle=?" ;
+                String [] selectArgs={
                 planning.getStartTime(),planning.getEndTime()
         };
         Cursor cursor=Database.rawQuery(query,selectArgs);

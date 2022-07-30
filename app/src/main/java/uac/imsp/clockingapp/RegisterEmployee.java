@@ -14,9 +14,9 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.NumberPicker;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -33,7 +33,8 @@ import uac.imsp.clockingapp.View.IRegisterEmployeeView;
 
 
 public class RegisterEmployee extends AppCompatActivity
-        implements IRegisterEmployeeView,
+        implements NumberPicker.OnValueChangeListener , NumberPicker.Formatter,
+        IRegisterEmployeeView,
         View.OnClickListener,
         RadioGroup.OnCheckedChangeListener ,
 
@@ -41,17 +42,16 @@ public class RegisterEmployee extends AppCompatActivity
 {
     IRegisterEmployeeController registerEmployeePresenter;
 
-    private  RadioGroup Type;
-    private EditText Lastname, Firstname, Email, Username, Password, PasswordConfirm,Number, Birthdate;
+    private EditText Lastname, Firstname, Email, Username,
+            Password, PasswordConfirm,Number, Birthdate;
     private String Birth;
     DatePickerDialog picker;
     private ImageView PreviewImage;
     private byte[] Picture;
     private String gend;
-    private String SelectedService;
-    private  final Spinner spinnerServices = findViewById(R.id.register_service);
-    private int Start=6,End=18;
-    private  TextView StartTime,EndTime;
+    private String SelectedService,SelectedType;
+    private  Spinner spinnerServices , spinnerTypes;
+    private int Start,End;
 
 
 
@@ -63,6 +63,7 @@ public class RegisterEmployee extends AppCompatActivity
         setContentView(R.layout.activity_register_employee);
 
         initView();
+        gend="M";
 
 
 
@@ -109,37 +110,15 @@ public class RegisterEmployee extends AppCompatActivity
     @SuppressLint("DefaultLocale")
         @Override
     public void onClick(View v) {
-        String time;
-        if(v.getId()==R.id.register_planning_start)
-        {
-            if(Start<11)
-                Start++;
 
 
-            else if (Start==11)
-                Start=8;
-
-            time=toString(StartTime).replaceFirst("[0-9]+",String.valueOf(Start));
-            StartTime.setText(time);
-
-
-        }
-        else if(v.getId()==R.id.register_planning_end)
-        {
-            if(End<18)
-                Start++;
-            else if (End==18)
-                End=13;
-            time=toString(EndTime).replaceFirst("[0-9]+",String.valueOf(End));
-            StartTime.setText(time);
-        }
-        else if (v.getId() == R.id.register_picture_button)
+         if (v.getId() == R.id.register_picture_button)
             imageChooser();
         else if (v.getId() == R.id.register_button ) {
             registerEmployeePresenter.onRegisterEmployee(toString(Number), toString(Lastname),
-                                        toString(Firstname),gend,toString(Email),Birth,toString(Username),
+                    toString(Firstname),gend,Birth,toString(Email),toString(Username),
                     toString(Password),toString(PasswordConfirm),SelectedService,
-                    String.valueOf(Start),String.valueOf(End),Picture,"");
+                    String.valueOf(Start),String.valueOf(End),Picture,SelectedType);
 
 
 
@@ -177,10 +156,13 @@ public class RegisterEmployee extends AppCompatActivity
         Number.setText("");
         Lastname.setText("");
         Firstname.setText("");
+        Birthdate.setText("");
         Email.setText("");
         Username.setText("");
         Password.setText("");
         PasswordConfirm.setText("");
+        PreviewImage.setImageBitmap(null);
+
     }
 
     @Override
@@ -194,14 +176,21 @@ public class RegisterEmployee extends AppCompatActivity
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+        if(view.getId()==R.id.register_service)
         SelectedService = String.valueOf(spinnerServices.getSelectedItem());
+        else if(view.getId()==R.id.register_type)
+            SelectedType=String.valueOf(spinnerTypes.getSelectedItem());
 
     }
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
+       /* if(parent==R.id.emp)
+        SelectedType=;*/
 
     }
+
 
 
 
@@ -209,6 +198,7 @@ public class RegisterEmployee extends AppCompatActivity
     public void onRegisterEmployeeSuccess(String message) {
 
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+        resetInput();
     }
 
     @Override
@@ -219,25 +209,27 @@ public class RegisterEmployee extends AppCompatActivity
         return  e.getText().toString();
 
     }
-    //public String toString()
-   public String toString(TextView tv){
-        return  tv.getText().toString();
-   }
     public void initView(){
+        //new controller instane created
         registerEmployeePresenter = new RegisterEmployeeController(this);
+        // The view gets service list from the controller
         String[] services = registerEmployeePresenter.onLoad();
+         String [] employeTypes=getResources().getStringArray(R.array.employee_types);
 
-        String time=toString(StartTime)+"H";
+        spinnerServices = findViewById(R.id.register_service);
+         spinnerTypes = findViewById(R.id.register_type);
+
         ArrayAdapter<String> dataAdapterR = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, services);
         dataAdapterR.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerServices.setAdapter(dataAdapterR);
-        StartTime.setText(String.format("%s  %s", StartTime, time));
-        time=toString(EndTime)+"H";
-        EndTime.setText(String.format("%s  %s", EndTime, time));
-                spinnerServices.setOnItemSelectedListener(this);
 
-        StartTime=findViewById(R.id.register_planning_start);
-        EndTime=findViewById(R.id.register_planning_end);
+         dataAdapterR = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, employeTypes);
+        dataAdapterR.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerTypes.setAdapter(dataAdapterR);
+
+
+        NumberPicker start = findViewById(R.id.register_planning_start_choose);
+        NumberPicker end = findViewById(R.id.register_planning_end_choose);
         Number = findViewById(R.id.register_number);
         Lastname = findViewById(R.id.register_lastname);
         Firstname = findViewById(R.id.register_firstname);
@@ -246,7 +238,6 @@ public class RegisterEmployee extends AppCompatActivity
         Email = findViewById(R.id.register_email);
         Username = findViewById(R.id.register_username);
         Password = findViewById(R.id.register_password);
-        Type=findViewById(R.id.register_gender);//to be changed
         PasswordConfirm = findViewById(R.id.register_password_confirm);
         PreviewImage = findViewById(R.id.register_preview_image);
         Button register = findViewById(R.id.register_button);
@@ -257,7 +248,60 @@ public class RegisterEmployee extends AppCompatActivity
         register.setOnClickListener(this);
         reset.setOnClickListener(this);
         selectPicture.setOnClickListener(this);
-        StartTime.setOnClickListener(this);
-        StartTime.setOnClickListener(this);
+        SelectedType=employeTypes[0];
+        SelectedService=services[0];
+        spinnerServices.setOnItemSelectedListener(this);
+        spinnerTypes.setOnItemSelectedListener(this);
+
+        start.setFormatter(this);
+        end.setFormatter(this);
+        initNumberPicker(start,0,3);
+        initNumberPicker(end,0,3);
     }
+
+    public void initNumberPicker(NumberPicker n,int min,int max ){
+
+        int number;
+         if(n!=null) {
+            n.setMinValue(min);
+
+
+            n.setMaxValue(max);
+            Toast.makeText(this,"nfkfk",Toast.LENGTH_SHORT).show();
+            //n.setValue(9);
+            //n.setWrapSelectorWheel(true);
+            //n.setDisplayedValues(new String[]{"1","2","3","4"});
+            //for(number=min;number<=max;number++)
+                //n.setValue(number);
+
+
+            n.setOnValueChangedListener(this);
+
+
+
+        }
+
+
+
+    }
+
+    @Override
+    public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+        if(picker.getId()==R.id.register_planning_start_choose)
+        Start=newVal;
+        else if (picker.getId()==R.id.register_planning_end_choose)
+            End=newVal;
+        Toast.makeText(this,"gjhj",Toast.LENGTH_SHORT).show();
+
+    }
+
+    @Override
+    public String format(int value) {
+        String str;
+        str=String.valueOf(value);
+        if(value<10)
+            str="0"+value;
+        return str;
+    }
+
 }

@@ -33,16 +33,17 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
 
     private static final String CREATE_EMPLOYEE = "CREATE TABLE " + TABLE_EMPLOYE + " (" +
             COL_MATRICULE + " INTEGER NOT NULL  PRIMARY KEY, " +
-            COL_NOM + " TEXT ," +
-            COL_PRENOM + " TEXT," +
-            COL_SEXE + " CHAR(1)  ," +
-            COL_EMAIL + " TEXT ," +
+            COL_NOM + " TEXT NOT NULL ," +
+            COL_PRENOM + " TEXT NOT NULL," +
+            COL_SEXE + " CHAR(1) NOT NULL ," +
+
+            COL_EMAIL + " TEXT UNIQUE NOT NULL," +
            COL_BIRTHDATE+" TEXT , "+
-           COL_QRCODE + "  BLOB ," +
+           COL_QRCODE + "  BLOB  UNIQUE NOT NULL," +
             COL_PHOTO + "  BLOB ," +
-            COL_USERNAME + " TEXT NOT NULL ," +
+            COL_USERNAME + " TEXT UNIQUE NOT NULL ," +
             COL_PASSWORD + " TEXT NOT NULL , " +
-            COL_TYPE+" TEXT NOT NULL, "+
+            COL_TYPE+" TEXT DEFAULT 'Simple', "+
             COL_ID_PLANNING_REF + " TEXT  , " +
             COL_ID_SERVICE_REF + " INTEGER  ," +
             " FOREIGN KEY(" + COL_ID_SERVICE_REF +

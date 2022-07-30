@@ -1,6 +1,7 @@
 package uac.imsp.clockingapp.Models;
 
 import android.text.TextUtils;
+import android.util.Patterns;
 
 
 public class Employee implements IEmployee{
@@ -15,15 +16,16 @@ public class Employee implements IEmployee{
                   INVALID_USERNAME=11,
                     EMPTY_PICTURE=7,
                    EMPTY_QRCODE=8, EMPTY_PASSWORD=9,
-                            INVALID_PASSWORD=10,EMPTY_MAIL=13,INVALID_MAIL=12
+                            INVALID_PASSWORD=10,EMPTY_MAIL=14,INVALID_MAIL=12
 
                     ;
 
-public  final static String SIMPLE="simple", HEAD="Directeur",CHIEF="Chef personnel";
+public  final static String SIMPLE="Simple", HEAD="Directeur",CHIEF="Chef personnel";
 
 
     //Les infos personnelles sur l'employé
     private int RegistrationNumber;
+
     private String Firstname;
 
     private String Lastname;
@@ -43,8 +45,8 @@ public  final static String SIMPLE="simple", HEAD="Directeur",CHIEF="Chef person
     //Constructeurs
 
 
-    public Employee(int registrationNumber, String firstname,
-                    String lastname, char gender, String birthdate,
+    public Employee(int registrationNumber, String lastname,
+                    String firstname, char gender, String birthdate,
                     String mailAddress, byte[] picture,  String username,
                     String password,String type) {
 
@@ -62,11 +64,12 @@ public  final static String SIMPLE="simple", HEAD="Directeur",CHIEF="Chef person
 
     }
 
-    public Employee(int registrationNumber, String firstname, String lastname,
+    public Employee(int registrationNumber, String lastname, String firstname,
+
                     char gender, String birthdate, String mailAddress, String username,
                     String password,String type) {
 
-        this(registrationNumber, firstname, lastname, gender,
+        this(registrationNumber, lastname,firstname, gender,
                 birthdate, mailAddress, null,  username, password,type);
 
 
@@ -126,17 +129,19 @@ public  final static String SIMPLE="simple", HEAD="Directeur",CHIEF="Chef person
             return EMPTY_NUMBER;
         else if(hasInvalidNumber())
             return INVALID_NUMBER;
-        if(TextUtils.isEmpty(Lastname))
+        else if(TextUtils.isEmpty(Lastname))
             return EMPTY_LASTNAME;
         else if (hasInvalidLastName())
-        return INVALID_LASTNAME;
-        if(TextUtils.isEmpty(Firstname))
+            return INVALID_LASTNAME;
+       else if(TextUtils.isEmpty(Firstname))
             return EMPTY_FIRSTNAME;
         else if (hasInvalidFirstname())
             return INVALID_FIRSTNAME;
+        else if (TextUtils.isEmpty(MailAddress))
+            return EMPTY_MAIL;
         else if(hasInvalidEmail())
             return INVALID_MAIL;
-        if(TextUtils.isEmpty(Username))
+        else if(TextUtils.isEmpty(Username))
             return EMPTY_USERNAME;
         else if (hasInvalidUsername())
             return INVALID_USERNAME;
@@ -207,12 +212,12 @@ public  final static String SIMPLE="simple", HEAD="Directeur",CHIEF="Chef person
 
     public boolean hasInvalidLastName() {
 //A revoir
-        return !Lastname.matches("[A-Za-z]+");
+        return !Lastname.matches("\\w+");
 
     }    public boolean hasInvalidFirstname(){
 
         //A revoir
-        return !Firstname.matches("^[A-B][a-zéèçàâêûîô]+$");
+        return !Firstname.matches("\\w+");
 
 
     }
@@ -223,9 +228,10 @@ public  final static String SIMPLE="simple", HEAD="Directeur",CHIEF="Chef person
     }
 
     public boolean hasInvalidEmail() {
-        return !MailAddress.matches("^[A-Za-z]+\\.?\\w+@[A-Za-z0-9_-]+\\.\\w+$");
 
+       // return !MailAddress.matches("[A-Za-z]+\\.?\\w+@[A-Za-z0-9_-]+\\.\\w+");
 
+return  !Patterns.EMAIL_ADDRESS.matcher(MailAddress).matches();
     }
     public  boolean hasInvalidPassword() {
         return !Password.matches("\\w{6,}");

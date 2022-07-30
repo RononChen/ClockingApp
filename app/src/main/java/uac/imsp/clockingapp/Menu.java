@@ -28,10 +28,11 @@ public class Menu extends AppCompatActivity implements View.OnClickListener,
 
     @Override
     public void onClick(View v) {
-        if(v.getId()==R.id.menu_clock)
-            menuPresenter.onClocking();
-        else if(v.getId()==R.id.menu_register)
+         if(v.getId()==R.id.menu_register)
             menuPresenter.onRegisterEmployeeMenu();
+        else if(v.getId()==R.id.menu_clock)
+            menuPresenter.onClocking();
+
         else if(v.getId()==R.id.menu_delete)
             menuPresenter.onDeleteEmployeeMenu();
         else if (v.getId()==R.id.menu_search)
@@ -40,6 +41,11 @@ public class Menu extends AppCompatActivity implements View.OnClickListener,
             menuPresenter.onUpdateEmployeeMenu();
         else if(v.getId()==R.id.menu_statistics)
             menuPresenter.onConsultatisticsMenu();
+        else if (v.getId()==R.id.menu_new)
+        {
+            Intent intent=new Intent(this,RegisterActivity.class);
+            startActivity(intent);
+        }
 
     }
 

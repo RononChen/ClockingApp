@@ -13,8 +13,9 @@ public class DaySQLite extends SQLiteOpenHelper {
     public static final String COL_ID_JOUR="id_jout";
 
     private static final String CREATE_JOUR = "CREATE TABLE " + TABLE_JOUR + " (" +
-            COL_ID_JOUR + " TEXT  NOT NULL PRIMARY KEY AUTOINCREMENT , " +
+            COL_ID_JOUR + " INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT , " +
             COL_DATE_JOUR+" TEXT )" ;
+
 
 
 

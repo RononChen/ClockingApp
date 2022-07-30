@@ -59,16 +59,32 @@ public class RegisterEmployeeController implements  IRegisterEmployeeController
                                    String selectedService, String startTime, String endTime,
                                    byte[] picture,String type) {
         int registerCode;
-        int n= number.equals("")?-1:Integer.parseInt(number);
+        int n;
         Service service;
+        Employee employee = null;
+        byte[] qrCode;
+
         PlanningManager planningManager;
         Planning planning;
         EmployeeManager employeeManager;
+        try {
+            n = Integer.parseInt(number);
+            employee=new Employee(n,lastname,firstname,gender.charAt(0),
+                    birthdate,mail,picture,username,password,type);
+            registerCode=employee.isValid();
 
-        Employee employee=new Employee(n,lastname,firstname,gender.charAt(0),
-                birthdate,mail,username,password,type);
-   registerCode=employee.isValid();
-   if(registerCode==EMPTY_NUMBER)
+
+        }
+        catch (NumberFormatException e){
+            
+            
+            registerCode=EMPTY_NUMBER;
+
+        }
+
+
+       
+   if( registerCode==EMPTY_NUMBER)
        registerEmployeeView.onRegisterEmployeeError("Matricule requis !");
    else if(registerCode==INVALID_NUMBER)
        registerEmployeeView.onRegisterEmployeeError("Matricule invalide !");
@@ -77,38 +93,46 @@ public class RegisterEmployeeController implements  IRegisterEmployeeController
    else if(registerCode==INVALID_LASTNAME)
        registerEmployeeView.onRegisterEmployeeError("Nom invalide !");
    else if(registerCode==EMPTY_FIRSTNAME)
-       registerEmployeeView.onRegisterEmployeeError("Prénom requis");
+       registerEmployeeView.onRegisterEmployeeError("Prénom requis !");
    else if(registerCode==INVALID_FIRSTNAME)
-       registerEmployeeView.onRegisterEmployeeError("Prénom invalide");
+       registerEmployeeView.onRegisterEmployeeError("Prénom(s) invalide(s) !");
    else if(registerCode==EMPTY_MAIL)
        registerEmployeeView.onRegisterEmployeeError("Email requis !");
    else if(registerCode==INVALID_MAIL)
        registerEmployeeView.onRegisterEmployeeError("Email invalide !");
    else if(registerCode==EMPTY_PASSWORD)
-       registerEmployeeView.onRegisterEmployeeError("Mot de passe requis");
+       registerEmployeeView.onRegisterEmployeeError("Mot de passe requis !");
    else if(registerCode==INVALID_PASSWORD)
-       registerEmployeeView.onRegisterEmployeeError("Mot de passe invalide");
+       registerEmployeeView.onRegisterEmployeeError("Mot de passe invalide !");
    else if(!Objects.equals(password, passwordConfirm))
        registerEmployeeView.onRegisterEmployeeError("Vérifier le mot de passe et resssayer !");
    else{
-       planning=new Planning(startTime,endTime);
-       planningManager = new PlanningManager((Context) registerEmployeeView);
-       planningManager.open();
-       planningManager.create(planning);
-       planningManager.close();
-
-       service = new Service(selectedService);
-
        employeeManager = new EmployeeManager((Context) registerEmployeeView);
        employeeManager.open();
 
-       employeeManager.create(employee);
-       employeeManager.update(employee,planning);
-       employeeManager.update(employee,service);
-       employeeManager.storeQRCode(employee);
-       employeeManager.close();
-       registerEmployeeView.onRegisterEmployeeSuccess("Employé enregistré avec succès");
+       if(employeeManager.exists(employee))
+           registerEmployeeView.onRegisterEmployeeError("Le matricule, le username " +
+                   "ou l'email a été déjà attribué à un employé !");
 
+       else {
+           qrCode = generateQRCode(number);
+           employee.setQRCode(qrCode);
+           planning = new Planning(startTime, endTime);
+           planningManager = new PlanningManager((Context) registerEmployeeView);
+           planningManager.open();
+           planningManager.create(planning);
+           planningManager.close();
+
+           service = new Service(selectedService);
+
+           employeeManager.create(employee);
+           employeeManager.update(employee, planning);
+           employeeManager.update(employee, service);
+
+           registerEmployeeView.onRegisterEmployeeSuccess("Employé enregistré avec succès");
+
+       }
+      // employeeManager.close();
    }
     }
 
