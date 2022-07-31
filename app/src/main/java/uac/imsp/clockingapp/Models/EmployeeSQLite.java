@@ -1,6 +1,6 @@
 package uac.imsp.clockingapp.Models;
 
-import static uac.imsp.clockingapp.Models.Employee.SIMPLE;
+import static uac.imsp.clockingapp.Models.Employee.HEAD;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -28,8 +28,9 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
    private static final String COL_ID_SERVICE_REF = "id_service_ref";
     private static final String COL_ID_SERVICE = "id_service";
 
-    private static final String super_user="INSERT INTO employe(matricule,username,password,type)" +
-            " VALUES (?,?,?,?)";
+    private static final String super_user="INSERT INTO employe(matricule," +
+            "username,password,type,sexe,couriel,id_service_ref,id_planning_ref)" +
+            " VALUES (?,?,?,?,?,?,?,?)";
 
     private static final String CREATE_EMPLOYEE = "CREATE TABLE " + TABLE_EMPLOYE + " (" +
             COL_MATRICULE + " INTEGER NOT NULL  PRIMARY KEY, " +
@@ -39,13 +40,13 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
 
             COL_EMAIL + " TEXT UNIQUE NOT NULL," +
            COL_BIRTHDATE+" TEXT , "+
-           COL_QRCODE + "  BLOB  UNIQUE NOT NULL," +
+           COL_QRCODE + "  BLOB  UNIQUE ," +
             COL_PHOTO + "  BLOB ," +
             COL_USERNAME + " TEXT UNIQUE NOT NULL ," +
             COL_PASSWORD + " TEXT NOT NULL , " +
             COL_TYPE+" TEXT DEFAULT 'Simple', "+
-            COL_ID_PLANNING_REF + " TEXT  , " +
-            COL_ID_SERVICE_REF + " INTEGER  ," +
+            COL_ID_PLANNING_REF + " TEXT NOT NULL , " +
+            COL_ID_SERVICE_REF + " INTEGER NOT NULL  ," +
             " FOREIGN KEY(" + COL_ID_SERVICE_REF +
             " ) REFERENCES service(" + COL_ID_SERVICE+" )," +
             " FOREIGN KEY(" + COL_ID_PLANNING_REF +
@@ -69,10 +70,12 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
        statement.bindLong(1,1);
        statement.bindString(2,"User10");
        statement.bindString(3,"password");
-       statement.bindString(4,SIMPLE);
+       statement.bindString(4,HEAD);
+        statement.bindString(5,"M");
+        statement.bindString(6,"super@gmail.com");
+        statement.bindLong(7,1);
+        statement.bindLong(8,1);
         statement.execute();
-
-
 
     }
 
@@ -83,4 +86,5 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
 
     }
 }
+
 

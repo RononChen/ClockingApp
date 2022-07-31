@@ -111,7 +111,8 @@ public class UpdateEmployee extends AppCompatActivity
 
     public void initView() throws ParseException {
         String[] employeTypes = getResources().getStringArray(R.array.employee_types);
-        String[] services = updateEmployeePresenter.onLoad(1, informations);
+        String[] services = updateEmployeePresenter.onLoad(55, informations);
+
 
         EditText number = findViewById(R.id.register_number);
         EditText lastname = findViewById(R.id.register_lastname);

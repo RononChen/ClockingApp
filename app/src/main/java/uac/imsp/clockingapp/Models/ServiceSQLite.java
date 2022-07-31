@@ -3,6 +3,7 @@ package uac.imsp.clockingapp.Models;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.database.sqlite.SQLiteStatement;
 
 public class ServiceSQLite  extends SQLiteOpenHelper {
 
@@ -30,10 +31,17 @@ public class ServiceSQLite  extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-                db.execSQL(CREATE_SERVICE);
+
+        db.execSQL(CREATE_SERVICE);
+        String service = "INSERT INTO service  VALUES (?,?)";
+        SQLiteStatement statement= db.compileStatement(service);
+        statement.bindLong(1,1);
+        statement.bindString(2,"Direction");
+
     }
 
     @Override
+
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         db.execSQL("DROP TABLE "+TABLE_SERVICE);
         onCreate(db);

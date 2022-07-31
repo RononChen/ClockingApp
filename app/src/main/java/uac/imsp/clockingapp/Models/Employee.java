@@ -233,7 +233,8 @@ public  final static String SIMPLE="Simple", HEAD="Directeur",CHIEF="Chef person
     }
 
     public boolean hasInvalidNumber(){
-        return !String.valueOf(RegistrationNumber).matches("^[1-9]+$");
+        return !String.valueOf(RegistrationNumber).matches("^[0-9]+$");
+
 
     }
 
