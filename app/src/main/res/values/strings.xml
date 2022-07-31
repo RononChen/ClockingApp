@@ -49,7 +49,9 @@
     <string name="modifier">Modifier</string>
     <string name="actualiser">Actualiser</string>
     <string name="img">img</string>
+    <string name="update_button">Modifier</string>
 
+    <string name="update_picture">Changer la photo</string>
 
     <string name="LAUNCH_URL">LAUNCH URL</string>
     <string name="consult_stat">Consulter statistiques</string>
@@ -59,7 +61,7 @@
     <string name="end_time">Heure de fin</string>
     <string name="start_time">Heure de début</string>
     <string name="register_planning_label">Planning de travail quotidien</string>
-
+    <string name="logout">Déconnexion</string>
 
 
     <string-array name="employee_types">

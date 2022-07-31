@@ -115,6 +115,9 @@ public class Day  implements IDay {
         return (getDayOfWeek()==6 || getDayOfWeek()==7);
     }
 
+    public String getFrenchFormat() throws ParseException {
+        return getDayOfMonth()+"/"+getMonth()+"/"+getYear();
+    }
 
 
 

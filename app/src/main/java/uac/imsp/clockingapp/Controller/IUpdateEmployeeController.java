@@ -1,12 +1,23 @@
 package uac.imsp.clockingapp.Controller;
 
+import android.graphics.Bitmap;
+
+import java.text.ParseException;
+import java.util.Hashtable;
+
 public interface IUpdateEmployeeController {
-    String[] onLoad(String[] serviceList);
-
-        void onNumberSelected(int number);
-
-    void onUpdateEmployee(String selectedService,String startTime,
-                          String endTime,byte[] picture);
+    String[] onLoad(int number, Hashtable<String, Object> informations) throws ParseException;
 
 
+
+
+
+    void onUpdateEmployee(String mail, String selectedService, int startTime,
+
+
+                          int endTime, Bitmap picture, String type);
+
+
+    void onReSet();
+    void onResetConfirmed();
 }

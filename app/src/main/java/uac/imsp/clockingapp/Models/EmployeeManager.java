@@ -79,37 +79,35 @@ public int connectUser(Employee employee,String password){
 
 
     //Pour modifier le courier de l'employé
-    public boolean update (Employee employee, String mailAddress){
+    public void update (Employee employee, String mailAddress){
 
         String query="UPDATE employe SET couriel =? WHERE matricule=?";
         SQLiteStatement statement  ;
                 statement=Database.compileStatement(query);
         statement.bindString(1, mailAddress);
         statement.bindLong(2, employee.getRegistrationNumber());
-        return true;
+    }
+
+
+    public void changeGrade (Employee employee, String type){
+
+        String query="UPDATE employe SET type =? WHERE matricule=?";
+        SQLiteStatement statement  ;
+        statement=Database.compileStatement(query);
+        statement.bindString(1, type);
+        statement.bindLong(2, employee.getRegistrationNumber());
     }
 
     //Pour modifier la photo de l'employé
-    public boolean update (Employee employee, byte[] picture){
+    public void update (Employee employee, byte[] picture){
         String query="UPDATE employe SET photo =? WHERE matricule=?";
         SQLiteStatement statement ;
         statement=Database.compileStatement(query);
         statement.bindBlob(1, picture);
         statement.bindLong(2, employee.getRegistrationNumber());
         statement.executeUpdateDelete();
-        return true;
     }
-    //Enregistrer le code QR
-    public void storeQRCode(Employee employee ){
 
-        String query="UPDATE employe SET qr_code =? WHERE matricule=?";
-        SQLiteStatement statement ;
-        statement=Database.compileStatement(query);
-        statement.bindBlob(1, employee.getQRCode());
-        statement.bindLong(2, employee.getRegistrationNumber());
-        statement.executeUpdateDelete();
-
-    }
     public Planning getPlanning(Employee employee){
         Planning planning ;
         String query="SELECT heure_debut_offficielle,heure_fin_officielle " +

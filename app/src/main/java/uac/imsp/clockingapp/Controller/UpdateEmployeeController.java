@@ -1,9 +1,18 @@
 package uac.imsp.clockingapp.Controller;
 
-import android.content.Context;
+import static uac.imsp.clockingapp.Controller.RegisterEmployeeController.getBytesFromBitmap;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.text.TextUtils;
+import android.util.Patterns;
+
+import java.text.ParseException;
+import java.util.Hashtable;
 import java.util.Objects;
 
+import uac.imsp.clockingapp.Models.Day;
 import uac.imsp.clockingapp.Models.Employee;
 import uac.imsp.clockingapp.Models.EmployeeManager;
 import uac.imsp.clockingapp.Models.Planning;
@@ -18,49 +27,103 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
         this.updateEmployeeView=updateEmployeeView;
     }
     private Employee employee;
-    private int Number;
-    private Service service;
-    private Planning planning;
+    private EmployeeManager employeeManager;
 
-    @SuppressWarnings("UnusedAssignment")
+
+
+
     @Override
     //Pour obtenir les listes de matricules et de services au chargement
 
-    public  String [] onLoad(String [] serviceList) {
+    public  String [] onLoad(int number, Hashtable <String,Object> informations) throws ParseException {
+        Day day;
+  ServiceManager serviceManager;
+  Service service;
+  Planning planning;
+       employee=new Employee(number);
+       employeeManager=new EmployeeManager((Context) updateEmployeeView);
+       employeeManager.open();
+       employeeManager.setInformations(employee);
+       planning=employeeManager.getPlanning(employee);
+       service =employeeManager.getService(employee);
 
-     String [] employeeList = forWhom(Number);
-        ServiceManager serviceManager;
-        serviceManager =new ServiceManager((Context) updateEmployeeView);
+       informations.put("number",String.valueOf(employee.getRegistrationNumber()));
+       informations.put("lastname",employee.getLastname());
+        informations.put("firstname",employee.getFirstname());
+        informations.put("picture",   getBitMapFromBytes(employee.getPicture()));
+        informations.put("email",employee.getMailAddress());
+        informations.put("username",employee.getUsername());
+        informations.put("gender",employee.getGender());
+        day=new Day(employee.getBirthdate());
+        informations.put("birthdate",day.getFrenchFormat());
+        informations.put("type",employee.getType());
+        informations.put("service",service.getName());
+        informations.put("start",Integer.parseInt(planning.getStartTime()));
+        informations.put("end",Integer.parseInt(planning.getEndTime()));
+
+
+
+         serviceManager = new ServiceManager((Context) updateEmployeeView);
+
+
         serviceManager.open();
-        serviceList=serviceManager.getAllServices();
+        String[] serviceList =serviceManager.getAllServices();
         serviceManager.close();
-        return employeeList;
-
+        return serviceList;
     }
 
-    @Override
-    public void onNumberSelected(int number) {
-                //Si on le matricule est changé, on change l'employé
-        Number=number;
-     employee=new Employee(Number);
-    }
+
 
     @Override
-    public void onUpdateEmployee(String selectedService, String startTime, String endTime, byte[] picture) {
+    public void onUpdateEmployee(String mail, String selectedService, int startTime,
+                                 int endTime, Bitmap picture, String type) {
      //gestion du clic sur modifier employé
+        //Day day;
+        Service service;
+        Planning planning;
+        String s,e;
+
+
+        s=formatTime(startTime);
+        e=formatTime(endTime);
+        service=new Service(selectedService);
+        planning=new Planning(s,e);
         boolean update=false;
-        EmployeeManager employeeManager=new EmployeeManager((Context) updateEmployeeView);
+         employeeManager=new EmployeeManager((Context) updateEmployeeView);
         employeeManager.open();
+        employeeManager.setInformations(employee);
+
+        if(!Objects.equals(employee.getMailAddress(), mail))
+
+        {
+            if(TextUtils.isEmpty(mail))
+            updateEmployeeView.onUpdateEmployeeError("L'adresse email est requis !");
+            else if(!Patterns.EMAIL_ADDRESS.matcher(mail).matches())
+                updateEmployeeView.onUpdateEmployeeError("Adresse email invalide !");
+            else {
+                employeeManager.update(employee, mail);
+                update = true;
+            }
+        }
+
+        if(!Objects.equals(employee.getType(), type))
+        {
+            employeeManager.changeGrade(employee,type);
+            update=true;
+        }
      if(!Objects.equals(service.getName(), selectedService)) {
          employeeManager.update(employee, service);
          update = true;
      }
-     if(!Objects.equals(planning.getStartTime(), startTime) || !Objects.equals(planning.getEndTime(), endTime)) {
+     if(!Objects.equals(planning.getStartTime(), String.valueOf(startTime)) ||
+             !Objects.equals(planning.getEndTime(), String.valueOf(endTime))) {
          employeeManager.update(employee, planning);
          update=true;
      }
-     if(employee.getPicture()!=picture) {
-         employeeManager.update(employee, picture);
+
+     if(employee.getPicture()!=getBytesFromBitmap(picture)) {
+         employeeManager.update(employee, getBytesFromBitmap(picture));
+
          update=true;
      }
      employeeManager.close();
@@ -71,18 +134,28 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
          updateEmployeeView.onNothingChanged("Aucune information n'a été modifiée");
 
     }
-    //@SuppressWarnings("UnusedAssignment")
-    public String [] forWhom(int number){
-        String [] employeeList;
-        EmployeeManager employeeManager;
-        employee = new Employee(number);
-        employeeManager=new EmployeeManager((Context) updateEmployeeView);
-        employeeManager.open();
-        employeeList=employeeManager.getAllEmployees();
-        employeeManager.setInformations(employee);
-        planning=employeeManager.getPlanning(employee);
-        service=employeeManager.getService(employee);
-        employeeManager.close();
-        return employeeList;
+
+    @Override
+    public void onReSet() {
+    updateEmployeeView.onReset("Voulez vous vraiment annuler ces modifications ?");
     }
+
+    @Override
+    public void onResetConfirmed() {
+
+    }
+
+
+    public String formatTime(int time) {
+        if(time <10)
+            return "0"+time+":"+"0";
+        else
+            return time+":"+"0";
+    }
+public static Bitmap getBitMapFromBytes(byte[] array){
+        return BitmapFactory.decodeByteArray(array,0,array.length);
+
+
+}
+
 }

@@ -152,7 +152,8 @@ public class RegisterEmployee extends AppCompatActivity
         }
         return null;
     }
-    public void resetInput() {
+    public  void resetInput() {
+
         Number.setText("");
         Lastname.setText("");
         Firstname.setText("");
@@ -186,8 +187,6 @@ public class RegisterEmployee extends AppCompatActivity
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
-       /* if(parent==R.id.emp)
-        SelectedType=;*/
 
     }
 
@@ -267,8 +266,6 @@ public class RegisterEmployee extends AppCompatActivity
             n.setWrapSelectorWheel(true);
             n.setOnValueChangedListener(this);
 
-
-
         }
 
 
@@ -281,9 +278,7 @@ public class RegisterEmployee extends AppCompatActivity
         Start=newVal;
         else if (picker.getId()==R.id.register_planning_end_choose)
             End=newVal;
-        Toast.makeText(this,"new :"+newVal,Toast.LENGTH_LONG).show();
-
-    }
+            }
 
     @Override
     public String format(int value) {

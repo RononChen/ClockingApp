@@ -10,6 +10,9 @@
     tools:context=".Login"
     android:orientation="vertical">
 
+
+
+
     <ScrollView
         android:id="@+id/ScrollView02"
         android:layout_width="fill_parent"
@@ -21,68 +24,91 @@
             android:layout_height="fill_parent"
             android:orientation="vertical">
 
-    <TextView
+    <!--TextView
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:text="Hello!"
+        android:textSize="20sp"
         android:gravity="center"
-        />
+        /-->
 
     <Button
         android:id="@+id/menu_register"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="@string/start"
-         android:gravity="center"/>
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+
+        android:background="@drawable/mybutton"
+        android:text="@string/start" />
+
     <Button
         android:id="@+id/menu_delete"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="@string/menu_delete_button"
-        android:gravity="center"/>
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:background="@drawable/mybutton"
+        android:layout_marginTop="16dp"
+        android:padding="20dp"
+        android:drawableStart="@drawable/ic_baseline_delete_24"
+        android:text="@string/menu_delete_button" />
     <Button
         android:id="@+id/menu_update"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="@string/menu_update_button"
-        android:gravity="center"/>
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/mybutton"
+        android:text="@string/menu_update_button" />
     <Button
         android:id="@+id/menu_search"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="@string/menu_search_button"
-        android:gravity="center"/>
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/mybutton"
+        android:text="@string/menu_search_button" />
     <Button
         android:id="@+id/menu_clock"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="@string/menu_clock_button"
-        android:gravity="center"/>
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/mybutton"
+        android:text="@string/menu_clock_button" />
     <Button
         android:id="@+id/menu_presence_report"
-        android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
-        android:text="@string/menu_report_employee_button"
-        android:gravity="center"/>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/mybutton"
+        android:text="@string/menu_report_employee_button" />
             <Button
                 android:id="@+id/menu_new"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="60dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/mybutton"
                 android:text="@string/menu_report_employee_button"
                 android:gravity="center"/>
 
     <Button
         android:id="@+id/menu_statistics"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/mybutton"
         android:text="@string/consult_stat"
         android:gravity="center"/>
 

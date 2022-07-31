@@ -26,6 +26,13 @@ public class Menu extends AppCompatActivity implements View.OnClickListener,
        menuPresenter= new MenuController(this) ;
     }
 
+   // @Override
+    /*public boolean onCreateOptionsMenu(android.view.Menu menu) {
+       // getMenuInflater().inflate(R.id.logout);
+        return super.onCreateOptionsMenu(menu);
+    }*/
+
+
     @Override
     public void onClick(View v) {
          if(v.getId()==R.id.menu_register)

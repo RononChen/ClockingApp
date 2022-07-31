@@ -58,11 +58,19 @@ public class RegisterEmployeeController implements  IRegisterEmployeeController
                                    String username, String password, String passwordConfirm,
                                    String selectedService, int startTime, int endTime,
                                    byte[] picture,String type) {
+
         int registerCode;
         int n;
         Service service;
         Employee employee = null;
         byte[] qrCode;
+        number=number.trim();
+        lastname=lastname.trim();
+        firstname=firstname.trim();
+        mail=mail.trim();
+        username=username.trim();
+        password=password.trim();
+        passwordConfirm=passwordConfirm.trim();
 
         PlanningManager planningManager;
         Planning planning;

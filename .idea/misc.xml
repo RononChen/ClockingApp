@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable/ic_baseline_delete_24.xml" value="0.1955" />
+        <entry key="app/src/main/res/drawable/ic_baseline_edit_24.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/mybutton.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_consult_presence_report.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_consult_presence_report2.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_consult_statistic.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_consult_statistics.xml" value="0.20416666666666666" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_menu.xml" value="0.20416666666666666" />
+        <entry key="app/src/main/res/layout/activity_register.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/activity_register_employee.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_scanner.xml" value="0.20416666666666666" />
+        <entry key="app/src/main/res/layout/activity_update_employee.xml" value="0.18854166666666666" />
+        <entry key="app/src/main/res/layout/login.xml" value="0.20416666666666666" />
+        <entry key="app/src/main/res/layout/view_student_.xml" value="0.1890625" />
+        <entry key="app/src/main/res/menu/options_menu.xml" value="0.18854166666666666" />
+      </map>
+    </option>
+  </component>
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="11" project-jdk-type="JavaSDK" />
+</project>
