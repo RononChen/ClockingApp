@@ -83,6 +83,8 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
         Planning planning;
         String s,e;
 
+        updateEmployeeView.askConfirmUpdate("Oui","Non","Confirmation","Voulez vous " +
+                "vraiment appliquer ces modifications ?");
 
         s=formatTime(startTime);
         e=formatTime(endTime);
@@ -136,12 +138,8 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
     }
 
     @Override
-    public void onReSet() {
-    updateEmployeeView.onReset("Voulez vous vraiment annuler ces modifications ?");
-    }
-
-    @Override
-    public void onResetConfirmed() {
+    public void onReset() {
+        updateEmployeeView.askConfirmReset("Oui","Non","Confirmation","Voulez vous vraiment annuler ces modifications ?");
 
     }
 

@@ -1,6 +1,10 @@
 package uac.imsp.clockingapp;
 
+import static android.content.DialogInterface.BUTTON_NEGATIVE;
+import static android.content.DialogInterface.BUTTON_POSITIVE;
+
 import android.app.Activity;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -16,7 +20,6 @@ import android.widget.NumberPicker;
 import android.widget.RadioGroup;
 import android.widget.SimpleCursorAdapter;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -29,24 +32,30 @@ import java.util.Objects;
 
 import uac.imsp.clockingapp.Controller.IUpdateEmployeeController;
 import uac.imsp.clockingapp.Controller.UpdateEmployeeController;
+import uac.imsp.clockingapp.View.ConfirmDialog;
 import uac.imsp.clockingapp.View.IUpdateEmployeeView;
+import uac.imsp.clockingapp.View.ToastMessage;
 
 
 public class UpdateEmployee extends AppCompatActivity
                            implements View.OnClickListener,
-                           AdapterView.OnItemSelectedListener,NumberPicker.OnValueChangeListener , NumberPicker.Formatter,
+                           AdapterView.OnItemSelectedListener,
+        NumberPicker.OnValueChangeListener , NumberPicker.Formatter,
+        DialogInterface.OnClickListener,
         IUpdateEmployeeView {
-    private EditText Lastname, Firstname, Email, Username, Number, Birthdate;
-    private Button Update;
+    private EditText Email;
     private String selectedService, SelectedType;
     private Spinner spinnerTypes, spinnerServices;
     private ImageView image;
     private Bitmap picture;
-    private RadioGroup Gender;
-    private ImageView PreviewImage;
     private int Start, End;
-    private Hashtable<String, Object> informations = null;
+    private ConfirmDialog confirmDialog,d;
+    private Hashtable<String, Object> informations =null;
     IUpdateEmployeeController updateEmployeePresenter;
+    private ToastMessage Toast;
+
+    public UpdateEmployee() {
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +68,7 @@ public class UpdateEmployee extends AppCompatActivity
             e.printStackTrace();
 
         }
-        // updateEmployeeController.
+
 
 
     }
@@ -71,11 +80,11 @@ public class UpdateEmployee extends AppCompatActivity
         if (v.getId() == R.id.update_button)
             updateEmployeePresenter.onUpdateEmployee(toString(Email), selectedService,
                     Start, End, picture, SelectedType);
-  else if(v.getId()==R.id.register_reset_button) {
-            //updateEmployeePresenter.onReset();
+         else if(v.getId()==R.id.register_reset_button) {
+             updateEmployeePresenter.onReset();
         }
+         else if(v.getId()==R.id.register_picture_button)
 
-        //else if(v.getId()==R.id.update_picture)
         imageChooser();
 
 
@@ -92,6 +101,7 @@ public class UpdateEmployee extends AppCompatActivity
             SelectedType = String.valueOf(spinnerTypes.getSelectedItem());
 
 
+
     }
 
     @Override
@@ -103,20 +113,20 @@ public class UpdateEmployee extends AppCompatActivity
         String[] employeTypes = getResources().getStringArray(R.array.employee_types);
         String[] services = updateEmployeePresenter.onLoad(1, informations);
 
-        Number = findViewById(R.id.register_number);
-        Lastname = findViewById(R.id.register_lastname);
+        EditText number = findViewById(R.id.register_number);
+        EditText lastname = findViewById(R.id.register_lastname);
         Email = findViewById(R.id.register_email);
-        Firstname = findViewById(R.id.register_firstname);
-        Username = findViewById(R.id.register_username);
-        Birthdate = findViewById(R.id.register_birthdate);
+        EditText firstname = findViewById(R.id.register_firstname);
+        EditText username = findViewById(R.id.register_username);
+        EditText birthdate = findViewById(R.id.register_birthdate);
         NumberPicker start = findViewById(R.id.register_planning_start_choose);
         NumberPicker end = findViewById(R.id.register_planning_end_choose);
 
-        PreviewImage = findViewById(R.id.register_preview_image);
+        ImageView previewImage = findViewById(R.id.register_preview_image);
         Button update = findViewById(R.id.update_button);
         Button reset = findViewById(R.id.register_reset_button);
         Button selectPicture = findViewById(R.id.register_picture_button);
-        Gender = findViewById(R.id.register_gender);
+        RadioGroup gender = findViewById(R.id.register_gender);
 
 
         spinnerServices = findViewById(R.id.register_service);
@@ -132,16 +142,16 @@ public class UpdateEmployee extends AppCompatActivity
         initNumberPicker(start, 6, 9);
         initNumberPicker(end, 16, 19);
 
-        PreviewImage.setImageBitmap((Bitmap) informations.get("picture"));
-        Number.setText(Objects.requireNonNull(informations.get("number")).toString());
-        Lastname.setText(Objects.requireNonNull(informations.get("lastname")).toString());
-        Firstname.setText(Objects.requireNonNull(informations.get("firstname")).toString());
-        Lastname.setText(Objects.requireNonNull(informations.get("lastname")).toString());
+        previewImage.setImageBitmap((Bitmap) informations.get("picture"));
+        number.setText(Objects.requireNonNull(informations.get("number")).toString());
+        lastname.setText(Objects.requireNonNull(informations.get("lastname")).toString());
+        firstname.setText(Objects.requireNonNull(informations.get("firstname")).toString());
+        lastname.setText(Objects.requireNonNull(informations.get("lastname")).toString());
         Email.setText(Objects.requireNonNull(informations.get("email")).toString());
-        Username.setText(Objects.requireNonNull(informations.get("username")).toString());
-        Birthdate.setText(Objects.requireNonNull(informations.get("birhdate")).toString());
+        username.setText(Objects.requireNonNull(informations.get("username")).toString());
+        birthdate.setText(Objects.requireNonNull(informations.get("birhdate")).toString());
         if (Objects.equals(informations.get("gender"), 'F'))
-            Gender.setId(R.id.register_girl);
+            gender.setId(R.id.register_girl);
         selectSpinnerItemByValue(spinnerServices,
                 Objects.requireNonNull(informations.get("service")).toString());
 
@@ -151,30 +161,22 @@ public class UpdateEmployee extends AppCompatActivity
 
 
         //Not updatable
-        Number.setEnabled(false);
-        Firstname.setEnabled(false);
-        Lastname.setEnabled(false);
-        Birthdate.setEnabled(false);
-        Username.setEnabled(false);
-        Gender.setEnabled(false);
+        number.setEnabled(false);
+        firstname.setEnabled(false);
+        lastname.setEnabled(false);
+        birthdate.setEnabled(false);
+        username.setEnabled(false);
+        gender.setEnabled(false);
 
-
-
-
-
+       // Listeners
         update.setOnClickListener(this);
         reset.setOnClickListener(this);
         selectPicture.setOnClickListener(this);
-        SelectedType = employeTypes[0];
-        selectedService = services[0];
         spinnerServices.setOnItemSelectedListener(this);
         spinnerTypes.setOnItemSelectedListener(this);
-
+        //Formatters
         start.setFormatter(this);
         end.setFormatter(this);
-
-
-
     }
 
     public void initNumberPicker(NumberPicker n, int min, int max) {
@@ -225,27 +227,50 @@ public class UpdateEmployee extends AppCompatActivity
 
     @Override
     public void onSomethingchanged(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        Toast = new ToastMessage(this,message);
+        Toast.show();
 
     }
 
     @Override
     public void onNothingChanged(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+        Toast = new ToastMessage(this,message);
+        Toast.show();
 
     }
 
     @Override
     public void onReset(String message) {
-        //Redémarrer l'activité
-        Intent starterIntent = getIntent();
-        startActivity(starterIntent);
-        //onRestart();
+        //We stop the activity
+        UpdateEmployee.this.finish();
+        // And we start it
+        startActivity(getIntent());
+
     }
 
     @Override
     public void onUpdateEmployeeError(String message) {
+        Toast = new ToastMessage(this,message);
+        Toast.show();
 
+    }
+
+    @Override
+    public void askConfirmUpdate(String pos, String neg, String title, String message) {
+        confirmDialog = new ConfirmDialog(UpdateEmployee.this,title,message);
+        confirmDialog.setPositiveButton(pos,this);
+        confirmDialog.setNegativeButton(neg,this);
+        confirmDialog.show();
+
+    }
+
+    @Override
+    public void askConfirmReset(String pos, String neg, String title, String message) {
+
+        d = new ConfirmDialog(UpdateEmployee.this,title,message);
+        d.setPositiveButton(pos,this);
+        d.setNegativeButton(neg,this);
+        d.show();
     }
 
     @Override
@@ -274,10 +299,30 @@ public class UpdateEmployee extends AppCompatActivity
         int i;
         SimpleCursorAdapter adapter = (SimpleCursorAdapter) spinner.getAdapter();
         for (i = 0; i < adapter.getCount(); i++)
-            if (adapter.getItem(i).equals(value)) {
-                spinner.setSelection(i);
+            if (adapter.getItem(i).equals(value)) {spinner.setSelection(i);
                 break;
             }
+
+
+    }
+
+    @Override
+    public void onClick(DialogInterface dialog, int which) {
+        if(dialog== confirmDialog) {
+
+            if (which == BUTTON_NEGATIVE) {
+                //The activity is stopped and restarted
+                UpdateEmployee.this.finish();
+                startActivity(getIntent());
+            }
+        }
+        else if(dialog==d)
+        {
+
+            if(which==BUTTON_POSITIVE)
+                UpdateEmployee.this.finish();
+            startActivity(getIntent());
+        }
 
 
     }

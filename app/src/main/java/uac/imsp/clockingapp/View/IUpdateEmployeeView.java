@@ -6,5 +6,7 @@ public interface IUpdateEmployeeView {
     void onReset(String message);
 
     void onUpdateEmployeeError(String message);
+    void askConfirmUpdate(String pos,String neg,String title,String message);
+    void askConfirmReset(String pos,String neg,String title,String message);
 }
 

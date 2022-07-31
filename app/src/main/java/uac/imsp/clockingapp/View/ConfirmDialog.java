@@ -9,8 +9,10 @@ public class ConfirmDialog  extends AlertDialog.Builder {
         super(context);
         setTitle(title);
         setMessage(message);
+        create();
         //setIcon();
 
     }
+
 
 }

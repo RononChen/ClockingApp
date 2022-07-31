@@ -18,6 +18,6 @@ public interface IUpdateEmployeeController {
                           int endTime, Bitmap picture, String type);
 
 
-    void onReSet();
-    void onResetConfirmed();
+    void onReset();
+
 }
