@@ -211,13 +211,23 @@ public  final static String SIMPLE="Simple", HEAD="Directeur",CHIEF="Chef person
     }
 
     public boolean hasInvalidLastName() {
+        String pattern = "^[A-ZÂÊÛÎÔÁÉÚÍÓÀÈÙÌÒÇ][A-Za-zâêîûôáéíúóàèùìòç]" +
+                "+([-'\\s][A-ZÂÊÛÎÔÁÉÚÍÓÀÈÙÌÒÇ][a-zâêîûôáéíúóàèùìòç]+)?/";
+
 //A revoir
-        return !Lastname.matches("\\w+");
+        //return !Lastname.matches("\\w+");
+        return !Lastname.matches(pattern);
+
+
 
     }    public boolean hasInvalidFirstname(){
+        String pattern ="^[A-ZÂÊÛÎÔÁÉÚÍÓÀÈÙÌÒÇ][a-zâêîûôáéíúóàèùìòç]+" +
+                "([-'\\s][A-ZÂÊÛÎÔÁÉÚÍ ÓÀÈÙÌÒÇ][a-zâêîûôáéíúóàèùìòç]+)?/";
+
 
         //A revoir
-        return !Firstname.matches("\\w+");
+       // return !Firstname.matches("\\w+");
+        return !Firstname.matches(pattern);
 
 
     }
@@ -228,9 +238,6 @@ public  final static String SIMPLE="Simple", HEAD="Directeur",CHIEF="Chef person
     }
 
     public boolean hasInvalidEmail() {
-
-       // return !MailAddress.matches("[A-Za-z]+\\.?\\w+@[A-Za-z0-9_-]+\\.\\w+");
-
 return  !Patterns.EMAIL_ADDRESS.matcher(MailAddress).matches();
     }
     public  boolean hasInvalidPassword() {

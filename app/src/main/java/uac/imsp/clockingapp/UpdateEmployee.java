@@ -261,7 +261,7 @@ public class UpdateEmployee extends AppCompatActivity
         confirmDialog.setPositiveButton(pos,this);
         confirmDialog.setNegativeButton(neg,this);
         confirmDialog.show();
-
+         confirmDialog.setIcon(R.drawable.ic_baseline_delete_forever_24);
     }
 
     @Override
