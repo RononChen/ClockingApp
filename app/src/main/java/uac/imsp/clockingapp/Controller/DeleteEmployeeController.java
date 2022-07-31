@@ -1,9 +1,16 @@
 package uac.imsp.clockingapp.Controller;
 
+import static uac.imsp.clockingapp.Controller.UpdateEmployeeController.getBitMapFromBytes;
+
 import android.content.Context;
 
+import java.text.ParseException;
+import java.util.Hashtable;
+
+import uac.imsp.clockingapp.Models.Day;
 import uac.imsp.clockingapp.Models.Employee;
 import uac.imsp.clockingapp.Models.EmployeeManager;
+import uac.imsp.clockingapp.Models.Planning;
 import uac.imsp.clockingapp.Models.Service;
 import uac.imsp.clockingapp.Models.ServiceManager;
 import uac.imsp.clockingapp.View.IDeleteEmployeeView;
@@ -16,56 +23,63 @@ public class DeleteEmployeeController  implements IDeleteEmployeeController{
  }
 private Employee employee;
  private EmployeeManager employeeManager;
- private int Number;
- private Service service;
 
-
-    @SuppressWarnings("UnusedAssignment")
     @Override
-    public String[] onLoad(String[] serviceList) {
+    public  String [] onLoad(int number, Hashtable<String,Object> informations) throws ParseException {
+        Day day;
         ServiceManager serviceManager;
-        String [] employeeList;
-        serviceManager =new ServiceManager((Context) deleteEmployeeView);
-        serviceManager.open();
-        serviceList=serviceManager.getAllServices();
-       serviceManager.close();
-
-        employee = new Employee(Number);
+        Service service;
+        Planning planning;
+        employee=new Employee(number);
         employeeManager=new EmployeeManager((Context) deleteEmployeeView);
-        employeeManager.open();
-        employeeList=employeeManager.getAllEmployees();
+                employeeManager.open();
         employeeManager.setInformations(employee);
-        service=employeeManager.getService(employee);
-        employeeManager.close();
-        return employeeList;
+        planning=employeeManager.getPlanning(employee);
+        service =employeeManager.getService(employee);
 
+        informations.put("number",String.valueOf(employee.getRegistrationNumber()));
+        informations.put("lastname",employee.getLastname());
+        informations.put("firstname",employee.getFirstname());
+        informations.put("picture",   getBitMapFromBytes(employee.getPicture()));
+        informations.put("email",employee.getMailAddress());
+        informations.put("username",employee.getUsername());
+        informations.put("gender",employee.getGender());
+        day=new Day(employee.getBirthdate());
+        informations.put("birthdate",day.getFrenchFormat());
+        informations.put("type",employee.getType());
+        informations.put("service",service.getName());
+        informations.put("start",Integer.parseInt(planning.getStartTime()));
+        informations.put("end",Integer.parseInt(planning.getEndTime()));
+
+
+
+        serviceManager = new ServiceManager((Context) deleteEmployeeView);
+
+
+        serviceManager.open();
+        String[] serviceList =serviceManager.getAllServices();
+        serviceManager.close();
+        return serviceList;
     }
 
     @Override
-    public void onDelete(int number) {
-      Number=number;
-        deleteEmployeeView.askConfirm("Oui","Non","Confirmation de la suppression","Voulez vous vraiment supprimer cet employé ?");
+    public void onDeleteEmployee() {
+        //handle clic on delete buttton
 
+        deleteEmployeeView.askConfirmDelete("Oui","Non","Confirmation","Voulez vous " +
+                "vraiment supprimer l'employé ?");
 
-    }
-
-    @Override
-    public void onDeleteConfirmed() {
         employeeManager=new EmployeeManager((Context) deleteEmployeeView);
         employeeManager.open();
-        employeeManager.delete(employee);
+
+            employeeManager.delete(employee);
+
         employeeManager.close();
-        deleteEmployeeView.onDeleteSucessful("Suppression effectuée avec succès");
+            deleteEmployeeView.onDeleteSucessfull("Employé supprimé avec succès");
+
 
     }
 
-    @Override
-    public void onNumberSelected(int number) {
-        //Si le matricule est changé, on  change l'employé et on recharge la fenetre
-        Number =number;
-        employee = new Employee(number);
-        onLoad(null);
-    }
 
 
 }

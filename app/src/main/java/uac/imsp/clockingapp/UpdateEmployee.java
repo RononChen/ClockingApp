@@ -296,7 +296,7 @@ public class UpdateEmployee extends AppCompatActivity
 
     }
 
-    public void selectSpinnerItemByValue(Spinner spinner, String value) {
+    public static void selectSpinnerItemByValue(Spinner spinner, String value) {
         int i;
         SimpleCursorAdapter adapter = (SimpleCursorAdapter) spinner.getAdapter();
         for (i = 0; i < adapter.getCount(); i++)
@@ -306,6 +306,7 @@ public class UpdateEmployee extends AppCompatActivity
 
 
     }
+
 
     @Override
     public void onClick(DialogInterface dialog, int which) {
