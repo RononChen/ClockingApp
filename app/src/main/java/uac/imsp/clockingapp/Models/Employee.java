@@ -16,7 +16,8 @@ public class Employee implements IEmployee{
                   INVALID_USERNAME=11,
                     EMPTY_PICTURE=7,
                    EMPTY_QRCODE=8, EMPTY_PASSWORD=9,
-                            INVALID_PASSWORD=10,EMPTY_MAIL=14,INVALID_MAIL=12
+                            INVALID_PASSWORD=10,EMPTY_MAIL=14,INVALID_MAIL=12,
+                            EMPTY_BIRTHDATE=15
 
                     ;
 
@@ -137,6 +138,8 @@ public  final static String SIMPLE="Simple", HEAD="Directeur",CHIEF="Chef person
             return EMPTY_FIRSTNAME;
         else if (hasInvalidFirstname())
             return INVALID_FIRSTNAME;
+        else if(TextUtils.isEmpty(Birthdate))
+            return EMPTY_BIRTHDATE;
         else if (TextUtils.isEmpty(MailAddress))
             return EMPTY_MAIL;
         else if(hasInvalidEmail())
@@ -212,7 +215,10 @@ public  final static String SIMPLE="Simple", HEAD="Directeur",CHIEF="Chef person
 
     public boolean hasInvalidLastName() {
         String pattern = "^[A-ZÂÊÛÎÔÁÉÚÍÓÀÈÙÌÒÇ][A-Za-zâêîûôáéíúóàèùìòç]" +
-                "+([-'\\s][A-ZÂÊÛÎÔÁÉÚÍÓÀÈÙÌÒÇ][a-zâêîûôáéíúóàèùìòç]+)?/";
+
+                "+([-' ][A-ZÂÊÛÎÔÁÉÚÍÓÀÈÙÌÒÇ][a-zâêîûôáéíúóàèùìòç]+)?";
+
+
 
 //A revoir
         //return !Lastname.matches("\\w+");
@@ -222,7 +228,7 @@ public  final static String SIMPLE="Simple", HEAD="Directeur",CHIEF="Chef person
 
     }    public boolean hasInvalidFirstname(){
         String pattern ="^[A-ZÂÊÛÎÔÁÉÚÍÓÀÈÙÌÒÇ][a-zâêîûôáéíúóàèùìòç]+" +
-                "([-'\\s][A-ZÂÊÛÎÔÁÉÚÍ ÓÀÈÙÌÒÇ][a-zâêîûôáéíúóàèùìòç]+)?/";
+                "([-'][A-ZÂÊÛÎÔÁÉÚÍ ÓÀÈÙÌÒÇ][a-zâêîûôáéíúóàèùìòç]+)?";
 
 
         //A revoir

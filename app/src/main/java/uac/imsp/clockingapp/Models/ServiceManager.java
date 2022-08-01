@@ -4,14 +4,15 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
-import android.util.Log;
 
 import java.util.ArrayList;
 
 public class ServiceManager {
 
 
-    private static SQLiteDatabase Database;
+    public static SQLiteDatabase Database;
+
+
     private ServiceSQLite serviceSQLite;
 
     public ServiceManager(Context context) {
@@ -65,19 +66,20 @@ public class ServiceManager {
     }
     public String[] getAllServices(){
         ArrayList <String> service= new ArrayList<>();
-
-
         open();
         String query="SELECT nom FROM service";
         Cursor cursor=Database.rawQuery(query,null);
         //cursor.moveToFirst();
+
         while (cursor.moveToNext())
             service.add(cursor.getString(0));
-        Log.d("myTag",service.toArray(new String[service.size()]).toString());
+        cursor.close();
+        close();
         return service.toArray(new String[service.size()]);
 
 
     }
+
 
 
 
@@ -126,6 +128,7 @@ public class ServiceManager {
         }
         return false;
     }
+    //public void onDowngrade()
 
 
 }

@@ -9,7 +9,7 @@ public class ClockingManager {
 
     private SQLiteDatabase Database = null;
 
-    private ClockingSQLite clockingSQLite;
+    private final ClockingSQLite clockingSQLite;
 
     public ClockingManager(Context context) {
 
@@ -33,59 +33,70 @@ public class ClockingManager {
 
     //for clocking in
 
-    public boolean clockIn(Employee employee) {
-        open();
+    public void clockIn(Employee employee, Day day) {
+        //open()
+        int id;
         SQLiteStatement statement;
+        id=day.getId();
 
 
-        String query = " INSERT INTO pointage(matricule_ref,date_jour_ref,heure_entree) VALUES(?,?,?)";
+
+        String query = " INSERT INTO pointage(matricule_ref,id_jour_ref,heure_entree) VALUES(?,?,?)";
+
         statement = Database.compileStatement(query);
         statement.bindLong(1, employee.getRegistrationNumber());
-        statement.bindString(2, "DATE('NOW','LOCALTIME'");
+        statement.bindLong(2,id);
         statement.bindString(3, "TIME('NOW','LOCALTIME'");
 
         statement.executeInsert();
-        return false;
     }
 
-
     //for clocking out
-    public boolean clockOut(Employee employee) {
-        open();
+    public void clockOut(Employee employee, Day day) {
+        int id;
+
+        id=day.getId();
+
+
         SQLiteStatement statement;
         String query = "UPDATE pointage set heure_sortie=? WHERE matricule_ref=? AND date_jour_ref=?";
         statement = Database.compileStatement(query);
         statement.bindString(1, "TIME('NOW','LOCALTIME')");
         statement.bindLong(2, employee.getRegistrationNumber());
-        statement.bindString(3, "DATE('NOW','LOCALTIME')");
+        statement.bindLong(3, id);
         statement.executeUpdateDelete();
-        return false;
     }
 
-    public boolean hasNotClockedIn(Employee employee) {
-        open();
-        String query = "SELECT * FROM pointage WHERE matricule_ref=? AND date_jour_ref=?";
+    public boolean hasNotClockedIn(Employee employee,Day day) {
+        int id=day.getId();
+        int n;
+        //open();
+        String query = "SELECT * FROM pointage WHERE matricule_ref=? AND id_jour_ref=?";
         String[] selectArgs = {
-                String.valueOf(employee.getRegistrationNumber()),"DATE('NOW','LOCALTIME')"
+                String.valueOf(employee.getRegistrationNumber()),String.valueOf(id)
         };
         Cursor cursor = Database.rawQuery(query, selectArgs);
-                if (cursor.getCount() == 1)
-            return false;
-        return true;
+
+          n=cursor.getCount();
+          cursor.close();
+        return n == 0;
     }
 
-    public boolean hasNotClockedOut(Employee employee) {
-        open();
-        String query = "SELECT heure_sortie FROM pointage WHERE matricule=? AND date_jour_ref=?";
+    public boolean hasNotClockedOut(Employee employee,Day day) {
+
+       // open();
+        String out;
+int id=day.getId(),n;
+        String query = "SELECT heure_sortie FROM pointage WHERE matricule_ref=? AND id_jour_ref=?";
         String[] selectArgs = {
-                String.valueOf(employee.getRegistrationNumber()), "DATE('NOW','LOCALTIME')"
+                String.valueOf(employee.getRegistrationNumber()),String.valueOf(id)
         };
         Cursor cursor = Database.rawQuery(query, selectArgs);
         cursor.moveToFirst();
-
-        if (cursor.getCount() == 0 || cursor.getString(3).equals( ""))
-            return true;
-        return false;
+        n=cursor.getCount();
+        out=cursor.getString(3);
+        cursor.close();
+        return n == 0 || out.equals("");
     }
 
 

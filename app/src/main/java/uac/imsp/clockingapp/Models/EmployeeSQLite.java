@@ -10,8 +10,10 @@ import android.database.sqlite.SQLiteStatement;
 public class EmployeeSQLite extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "Clocking_database.db";
-    public static final int DATABASE_VERSION = 1;
+        public static final int DATABASE_VERSION = 1;
+
     public static final String TABLE_EMPLOYE = "employe";
+
     public static final String COL_MATRICULE = "matricule";
     public static final String COL_NOM = "nom";
     public static final String COL_PRENOM = "prenom";
@@ -28,11 +30,12 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
    private static final String COL_ID_SERVICE_REF = "id_service_ref";
     private static final String COL_ID_SERVICE = "id_service";
 
-    private static final String super_user="INSERT INTO employe(matricule," +
-            "username,password,type,sexe,couriel,id_service_ref,id_planning_ref)" +
-            " VALUES (?,?,?,?,?,?,?,?)";
+    public static final String super_user="INSERT INTO employe(matricule," +
+            "username,password,type,sexe,couriel,id_service_ref,id_planning_ref,nom,prenom)" +
 
-    private static final String CREATE_EMPLOYEE = "CREATE TABLE " + TABLE_EMPLOYE + " (" +
+            " VALUES (?,?,?,?,?,?,?,?,?,?)";
+
+    private static final String CREATE_EMPLOYEE = "CREATE TABLE  IF NOT EXISTS " + TABLE_EMPLOYE + " (" +
             COL_MATRICULE + " INTEGER NOT NULL  PRIMARY KEY, " +
             COL_NOM + " TEXT NOT NULL ," +
             COL_PRENOM + " TEXT NOT NULL," +
@@ -45,8 +48,8 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
             COL_USERNAME + " TEXT UNIQUE NOT NULL ," +
             COL_PASSWORD + " TEXT NOT NULL , " +
             COL_TYPE+" TEXT DEFAULT 'Simple', "+
-            COL_ID_PLANNING_REF + " TEXT NOT NULL , " +
-            COL_ID_SERVICE_REF + " INTEGER NOT NULL  ," +
+            COL_ID_PLANNING_REF + " TEXT  , " +
+            COL_ID_SERVICE_REF + " INTEGER   ," +
             " FOREIGN KEY(" + COL_ID_SERVICE_REF +
             " ) REFERENCES service(" + COL_ID_SERVICE+" )," +
             " FOREIGN KEY(" + COL_ID_PLANNING_REF +
@@ -75,7 +78,10 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
         statement.bindString(6,"super@gmail.com");
         statement.bindLong(7,1);
         statement.bindLong(8,1);
+        statement.bindString(9,"AKOBA");
+        statement.bindString(10,"Patrick");
         statement.execute();
+
 
     }
 

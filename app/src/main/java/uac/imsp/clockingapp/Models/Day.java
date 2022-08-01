@@ -11,6 +11,10 @@ public class Day  implements IDay {
 
     private int Id;
     private  String Date;
+    public Day (){
+        Date =java.time.LocalDate.now().toString();
+
+    }
 
     public Day(String date ) {
 
@@ -36,10 +40,13 @@ public class Day  implements IDay {
     }
     public int getMonth() throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
+
         String dateInString = this.Date;
+
         java.util.Date date = sdf.parse(dateInString);
 
         Calendar calendar = Calendar.getInstance();
+
         assert date != null;
         calendar.setTime(date);
 
@@ -101,10 +108,6 @@ public class Day  implements IDay {
 
         return  d.getDayOfMonth();
     }
-    public boolean yearIsLeap(){
-
-        return  false;
-    }
     public int getLenthOfMonth() throws ParseException {
         YearMonth yearMonth=YearMonth.of(getYear(),getMonth());
         return yearMonth.lengthOfMonth();
@@ -120,6 +123,8 @@ public class Day  implements IDay {
     }
 
 
-
+    public void setId(int id) {
+        Id = id;
+    }
 }
 

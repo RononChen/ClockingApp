@@ -1,5 +1,6 @@
 package uac.imsp.clockingapp.Controller;
 
+import static uac.imsp.clockingapp.Models.Employee.EMPTY_BIRTHDATE;
 import static uac.imsp.clockingapp.Models.Employee.EMPTY_FIRSTNAME;
 import static uac.imsp.clockingapp.Models.Employee.EMPTY_LASTNAME;
 import static uac.imsp.clockingapp.Models.Employee.EMPTY_MAIL;
@@ -46,10 +47,10 @@ public class RegisterEmployeeController implements  IRegisterEmployeeController
        // String serviceLIst[]
         ServiceManager serviceManager = new ServiceManager((Context) registerEmployeeView);
 
-        serviceManager.open();
-        String[] serviceList =serviceManager.getAllServices();
-        serviceManager.close();
-        return serviceList;
+       // serviceManager.open();
+
+        //serviceManager.close();
+        return serviceManager.getAllServices();
     }
 
     @Override
@@ -106,6 +107,9 @@ public class RegisterEmployeeController implements  IRegisterEmployeeController
        registerEmployeeView.onRegisterEmployeeError("Prénom(s) invalide(s) !");
    else if(registerCode==EMPTY_MAIL)
        registerEmployeeView.onRegisterEmployeeError("Email requis !");
+   else if(registerCode==EMPTY_BIRTHDATE)
+       registerEmployeeView.onRegisterEmployeeError("Date de naissance requise !");
+
    else if(registerCode==INVALID_MAIL)
        registerEmployeeView.onRegisterEmployeeError("Email invalide !");
    else if(registerCode==EMPTY_PASSWORD)
@@ -143,6 +147,7 @@ public class RegisterEmployeeController implements  IRegisterEmployeeController
        }
       // employeeManager.close();
    }
+
     }
 
     @Override

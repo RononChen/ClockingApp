@@ -3,6 +3,8 @@ package uac.imsp.clockingapp.Controller;
 import android.content.Context;
 
 import uac.imsp.clockingapp.Models.ClockingManager;
+import uac.imsp.clockingapp.Models.Day;
+import uac.imsp.clockingapp.Models.DayManager;
 import uac.imsp.clockingapp.Models.Employee;
 import uac.imsp.clockingapp.Models.EmployeeManager;
 import uac.imsp.clockingapp.View.IClockInOutView;
@@ -24,14 +26,23 @@ private  IClockInOutView clockInOutView;
     public void onClocking(int number) {
         //Take into time account later
             Employee employee;
+            Day day;
             EmployeeManager employeeManager;
             ClockingManager clockingManager;
+            DayManager dayManager;
 
             employee = new Employee(number);
             //connection to  database , employee table
             employeeManager = new EmployeeManager((Context) clockInOutView);
             //open employee connection
             employeeManager.open();
+            day=new Day();
+            dayManager=new DayManager((Context) clockInOutView);
+            dayManager.open();
+            //A day is created and has an id
+            dayManager.create(day);
+
+
             if (!employeeManager.exists(employee))
                 //employee does not exist
                 clockInOutView.onClockingError("Employé non retrouvé");
@@ -43,13 +54,15 @@ private  IClockInOutView clockInOutView;
                 clockingManager = new ClockingManager((Context) clockInOutView);
                 //open  clocking connection
                 clockingManager.open();
-             if (clockingManager.hasNotClockedIn(employee)) {
+             if (clockingManager.hasNotClockedIn(employee,day)) {
 
-                    clockingManager.clockIn(employee);
+
+                    clockingManager.clockIn(employee,day);
+
                     clockInOutView.onClockingSuccessful("Entrée marquée avec succès");
                 }
-             else if (clockingManager.hasNotClockedOut(employee)) {
-                    clockingManager.clockOut(employee);
+             else if (clockingManager.hasNotClockedOut(employee,day)) {
+                    clockingManager.clockOut(employee,day);
                     clockInOutView.onClockingSuccessful("Sortie marquée avec succès");
                 }
 

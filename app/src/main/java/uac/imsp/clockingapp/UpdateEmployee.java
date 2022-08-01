@@ -50,7 +50,7 @@ public class UpdateEmployee extends AppCompatActivity
     private Bitmap picture;
     private int Start, End;
     private ConfirmDialog confirmDialog,d;
-    private Hashtable<String, Object> informations =null;
+
     IUpdateEmployeeController updateEmployeePresenter;
     private ToastMessage Toast;
 
@@ -110,10 +110,12 @@ public class UpdateEmployee extends AppCompatActivity
     }
 
     public void initView() throws ParseException {
+         Hashtable<String, Object> informations =new Hashtable<>();
         String[] employeTypes = getResources().getStringArray(R.array.employee_types);
-        String[] services = updateEmployeePresenter.onLoad(55, informations);
+        String[] services = updateEmployeePresenter.onLoad(1, informations);
 
 
+       // image=findViewById(R.id.register_preview_image);
         EditText number = findViewById(R.id.register_number);
         EditText lastname = findViewById(R.id.register_lastname);
         Email = findViewById(R.id.register_email);

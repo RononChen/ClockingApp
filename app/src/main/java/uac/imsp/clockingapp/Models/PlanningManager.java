@@ -41,6 +41,7 @@ public class PlanningManager {
         if(!searchPlanning(planning))
         {
        query="INSERT INTO planning(heure_debut_officielle,heure_fin_officielle) VALUES (?,?)";
+
       statement=Database.compileStatement(query);
       statement.bindString(1,planning.getStartTime());
       statement.bindString(2,planning.getEndTime());

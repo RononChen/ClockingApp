@@ -16,18 +16,28 @@ import uac.imsp.clockingapp.Models.Day;
 import uac.imsp.clockingapp.Models.Employee;
 import uac.imsp.clockingapp.Models.EmployeeManager;
 import uac.imsp.clockingapp.Models.Planning;
+import uac.imsp.clockingapp.Models.PlanningManager;
 import uac.imsp.clockingapp.Models.Service;
 import uac.imsp.clockingapp.Models.ServiceManager;
 import uac.imsp.clockingapp.View.IUpdateEmployeeView;
 
 public class UpdateEmployeeController implements IUpdateEmployeeController {
     IUpdateEmployeeView  updateEmployeeView;
+    private Employee employee;
+    private EmployeeManager employeeManager;
+   private  PlanningManager planningManager;
+   private  ServiceManager serviceManager;
     public UpdateEmployeeController(IUpdateEmployeeView updateEmployeeView)
     {
         this.updateEmployeeView=updateEmployeeView;
+        employeeManager=new EmployeeManager((Context) updateEmployeeView);
+        planningManager=new PlanningManager((Context) updateEmployeeView);
+        serviceManager=new ServiceManager((Context) updateEmployeeView);
+        employeeManager.open();
+        planningManager.open();
+        serviceManager.open();
     }
-    private Employee employee;
-    private EmployeeManager employeeManager;
+
 
 
 
@@ -37,12 +47,11 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
 
     public  String [] onLoad(int number, Hashtable <String,Object> informations) throws ParseException {
         Day day;
-  ServiceManager serviceManager;
+
   Service service;
   Planning planning;
+  String [] serviceList;
        employee=new Employee(number);
-       employeeManager=new EmployeeManager((Context) updateEmployeeView);
-       employeeManager.open();
        employeeManager.setInformations(employee);
        planning=employeeManager.getPlanning(employee);
        service =employeeManager.getService(employee);
@@ -61,14 +70,7 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
         informations.put("start",Integer.parseInt(planning.getStartTime()));
         informations.put("end",Integer.parseInt(planning.getEndTime()));
 
-
-
-         serviceManager = new ServiceManager((Context) updateEmployeeView);
-
-
-        serviceManager.open();
-        String[] serviceList =serviceManager.getAllServices();
-        serviceManager.close();
+        serviceList =serviceManager.getAllServices();
         return serviceList;
     }
 
@@ -91,8 +93,7 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
         service=new Service(selectedService);
         planning=new Planning(s,e);
         boolean update=false;
-         employeeManager=new EmployeeManager((Context) updateEmployeeView);
-        employeeManager.open();
+
         employeeManager.setInformations(employee);
 
         if(!Objects.equals(employee.getMailAddress(), mail))

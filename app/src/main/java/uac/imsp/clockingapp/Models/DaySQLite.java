@@ -8,11 +8,15 @@ public class DaySQLite extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "Clocking_database.db";
     public static final int DATABASE_VERSION = 1;
+
     public static final String TABLE_JOUR = "jour";
     public static final String COL_DATE_JOUR= "date_jour";
-    public static final String COL_ID_JOUR="id_jout";
+    public static final String COL_ID_JOUR="id_jour";
 
-    private static final String CREATE_JOUR = "CREATE TABLE " + TABLE_JOUR + " (" +
+
+
+
+    private static final String CREATE_JOUR = "CREATE TABLE IF NOT EXISTS " + TABLE_JOUR + " (" +
             COL_ID_JOUR + " INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT , " +
             COL_DATE_JOUR+" TEXT )" ;
 

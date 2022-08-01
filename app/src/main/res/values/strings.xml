@@ -62,6 +62,7 @@
     <string name="start_time">Heure de début</string>
     <string name="register_planning_label">Planning de travail quotidien</string>
     <string name="logout">Déconnexion</string>
+    <string name="welcome">Welcome</string>
 
 
     <string-array name="employee_types">

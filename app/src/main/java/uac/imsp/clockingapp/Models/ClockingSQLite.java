@@ -11,6 +11,7 @@ public class ClockingSQLite  extends SQLiteOpenHelper {
 
         private static final int DATABASE_VERSION = 1;
 
+
     private static final String TABLE_POINTAGE = "pointage";
     private static final String COL_ID_POINTAGE = "id_pointage";
     private static final String COL_DATE_JOUR= "date_jour";
@@ -19,7 +20,7 @@ public class ClockingSQLite  extends SQLiteOpenHelper {
     private static final String COL_HEURE_SORTIE= "heure_sortie";
     private static final String COL_MATRICULE="matricule";
     private static  final String COL_MATRICULE_REF="matricule_ref";
-       private static final String CREATE_CLOCKING = "CREATE TABLE " +
+           private static final String CREATE_CLOCKING = "CREATE TABLE IF NOT EXISTS " +
             TABLE_POINTAGE + " (" +
             COL_ID_POINTAGE + " INTEGER NOT NULL  PRIMARY KEY AUTOINCREMENT, " +
 

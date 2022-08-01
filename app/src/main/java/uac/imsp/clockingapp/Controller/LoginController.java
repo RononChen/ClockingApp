@@ -16,9 +16,14 @@ public class LoginController  implements  ILoginController{
     //public final static String type = null;
     public static  String EmployeeType;
     public static  int CurrentEmployee;
+    //shouldn't be final
+    private  EmployeeManager employeeManager;
+
     ILoginView loginView;
     public LoginController(ILoginView loginView) {
+
         this.loginView = loginView;
+        employeeManager=new EmployeeManager((Context) loginView);
     }
 
 
@@ -28,7 +33,7 @@ public class LoginController  implements  ILoginController{
     @Override
     public void onLogin(String username, String password) {
       int loginCode;
-        EmployeeManager employeeManager;
+
        // Construction d'un employé voulant se connecter
         Employee employee = new Employee(username,password);
          loginCode=employee.validUser();
@@ -41,10 +46,21 @@ public class LoginController  implements  ILoginController{
         else if(loginCode==INVALID_PASSWORD)
             loginView.onLoginError("Mot de passe invalide !");
         else {
-            employeeManager =new EmployeeManager((Context) loginView);
             employeeManager.open();
+            ///ServiceManager s = new ServiceManager((Context) loginView);
+            //s.open();
+           /* (new ServiceManager((Context) loginView)).open();
+
+
+            new PlanningManager((Context) loginView);
+            new EmployeeManager((Context) loginView);
+            new ClockingManager((Context) loginView);
+            new DayManager((Context) loginView);*/
+            //employeeManager.open();
             loginCode =employeeManager.connectUser(employee,password);
-            employeeManager.close();
+           employeeManager.close();
+
+
 
             if(loginCode==CAN_NOT_LOGIN)
                 loginView.onLoginError("Username ou mot de passe incorrect !");
@@ -56,6 +72,41 @@ public class LoginController  implements  ILoginController{
 
 
         }
+
+    }
+
+    @Override
+
+    public void onLoad(int savedVersionCode,int currentVersionCode) {
+        final int DOESNT_EXIST=-1;
+
+  if(savedVersionCode==currentVersionCode)
+      loginView.onNormalRun();
+
+  else if (savedVersionCode==DOESNT_EXIST)
+        {
+            /*ServiceManager serviceManager =new ServiceManager((Context) loginView);
+           EmployeeManager e= new EmployeeManager((Context) loginView);
+           e.open();
+            serviceManager.open();
+
+           /* new  ServiceManager((Context) loginView);
+
+            new PlanningManager((Context) loginView);
+            new DayManager((Context) loginView);
+
+            new ClockingManager((Context) loginView);*/
+
+            loginView.onFirstRun();
+        }
+
+
+  else if (savedVersionCode < currentVersionCode )
+      loginView.onUpgrade();
+
+
+
+
 
     }
 

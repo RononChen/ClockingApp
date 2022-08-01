@@ -7,14 +7,16 @@ import android.database.sqlite.SQLiteStatement;
 
 import androidx.annotation.NonNull;
 
+
 import java.util.ArrayList;
 import java.util.Hashtable;
 
 public class EmployeeManager {
     public final static int   CAN_NOT_LOGIN=15;
     private SQLiteDatabase Database=null;
-    private EmployeeSQLite employeeSQLite;
+    private final EmployeeSQLite employeeSQLite;
     //private Context context;
+
 
 
     public EmployeeManager(Context context) {
@@ -33,15 +35,23 @@ public class EmployeeManager {
 
 public int connectUser(Employee employee,String password){
 
-        open();
+        //open();
+        int n;
+        String str;
 
         String query="SELECT matricule,password FROM employe WHERE username=?";
 
         String [] selectArgs={employee.getUsername()};
+
         Cursor cursor = Database.rawQuery(query,selectArgs);
                  cursor.moveToFirst();
-        if(cursor.getCount()==1 && cursor.getString(1).equals(password)) {
+                 n=cursor.getCount();
+                 str=cursor.getString(1);
+                 cursor.close();
+                // close();
+        if(n==1 && str.equals(password)) {
             setInformations(employee);
+            //close();
             return 0;
         }
         return CAN_NOT_LOGIN;
@@ -50,15 +60,17 @@ public int connectUser(Employee employee,String password){
 
 
 
+
     //create,delete,update
 
     public void create (Employee employee){
-       open();
+      // open();
         SQLiteStatement statement;
         String query = "INSERT INTO employe (matricule,nom,prenom,sexe,birthdate," +
                 "couriel,qr_code,photo,username,password,type) VALUES(?,?,?,?,?,?,?,?,?,?,?) ";
 
                 statement=Database.compileStatement(query);
+
         statement.bindLong(1,employee.getRegistrationNumber());
 
         statement.bindString(2,employee.getLastname());
@@ -66,8 +78,8 @@ public int connectUser(Employee employee,String password){
         statement.bindString (4, Character.toString((char) employee.getGender()));
         statement.bindString(5,employee.getBirthdate());
         statement.bindString(6,employee.getMailAddress());
-        statement.bindBlob(7, employee.getPicture());
-         statement.bindBlob(8,employee.getQRCode());
+        statement.bindBlob(7, employee.getQRCode());
+         statement.bindBlob(8,employee.getPicture());
         statement.bindString(9,employee.getUsername());
         statement.bindString(10,employee.getPassword());
         statement.bindString(11,employee.getType());
@@ -109,14 +121,19 @@ public int connectUser(Employee employee,String password){
     }
 
     public Planning getPlanning(Employee employee){
+
+        //open();
+        //EmployeeManager e = new EmployeeManager(())
         Planning planning ;
-        String query="SELECT heure_debut_offficielle,heure_fin_officielle " +
-                "FROM employe JOIN planning ON id_planning=id_planning_ref " +
+        String query="SELECT heure_debut_officielle,heure_fin_officielle " +
+                "FROM planning  JOIN employe ON id_planning=id_planning_ref " +
                 "WHERE matricule=?";
         String[] selectArgs={String.valueOf(employee.getRegistrationNumber())};
         Cursor cursor = Database.rawQuery(query,selectArgs);
+        cursor.moveToFirst();
         planning = new Planning(cursor.getString(0),
                                 cursor.getString(1));
+        cursor.close();
         return planning;
     }
     public Service getService(Employee employee){
@@ -131,14 +148,13 @@ public int connectUser(Employee employee,String password){
     }
 
 
-    public boolean delete(Employee employee){
+    public void delete(Employee employee){
         String query = "DELETE FROM employe WHERE matricule=?";
         SQLiteStatement statement ;
 
         statement = Database.compileStatement(query);
         statement.bindLong(1,employee.getRegistrationNumber());
         statement.executeUpdateDelete();
-        return true;
     }
 
 
@@ -150,9 +166,9 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
 
     //c'est une méthode de classe
     public  Employee[] search(String data){
-        String query="SELECT matricule, nom,prenom,photo " +
+                String query="SELECT matricule, employe.nom,prenom,photo " +
                 "FROM employe JOIN service ON id_service=id_service_ref " +
-                "WHERE CONCAT(matricule,nom,prenom,service) " +
+                "WHERE matricule||employe.nom||prenom||service.nom " +
                 "LIKE '%'+?+'%'";
 
         ArrayList <Employee> employeeSet= new ArrayList<>();
@@ -190,6 +206,7 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
 
 
     public void setInformations(Employee employee){
+       // open();
 
         String query="SELECT nom,prenom,sexe,photo,type FROM employe WHERE matricule=?";
                 String [] selectArgs={
@@ -203,6 +220,8 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
            employee.setPicture(cursor.getBlob(3));
            employee.setType(cursor.getString(4));
        }
+       cursor.close();
+      // close();
 
     }
 
@@ -230,7 +249,7 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
     public String[] getAllEmployees(){
         ArrayList<String> employee= new ArrayList<>();
 
-        String query="SELECT matricule FROM employee ORDER BY matricule ";
+        String query="SELECT matricule FROM employe ORDER BY matricule ";
         Cursor cursor=Database.rawQuery(query,null);
         while (cursor.moveToNext())
             employee.add(cursor.getString(0));
@@ -251,8 +270,8 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
         String query="SELECT nom, COUNT(*) FROM" +
                 " (SELECT * FROM employe " +
                 "JOIN pointage AS relation ON matricule = matricule_ref) " +
-                " JOIN jour ON id_jour= R.id_jour_ref " +
-                "WHERE heure_arrivee IS NOT NULL AND date_jour BETWEEN ? AND ? "+
+                " JOIN jour ON id_jour= relation.id_jour_ref " +
+                "WHERE heure_entree IS NOT NULL AND date_jour BETWEEN ? AND ? "+
                 "GROUP BY nom ";
         String [] selectArgs={start,end};
         total=getAllEmployees().length;
@@ -273,7 +292,8 @@ public Hashtable<Day,Character> getPresenceReportForEmployee(
         Employee employee,int month)
         {
 
-            /*late and weekenddays are not already taken into account*/
+            /**/
+
             String off=getPlanning(employee).getStartTime();
             String date;
             Day day;
@@ -281,12 +301,13 @@ public Hashtable<Day,Character> getPresenceReportForEmployee(
             Hashtable<Day,Character> report = new Hashtable<>();
         Cursor cursor;
 
-        String query="SELECT  date_jour  , heure_arrivee" +
+        String query="SELECT  date_jour  , heure_entree" +
                                         "  FROM (SELECT * FROM employe " +
+
                        "JOIN pointage AS relation ON matricule = matricule_ref) " +
                          " JOIN jour ON id_jour= R.id_jour_ref " +
-                        "WHERE  matricule=? AND STRF('%m',date_jour)=? " +
-                       "AND STRFTIME('%Y',date_jour) =STRF('%Y','NOW')";
+                        "WHERE  matricule=? AND STRFTIME('%m',date_jour)=? " +
+                       "AND STRFTIME('%Y',date_jour) =STRFTIME('%Y','NOW')";
 
     String [] selectArgs={
             String.valueOf(employee.getRegistrationNumber()),
