@@ -35,6 +35,8 @@
     <string name="suppression_d_employ">Suppression d\'employé</string>
     <string name="matricule">Matricule</string>
     <string name="nom">Nom</string>
+    <string name="delete_button">Supprimer</string>
+
     <string name="nom_">Nom</string>
     <string name="register_firstname_text">Prénom(s)</string>
 
@@ -63,6 +65,7 @@
     <string name="register_planning_label">Planning de travail quotidien</string>
     <string name="logout">Déconnexion</string>
     <string name="welcome">Welcome</string>
+    <string name="name">Nom et prénom</string>
 
 
     <string-array name="employee_types">

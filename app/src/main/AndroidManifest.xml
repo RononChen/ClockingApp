@@ -10,49 +10,47 @@
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
+
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
-            android:name=".SetUp"
+            android:name=".View.activity.SetUp"
             android:exported="false" />
         <activity
-            android:name=".RegisterActivity"
+            android:name=".View.activity.ConsultPresenceReport"
             android:exported="false" />
         <activity
-            android:name=".ConsultPresenceReport"
+            android:name=".View.activity.ConsultStatistics"
             android:exported="false" />
         <activity
-            android:name=".ConsultStatistics"
+            android:name=".View.activity.SearchEmployee"
             android:exported="false" />
         <activity
-            android:name=".SearchEmployee"
+            android:name=".View.activity.UpdateEmployee"
             android:exported="false" />
         <activity
-            android:name=".UpdateEmployee"
+            android:name=".View.activity.ManageService"
             android:exported="false" />
         <activity
-            android:name=".ManageService"
-            android:exported="false" />
-        <activity
-            android:name=".Generator"
+            android:name=".View.activity.Generator"
             android:exported="true" />
         <activity
-            android:name=".ClockInOut"
+            android:name=".View.activity.ClockInOut"
             android:exported="true" />
         <activity
-            android:name=".DeleteEmployee"
+            android:name=".View.activity.DeleteEmployee"
             android:exported="false" />
         <activity
-            android:name=".Menu"
+            android:name=".View.activity.Menu"
             android:exported="false" />
         <activity
-            android:name=".RegisterEmployee"
-            android:exported="true" />
-        <activity
-            android:name=".Login"
+            android:name=".View.activity.RegisterEmployee"
+            android:exported="false" />
+                <activity
+            android:name=".View.activity.Login"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

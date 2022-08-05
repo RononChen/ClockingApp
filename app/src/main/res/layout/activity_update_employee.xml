@@ -9,7 +9,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".UpdateEmployee"
+    tools:context=".View.activity.UpdateEmployee"
     tools:ignore="ExtraText">
 
 
@@ -151,13 +151,6 @@
                 android:layout_height="wrap_content"
                 android:inputType="textEmailAddress" />
 
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="3dp"
-                android:text="@string/register_password" />
-
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -233,14 +226,6 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/mybutton"
                 android:text="@string/update_button" />
-
-            <Button
-                android:id="@+id/register_reset_button"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/mybutton"
-                android:text="@string/reset_button" />
-
         </LinearLayout>
     </ScrollView>
 

@@ -7,7 +7,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="@dimen/four_step"
-    tools:context=".Login"
+    tools:context=".View.activity.Login"
     android:orientation="vertical">
 
 

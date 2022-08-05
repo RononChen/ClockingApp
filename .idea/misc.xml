@@ -10,14 +10,17 @@
         <entry key="app/src/main/res/layout/activity_consult_presence_report2.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_consult_statistic.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_consult_statistics.xml" value="0.20416666666666666" />
+        <entry key="app/src/main/res/layout/activity_delete_employee.xml" value="0.20416666666666666" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_menu.xml" value="0.20416666666666666" />
         <entry key="app/src/main/res/layout/activity_register.xml" value="0.18" />
         <entry key="app/src/main/res/layout/activity_register_employee.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_scanner.xml" value="0.20416666666666666" />
+        <entry key="app/src/main/res/layout/activity_search_employee.xml" value="0.20416666666666666" />
         <entry key="app/src/main/res/layout/activity_set_up.xml" value="0.11822916666666666" />
         <entry key="app/src/main/res/layout/activity_update_employee.xml" value="0.18854166666666666" />
         <entry key="app/src/main/res/layout/login.xml" value="0.20416666666666666" />
+        <entry key="app/src/main/res/layout/result_item_layout.xml" value="0.20416666666666666" />
         <entry key="app/src/main/res/layout/view_student_.xml" value="0.1890625" />
         <entry key="app/src/main/res/menu/options_menu.xml" value="0.18854166666666666" />
       </map>
