@@ -10,6 +10,14 @@ public class Result {
         Name = firstname+"  "+lastName;
         Service=service;
     }
+    public Result(int number,String name,String service){
+        Number=number;
+        Name = name;
+        Service=service;
+    }
+
+
+    //public Result(ArrayList)
 
 
     public int getNumber() {

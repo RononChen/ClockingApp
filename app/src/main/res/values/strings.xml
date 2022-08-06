@@ -66,6 +66,10 @@
     <string name="logout">Déconnexion</string>
     <string name="welcome">Welcome</string>
     <string name="name">Nom et prénom</string>
+    <string name="presence">Etat de présence</string>
+    <string name="statistics">Statistiques</string>
+    <string name="delete">Supprimer</string>
+    <string name="update">Modifier</string>
 
 
     <string-array name="employee_types">
@@ -83,6 +87,12 @@
         <item>Saturday</item>
         <item>Sunday</item>
 
+    </string-array>
+    <string-array name="actions">
+        <item>Modifier</item>
+        <item>Supprimer</item>
+        <item>Etat de présence</item>
+        <item>Statistiques de présence</item>
     </string-array>
 
 

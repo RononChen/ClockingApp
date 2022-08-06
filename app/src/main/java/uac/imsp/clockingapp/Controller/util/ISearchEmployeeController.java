@@ -5,5 +5,10 @@ import java.util.List;
 public interface ISearchEmployeeController {
     //Take the data with which  employee will be searched
     List <Result> onSearch(String data);
+    void onEmployeeSelected(int number);
+    void onOptionSelected(int which);
+
+
+
 
 }

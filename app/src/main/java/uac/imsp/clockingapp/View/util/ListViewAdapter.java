@@ -5,21 +5,33 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import uac.imsp.clockingapp.Controller.util.Result;
+import uac.imsp.clockingapp.R;
 
-public class CustomListAdapter  extends BaseAdapter {
+public class ListViewAdapter  extends BaseAdapter {
 
     private final List<Result> listData;
+    private ArrayList <Result> arrayList;
     private final LayoutInflater layoutInflater;
     private final Context context;
 
-    public CustomListAdapter(Context context,  List<Result> listData) {
+
+    public ListViewAdapter(Context context,  List<Result> listData) {
         this.context = context;
         this.listData = listData;
         layoutInflater = LayoutInflater.from(context);
+        this.arrayList=new ArrayList<>();
+        this.arrayList.addAll(listData);
+    }
+    public static class ViewHolder {
+        TextView numberView;
+        TextView nameView;
+        TextView serviceView;
     }
 
     @Override
@@ -42,11 +54,12 @@ public class CustomListAdapter  extends BaseAdapter {
         Result result = this.listData.get(position);
         if (convertView == null) {
             holder = new ViewHolder();
-            convertView = layoutInflater.inflate(holder.listItemId, null);
+            convertView = layoutInflater.inflate(R.layout.result_item_layout, null);
 
-            holder.numberView = convertView.findViewById(holder.numberId);
-            holder.nameView = convertView.findViewById(holder.nameId);
-            holder.serviceView = convertView.findViewById(holder.serviceId);
+
+            holder.numberView = convertView.findViewById(R.id.search_number);
+            holder.nameView = convertView.findViewById(R.id.search_name);
+            holder.serviceView = convertView.findViewById(R.id.search_service);
 
             convertView.setTag(holder);
         } else {
@@ -61,4 +74,6 @@ public class CustomListAdapter  extends BaseAdapter {
         return convertView;
 
     }
+
+
 }
