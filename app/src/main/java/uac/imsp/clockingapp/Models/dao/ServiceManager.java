@@ -37,15 +37,20 @@ public class ServiceManager {
 
     public void create (Service service){
 
-        SQLiteStatement statement;
+        SQLiteStatement statement = null;
 
         String query = "INSERT INTO service (nom) VALUES(?) ";
 
 
-        statement=Database.compileStatement(query);
-        statement.bindString(1,service.getName());
-        if(!searchService(service)) // if not exists
-        statement.executeInsert();
+
+
+
+        if(!searchService(service)) {// if not exists
+            statement=Database.compileStatement(query);
+            statement.bindString(1,service.getName());
+
+            statement.executeInsert();
+        }
         searchService(service); //to set Id
 
     }
@@ -73,9 +78,10 @@ public class ServiceManager {
         ArrayList <String> service= new ArrayList<>();
         String query="SELECT nom FROM service";
         Cursor cursor=Database.rawQuery(query,null);
-        //cursor.moveToFirst();
+        //if(cursor.moveToFirst())
 
         while (cursor.moveToNext())
+
             service.add(cursor.getString(0));
         cursor.close();
         return service.toArray(new String[service.size()]);

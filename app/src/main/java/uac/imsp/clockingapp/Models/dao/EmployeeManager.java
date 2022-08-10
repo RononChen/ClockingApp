@@ -10,6 +10,7 @@ import androidx.annotation.NonNull;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
+import java.util.Objects;
 
 import uac.imsp.clockingapp.Models.dbAdapter.EmployeeSQLite;
 import uac.imsp.clockingapp.Models.entity.Day;
@@ -40,10 +41,9 @@ public class EmployeeManager {
         }
 
 public int connectUser(Employee employee, String password){
-
-        //open();
         int n;
         String str;
+        int number;
 
         String query="SELECT matricule,password FROM employe WHERE username=?";
 
@@ -52,14 +52,17 @@ public int connectUser(Employee employee, String password){
         Cursor cursor = Database.rawQuery(query,selectArgs);
                  cursor.moveToFirst();
                  n=cursor.getCount();
+                 number=cursor.getInt(0);
                  str=cursor.getString(1);
                  cursor.close();
-                // close();
         if(n==1 && str.equals(password)) {
+            employee.setRegistrationNumber(number);
+
+            //employee=new Employee(number);
             setInformations(employee);
-            //close();
             return 0;
         }
+
         return CAN_NOT_LOGIN;
 
 }
@@ -153,6 +156,7 @@ public int connectUser(Employee employee, String password){
         Cursor cursor = Database.rawQuery(query,selectArgs);
         cursor.moveToFirst();
         service = new Service(cursor.getString(0));
+
         cursor.close();
         return service;
     }
@@ -178,12 +182,14 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
     public  Employee[] search(String data){
                 String query="SELECT matricule, employe.nom,prenom,photo " +
                 "FROM employe JOIN service ON id_service=id_service_ref " +
-                "WHERE matricule||employe.nom||prenom||service.nom " +
-                "LIKE '%'+?+'%'";
+                "WHERE  matricule||employe.nom||prenom||service.nom " +
+                "LIKE '%'||?||'%'";
 
+
+                String [] selectArg={data};
         ArrayList <Employee> employeeSet= new ArrayList<>();
         Employee employee;
-        Cursor cursor=Database.rawQuery(query,null);
+        Cursor cursor=Database.rawQuery(query,selectArg);
         //cursor.moveToFirst();
 
         while (cursor.moveToNext())
@@ -210,6 +216,7 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
         Cursor cursor = Database.rawQuery(query,selectArg);
 
              n=cursor.getCount();
+             cursor.close();
         return n==1;
 
 
@@ -219,24 +226,33 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
     public void setInformations(Employee employee){
        // open();
 
-        String query="SELECT nom,prenom,sexe,photo,type,couriel," +
-                "username,birthdate FROM employe WHERE matricule=?";
+        String query;
+        String [] selectArgs;
+        Cursor cursor;
 
-                String [] selectArgs={
-                Integer.valueOf(employee.getRegistrationNumber()).toString()
-        };
-        Cursor cursor =Database.rawQuery(query,selectArgs);
+
+            query = "SELECT nom,prenom,sexe,photo,type,couriel," +
+                    "username,birthdate FROM employe WHERE matricule=?";
+            selectArgs= new String[]{
+                    Integer.valueOf(employee.getRegistrationNumber()).toString()
+            };
+
+
+
+
+         cursor =Database.rawQuery(query,selectArgs);
        if( cursor.moveToFirst()) {
+           //employee.setRegistrationNumber();
            employee.setLastname(cursor.getString(0));
            employee.setFirstname(cursor.getString(1));
            employee.setGender(cursor.getString(2).charAt(0));
+
            employee.setPicture(cursor.getBlob(3));
            employee.setType(cursor.getString(4));
            employee.setMailAddress(cursor.getString(5));
            employee.setUsername(cursor.getString(6));
            employee.setBirthdate(cursor.getString(7));
-          // employee.
-          // employee.setPicture();
+          // employee.setRegistrationNumber(8);
 
        }
        cursor.close();
@@ -370,7 +386,20 @@ return  report;
         return Integer.parseInt(str);
 
     }
-    //public String
+
+    public boolean isNotSuperUser(Employee employee){
+        boolean test;
+        String query="SELECT type FROM employe WHERE matricule=?";
+        String [] selectArgs= new String[]{String.valueOf(employee.getRegistrationNumber())};
+       Cursor cursor=Database.rawQuery(query,selectArgs);
+       test=cursor.moveToFirst() && !Objects.equals(cursor.getString(0), "Simple");
+       cursor.close();
+       return !test;
+
+
+    }
+
+
 
 }
 

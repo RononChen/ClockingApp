@@ -17,6 +17,7 @@ public class Menu extends AppCompatActivity implements View.OnClickListener,
         IMenuView {
 
     IMenuController menuPresenter;
+    private int currentUser;
 
 
     @Override
@@ -25,6 +26,7 @@ public class Menu extends AppCompatActivity implements View.OnClickListener,
         setContentView(R.layout.activity_menu);
        initView();
        menuPresenter= new MenuController(this) ;
+       currentUser=getIntent().getIntExtra("CURRENT_USER",-1);
     }
 
    // @Override
@@ -37,18 +39,18 @@ public class Menu extends AppCompatActivity implements View.OnClickListener,
     @Override
     public void onClick(View v) {
          if(v.getId()==R.id.menu_register)
-            menuPresenter.onRegisterEmployeeMenu();
+            menuPresenter.onRegisterEmployeeMenu(currentUser);
         else if(v.getId()==R.id.menu_clock)
             menuPresenter.onClocking();
 
         else if(v.getId()==R.id.menu_delete)
-            menuPresenter.onDeleteEmployeeMenu();
+            menuPresenter.onDeleteEmployeeMenu(currentUser);
         else if (v.getId()==R.id.menu_search)
-            menuPresenter.onSearchEmployeeMenu();
+            menuPresenter.onSearchEmployeeMenu(currentUser);
         else if(v.getId()==R.id.menu_update)
-            menuPresenter.onUpdateEmployeeMenu();
+            menuPresenter.onUpdateEmployeeMenu(currentUser);
         else if(v.getId()==R.id.menu_statistics)
-            menuPresenter.onConsultatisticsMenu();
+            menuPresenter.onConsultatisticsMenu(currentUser);
        /* else if (v.getId()==R.id.menu_new)
         {
 

@@ -8,6 +8,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.InputType;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -17,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
@@ -45,6 +47,7 @@ public class RegisterEmployee extends AppCompatActivity
 
     private EditText Lastname, Firstname, Email, Username,
             Password, PasswordConfirm,Number, Birthdate;
+    private TextView Programm;
     private String Birth;
     DatePickerDialog picker;
     private ImageView PreviewImage;
@@ -52,7 +55,8 @@ public class RegisterEmployee extends AppCompatActivity
     private String gend;
     private String SelectedService,SelectedType;
     private  Spinner spinnerServices , spinnerTypes;
-    private int Start,End;
+    private int Start=8,End=17;
+
 
 
 
@@ -72,11 +76,11 @@ public class RegisterEmployee extends AppCompatActivity
 
 
     private void imageChooser() {
-        Intent i = new Intent();
-        i.setType("image/*");
-        i.setAction(Intent.ACTION_GET_CONTENT);
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
 
-        launchSomeActivity.launch(i);
+        launchSomeActivity.launch(intent);
     }
 
     ActivityResultLauncher<Intent> launchSomeActivity
@@ -106,6 +110,7 @@ public class RegisterEmployee extends AppCompatActivity
 
                     }
                 }
+
             });
 
     @SuppressLint("DefaultLocale")
@@ -133,6 +138,7 @@ public class RegisterEmployee extends AppCompatActivity
             int month = cldr.get(Calendar.MONTH);
             int year = cldr.get(Calendar.YEAR);
 
+ //while(toString())
             picker = new DatePickerDialog(RegisterEmployee.this,
                     (view, year1, monthOfYear, dayOfMonth) -> {
 
@@ -140,7 +146,10 @@ public class RegisterEmployee extends AppCompatActivity
                         Birth = "" + year1 + "-" + (monthOfYear + 1) + "-" + dayOfMonth;
                     },
                     year, month, day);
+
             picker.show();
+
+
         }
 
     }
@@ -216,7 +225,8 @@ public class RegisterEmployee extends AppCompatActivity
         // The view gets service list from the controller
         String[] services = registerEmployeePresenter.onLoad();
          String [] employeTypes=getResources().getStringArray(R.array.employee_types);
-
+        SelectedType=employeTypes[0];
+        SelectedService=services[0];
         spinnerServices = findViewById(R.id.register_service);
          spinnerTypes = findViewById(R.id.register_type);
 
@@ -231,11 +241,19 @@ public class RegisterEmployee extends AppCompatActivity
 
         NumberPicker start = findViewById(R.id.register_planning_start_choose);
         NumberPicker end = findViewById(R.id.register_planning_end_choose);
+        start.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+        end.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+        Programm=findViewById(R.id.prog);
+        Programm.setText(programm());
         Number = findViewById(R.id.register_number);
         Lastname = findViewById(R.id.register_lastname);
         Firstname = findViewById(R.id.register_firstname);
         RadioGroup gender = findViewById(R.id.register_gender);
         Birthdate = findViewById(R.id.register_birthdate);
+        Birthdate.setClickable(true);
+        Birthdate.setFocusable(false);
+        Birthdate.setInputType(InputType.TYPE_NULL);
+        //Birthdate.setEnabled(false);
         Email = findViewById(R.id.register_email);
         Username = findViewById(R.id.register_username);
         Password = findViewById(R.id.register_password);
@@ -249,8 +267,7 @@ public class RegisterEmployee extends AppCompatActivity
         register.setOnClickListener(this);
         reset.setOnClickListener(this);
         selectPicture.setOnClickListener(this);
-        SelectedType=employeTypes[0];
-        SelectedService=services[0];
+
         spinnerServices.setOnItemSelectedListener(this);
         spinnerTypes.setOnItemSelectedListener(this);
 
@@ -271,15 +288,23 @@ public class RegisterEmployee extends AppCompatActivity
 
 
 
+
     }
 
     @Override
     public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
-        if(picker.getId()==R.id.register_planning_start_choose)
-        Start=newVal;
-        else if (picker.getId()==R.id.register_planning_end_choose)
-            End=newVal;
-            }
+
+        if(picker.getId()==R.id.register_planning_start_choose
+                && 5<newVal && 10>newVal) {
+            Start = newVal;
+            Programm.setText(programm());
+        }
+
+        else if (picker.getId()==R.id.register_planning_end_choose && 15<newVal && 20>newVal) {
+            End = newVal;
+            Programm.setText(programm());
+        }
+                    }
 
     @Override
     public String format(int value) {
@@ -288,6 +313,17 @@ public class RegisterEmployee extends AppCompatActivity
         if(value<10)
             str="0"+value;
         return str;
+    }
+    public String programm(){
+        String str="";
+        if(Start<10)
+            str="0";
+        str+=Start+":00-" ;
+        if (End<10)
+         str+="0";
+        str+=End+":00";
+        return str;
+
     }
 
 }

@@ -59,6 +59,7 @@ public class ConsultStatistics extends AppCompatActivity {
             // setting text size
             barDataSet.setValueTextSize(16f);
             barChart.getDescription().setEnabled(false);
+            int actionNumber = getIntent().getIntExtra("ACTION_NUMBER", 1);
         }
 
         private void getBarEntries() {

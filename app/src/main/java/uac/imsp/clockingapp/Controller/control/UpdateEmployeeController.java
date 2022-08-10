@@ -68,6 +68,10 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
        employeeManager.setInformations(employee);
        planning=employeeManager.getPlanning(employee);
        service =employeeManager.getService(employee);
+       serviceManager.searchService(service);//set id
+        serviceList =serviceManager.getAllServices();
+
+        serviceManager.close();
 
        informations.put("number",String.valueOf(employee.getRegistrationNumber()));
        informations.put("lastname",employee.getLastname());
@@ -91,8 +95,6 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
         informations.put("service",service.getName());
         informations.put("start",Integer.parseInt(Objects.requireNonNull(planning.extractHours().get("start"))));
         informations.put("end",Integer.parseInt(Objects.requireNonNull(planning.extractHours().get("end"))));
-
-        serviceList =serviceManager.getAllServices();
         return serviceList;
 
     }

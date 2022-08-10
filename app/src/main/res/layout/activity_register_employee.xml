@@ -9,11 +9,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+
     tools:context=".View.activity.RegisterEmployee"
     tools:ignore="ExtraText">
 
 
     <ScrollView
+
         android:id="@+id/ScrollView01"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,12 +41,18 @@
                 android:layout_marginBottom="10dp"
                 android:gravity="center_horizontal"
                 android:text="@string/registration_title"
-                android:textSize="20sp" />
+                android:textColor="@color/black"
+                android:fontFamily="@font/latoregular"
+                android:textSize="22dp" />
+
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/latoregular"
+                android:textSize="18dp"
                 android:text="@string/register_number_text" />
 
             <EditText
@@ -57,6 +65,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/latoregular"
+                android:textSize="18dp"
                 android:text="@string/register_lastname_text" />
 
             <EditText
@@ -69,6 +80,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/latoregular"
+                android:textSize="18dp"
                 android:text="@string/register_firstname_text" />
 
             <EditText
@@ -109,6 +123,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/latoregular"
                 android:text="@string/birthdate" />
 
             <EditText
@@ -121,9 +138,12 @@
 
 
             <TextView
+                android:textSize="18dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/latoregular"
                 android:text="@string/register_mail_address_text" />
 
             <EditText
@@ -133,9 +153,12 @@
                 android:inputType="textEmailAddress" />
 
             <TextView
+                android:textSize="18dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/latoregular"
                 android:text="@string/register_employe_type_text" />
 
             <Spinner
@@ -149,9 +172,12 @@
 
 
             <TextView
+                android:textSize="18dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/latoregular"
                 android:text="@string/register_username_text" />
 
             <EditText
@@ -162,9 +188,12 @@
 
 
             <TextView
+                android:textSize="18dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/latoregular"
                 android:text="@string/register_password" />
 
             <EditText
@@ -175,9 +204,12 @@
 
 
             <TextView
+                android:textSize="18dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/latoregular"
                 android:text="@string/register_password_confirm" />
 
             <EditText
@@ -187,9 +219,12 @@
                 android:inputType="textPassword" />
 
             <TextView
+                android:textSize="18dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/latoregular"
                 android:text="@string/register_service_label" />
 
             <Spinner
@@ -203,37 +238,79 @@
             </Spinner>
 
             <TextView
+                android:textSize="18dp"
                 android:id="@+id/register_planning"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/latoregular"
                 android:text="@string/register_planning_label" />
-
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
+<LinearLayout
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="20dp"
+    >
             <TextView
+                android:textSize="18dp"
                 android:id="@+id/register_planning_start"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:fontFamily="@font/latoregular"
                 android:text="@string/start_time" />
 
             <NumberPicker
                 android:id="@+id/register_planning_start_choose"
 
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_width="25dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginStart="20dp"/>
 
+
+</LinearLayout>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            >
             <TextView
+                android:textSize="18dp"
                 android:id="@+id/register_planning_end"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:fontFamily="@font/latoregular"
                 android:text="@string/end_time" />
 
             <NumberPicker
                 android:id="@+id/register_planning_end_choose"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
+                android:layout_width="25dp"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:layout_marginStart="20dp"/>
 
+
+          </LinearLayout>
+            <TextView
+
+                android:textSize="13sp"
+                android:id="@+id/prog"
+                android:layout_width="wrap_content"
+                android:layout_marginEnd="2dp"
+                android:layout_gravity="center_vertical"
+                android:textColor="@color/black"
+                android:fontFamily="@font/latoregular"
+                android:layout_height="25dp"/>
+
+        </LinearLayout>
             <!--Button to open the image selector-->
             <Button
                 android:id="@+id/register_picture_button"
@@ -241,7 +318,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:text="@string/register_picture"
-                android:textColor="@android:color/white"
+                android:background="@drawable/mybutton"
                 android:textSize="18sp" />
             <!-- android:backgroundTint="" -->
 
@@ -259,6 +336,7 @@
                 android:id="@+id/register_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="50dp"
                 android:background="@drawable/mybutton"
                 android:text="@string/register_button" />
 
@@ -267,10 +345,12 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/mybutton"
+                android:layout_marginBottom="40dp"
                 android:text="@string/reset_button" />
 
         </LinearLayout>
     </ScrollView>
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

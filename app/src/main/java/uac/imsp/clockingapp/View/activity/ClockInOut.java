@@ -23,6 +23,7 @@ import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import uac.imsp.clockingapp.Controller.control.ClockingInOutController;
 import uac.imsp.clockingapp.Controller.util.IClockInOutController;
@@ -35,7 +36,8 @@ public class ClockInOut extends AppCompatActivity
 
     SurfaceView surfaceView;
     TextView txtBarcodeValue;
-    private CameraSource cameraSource;
+    //private CameraSource cameraSource;
+    private  CameraSource cameraSource;
     private static final int REQUEST_CAMERA_PERMISSION = 201;
     Button btnAction;
     String intentData = "";
@@ -85,17 +87,28 @@ public class ClockInOut extends AppCompatActivity
     @Override
     public void onLoad(String welcome) {
 
+
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
         // initialise detectors and sources
 
         BarcodeDetector barcodeDetector = new BarcodeDetector.Builder(this)
-                .setBarcodeFormats(Barcode.ALL_FORMATS)
+                .setBarcodeFormats(Barcode.QR_CODE) //CHANGED
                 .build();
 
-        cameraSource = new CameraSource.Builder(this, barcodeDetector)
+        CameraSource.Builder c = new CameraSource.Builder(this, barcodeDetector);
+
+        c.setFacing(CameraSource.CAMERA_FACING_FRONT)
+                .setRequestedPreviewSize(1920,1080)
+                .setAutoFocusEnabled(true);
+
+        /* cameraSource = new CameraSource.Builder(this, barcodeDetector)
                 .setRequestedPreviewSize(1920, 1080)
                 .setAutoFocusEnabled(true) //you should add this feature
-                .build();
+                .build();*/
+
+        cameraSource= c.build();
+
+
         surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
             @Override
             public void surfaceCreated(SurfaceHolder holder) {
@@ -132,16 +145,25 @@ public class ClockInOut extends AppCompatActivity
             @Override
             public void receiveDetections(@NonNull Detector.Detections<Barcode> detections) {
                 final SparseArray<Barcode> barcodes = detections.getDetectedItems();
+                AtomicInteger number= new AtomicInteger();
                 if (barcodes.size() != 0) {
                     //@Override
                     txtBarcodeValue.post(() -> {
-                        int number;
+
                         btnAction.setText(R.string.LAUNCH_URL);
                         intentData = barcodes.valueAt(0).displayValue;
                         txtBarcodeValue.setText(intentData);
-                        number=Integer.parseInt(txtBarcodeValue.getText().toString());
-                        //Start clocking
-                        clockInOutPresenter.onClocking(number);
+                        try{
+                        number.set(Integer.parseInt(txtBarcodeValue.getText().toString()));
+                            //Start clocking
+                            clockInOutPresenter.onClocking(number.get());
+
+                        }
+                        catch (NullPointerException e){
+                            e.printStackTrace();
+                        }
+
+
                     });
                 }
             }

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/appOrange"
+    tools:context=".View.activity.StartScreen"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:layout_marginStart="100dp"
+        app:srcCompat="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/start_screen_welcome"
+        android:layout_width="match_parent"
+        android:fontFamily="@font/latoregular"
+        android:textSize="18sp"
+        android:textColor="@color/black"
+        android:layout_marginStart="20dp"
+        android:layout_gravity="center"
+        android:layout_height="100dp"
+        android:layout_marginTop="40dp"
+        android:text="@string/welcomes" />
+
+    <Button
+        android:id="@+id/start_screen_login_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:padding="15dp"
+        android:shadowColor="@android:color/transparent"
+        android:background="@drawable/shapelogin"
+        android:text="@string/login_button_text"/>
+
+    <Button
+        android:id="@+id/start_screen_clock_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/menu_clock_button"
+        android:layout_gravity="center"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
+        android:padding="15dp"
+        android:shadowColor="@android:color/transparent"
+        android:background="@drawable/shapelogin"/>
+
+</LinearLayout>

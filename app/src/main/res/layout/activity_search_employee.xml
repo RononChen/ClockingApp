@@ -1,28 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <RelativeLayout
-        android:layout_width="fill_parent"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".View.activity.SearchEmployee">
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="3dp"
+        android:layout_marginTop="20dp"
+        android:clickable="true"
+        app:iconifiedByDefault="false"
+        android:layout_centerHorizontal="true"
+        app:queryBackground="@color/zxing_transparent"
+        android:background="@drawable/search_view_rounded"
+        android:iconifiedByDefault="false"
+        android:padding="40dp"
+        android:queryHint="Rechercher"
+        app:queryHint="Rechercher" />
+    <!--requestFocus/-->
 
 
-        <androidx.appcompat.widget.SearchView
-            android:id="@+id/search"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="40dp"
-            android:iconifiedByDefault="false"
-            android:queryHint="Rechercher"
-            android:clickable="true" />
+    <ListView
+        android:id="@+id/employee_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/search"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="13dp"
+        android:layout_marginTop="50dp"
+        android:divider="@color/colorPrimary"
+        android:dividerHeight="1dp"/>
 
-        <ListView
-            android:id="@+id/employee_list"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/search" />
+</RelativeLayout>
 
-    </RelativeLayout>
-
-</layout>

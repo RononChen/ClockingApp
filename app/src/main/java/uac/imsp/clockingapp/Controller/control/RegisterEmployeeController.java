@@ -37,6 +37,8 @@ public class RegisterEmployeeController implements IRegisterEmployeeController
 {
 
     IRegisterEmployeeView registerEmployeeView;
+    ServiceManager serviceManager;
+
 
 
     public RegisterEmployeeController(IRegisterEmployeeView registerEmployeeView) {
@@ -46,11 +48,12 @@ public class RegisterEmployeeController implements IRegisterEmployeeController
     @Override
     public String[] onLoad() {
        // String serviceLIst[]
-        ServiceManager serviceManager = new ServiceManager((Context) registerEmployeeView);
+        serviceManager = new ServiceManager((Context) registerEmployeeView);
 
-       // serviceManager.open();
+        serviceManager.open();
 
         //serviceManager.close();
+
         return serviceManager.getAllServices();
     }
 
@@ -137,7 +140,17 @@ public class RegisterEmployeeController implements IRegisterEmployeeController
            planningManager.create(planning);
            planningManager.close();
 
-           service = new Service(selectedService);
+
+          /* serviceManager=new ServiceManager((Context) registerEmployeeView);
+
+
+           serviceManager.create(service);
+           serviceManager.close();*/
+
+
+           service=new Service(selectedService);
+           serviceManager.searchService(service);
+           serviceManager.close();
 
            employeeManager.create(employee);
            employeeManager.update(employee, planning);
@@ -146,7 +159,7 @@ public class RegisterEmployeeController implements IRegisterEmployeeController
            registerEmployeeView.onRegisterEmployeeSuccess("Employé enregistré avec succès");
 
        }
-      // employeeManager.close();
+      employeeManager.close();
    }
 
     }
@@ -177,9 +190,10 @@ public class RegisterEmployeeController implements IRegisterEmployeeController
     }
 public String formatTime(int time) {
   if(time <10)
-      return "0"+time+":"+"0";
+      return "0"+time+":"+"00";
   else
-      return time+":"+"0";
+
+      return time+":"+"00";
 }
 
 }

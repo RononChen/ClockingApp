@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -41,6 +42,7 @@ public class UpdateEmployee extends AppCompatActivity
         IUpdateEmployeeView {
 
     private EditText Email;
+    private TextView Programm;
     private String selectedService, selectedType;
     private Spinner spinnerTypes, spinnerServices;
     private ImageView image;
@@ -110,11 +112,14 @@ public class UpdateEmployee extends AppCompatActivity
 
     public void initView() throws ParseException {
 
+        int position;
+        int actionNumber = getIntent().getIntExtra("ACTION_NUMBER", 1);
+
         Hashtable<String, Object> informations = new Hashtable<>();
         String[] employeTypes = getResources().getStringArray(R.array.employee_types);
-        String[] services = updateEmployeePresenter.onLoad(1, informations);
-        selectedService = services[0];
-        selectedType = employeTypes[0];
+        String[] services = updateEmployeePresenter.onLoad(actionNumber, informations);
+        selectedService = (String) informations.get("service");
+        selectedType = (String) informations.get("type");
         EditText number = findViewById(R.id.register_number);
         EditText lastname = findViewById(R.id.register_lastname);
         Email = findViewById(R.id.register_email);
@@ -123,12 +128,25 @@ public class UpdateEmployee extends AppCompatActivity
         EditText birthdate = findViewById(R.id.register_birthdate);
         NumberPicker start = findViewById(R.id.register_planning_start_choose);
         NumberPicker end = findViewById(R.id.register_planning_end_choose);
+        start.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+        end.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
+
+        if (informations.containsKey("start") && informations.containsKey("end")) {
+            Start = (Integer) informations.get("start");
+            End = (Integer) informations.get("end");
+            start.setValue(Start);
+            end.setValue(End);
+        }
+        Programm=findViewById(R.id.prog);
+        Programm.setText(programm());
 
         ImageView previewImage = findViewById(R.id.register_preview_image);
         Button update = findViewById(R.id.update_button);
         Button selectPicture = findViewById(R.id.register_picture_button);
         RadioGroup gender = findViewById(R.id.register_gender);
 
+        gender.getChildAt(0).setEnabled(false);
+        gender.getChildAt(1).setEnabled(false);
 
         spinnerServices = findViewById(R.id.register_service);
         spinnerTypes = findViewById(R.id.register_type);
@@ -138,12 +156,16 @@ public class UpdateEmployee extends AppCompatActivity
 
         dataAdapterR.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerServices.setAdapter(dataAdapterR);
+        position=dataAdapterR.getPosition(selectedService);
+        spinnerServices.setSelection(position);
 
         dataAdapterR = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, employeTypes);
 
         dataAdapterR.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerTypes.setAdapter(dataAdapterR);
+        position=dataAdapterR.getPosition(selectedType);
+        spinnerTypes.setSelection(position);
         initNumberPicker(start, 6, 9);
         initNumberPicker(end, 16, 19);
 
@@ -158,21 +180,6 @@ public class UpdateEmployee extends AppCompatActivity
         birthdate.setText(Objects.requireNonNull(informations.get("birthdate")).toString());
         if (Objects.equals(informations.get("gender"), 'F'))
             gender.setId(R.id.register_girl);
-        selectSpinnerItemByValue(spinnerServices,
-                (String) informations.get("service"),
-                R.id.register_service);
-
-        selectSpinnerItemByValue(spinnerTypes,
-                (String) informations.get("type"),
-                R.id.register_type);
-
-        if (informations.containsKey("start") && informations.containsKey("end")) {
-            Start = (Integer) informations.get("start");
-            End = (Integer) informations.get("end");
-            start.setValue(Start);
-            end.setValue(End);
-                    }
-
 
         //Not updatable
         number.setEnabled(false);
@@ -305,11 +312,16 @@ public class UpdateEmployee extends AppCompatActivity
     @Override
     public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
 
-        if (picker.getId() == R.id.register_planning_start_choose && 5 < newVal && newVal < 10)
+        if(picker.getId()==R.id.register_planning_start_choose
+                && 5<newVal && 10>newVal) {
             Start = newVal;
+            Programm.setText(programm());
+        }
 
-        else if (picker.getId() == R.id.register_planning_end_choose && 15 < newVal && newVal < 19)
+        else if (picker.getId()==R.id.register_planning_end_choose && 15<newVal && 20>newVal) {
             End = newVal;
+            Programm.setText(programm());
+        }
     }
 
     public String toString(EditText e) {
@@ -321,7 +333,8 @@ public class UpdateEmployee extends AppCompatActivity
         int i;
         ArrayAdapter<CharSequence> adapter =
                 ArrayAdapter.createFromResource(this, resID,
-                        androidx.appcompat.R.layout.support_simple_spinner_dropdown_item);
+                        android.R.layout.simple_spinner_item);
+
         spinner.setAdapter(adapter);
 
         if (value != null) {
@@ -331,5 +344,15 @@ public class UpdateEmployee extends AppCompatActivity
 
 
     }
+    public String programm(){
+        String str="";
+        if(Start<10)
+            str="0";
+        str+=Start+":00-" ;
+        if (End<10)
+            str+="0";
+        str+=End+":00";
+        return str;
 
+    }
 }

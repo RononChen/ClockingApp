@@ -1,12 +1,8 @@
 package uac.imsp.clockingapp.Controller.control;
 
-import static uac.imsp.clockingapp.Controller.control.RegisterEmployeeController.getBytesFromBitmap;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.text.TextUtils;
-import android.util.Patterns;
 
 import java.text.ParseException;
 import java.util.Hashtable;
@@ -26,13 +22,7 @@ public class DeleteEmployeeController implements IDeleteEmployeeController {
     IDeleteEmployeeView deleteEmployeeView;
     private Employee employee;
     private EmployeeManager employeeManager;
-    private  PlanningManager planningManager;
-    private  ServiceManager serviceManager;
-    Service service;
-    Planning planning;
-    String mail,type;
 
-    Bitmap picture;
     public DeleteEmployeeController(IDeleteEmployeeView deleteEmployeeView)
 
     {
@@ -45,16 +35,16 @@ public class DeleteEmployeeController implements IDeleteEmployeeController {
 
 
     @Override
-    //Pour obtenir les listes de matricules et de services au chargement
+    //get informations on load
 
-    public  String [] onLoad(int number, Hashtable <String,Object> informations) throws ParseException {
+    public  void onLoad(int number, Hashtable <String,Object> informations) throws ParseException {
+
         Day day;
 
         Service service;
         Planning planning;
-        String [] serviceList;
-        planningManager=new PlanningManager((Context) deleteEmployeeView);
-        serviceManager=new ServiceManager((Context) deleteEmployeeView);
+        PlanningManager planningManager = new PlanningManager((Context) deleteEmployeeView);
+        ServiceManager serviceManager = new ServiceManager((Context) deleteEmployeeView);
         employeeManager=new EmployeeManager((Context) deleteEmployeeView);
         employeeManager.open();
         planningManager.open();
@@ -68,7 +58,6 @@ public class DeleteEmployeeController implements IDeleteEmployeeController {
         informations.put("lastname",employee.getLastname());
         informations.put("firstname",employee.getFirstname());
 
-        // if(employee.getPicture()!=null)
         try {
 
             informations.put("picture", getBitMapFromBytes(employee.getPicture()));
@@ -87,48 +76,17 @@ public class DeleteEmployeeController implements IDeleteEmployeeController {
         informations.put("start",Integer.parseInt(Objects.requireNonNull(planning.extractHours().get("start"))));
         informations.put("end",Integer.parseInt(Objects.requireNonNull(planning.extractHours().get("end"))));
 
-        serviceList =serviceManager.getAllServices();
-        return serviceList;
-
     }
 
 
 
     @Override
-    public void onDeleteEmployee(String mail, String selectedService, int startTime,
-                                 int endTime, Bitmap picture, String type) {
-        String s,e;
-        //gestion du clic sur modifier employé
+    public void onDeleteEmployee() {
 
-        planningManager=new PlanningManager((Context) deleteEmployeeView);
-        serviceManager=new ServiceManager((Context) deleteEmployeeView);
-        employeeManager=new EmployeeManager((Context) deleteEmployeeView);
-        employeeManager.open();
-        planningManager.open();
-        serviceManager.open();
-
-        this.mail=mail;
-        service=new Service(selectedService);
-        /*serviceManager=new ServiceManager((Context) updateEmployeeView);
-        serviceManager.open();*/
-        serviceManager.create(service);
-
-        s=formatTime(startTime);
-
-        e=formatTime(endTime);
-        planning=new Planning(s,e);
-        planningManager.create(planning);//To set the planning Id
-
-        this.picture=picture;
-        this.type=type;
-
-
-        employeeManager.setInformations(employee);
-
-        deleteEmployeeView.askConfirmUpdate("Oui","Non",
+        deleteEmployeeView.askConfirmDelete("Oui","Non",
 
                 "Confirmation","Voulez vous " +
-                        "vraiment appliquer ces modifications ?");
+                        "vraiment supprimer l'employé ?");
 
 
 
@@ -137,66 +95,18 @@ public class DeleteEmployeeController implements IDeleteEmployeeController {
     @Override
     public void onConfirmResult(Boolean confirmed) {
 
-        boolean update=false;
-
-        // assert confirmed;
         if(!confirmed)
             return;
+        employeeManager=new EmployeeManager((Context) deleteEmployeeView);
+        employeeManager.open();
+
+        employeeManager.setInformations(employee);
 
 
-        //compare the email entred to the real email of the emp
-        if (!Objects.equals(employee.getMailAddress(), mail)) {
-            if (TextUtils.isEmpty(mail))
-                deleteEmployeeView.onDeleteEmployeeError("L'adresse email est requis !");
-
-            else if (!Patterns.EMAIL_ADDRESS.matcher(mail).matches())
-                deleteEmployeeView.onDeleteEmployeeError("Adresse email invalide !");
-            else {
-                employeeManager.update(employee, mail);
-                update = true;
-            }
-        }
-
-        if (!Objects.equals(employee.getType(), type) &&
-                type != null) {
-            employeeManager.changeGrade(employee, type);
-            update = true;
-        }
-        if (!Objects.equals(employeeManager.getService(employee), service)
-        ) {
-            employeeManager.update(employee, service);
-            update = true;
-        }
-        if (!Objects.equals(employeeManager.getPlanning(employee), planning)) {
-            employeeManager.update(employee, planning);
-            update = true;
-        }
-
-        if (employee.getPicture() != getBytesFromBitmap(picture)) {
-            employeeManager.update(employee, getBytesFromBitmap(picture));
-
-            update = true;
-        }
         employeeManager.close();
 
-        if (update)
-            deleteEmployeeView.onSomethingchanged("Employé supprimé avec succès");
-        else
-            deleteEmployeeView.onNothingChanged("Aucune information n'a été modifiée");
+            deleteEmployeeView.onDeleteSuccessfull("Employé supprimé avec succès");
 
-
-
-
-    }
-
-
-
-    public String formatTime(int time) {
-        if(time <10)
-            return "0"+time+":"+"00";
-
-        else
-            return time+":"+"00";
     }
     public static Bitmap getBitMapFromBytes(byte[] array){
 
@@ -205,6 +115,4 @@ public class DeleteEmployeeController implements IDeleteEmployeeController {
 
 
     }
-//public  String extractHour()
-
 }

@@ -1,22 +1,23 @@
 package uac.imsp.clockingapp.Controller.control;
 
+import static uac.imsp.clockingapp.Models.dao.EmployeeManager.CAN_NOT_LOGIN;
 import static uac.imsp.clockingapp.Models.entity.Employee.EMPTY_PASSWORD;
 import static uac.imsp.clockingapp.Models.entity.Employee.EMPTY_USERNAME;
 import static uac.imsp.clockingapp.Models.entity.Employee.INVALID_PASSWORD;
 import static uac.imsp.clockingapp.Models.entity.Employee.INVALID_USERNAME;
-import static uac.imsp.clockingapp.Models.dao.EmployeeManager.CAN_NOT_LOGIN;
 
 import android.content.Context;
+import android.text.TextUtils;
 
 import uac.imsp.clockingapp.Controller.util.ILoginController;
-import uac.imsp.clockingapp.Models.entity.Employee;
 import uac.imsp.clockingapp.Models.dao.EmployeeManager;
+import uac.imsp.clockingapp.Models.entity.Employee;
 import uac.imsp.clockingapp.View.util.ILoginView;
 
 public class LoginController  implements ILoginController {
     //public final static String type = null;
-    public static  String EmployeeType;
     public static  int CurrentEmployee;
+    private  int attempNumber=0;
     //shouldn't be final
     private  EmployeeManager employeeManager;
 
@@ -24,8 +25,7 @@ public class LoginController  implements ILoginController {
     public LoginController(ILoginView loginView) {
 
         this.loginView = loginView;
-        employeeManager=new EmployeeManager((Context) loginView);
-        employeeManager.open();
+
     }
 
 
@@ -35,6 +35,8 @@ public class LoginController  implements ILoginController {
     @Override
     public void onLogin(String username, String password) {
       int loginCode;
+        employeeManager=new EmployeeManager((Context) loginView);
+        employeeManager.open();
 
        // Construction d'un employé voulant se connecter
         Employee employee = new Employee(username,password);
@@ -49,31 +51,35 @@ public class LoginController  implements ILoginController {
             loginView.onLoginError("Mot de passe invalide !");
         else {
 
-            ///ServiceManager s = new ServiceManager((Context) loginView);
-            //s.open();
-           /* (new ServiceManager((Context) loginView)).open();
-
-
-            new PlanningManager((Context) loginView);
-            new EmployeeManager((Context) loginView);
-            new ClockingManager((Context) loginView);
-            new DayManager((Context) loginView);*/
+            //employeeManager=new EmployeeManager((Context) loginView);
             //employeeManager.open();
+
             loginCode =employeeManager.connectUser(employee,password);
 
+          //  employeeManager.close();
 
 
-
-            if(loginCode==CAN_NOT_LOGIN)
+            if(loginCode==CAN_NOT_LOGIN) {
                 loginView.onLoginError("Username ou mot de passe incorrect !");
+                attempNumber++;
+                if(attempNumber==3)
+                    loginView.onMaxAttempsReached("Trois tentatives d'authentification vaines !");
+
+
+            }
               else {
-                loginView.onLoginSuccess("Authentification réussie");
-                EmployeeType =employee.getType();
                 CurrentEmployee=employee.getRegistrationNumber();
+
+                loginView.onLoginSuccess("Authentification réussie",
+                        CurrentEmployee
+                );
+
+
+
             }
 
 
-            //employeeManager.close();
+
 
         }
 
@@ -112,6 +118,42 @@ public class LoginController  implements ILoginController {
 
 
 
+
+    }
+
+    @Override
+    public void onClocking() {
+        loginView.onClocking();
+
+    }
+
+    @Override
+    public void onUsernameEdit(String username) {
+
+        String uname=username.trim();
+        if(TextUtils.isEmpty(uname))
+            loginView.onUsernameError("Requis !");
+        else if(uname.length()<6)
+            loginView.onUsernameError("Au moins 6 caractères requis !");
+        else if(uname.length()>30)
+            loginView.onUsernameError("Au plus 30 caractères requis !");
+    }
+
+    @Override
+    public void onPasswordEdit(String password) {
+        String pwd=password.trim();
+
+        if(TextUtils.isEmpty(pwd))
+            loginView.onPasswordError("Requis !");
+        else if(pwd.length()<6)
+            loginView.onPasswordError("Au moins 6 caractères requis !");
+
+
+    }
+
+    @Override
+    public void onShowHidePassword() {
+        loginView.onShowHidePassword();
 
     }
 

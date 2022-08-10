@@ -71,6 +71,10 @@
     <string name="delete">Supprimer</string>
     <string name="update">Modifier</string>
 
+    <string name="clocking_text">Pointer</string>
+    <string name="search_status">Statut</string>
+    <string name="welcomes">Bienvenue sur ClockingApp, une application permettant de suivre la présence des employés de l\'IMSP</string>
+    <string name="todo">TODO</string>
 
     <string-array name="employee_types">
         <item>Simple</item>

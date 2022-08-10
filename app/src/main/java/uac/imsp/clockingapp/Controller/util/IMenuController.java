@@ -2,12 +2,12 @@ package uac.imsp.clockingapp.Controller.util;
 
 public interface IMenuController {
 
-    void onSearchEmployeeMenu();
-    void onUpdateEmployeeMenu();
-    void onDeleteEmployeeMenu();
-    void onRegisterEmployeeMenu();
+    void onSearchEmployeeMenu(int currentUser);
+        void onUpdateEmployeeMenu(int currentUser);
+    void onDeleteEmployeeMenu(int currentUser);
+    void onRegisterEmployeeMenu(int currentUser);
     void onClocking();
-    void onConsultatisticsMenu();
+    void onConsultatisticsMenu(int currentUser);
     void onConsultPresenceReport();
 }
 

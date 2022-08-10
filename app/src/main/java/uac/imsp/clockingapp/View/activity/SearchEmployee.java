@@ -7,12 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.SearchView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import uac.imsp.clockingapp.Controller.control.SearchEmployeeController;
 import uac.imsp.clockingapp.Controller.util.Result;
@@ -24,36 +22,38 @@ import uac.imsp.clockingapp.View.util.ToastMessage;
 public class SearchEmployee extends AppCompatActivity
     implements IsearchEmployeeView,
         AdapterView.OnItemClickListener,
-        SearchView.OnQueryTextListener,
+        androidx.appcompat.widget.SearchView.OnQueryTextListener,
         DialogInterface.OnClickListener {
-    private List<Result> employeeList;
     private  ListView list;
     ListViewAdapter adapter;
-    private Result result;
     private String Data;
     AlertDialog.Builder builder;
+    AlertDialog dialog;
     SearchEmployeeController searchEmployeePresenter;
     private Intent intent;
+    private int  Number;
+    private  androidx.appcompat.widget.SearchView search;
+    public SearchEmployee(){
+        searchEmployeePresenter=new SearchEmployeeController(this);
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_employee);
         initView();
-
+        //SearchManager searchManager= (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+          //search.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
     }
 
+
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        int number;
-
-
-        result= (Result) adapter.getItem(position);
-        number=result.getNumber();
-        searchEmployeePresenter.onEmployeeSelected(number);
-
-
+        Result result = (Result) adapter.getItem(position);
+        Number= result.getNumber();
+        searchEmployeePresenter.onEmployeeSelected(Number);
     }
 
     @Override
@@ -65,21 +65,10 @@ public class SearchEmployee extends AppCompatActivity
     }
 
     @Override
-    public void onEmployeeFound() {
-
-        int i;
-        employeeList=new ArrayList<>();
-        ArrayList<Result> arrayList = new ArrayList<>();
-        for (i=0;i <employeeList.size();i++) {
-            result = new Result(employeeList.get(i).getNumber(),
-                    employeeList.get(i).getName(),
-                    employeeList.get(i).getService());
-
-            arrayList.add(result);
-        }
-        adapter = new ListViewAdapter(this, arrayList);
-        list.setAdapter(adapter);
-        list.setVisibility(View.VISIBLE);
+    public void onEmployeeFound(ArrayList<Result> employeeList) {
+        adapter = new ListViewAdapter(this, employeeList);
+        this.list.setAdapter(adapter);
+        this.list.setVisibility(View.VISIBLE);
     }
 
     @Override
@@ -89,6 +78,8 @@ public class SearchEmployee extends AppCompatActivity
         builder=new AlertDialog.Builder(this);
         builder.setTitle(tilte);
         builder.setItems(options,this);
+        dialog=builder.create();
+        dialog.show();
 
 
 
@@ -97,12 +88,15 @@ public class SearchEmployee extends AppCompatActivity
     @Override
     public void onUpdate() {
         intent=new Intent(SearchEmployee.this,UpdateEmployee.class);
+        intent.putExtra("ACTION_NUMBER",Number);
+
         startActivity(intent);
     }
 
     @Override
     public void onDelete() {
         intent=new Intent(SearchEmployee.this,DeleteEmployee.class);
+        intent.putExtra("ACTION_NUMBER",Number);
         startActivity(intent);
 
     }
@@ -110,21 +104,36 @@ public class SearchEmployee extends AppCompatActivity
     @Override
     public void onPresenceReport() {
         intent=new Intent(SearchEmployee.this,ConsultPresenceReport.class);
+        intent.putExtra("ACTION_NUMBER",Number);
         startActivity(intent);
     }
 
     @Override
     public void onStatistics() {
         intent=new Intent(SearchEmployee.this,ConsultStatistics.class);
+        intent.putExtra("NUMBER",Number);
         startActivity(intent);
 
     }
 
     public void initView(){
-        SearchView search = (SearchView) findViewById(R.id.search);
+        search = findViewById(R.id.search);
+
         list=findViewById(R.id.employee_list);
-        list.setVisibility(View.GONE);
+       search.setIconifiedByDefault(false);
+      // search.setIconified(true);
+         // search.setSubmitButtonEnabled(false);
+         // search.setQueryHint("Rechercher par nom prémom ou service");
+
+       //list.setVisibility(View.GONE);
         search.setOnQueryTextListener(this);
+       // search.setFocusable(true);
+        //search.requestFocusFromTouch();
+
+       // search.clearFocus();
+
+        search.onActionViewExpanded();
+
         list.setOnItemClickListener(this);
 
 
@@ -132,13 +141,15 @@ public class SearchEmployee extends AppCompatActivity
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-        employeeList=searchEmployeePresenter.onSearch(Data);
+        searchEmployeePresenter.onSearch(Data);
         return false;
     }
 
     @Override
     public boolean onQueryTextChange(String newText) {
+
         Data=newText;
+        //search.setQuery(Data,false);
         return false;
     }
 

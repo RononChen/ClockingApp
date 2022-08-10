@@ -31,12 +31,21 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
+            <ImageView
+                android:id="@+id/register_preview_image"
+                android:layout_width="220dp"
+                android:layout_height="280dp"
+                android:layout_marginStart="170dp" />
 
 
             <TextView
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/latoregular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
+                android:layout_marginTop="65dp"
                 android:text="@string/register_number_text" />
 
             <EditText
@@ -46,6 +55,9 @@
                 android:inputType="number" />
 
             <TextView
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/latoregular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
@@ -58,6 +70,9 @@
                 android:inputType="textPersonName" />
 
             <TextView
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/latoregular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
@@ -75,7 +90,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-
                 android:orientation="horizontal">
 
                 <RadioButton
@@ -98,6 +112,9 @@
             </RadioGroup>
 
             <TextView
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/latoregular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
@@ -113,6 +130,9 @@
 
 
             <TextView
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/latoregular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
@@ -125,22 +145,23 @@
                 android:inputType="textEmailAddress" />
 
             <TextView
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/latoregular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
                 android:text="@string/register_employe_type_text" />
-
-            <Spinner
+            <EditText
                 android:id="@+id/register_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:entries="@array/employee_types"
-                android:spinnerMode="dialog" />
-
+                android:inputType="textEmailAddress" />
 
             <TextView
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/latoregular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
@@ -153,79 +174,45 @@
                 android:inputType="textEmailAddress" />
 
             <TextView
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/latoregular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
                 android:text="@string/register_service_label" />
 
-            <Spinner
+            <EditText
                 android:id="@+id/register_service"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="10dp"
-                android:spinnerMode="dialog">
-
-            </Spinner>
+                android:inputType="textEmailAddress" />
 
             <TextView
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/latoregular"
                 android:id="@+id/register_planning"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
                 android:text="@string/register_planning_label" />
-
-            <TextView
-                android:id="@+id/register_planning_start"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/start_time" />
-
-            <NumberPicker
-                android:id="@+id/register_planning_start_choose"
-
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <TextView
-                android:id="@+id/register_planning_end"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/end_time" />
-
-            <NumberPicker
-                android:id="@+id/register_planning_end_choose"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
-
-            <!--Button to open the image selector-->
-            <Button
-                android:id="@+id/register_picture_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
-                android:text="@string/update_picture"
-                android:textColor="@android:color/white"
-                android:textSize="18sp" />
-
-
-
-            <!--ImageView to preview the selected image-->
-            <ImageView
-                android:id="@+id/register_preview_image"
+            <EditText
+                android:textSize="18sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/latoregular"
+                android:id="@+id/prog"
                 android:layout_width="match_parent"
-                android:layout_height="300dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp" />
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress" />
 
             <Button
-                android:id="@+id/update_button"
+                android:id="@+id/delete_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/mybutton"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="40dp"
                 android:text="@string/delete_button" />
         </LinearLayout>
     </ScrollView>

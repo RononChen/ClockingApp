@@ -3,7 +3,6 @@ package uac.imsp.clockingapp.Controller.control;
 import android.content.Context;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import uac.imsp.clockingapp.Controller.util.ISearchEmployeeController;
 import uac.imsp.clockingapp.Controller.util.Result;
@@ -18,11 +17,12 @@ public class SearchEmployeeController  implements
         this.searchEmployeeView=searchEmployeeView;
     }
 
+
     @Override
-    public List<Result> onSearch(String data) {
+    public  void onSearch(String data) {
         int number;
         String lastname,firstname,service;
-        List <Result>  list= new ArrayList<>();
+        ArrayList <Result>  list= new ArrayList<>();
         Result result;
 
 
@@ -45,10 +45,11 @@ public class SearchEmployeeController  implements
                 result = new Result(number, lastname, firstname, service);
                 list.add(result);
             }
+            searchEmployeeView.onEmployeeFound(list);
 
         }
             employeeManager.close();
-        return list;
+
     }
 
     @Override
