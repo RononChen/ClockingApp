@@ -5,5 +5,11 @@
         android:title="@string/logout"
         android:id="@+id/logout"
         android:orderInCategory="1"
-        app:showAsAction="always" />
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/help"
+        android:orderInCategory="2"
+        app:showAsAction="always"
+        android:icon="@drawable/ic_baseline_help_20"
+        android:title="@string/tod" />
 </menu>

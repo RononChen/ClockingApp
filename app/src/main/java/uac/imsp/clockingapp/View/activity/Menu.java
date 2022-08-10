@@ -2,6 +2,7 @@ package uac.imsp.clockingapp.View.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
@@ -20,6 +21,7 @@ public class Menu extends AppCompatActivity implements View.OnClickListener,
     private int currentUser;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +31,14 @@ public class Menu extends AppCompatActivity implements View.OnClickListener,
        currentUser=getIntent().getIntExtra("CURRENT_USER",-1);
     }
 
-   // @Override
+    @Override
+
+    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.options_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+    // @Override
     /*public boolean onCreateOptionsMenu(android.view.Menu menu) {
        // getMenuInflater().inflate(R.id.logout);
         return super.onCreateOptionsMenu(menu);
@@ -51,12 +60,6 @@ public class Menu extends AppCompatActivity implements View.OnClickListener,
             menuPresenter.onUpdateEmployeeMenu(currentUser);
         else if(v.getId()==R.id.menu_statistics)
             menuPresenter.onConsultatisticsMenu(currentUser);
-       /* else if (v.getId()==R.id.menu_new)
-        {
-
-            Intent intent=new Intent(this, RegisterActivity.class);
-            startActivity(intent);
-        }*/
 
     }
 

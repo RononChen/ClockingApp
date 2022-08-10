@@ -75,6 +75,7 @@
     <string name="search_status">Statut</string>
     <string name="welcomes">Bienvenue sur ClockingApp, une application permettant de suivre la présence des employés de l\'IMSP</string>
     <string name="todo">TODO</string>
+    <string name="tod">TODO</string>
 
     <string-array name="employee_types">
         <item>Simple</item>
