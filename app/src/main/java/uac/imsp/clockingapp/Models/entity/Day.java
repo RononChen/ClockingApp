@@ -10,7 +10,7 @@ public class Day  implements IDay {
 
 
     private int Id;
-    private String FormatedMonth,FormatedYear,FormatedDay;
+    private String FormatedMonth="",FormatedYear="",FormatedDay="";
 
     private  String Date;
     public Day (){
@@ -26,9 +26,11 @@ public class Day  implements IDay {
         FormatedYear=""+year;
 
         if(month<10)
-            FormatedMonth="0"+month;
+            FormatedMonth="0";
         if(day <10)
-            FormatedDay="0"+day;
+            FormatedDay="0";
+        FormatedDay+=day;
+        FormatedMonth+=month;
         this.Date=FormatedYear+"-"+FormatedMonth+"-"+FormatedDay;
 
     }

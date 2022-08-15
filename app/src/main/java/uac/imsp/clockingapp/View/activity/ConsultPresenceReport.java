@@ -137,6 +137,7 @@ final TextView txt = new TextView(ConsultPresenceReport.this);
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Gravity;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -178,8 +179,7 @@ public class ConsultPresenceReport extends AppCompatActivity
                 report =findViewById(R.id.report_table);
                 int i;
                 actionNumber=getIntent().getIntExtra("CURRENT_NUMBER", 1);
-                consultPresenceReportPresenter.onConsultPresenceReport(actionNumber);
-                 /*strings = new String[]{"Lundi", "Mardi", "Mercredi",
+                 strings = new String[]{"Lundi", "Mardi", "Mercredi",
                         "Jeudi", "Vendredi"};
 
 
@@ -193,7 +193,9 @@ public class ConsultPresenceReport extends AppCompatActivity
 
 
                 }
-                report.addView(tableRow);*/
+                report.addView(tableRow);
+                consultPresenceReportPresenter.onConsultPresenceReport(actionNumber);
+
 
 
 
@@ -206,12 +208,14 @@ public class ConsultPresenceReport extends AppCompatActivity
                 builder.setTitle(message);
                 builder.setItems(months,this);
                 AlertDialog dialog = builder.create();
+
                 dialog.show();
 
         }
 
         @Override
-        public void onMonthSelected(Character[] report, int fitstDayNumberInWeek) {
+        public void onMonthSelected(Character[] report, int firstDayNumberInWeek) {
+
 
            int i,j,cpt=0;
            for (i=1;i<=5;i++)
@@ -219,15 +223,16 @@ public class ConsultPresenceReport extends AppCompatActivity
 
                    if(cpt==report.length)
                            break;
+                   tableRow=new TableRow(ConsultPresenceReport.this);
                    for (j=1;j<=5;j++)
                    {
-                           if (i == 1 && j < fitstDayNumberInWeek)
+                           if (i == 1 && j < firstDayNumberInWeek)
                                    continue;
 
 
                            textView=new TextView(this);
                            textView.setGravity(Gravity.START);
-                           textView.setText(report[cpt]);
+                           textView.setText(String.valueOf(report[cpt]));
                            tableRow.addView(textView);
                            cpt++; //count the number of filled cases
 
@@ -235,6 +240,7 @@ public class ConsultPresenceReport extends AppCompatActivity
                    this.report.addView(tableRow);
 
            }
+
 
 
 
@@ -248,6 +254,7 @@ public class ConsultPresenceReport extends AppCompatActivity
                         consultPresenceReportPresenter.onMonthSelected(which+1);
                 } catch (ParseException e) {
                         e.printStackTrace();
+                        Log.e("date parsing error","AN error occured");
                 }
 
         }

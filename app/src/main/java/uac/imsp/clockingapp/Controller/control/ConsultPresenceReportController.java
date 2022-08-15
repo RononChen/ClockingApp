@@ -32,17 +32,19 @@ public class ConsultPresenceReportController implements IConsultPresenceReportCo
     public void onMonthSelected(int month) throws ParseException {
 
         Day day;
-int M = month;
+
         Character [] state;
         EmployeeManager employeeManager;
         employeeManager=new EmployeeManager((Context) consultPresenceReportView);
         employeeManager.open();
         state=employeeManager.getPresenceReportForEmployee(employee,month);
 
+
         employeeManager.close();
                 day=new Day();
 
-           consultPresenceReportView.onMonthSelected(state,day.getDayOfWeek());
+
+           consultPresenceReportView.onMonthSelected(state,day.getFirstDayOfMonth());
     }
 
     @Override

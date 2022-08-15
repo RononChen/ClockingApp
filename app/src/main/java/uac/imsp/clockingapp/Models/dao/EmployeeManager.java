@@ -343,6 +343,7 @@ public Character[] getPresenceReportForEmployee(
 
     }
 
+
 return  table;
 }
 
