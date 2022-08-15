@@ -1,4 +1,3 @@
-
 CREATE TABLE  IF NOT EXIST service (
 	id_service           INTEGER NOT NULL  PRIMARY KEY AUTOINCREMENT ,
 	nom                  TEXT  UNIQUE NOT NULL
@@ -10,8 +9,6 @@ CREATE TABLE  IF NOT EXIST service (
           heure_debut_officielle         TEXT    ,
  	 heure_fin_officille       TEXT   ,
   );
-
-
 CREATE TABLE TABLE  IF NOT EXIST  employe (
 	matricule            INTEGER NOT NULL  PRIMARY KEY  ,
 	nom                 TEXT NOT NULL    ,
@@ -27,12 +24,7 @@ CREATE TABLE TABLE  IF NOT EXIST  employe (
 	id_planning_ref INTEGER   NOT NULL ,
 	FOREIGN KEY employe( id_service_ref ) REFERENCES service( id_service ) ,
 	FOREIGN KEY employe( id_planning_ref ) REFERENCES planning( id_planning )
-
-
  );
-
-
-
 CREATE TABLE TABLE  IF NOT EXIST  jour (
         id_jour INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT
 	date_jour           TEXT NOT NULL PRIMARY KEY AUTOINCREMENT

@@ -2,6 +2,7 @@ package uac.imsp.clockingapp.Controller.control;
 
 import android.content.Context;
 
+import java.text.ParseException;
 import java.util.Hashtable;
 
 import uac.imsp.clockingapp.Controller.util.IConsultStatisticsController;
@@ -100,14 +101,15 @@ public class ConsultStatisticsController implements IConsultStatisticsController
     }
 
     @Override
-    public void onMonthSelected(int month, Hashtable<Day, Character> report) {
+    public void onMonthSelected(int month, Hashtable<Day, Character> report) throws ParseException {
         EmployeeManager employeeManager;
         employeeManager = new EmployeeManager((Context) consultStatisticsView);
         employeeManager.open();
 
         //noinspection UnusedAssignment
-        report=employeeManager.getPresenceReportForEmployee(employee,month);
+       // report=employeeManager.getPresenceReportForEmployee(employee,month);
         employeeManager.close();
+
 
     }
 

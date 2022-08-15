@@ -9,6 +9,9 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.InputType;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,14 +26,16 @@ import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
+import java.util.Objects;
 
-import uac.imsp.clockingapp.Controller.util.IRegisterEmployeeController;
 import uac.imsp.clockingapp.Controller.control.RegisterEmployeeController;
+import uac.imsp.clockingapp.Controller.util.IRegisterEmployeeController;
 import uac.imsp.clockingapp.R;
 import uac.imsp.clockingapp.View.util.IRegisterEmployeeView;
 
@@ -66,6 +71,7 @@ public class RegisterEmployee extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_employee);
+        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
         initView();
         gend="M";
@@ -74,6 +80,23 @@ public class RegisterEmployee extends AppCompatActivity
 
             }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.general_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+       /* switch (item.getItemId())
+        {
+            case R.id.more:
+                //
+        }*/
+        return super.onOptionsItemSelected(item);
+    }
 
     private void imageChooser() {
         Intent intent = new Intent();
@@ -285,6 +308,7 @@ public class RegisterEmployee extends AppCompatActivity
             n.setOnValueChangedListener(this);
 
         }
+
 
 
 

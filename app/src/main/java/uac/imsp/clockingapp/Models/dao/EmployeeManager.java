@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteStatement;
 import androidx.annotation.NonNull;
 
 
+import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Objects;
@@ -325,53 +326,24 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
         return  row;
     }
    // presence report in a month for an employee (satursday and sunday aren't concerned)
-public Hashtable<Day,Character> getPresenceReportForEmployee(
-        Employee employee,int month)
-        {
+public Character[] getPresenceReportForEmployee(
+        Employee employee,int month) throws ParseException {
+    Day day,d;
+    Character[] table ;
+    int i;
+    day=new Day();
+    table=new Character[day.getLenthOfMonth()];
 
-            String off=getPlanning(employee).getStartTime();
-            String date;
-            Day day;
+    for (i=0;i<table.length;i++)
 
-            Hashtable<Day,Character> report = new Hashtable<>();
-        Cursor cursor;
+    {
+      d=new Day(day.getYear(),month,i+1) ;
 
-        String query="SELECT  date_jour  , heure_entree" +
-                                        "  FROM (SELECT * FROM employe " +
+      table[i]= compute(employee,d);
 
-                       "JOIN pointage AS relation ON matricule = matricule_ref) " +
-                         " JOIN jour ON id_jour= R.id_jour_ref " +
-                        "WHERE  matricule=? AND STRFTIME('%m',date_jour)=? " +
-                       "AND STRFTIME('%Y',date_jour) =STRFTIME('%Y','NOW')";
+    }
 
-    String [] selectArgs={
-            String.valueOf(employee.getRegistrationNumber()),
-            String.valueOf(month)
-    };
-
-     cursor=Database.rawQuery(query,selectArgs);
-
-     while(cursor.moveToNext()){
-
-
-         date=cursor.getString(0);//the date
-         day=new Day(date);
-
-       if((Integer.parseInt(date.split("-")[0]) <=
-               Integer.parseInt(off.split("[-]")[0]))  ||
-               (Integer.parseInt(date.split("-")[0]) ==
-               Integer.parseInt(off.split("[-]")[0])&&
-                       (Integer.parseInt(date.split("-")[1]) <=
-                       Integer.parseInt(off.split("[-]")[1])) ))
-
-           report.put(day,'P');
-       else
-           report.put(day,'R');
-
-
-     }
-     cursor.close();
-return  report;
+return  table;
 }
 
     public int  getDayNumberInWeek(String date){
@@ -399,6 +371,42 @@ return  report;
 
     }
 
+    public char compute(Employee  employee, Day day) throws ParseException {
+        char state;
+        String normalStartTime;
+        String entryTime = null;
+        String query="SELECT heure_entree FROM(SELECT * FROM pointage AS Relation JOIN jour" +
+
+                " ON Relation.id_jour_ref=id_jour  WHERE matricule_ref=?" +
+                " AND id_jour=?)";
+        String [] selectArgs={String.valueOf(employee.getRegistrationNumber()),
+        String.valueOf(day.getId())};
+        Cursor cursor =Database.rawQuery(query,selectArgs);
+        if(day.getId()==0)
+            entryTime="";
+        else
+        entryTime=cursor.getString(0);
+        cursor.close();
+
+
+        if(day.isWeekEnd())
+            state='W';
+       else  if(entryTime==null)
+            state='A';
+       else if(entryTime.equals(""))
+           state='F';
+       else {
+           normalStartTime=getPlanning(employee).getStartTime();
+           if(normalStartTime.split("-")[0].compareTo(entryTime.split("-")[0])<0)
+               state='R';
+           else
+               state='P';
+
+        }
+        return state;
+
+
+    }
 
 
 }

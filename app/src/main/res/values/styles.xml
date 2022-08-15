@@ -13,7 +13,13 @@
 
     <item name="android:layout_centerHorizontal">true</item>
 
+    
 </style>
+    <style name="SearchTextViemTheme"
+        parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="android:textColor">@color/textHint</item>
+
+    </style>
 
 
     <!-- Base application theme. -->
@@ -22,6 +28,9 @@
         <item name="colorPrimary">@color/appOrange</item>
         <item name="colorPrimaryDark">@color/appOrangeDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
 
     </style>
 

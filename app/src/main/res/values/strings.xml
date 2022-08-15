@@ -10,6 +10,20 @@
     <string name="login_password_hint">Mot de passe</string>
 
 
+    <string-array name="months" >
+        <item>Janvier</item>
+        <item>Février</item>
+        <item>Mars</item>
+        <item>Avril</item>
+        <item>Mai</item>
+        <item>Juin</item>
+        <item>Juillet</item>
+        <item>Août</item>
+        <item>Septembre</item>
+        <item>Octobre</item>
+        <item>Novembre</item>
+        <item>Décembre</item>
+    </string-array>
     <string name="male">Masculin</string>
 
     <string name="female">Féminin</string>
@@ -76,6 +90,10 @@
     <string name="welcomes">Bienvenue sur ClockingApp, une application permettant de suivre la présence des employés de l\'IMSP</string>
     <string name="todo">TODO</string>
     <string name="tod">TODO</string>
+    <string name="more">Plus</string>
+    <string name="quit">Quitter</string>
+    <string name="welcome_">Accueil</string>
+    <string name="param_tres">Paramètres</string>
 
     <string-array name="employee_types">
         <item>Simple</item>
@@ -99,6 +117,7 @@
         <item>Etat de présence</item>
         <item>Statistiques de présence</item>
     </string-array>
+
 
 
 </resources>

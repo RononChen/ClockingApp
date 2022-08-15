@@ -19,6 +19,7 @@ public class Menu extends AppCompatActivity implements View.OnClickListener,
 
     IMenuController menuPresenter;
     private int currentUser;
+    Intent intent ;
 
 
 
@@ -28,10 +29,9 @@ public class Menu extends AppCompatActivity implements View.OnClickListener,
         setContentView(R.layout.activity_menu);
        initView();
        menuPresenter= new MenuController(this) ;
-       currentUser=getIntent().getIntExtra("CURRENT_USER",-1);
+       currentUser=getIntent().getIntExtra("CURRENT_USER",0);
     }
-
-    @Override
+        @Override
 
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
         MenuInflater inflater=getMenuInflater();
@@ -60,6 +60,8 @@ public class Menu extends AppCompatActivity implements View.OnClickListener,
             menuPresenter.onUpdateEmployeeMenu(currentUser);
         else if(v.getId()==R.id.menu_statistics)
             menuPresenter.onConsultatisticsMenu(currentUser);
+        else if (v.getId()==R.id.menu_presence_report)
+            menuPresenter.onConsultPresenceReport();
 
     }
 
@@ -141,8 +143,15 @@ public class Menu extends AppCompatActivity implements View.OnClickListener,
 
     @Override
     public void onClocking() {
-        Intent intent ;
+
         intent = new Intent(this, ClockInOut.class);
+        startActivity(intent);
+
+    }
+
+    @Override
+    public void onConsultPresenceReport() {
+        intent=new Intent(this,ConsultPresenceReport.class);
         startActivity(intent);
 
     }
@@ -154,6 +163,7 @@ public class Menu extends AppCompatActivity implements View.OnClickListener,
         Button update = findViewById(R.id.menu_update);
         Button delete = findViewById(R.id.menu_delete);
         Button consultStatistics = findViewById(R.id.menu_statistics);
+        Button consultReport=findViewById(R.id.menu_presence_report);
 
 
         register.setOnClickListener(this);
@@ -163,5 +173,6 @@ public class Menu extends AppCompatActivity implements View.OnClickListener,
         update.setOnClickListener(this);
         delete.setOnClickListener(this);
         consultStatistics.setOnClickListener(this);
+        consultReport.setOnClickListener(this);
     }
 }

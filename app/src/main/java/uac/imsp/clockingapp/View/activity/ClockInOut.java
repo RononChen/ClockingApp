@@ -33,7 +33,6 @@ import uac.imsp.clockingapp.View.util.IClockInOutView;
 public class ClockInOut extends AppCompatActivity
         implements View.OnClickListener, IClockInOutView {
 
-
     SurfaceView surfaceView;
     TextView txtBarcodeValue;
     //private CameraSource cameraSource;

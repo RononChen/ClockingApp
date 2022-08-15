@@ -1,5 +1,6 @@
 package uac.imsp.clockingapp.Controller.util;
 
+import java.text.ParseException;
 import java.util.Hashtable;
 
 import uac.imsp.clockingapp.Models.entity.Day;
@@ -19,7 +20,7 @@ public interface IConsultStatisticsController {
 
    // void onConsultStatisticsByEmployee();
 
-    void onMonthSelected(int month, Hashtable<Day, Character> report);
+    void onMonthSelected(int month, Hashtable<Day, Character> report) throws ParseException;
 
 }
 

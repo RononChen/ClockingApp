@@ -102,6 +102,7 @@ public class MenuController  implements IMenuController {
 
     @Override
     public void onConsultPresenceReport() {
+        menuView.onConsultPresenceReport();
 
       //All employees can cansult threir presence report
     }

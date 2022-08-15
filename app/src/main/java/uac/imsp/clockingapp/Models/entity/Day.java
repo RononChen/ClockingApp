@@ -10,6 +10,8 @@ public class Day  implements IDay {
 
 
     private int Id;
+    private String FormatedMonth,FormatedYear,FormatedDay;
+
     private  String Date;
     public Day (){
         Date =java.time.LocalDate.now().toString();
@@ -21,9 +23,17 @@ public class Day  implements IDay {
   this.Date=date;
     }
     public Day(int year,int month,int day){
-        this.Date=year+"-"+month+"-"+day;
+        FormatedYear=""+year;
+
+        if(month<10)
+            FormatedMonth="0"+month;
+        if(day <10)
+            FormatedDay="0"+day;
+        this.Date=FormatedYear+"-"+FormatedMonth+"-"+FormatedDay;
 
     }
+
+
     public Day(int month,int day){
         this( Calendar.getInstance().get(Calendar.YEAR) ,month,day);
     }
@@ -64,8 +74,8 @@ public class Day  implements IDay {
         assert date != null;
         calendar.setTime(date);
 
-
-        return calendar.get(Calendar.YEAR) ;
+return Integer.parseInt(dateInString.split("-")[0]);
+       // return calendar.get(Calendar.YEAR) ;
     }
     public int getDayOfWeek() throws ParseException {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
@@ -114,8 +124,6 @@ public class Day  implements IDay {
         return yearMonth.lengthOfMonth();
     }
     public boolean isWeekEnd() throws ParseException {
-
-
         return (getDayOfWeek()==6 || getDayOfWeek()==7);
     }
 
@@ -127,5 +135,21 @@ public class Day  implements IDay {
     public void setId(int id) {
         Id = id;
     }
-}
 
+
+    public String getDayNumber() {
+        return FormatedDay;
+    }
+
+    public void setDayNumber(String formatedDay) {
+        FormatedDay = formatedDay;
+    }
+
+    public String getFormatedYear() {
+        return FormatedYear;
+    }
+
+    public void setFormatedYear(String formatedYear) {
+        FormatedYear = formatedYear;
+    }
+}

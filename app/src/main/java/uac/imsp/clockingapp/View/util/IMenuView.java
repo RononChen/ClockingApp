@@ -14,6 +14,7 @@ public interface IMenuView {
     void onConsultatisticsMenuSuccessful();
 
     void onClocking();
+    void onConsultPresenceReport();
 
 
 }

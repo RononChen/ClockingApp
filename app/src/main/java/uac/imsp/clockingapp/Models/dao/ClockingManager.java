@@ -45,12 +45,15 @@ public class ClockingManager {
 
 
 
-        String query = " INSERT INTO pointage(matricule_ref,id_jour_ref,heure_entree) VALUES(?,?,?)";
+        String query = " INSERT INTO pointage(matricule_ref,id_jour_ref,heure_entree) " +
+                "VALUES(?,?,TIME(?,?))";
+
 
         statement = Database.compileStatement(query);
         statement.bindLong(1, employee.getRegistrationNumber());
         statement.bindLong(2,id);
-        statement.bindString(3, "TIME('NOW','LOCALTIME'");
+        statement.bindString(3, "NOW");
+        statement.bindString(4,"LOCALTIME");
 
         statement.executeInsert();
     }
