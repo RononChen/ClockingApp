@@ -296,32 +296,29 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
 
 
     }
-    public Hashtable<String,Double> getStatisticsByService(String start,String end){
+    public Hashtable<String,Integer> getStatisticsByService(String start,String end){
 
         String service;
         int count;
-        int total;
-        double frequence;
 
-        Hashtable<String,Double> row = new Hashtable<>();
-        String query="SELECT nom, COUNT(*) FROM" +
+        Hashtable<String,Integer> row = new Hashtable<>();
+        String query="SELECT service.nom, COUNT(*) FROM" +
                 " (SELECT * FROM employe " +
-                "JOIN pointage AS relation ON matricule = matricule_ref) " +
-                " JOIN jour ON id_jour= relation.id_jour_ref " +
+                "JOIN pointage AS relation ON matricule = matricule_ref " +
+                " JOIN jour AS second  ON relation.id_jour_ref= id_jour " +
+                "JOIN service ON employe.id_service_ref=id_service " +
                 "WHERE heure_entree IS NOT NULL AND date_jour BETWEEN ? AND ? "+
-                "GROUP BY nom ";
+                "GROUP BY service.nom) AS final " +
+                "JOIN service ON final.id_service_ref=service.id_service ";
         String [] selectArgs={start,end};
-        total=getAllEmployees().length;
         Cursor cursor=Database.rawQuery(query,selectArgs);
-        if(total!=0)
-        {
+
             while (cursor.moveToNext()) {
                 service = cursor.getString(0);
-                count = cursor.getInt(2);
-                frequence=count/total;
-                row.put(service, frequence);
+                count = cursor.getInt(1);
+                row.put(service, count);
             }
-        }
+
         cursor.close();
         return  row;
     }

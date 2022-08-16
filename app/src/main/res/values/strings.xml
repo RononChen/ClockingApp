@@ -10,7 +10,7 @@
     <string name="login_password_hint">Mot de passe</string>
 
 
-    <string-array name="months" >
+    <string-array name="months">
         <item>Janvier</item>
         <item>Février</item>
         <item>Mars</item>
@@ -70,7 +70,8 @@
     <string name="update_picture">Changer la photo</string>
 
     <string name="LAUNCH_URL">LAUNCH URL</string>
-    <string name="consult_stat">Consulter statistiques</string>
+    <string name="consult_stat">Statistiques par service</string>
+
     <string name="register_employe_type_text">Type d\'employé</string>
     <string name="register_mail_address_text">Adresse email</string>
     <string name="register_service_label">Service</string>
@@ -117,7 +118,6 @@
         <item>Etat de présence</item>
         <item>Statistiques de présence</item>
     </string-array>
-
 
 
 </resources>

@@ -32,7 +32,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
-import java.util.Objects;
 
 import uac.imsp.clockingapp.Controller.control.RegisterEmployeeController;
 import uac.imsp.clockingapp.Controller.util.IRegisterEmployeeController;
@@ -71,7 +70,8 @@ public class RegisterEmployee extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_employee);
-        Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
+       // Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
+
 
         initView();
         gend="M";

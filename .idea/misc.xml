@@ -17,7 +17,9 @@
         <entry key="app/src/main/res/layout/activity_consult_presence_report2.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_consult_report.xml" value="0.1890625" />
         <entry key="app/src/main/res/layout/activity_consult_statistic.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_consult_statistic_by_service.xml" value="0.20416666666666666" />
         <entry key="app/src/main/res/layout/activity_consult_statistics.xml" value="0.20416666666666666" />
+        <entry key="app/src/main/res/layout/activity_consult_statistics_by_employee.xml" value="0.20416666666666666" />
         <entry key="app/src/main/res/layout/activity_delete_employee.xml" value="0.28488372093023256" />
         <entry key="app/src/main/res/layout/activity_generator.xml" value="0.20416666666666666" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.22" />

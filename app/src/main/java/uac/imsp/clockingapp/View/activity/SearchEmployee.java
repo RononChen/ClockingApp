@@ -116,7 +116,7 @@ private Toolbar toolbar;
 
     @Override
     public void onStatistics() {
-        intent=new Intent(SearchEmployee.this,ConsultStatistics.class);
+        intent=new Intent(SearchEmployee.this, ConsultStatisticsByService.class);
         intent.putExtra("NUMBER",Number);
         startActivity(intent);
 

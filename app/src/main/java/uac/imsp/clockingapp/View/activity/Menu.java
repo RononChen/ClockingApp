@@ -136,7 +136,7 @@ public class Menu extends AppCompatActivity implements View.OnClickListener,
     @Override
     public void onConsultatisticsMenuSuccessful() {
         Intent intent ;
-        intent = new Intent(this, ConsultStatistics.class);
+        intent = new Intent(this, ConsultStatisticsByService.class);
         startActivity(intent);
 
     }
