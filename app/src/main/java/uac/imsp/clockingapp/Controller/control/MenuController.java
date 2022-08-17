@@ -106,5 +106,13 @@ public class MenuController  implements IMenuController {
 
       //All employees can cansult threir presence report
     }
+
+
+    @Override
+    public void onExit() {
+        menuView.onExit("Oui","Annuler","Confirmation","Voulez vous vraiment quitter l'application");
+
+    }
 }
+
 

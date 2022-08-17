@@ -1,67 +1,164 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:tools="http://schemas.android.com/tools"
+<menu
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:gravity="start"
+
+    android:gravity="end"
     android:layoutDirection="rtl"
-    android:layout_gravity="start"
+    android:layout_gravity="end"
+
 
     >
-
-
     <item
-
-        android:orderInCategory="5"
-        android:id="@+id/more"
-        android:title="@string/more"
-        android:icon="@drawable/ic_baseline_more_20"
-        android:gravity="end"
-        android:layout_gravity="end"
-        app:showAsAction="always" />
-
-    <item
-        android:orderInCategory="4"
-        android:id="@+id/quit"
-        android:title="@string/quit"
-       app:showAsAction="always"
-        android:gravity="end"
-        android:layout_gravity="end"
-        android:icon="@drawable/log_out"/>
-
-    <item
-        android:orderInCategory="3"
+        android:orderInCategory="1"
         app:showAsAction="always"
         android:id="@+id/home"
         android:title="@string/welcome_"
         android:icon="@drawable/ic_baseline_home_20"
-        android:gravity="end"
-        android:layout_gravity="end"
-        tools:ignore="AlwaysShowAction" />
+        android:gravity="start"
+        android:layout_gravity="start"
+        />
 
     <item
+        android:orderInCategory="1"
         app:showAsAction="always"
-        android:orderInCategory="2"
-        android:id="@+id/setting"
-        android:title="@string/param_tres"
-        android:icon="@drawable/ic_baseline_settings_20"
+        android:id="@+id/logout"
+        android:title="@string/welcome_"
+        android:icon="@drawable/log_out"
         android:gravity="end"
         android:layout_gravity="end"
         />
-<group
-android:checkableBehavior="single"
-android:layout_gravity="start"
-android:gravity="start">
     <item
         android:orderInCategory="1"
         app:showAsAction="always"
         android:id="@+id/dash"
         android:title="@string/welcome_"
+
         android:icon="@drawable/ic_baseline_dashboard_20"
         android:gravity="start"
         android:layout_gravity="start"
 
-        />
-</group>
+        >
+        <menu>
 
+            <item
+                android:orderInCategory="4"
+                android:id="@+id/add"
+                android:title="@string/add_employee"
+                app:showAsAction="always"
+                android:gravity="end"
+                android:layout_gravity="end"
+                android:icon="@drawable/ic_baseline_person_add_20"/>
+
+            <item
+                android:orderInCategory="4"
+                android:id="@+id/update"
+                android:title="Modifier infos employé"
+                app:showAsAction="always"
+                android:gravity="end"
+                android:layout_gravity="end"
+                android:icon="@drawable/ic_baseline_edit_20"/>
+
+            <item
+                android:orderInCategory="4"
+                android:id="@+id/delete"
+                android:title="Supprimer employé"
+                app:showAsAction="always"
+                android:gravity="end"
+                android:layout_gravity="end"
+                android:icon="@drawable/ic_baseline_delete_20"/>
+            <item
+                android:orderInCategory="4"
+                android:id="@+id/search"
+                android:title="Rechercher employé"
+                app:showAsAction="always"
+                android:gravity="end"
+                android:layout_gravity="end"
+                android:icon="@drawable/ic_baseline_person_search_20"/>
+
+            <item
+                android:orderInCategory="4"
+                android:id="@+id/clock"
+                android:title="Pointer"
+                app:showAsAction="always"
+                android:gravity="end"
+                android:layout_gravity="end"
+                android:icon="@drawable/ic_baseline_timer_20"/>
+            <item
+                android:orderInCategory="4"
+                android:id="@+id/presence_report"
+                android:title="@string/quit"
+                app:showAsAction="always"
+                android:gravity="end"
+                android:layout_gravity="end"
+                android:icon="@drawable/bar_chart_FILL0_wght400_GRAD0_opsz48"/>
+
+
+            <item
+                android:orderInCategory="4"
+                android:id="@+id/stat_by_employee"
+                android:title="@string/quit"
+                app:showAsAction="always"
+                android:gravity="end"
+                android:layout_gravity="end"
+                android:icon="@drawable/log_out"/>
+
+
+            <item
+                android:orderInCategory="4"
+                android:id="@+id/stat_by_service"
+                android:title="@string/quit"
+                app:showAsAction="always"
+                android:gravity="end"
+                android:layout_gravity="end"
+                android:icon="@drawable/ic_baseline_pie_chart_20"/>
+            <item
+                app:showAsAction="always"
+                android:orderInCategory="2"
+                android:id="@+id/setting"
+                android:title="@string/param_tres"
+                android:icon="@drawable/ic_baseline_settings_20"
+                android:gravity="center"
+                android:layout_gravity="center"
+                />
+
+            <item
+                android:orderInCategory="4"
+                android:id="@+id/my_profil"
+                android:title="Voir mon profil"
+                app:showAsAction="always"
+                android:gravity="end"
+                android:layout_gravity="end"
+                android:icon="@drawable/ic_baseline_account_circle_20"/>
+            <item
+                android:orderInCategory="4"
+                android:id="@+id/help"
+                android:title="Mon compte"
+                app:showAsAction="always"
+                android:gravity="end"
+                android:layout_gravity="end"
+                android:icon="@drawable/ic_baseline_manage_accounts_20"/>
+            <item
+                android:orderInCategory="4"
+                android:id="@+id/help2"
+                android:title="De l'aide ?"
+                app:showAsAction="always"
+                android:gravity="end"
+                android:layout_gravity="end"
+                android:icon="@drawable/ic_baseline_help_20"/>
+            <item
+                android:orderInCategory="4"
+                android:id="@+id/quit"
+                android:title="Quitter"
+                app:showAsAction="always"
+                android:gravity="end"
+                android:layout_gravity="end"
+                android:icon="@drawable/log_out"/>
+
+
+
+        </menu>
+
+    </item>
 
 </menu>

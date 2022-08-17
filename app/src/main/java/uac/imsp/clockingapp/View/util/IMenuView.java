@@ -15,6 +15,8 @@ public interface IMenuView {
 
     void onClocking();
     void onConsultPresenceReport();
+    void onExit(String pos, String neg,String title, String confirmationMessage);
+
 
 
 }

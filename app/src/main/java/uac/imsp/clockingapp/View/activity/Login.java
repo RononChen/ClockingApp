@@ -13,7 +13,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,10 +27,8 @@ public class Login extends AppCompatActivity
                    implements View.OnClickListener , TextWatcher,
         ILoginView {
     private ImageView eye;
-    private  transient EditText editText1, editText2;
 
     private  EditText Username,Password;
-    private  SharedPreferences preferences;
     int currentVersionCode,savedVersionCode;
     final String PREFS_NAME="MyPrefsFile",
             PREF_VERSION_CODE_KEY="version_code";
@@ -46,8 +43,8 @@ public class Login extends AppCompatActivity
         super.onCreate(savedInstanceState);
         loginPresenter = new LoginController(this);
         // Get current version code
-        preferences=getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        savedVersionCode=preferences.getInt(PREF_VERSION_CODE_KEY,DOESNT_EXIST);
+        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        savedVersionCode= preferences.getInt(PREF_VERSION_CODE_KEY,DOESNT_EXIST);
         currentVersionCode= BuildConfig.VERSION_CODE;
         loginPresenter.onLoad(savedVersionCode,currentVersionCode);
         //update the shares preferences with the current version code
@@ -71,20 +68,22 @@ public class Login extends AppCompatActivity
 
     @Override
     public void onLoginSuccess(String message,int number) {
-        Username.setText("");
-        Password.setText("");
+
         Intent intent = new Intent(this, Menu.class);
         intent.putExtra("CURRENT_USER",number);
-        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+        new ToastMessage(this,message);
 
         startActivity(intent);
+        Username.setText("");
+        Password.setText("");
+
 
     }
 
     @Override
     public void onLoginError(String message) {
 
-        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+        new ToastMessage(this,message);
     }
 
     @Override
@@ -158,8 +157,9 @@ public class Login extends AppCompatActivity
         Intent intent;
         intent = new Intent(Login.this,StartScreen.class);
 
-        ToastMessage Toast=new ToastMessage(this,message);
-        Toast.show();
+         new ToastMessage(this,message);
+
+
         finish();
         startActivity(intent);
     }

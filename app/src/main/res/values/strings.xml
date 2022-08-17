@@ -95,6 +95,7 @@
     <string name="quit">Quitter</string>
     <string name="welcome_">Accueil</string>
     <string name="param_tres">Paramètres</string>
+    <string name="add_employee">Ajouter employé</string>
 
     <string-array name="employee_types">
         <item>Simple</item>

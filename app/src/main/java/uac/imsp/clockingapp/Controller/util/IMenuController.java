@@ -9,5 +9,8 @@ public interface IMenuController {
     void onClocking();
     void onConsultatisticsMenu(int currentUser);
     void onConsultPresenceReport();
+    void onExit();
+    //void onConfirmResult();
+    //void onHome();
 }
 

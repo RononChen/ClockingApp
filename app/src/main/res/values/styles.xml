@@ -18,6 +18,18 @@
     <style name="SearchTextViemTheme"
         parent="android:Theme.Holo.Light.DarkActionBar">
         <item name="android:textColor">@color/textHint</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+
+    </style>
+    <style
+        name="searchTheme"
+        parent="Theme.AppCompat.Light.DarkActionBar">
+        <item name="colorPrimary">@color/appOrange</item>
+        <item name="colorPrimaryDark">@color/appOrangeDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
 
     </style>
 
@@ -28,9 +40,8 @@
         <item name="colorPrimary">@color/appOrange</item>
         <item name="colorPrimaryDark">@color/appOrangeDark</item>
         <item name="colorAccent">@color/colorAccent</item>
-
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+        <item name="windowActionBar">true</item>
+        <item name="windowNoTitle">false</item>
 
     </style>
 

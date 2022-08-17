@@ -1,16 +1,20 @@
 package uac.imsp.clockingapp.View.activity;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import uac.imsp.clockingapp.Controller.util.IMenuController;
 import uac.imsp.clockingapp.Controller.control.MenuController;
+import uac.imsp.clockingapp.Controller.util.IMenuController;
 import uac.imsp.clockingapp.R;
 import uac.imsp.clockingapp.View.util.IMenuView;
 
@@ -35,15 +39,39 @@ public class Menu extends AppCompatActivity implements View.OnClickListener,
 
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
         MenuInflater inflater=getMenuInflater();
-        inflater.inflate(R.menu.options_menu,menu);
+        inflater.inflate(R.menu.general_menu,menu);
         return super.onCreateOptionsMenu(menu);
     }
-    // @Override
-    /*public boolean onCreateOptionsMenu(android.view.Menu menu) {
-       // getMenuInflater().inflate(R.id.logout);
-        return super.onCreateOptionsMenu(menu);
-    }*/
 
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+            case R.id.add :
+                menuPresenter.onRegisterEmployeeMenu(currentUser);
+                break;
+            case R.id.update:
+                menuPresenter.onUpdateEmployeeMenu(currentUser);
+                break;
+            case R.id.delete:
+                menuPresenter.onDeleteEmployeeMenu(currentUser);
+                break;
+            case R.id.clock:
+                menuPresenter.onClocking();
+                break;
+            case R.id.presence_report:
+                menuPresenter.onConsultPresenceReport();
+                break;
+            case R.id.stat_by_service:
+                menuPresenter.onConsultatisticsMenu(currentUser);
+                break;
+            case R.id.quit:
+                menuPresenter.onExit();
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public void onClick(View v) {
@@ -51,7 +79,6 @@ public class Menu extends AppCompatActivity implements View.OnClickListener,
             menuPresenter.onRegisterEmployeeMenu(currentUser);
         else if(v.getId()==R.id.menu_clock)
             menuPresenter.onClocking();
-
         else if(v.getId()==R.id.menu_delete)
             menuPresenter.onDeleteEmployeeMenu(currentUser);
         else if (v.getId()==R.id.menu_search)
@@ -153,6 +180,26 @@ public class Menu extends AppCompatActivity implements View.OnClickListener,
     public void onConsultPresenceReport() {
         intent=new Intent(this,ConsultPresenceReport.class);
         startActivity(intent);
+
+    }
+
+    @Override
+    public void onExit(String pos, String neg, String title,String confirmationMessage) {
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(confirmationMessage)
+                .setCancelable(false)
+                .setPositiveButton(pos, (dialog, which) -> {
+
+                    System.exit(0);
+                })
+                .setNegativeButton(neg, (dialog, which) -> {
+                    dialog.cancel();
+                });
+
+        AlertDialog alert = builder.create();
+        alert.setTitle(title);
+        alert.show();
 
     }
 

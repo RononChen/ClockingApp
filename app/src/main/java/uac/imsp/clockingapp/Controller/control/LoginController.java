@@ -63,7 +63,8 @@ public class LoginController  implements ILoginController {
                 loginView.onLoginError("Username ou mot de passe incorrect !");
                 attempNumber++;
                 if(attempNumber==3)
-                    loginView.onMaxAttempsReached("Trois tentatives d'authentification vaines !");
+                    loginView.onMaxAttempsReached("Trois tentatives d'authentification échouées !");
+
 
 
             }
