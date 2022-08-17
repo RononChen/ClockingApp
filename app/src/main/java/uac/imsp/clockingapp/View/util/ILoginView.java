@@ -11,4 +11,5 @@ public interface ILoginView {
     void onUsernameError(String username);
     void onShowHidePassword();
     void onMaxAttempsReached(String message);
+     void askWhich(String pos, String neg, String title, String message);
 }
