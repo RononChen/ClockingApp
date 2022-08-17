@@ -97,6 +97,26 @@ public int connectUser(Employee employee, String password){
         statement.executeInsert();
 
     }
+    
+    void setAccount(Employee employee){
+    String query="SELECT username, password FROM employe WHERE matricule=?";
+String [] selectArgs={String.valueOf(employe.getRegistrationNumber())};
+Cursor Cursor=Database.rawQuery(query,selectArgs);
+employe.setUsername(Cursor.getString(0));
+employe.setPassword(Cursor.getString(0));
+
+}
+void changePassword(employe,newPassword){
+String query="UPDATE employe SET password=? WHERE matricule=?";
+SQLiteStatement statement =Database.compileStatement(query);
+statement.bindString(0,newPassword);
+statement.bindLong(0,employee.getRegistrationNumber());
+statement.executUpdateDelete();
+
+
+
+
+}
 //On peut modifier le courier ou la photo de l'employé
 
 
