@@ -156,6 +156,12 @@ public  final static String SIMPLE="Simple", HEAD="Directeur",CHIEF="Chef person
                return 0;
     }
 
+    @Override
+    public void setPassword(String password) {
+        Password=password;
+
+    }
+
 
     //Setters
     public void setRegistrationNumber(int registrationNumber) {

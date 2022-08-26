@@ -18,4 +18,5 @@ public interface IEmployee {
 
      int isValid();
 
+    void setPassword(String string);
 }

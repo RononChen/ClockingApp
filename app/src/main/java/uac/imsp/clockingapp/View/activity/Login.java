@@ -1,6 +1,7 @@
 package uac.imsp.clockingapp.View.activity;
 
 
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -28,6 +29,7 @@ public class Login extends AppCompatActivity
         ILoginView {
     private ImageView eye;
 
+    private AlertDialog.Builder builder;
     private  EditText Username,Password;
     int currentVersionCode,savedVersionCode;
     final String PREFS_NAME="MyPrefsFile",
@@ -162,6 +164,47 @@ public class Login extends AppCompatActivity
 
         finish();
         startActivity(intent);
+    }
+
+    @Override
+    public void askWish(String pos, String neg, String title, String message) {
+        builder=new AlertDialog.Builder(this);
+        builder.setMessage(message)
+                .setCancelable(false)
+                .setPositiveButton(pos, (dialog, which) -> {
+                    loginPresenter.onConfirmResult(true);
+
+                })
+                .setNegativeButton(neg, (dialog, which) -> {
+
+                   loginPresenter.onConfirmResult(false);
+
+                });
+
+        AlertDialog alert = builder.create();
+        alert.setTitle(title);
+        alert.show();
+
+    }
+
+    @Override
+    public void onPositiveResponse(String message) {
+        Intent intent=new Intent(Login.this,Menu.class);
+        new ToastMessage(this,message);
+        startActivity(intent);
+
+
+
+
+    }
+
+    @Override
+    public void onNegetiveResponse(String message) {
+        Intent intent=new Intent(Login.this,SimpleEmployeeMenu.class);
+        new ToastMessage(this,message);
+        startActivity(intent);
+
+
     }
 
 

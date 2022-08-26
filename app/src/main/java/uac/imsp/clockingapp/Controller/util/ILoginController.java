@@ -7,5 +7,6 @@ public interface ILoginController {
     void onUsernameEdit(String username);
     void onPasswordEdit(String password);
     void onShowHidePassword();
+    void onConfirmResult(boolean confirmed);
 
 }

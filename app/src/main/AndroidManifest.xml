@@ -14,8 +14,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-
         tools:targetApi="31">
+        <activity
+            android:name=".SimpleEmployeeMenu"
+            android:exported="false" />
         <activity
             android:name=".View.activity.ConsultStatisticsByEmployee"
             android:exported="false" />
@@ -39,8 +41,8 @@
             android:exported="false" />
         <activity
             android:name=".View.activity.SearchEmployee"
-            android:theme="@style/AppTheme.NoActionBar"
-            android:exported="false">
+            android:exported="false"
+            android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
             </intent-filter>

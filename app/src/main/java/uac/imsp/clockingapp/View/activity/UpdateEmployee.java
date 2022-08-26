@@ -247,22 +247,24 @@ public class UpdateEmployee extends AppCompatActivity
 
     @Override
     public void onSomethingchanged(String message) {
-        Toast = new ToastMessage(this, message);
+         new ToastMessage(this, message);
+
 
     }
 
     @Override
     public void onNothingChanged(String message) {
-        Toast = new ToastMessage(this, message);
+        new ToastMessage(this, message);
 
 
     }
 
 
+
     @Override
     public void onUpdateEmployeeError(String message) {
-        Toast = new ToastMessage(this, message);
-        Toast.show();
+         new ToastMessage(this, message);
+
 
 
     }
@@ -276,14 +278,13 @@ public class UpdateEmployee extends AppCompatActivity
                 .setCancelable(false)
                 .setPositiveButton(pos, (dialog, which) -> {
 
-                    Toast = new ToastMessage(UpdateEmployee.this,"Confirmé");
+                    new ToastMessage(UpdateEmployee.this,"Confirmé");
                     updateEmployeePresenter.onConfirmResult(true);
                     UpdateEmployee.this.finish();
                     startActivity(getIntent());
                 })
                 .setNegativeButton(neg, (dialog, which) -> {
-
-                    Toast = new ToastMessage(UpdateEmployee.this,"Annulé");
+                    new ToastMessage(UpdateEmployee.this,"Annulé");
 
                     updateEmployeePresenter.onConfirmResult(false);
                     UpdateEmployee.this.finish();

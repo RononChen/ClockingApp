@@ -1,7 +1,5 @@
-public Interface IChangePasswordController(){
-  void onStart(int number);
-  void onSubmit(String oldPassword,String newPassword);
-  
-  
-  
+package uac.imsp.clockingapp.Controller.util;
+
+public interface IChangePasswordController {
+    void onSubmit(String oldPassword, String newPassword);
 }

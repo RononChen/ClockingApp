@@ -70,15 +70,12 @@ public class LoginController  implements ILoginController {
             }
               else {
                 CurrentEmployee=employee.getRegistrationNumber();
-                  if(!employee.getType().equals("Simple))
-                       loginView.askWish("Oui","Non","Choix du type de connexion","Voulez vous vous connecter en tant qu'administrateur?");
-
+                  if(!employee.getType().equals("Simple"))
+                       loginView.askWish("Oui","Non","Choix du type de connexion",
+                               "Voulez vous vous connecter en tant qu'administrateur?");
                 loginView.onLoginSuccess("Authentification réussie",
                         CurrentEmployee
                 );
-
-
-
             }
 
 
@@ -157,6 +154,15 @@ public class LoginController  implements ILoginController {
     @Override
     public void onShowHidePassword() {
         loginView.onShowHidePassword();
+
+    }
+
+    @Override
+    public void onConfirmResult(boolean confirmed) {
+        if (confirmed)
+            loginView.onPositiveResponse("");
+        else
+            loginView.onNegetiveResponse("");
 
     }
 
