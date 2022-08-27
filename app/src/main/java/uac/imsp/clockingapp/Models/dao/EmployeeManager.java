@@ -102,18 +102,24 @@ public int connectUser(Employee employee, String password){
 
     String query="SELECT username, password FROM employe WHERE matricule=?";
 String [] selectArgs={String.valueOf(employee.getRegistrationNumber())};
-Cursor Cursor=Database.rawQuery(query,selectArgs);
-employee.setUsername(Cursor.getString(0));
-employee.setPassword(Cursor.getString(1));
+Cursor cursor=Database.rawQuery(query,selectArgs);
+if(cursor.moveToFirst()) {
+    employee.setUsername(cursor.getString(0));
+    employee.setPassword(cursor.getString(1));
+}
+cursor.close();
 
 }
 public void changePassword(Employee employee,String newPassword){
 
 String query="UPDATE employe SET password=? WHERE matricule=?";
+
 SQLiteStatement statement =Database.compileStatement(query);
-statement.bindString(0,newPassword);
-statement.bindLong(0,employee.getRegistrationNumber());
+statement.bindString(1,newPassword);
+statement.bindLong(2,employee.getRegistrationNumber());
+
 statement.executeUpdateDelete();
+
 
 
 
