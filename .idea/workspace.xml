@@ -19,22 +19,13 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ddeb6ea-e00f-4cf2-88d3-89cbf60c105a" name="Changes" comment="&quot;Password changing module added&quot;">
-      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/resourceHashesCache.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+    <list default="true" id="7ddeb6ea-e00f-4cf2-88d3-89cbf60c105a" name="Changes" comment="&quot;Unit tests written for ChangePassword&quot;">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/ChangePassword.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_change_password.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/uac/imsp/clockingapp/ExampleInstrumentedTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/androidTest/java/uac/imsp/clockingapp/ExampleInstrumentedTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/ChangePasswordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/ChangePasswordController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/util/IChangePasswordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/util/IChangePasswordController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/dao/EmployeeManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/dao/EmployeeManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/util/IChangePasswordView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/util/IChangePasswordView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/test/java/uac/imsp/clockingapp/ExampleUnitTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/uac/imsp/clockingapp/ExampleUnitTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -212,6 +203,9 @@
     </key>
     <key name="android.template.-1760550200">
       <recent name="uac.imsp.clockingapp" />
+    </key>
+    <key name="android.template.-375269746">
+      <recent name="uac.imsp.clockingapp.View.activity" />
     </key>
   </component>
   <component name="RunManager" selected="Android Instrumented Tests.ExampleInstrumentedT...">
@@ -825,7 +819,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661532687948</updated>
     </task>
-    <option name="localTasksCounter" value="30" />
+    <task id="LOCAL-00030" summary="&quot;Unit tests written for ChangePassword&quot;">
+      <created>1661616931612</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1661616931612</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -858,7 +859,8 @@
     <MESSAGE value="&quot;Model updated&quot;" />
     <MESSAGE value="&quot;Application is being improved&quot;" />
     <MESSAGE value="&quot;Password changing module added&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="&quot;Password changing module added&quot;" />
+    <MESSAGE value="&quot;Unit tests written for ChangePassword&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;Unit tests written for ChangePassword&quot;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

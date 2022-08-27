@@ -96,6 +96,10 @@
     <string name="welcome_">Accueil</string>
     <string name="param_tres">Paramètres</string>
     <string name="add_employee">Ajouter employé</string>
+    <string name="old_password">Ancien mot de passe</string>
+    <string name="confirm_new_password">Confirmer le nouveau mot de passe</string>
+    <string name="new_password">Nouveau mot de passe</string>
+    <string name="modify">Modifier</string>
 
     <string-array name="employee_types">
         <item>Simple</item>

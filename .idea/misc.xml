@@ -13,6 +13,7 @@
         <entry key="app/src/main/res/drawable/mybutton.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/search_view_rounded.xml" value="0.1075" />
         <entry key="app/src/main/res/font/sdf.xml" value="0.2153846153846154" />
+        <entry key="app/src/main/res/layout/activity_change_password.xml" value="0.20416666666666666" />
         <entry key="app/src/main/res/layout/activity_consult_presence_report.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_consult_presence_report2.xml" value="0.22" />
         <entry key="app/src/main/res/layout/activity_consult_report.xml" value="0.1890625" />
