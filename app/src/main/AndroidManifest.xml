@@ -16,10 +16,11 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
-            android:name=".ChangePassword"
+            android:name=".View.activity.ChangePassword"
+
             android:exported="false" />
         <activity
-            android:name=".SimpleEmployeeMenu"
+            android:name=".View.activity.SimpleEmployeeMenu"
             android:exported="false" />
         <activity
             android:name=".View.activity.ConsultStatisticsByEmployee"

@@ -94,6 +94,17 @@
         android:text="@string/consult_stat"
         android:gravity="center"/>
 
+            <Button
+                android:id="@+id/menu_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/mybutton"
+                android:text="Mot de passe"
+                android:gravity="center"/>
+
         </LinearLayout>
     </ScrollView>
 </LinearLayout>

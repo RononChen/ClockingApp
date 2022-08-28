@@ -32,6 +32,7 @@ public class Menu extends AppCompatActivity implements View.OnClickListener,
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu);
        initView();
+        //startActivity(new Intent(this,ChangePassword.class));
        menuPresenter= new MenuController(this) ;
        currentUser=getIntent().getIntExtra("CURRENT_USER",0);
     }
@@ -67,6 +68,7 @@ public class Menu extends AppCompatActivity implements View.OnClickListener,
                 menuPresenter.onConsultatisticsMenu(currentUser);
                 break;
             case R.id.quit:
+
                 menuPresenter.onExit();
 
         }
@@ -89,6 +91,9 @@ public class Menu extends AppCompatActivity implements View.OnClickListener,
             menuPresenter.onConsultatisticsMenu(currentUser);
         else if (v.getId()==R.id.menu_presence_report)
             menuPresenter.onConsultPresenceReport();
+        else if(v.getId()==R.id.menu_password)
+            startActivity(new Intent(this,ChangePassword.class));
+
 
     }
 
@@ -212,7 +217,7 @@ public class Menu extends AppCompatActivity implements View.OnClickListener,
         Button consultStatistics = findViewById(R.id.menu_statistics);
         Button consultReport=findViewById(R.id.menu_presence_report);
 
-
+Button password=findViewById(R.id.menu_password);
         register.setOnClickListener(this);
         clock.setOnClickListener(this);
         search.setOnClickListener(this);
@@ -221,5 +226,6 @@ public class Menu extends AppCompatActivity implements View.OnClickListener,
         delete.setOnClickListener(this);
         consultStatistics.setOnClickListener(this);
         consultReport.setOnClickListener(this);
+        password.setOnClickListener(this);
     }
 }
