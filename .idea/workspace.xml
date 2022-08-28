@@ -19,20 +19,42 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ddeb6ea-e00f-4cf2-88d3-89cbf60c105a" name="Changes" comment="&quot;Layout written for ChangePassword activity&quot;">
+    <list default="true" id="7ddeb6ea-e00f-4cf2-88d3-89cbf60c105a" name="Changes" comment="&quot;ChangePassword activity coded&quot;">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/GeneralMenu.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_bar_chart_50.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_clear_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_dark_mode_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_edit_50.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_format_list_bulleted_50.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_help_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_language_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_library_books_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_logout_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_menu_book_50.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_person_add_alt_50.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_person_remove_alt_50.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_pie_chart_50.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_report_problem_24.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_timer_50.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_menu2.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/executionHistory/executionHistory.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/resourceHashesCache.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.3.3/fileHashes/resourceHashesCache.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/util/IChangePasswordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/util/IChangePasswordController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/ChangePassword.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/ChangePassword.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/ClockInOut.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/ClockInOut.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/Login.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_change_password.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_change_password.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_menu.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/util/IClockInOutView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/util/IClockInOutView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_general_menu.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/general_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/general_menu.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +64,7 @@
   <component name="CodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/home/adede/.android/avd/Pixel_4_API_27.avd]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[042451198T006553]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -139,26 +161,10 @@
     <key name="android.template.1329377111">
       <recent name="uac.imsp.clockingapp" />
     </key>
-    <key name="android.template.-527663601">
-      <recent name="uac.imsp.clockingapp.View.activity" />
-    </key>
     <key name="android.template.-722247166">
       <recent name="uac.imsp.clockingapp" />
     </key>
-    <key name="android.template.-65763991">
-      <recent name="uac.imsp.clockingapp.View.activity" />
-    </key>
-    <key name="android.template.1723339029">
-      <recent name="uac.imsp.clockingapp" />
-    </key>
     <key name="android.template.-1171346128">
-      <recent name="uac.imsp.clockingapp.View.activity" />
-    </key>
-    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
-      <recent name="uac.imsp.clockingapp" />
-      <recent name="" />
-    </key>
-    <key name="android.template.764448370">
       <recent name="uac.imsp.clockingapp.View.activity" />
     </key>
     <key name="android.template.-1674009749">
@@ -166,6 +172,44 @@
     </key>
     <key name="android.template.-1234731535">
       <recent name="uac.imsp.clockingapp" />
+    </key>
+    <key name="android.template.307382211">
+      <recent name="uac.imsp.clockingapp" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/src/main/res/font" />
+      <recent name="$PROJECT_DIR$/database" />
+      <recent name="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi" />
+    </key>
+    <key name="android.template.-806874129">
+      <recent name="uac.imsp.clockingapp" />
+    </key>
+    <key name="android.template.1156310520">
+      <recent name="uac.imsp.clockingapp" />
+      <recent name="uac.imsp.clockingapp.Controller" />
+      <recent name="uac.imsp.clockingapp.View" />
+    </key>
+    <key name="android.template.449697694">
+      <recent name="uac.imsp.clockingapp" />
+    </key>
+    <key name="android.template.-1760550200">
+      <recent name="uac.imsp.clockingapp" />
+    </key>
+    <key name="android.template.-527663601">
+      <recent name="uac.imsp.clockingapp.View.activity" />
+    </key>
+    <key name="android.template.-65763991">
+      <recent name="uac.imsp.clockingapp.View.activity" />
+    </key>
+    <key name="android.template.1723339029">
+      <recent name="uac.imsp.clockingapp" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="uac.imsp.clockingapp" />
+      <recent name="" />
+    </key>
+    <key name="android.template.764448370">
+      <recent name="uac.imsp.clockingapp.View.activity" />
     </key>
     <key name="android.template.1324743782">
       <recent name="uac.imsp.clockingapp.View.activity" />
@@ -180,35 +224,16 @@
     <key name="android.template.-424424451">
       <recent name="uac.imsp.clockingapp" />
     </key>
-    <key name="android.template.307382211">
-      <recent name="uac.imsp.clockingapp" />
-    </key>
     <key name="android.template.-1010942861">
       <recent name="uac.imsp.clockingapp" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/app/src/main/res/font" />
-      <recent name="$PROJECT_DIR$/database" />
-      <recent name="$PROJECT_DIR$/app/src/main/res/mipmap-hdpi" />
     </key>
     <key name="android.template.1569361619">
       <recent name="uac.imsp.clockingapp" />
     </key>
-    <key name="android.template.-806874129">
-      <recent name="uac.imsp.clockingapp" />
-    </key>
-    <key name="android.template.1156310520">
-      <recent name="uac.imsp.clockingapp" />
-      <recent name="uac.imsp.clockingapp.Controller" />
-      <recent name="uac.imsp.clockingapp.View" />
-    </key>
-    <key name="android.template.449697694">
-      <recent name="uac.imsp.clockingapp" />
+    <key name="android.template.-228121952">
+      <recent name="uac.imsp.clockingapp.View.activity" />
     </key>
     <key name="android.template.1694959343">
-      <recent name="uac.imsp.clockingapp" />
-    </key>
-    <key name="android.template.-1760550200">
       <recent name="uac.imsp.clockingapp" />
     </key>
     <key name="android.template.-375269746">
@@ -437,7 +462,7 @@
         <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
       </Profilers>
       <option name="DEEP_LINK" value="" />
-      <option name="ACTIVITY_CLASS" value="uac.imsp.clockingapp.View.activity.Menu" />
+      <option name="ACTIVITY_CLASS" value="uac.imsp.clockingapp.View.activity.GeneralMenu" />
       <option name="SEARCH_ACTIVITY_IN_GLOBAL_SCOPE" value="false" />
       <option name="SKIP_ACTIVITY_VALIDATION" value="false" />
       <method v="2">
@@ -852,7 +877,14 @@
       <option name="project" value="LOCAL" />
       <updated>1661618880366</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="&quot;ChangePassword activity coded&quot;">
+      <created>1661652209459</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1661652209459</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -887,7 +919,8 @@
     <MESSAGE value="&quot;Password changing module added&quot;" />
     <MESSAGE value="&quot;Unit tests written for ChangePassword&quot;" />
     <MESSAGE value="&quot;Layout written for ChangePassword activity&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="&quot;Layout written for ChangePassword activity&quot;" />
+    <MESSAGE value="&quot;ChangePassword activity coded&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;ChangePassword activity coded&quot;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

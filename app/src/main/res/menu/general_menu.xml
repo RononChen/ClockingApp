@@ -24,7 +24,7 @@
         android:orderInCategory="1"
         app:showAsAction="always"
         android:id="@+id/logout"
-        android:title="@string/welcome_"
+        android:title="Quitter"
         android:icon="@drawable/log_out"
         android:gravity="end"
         android:layout_gravity="end"
@@ -40,7 +40,7 @@
         android:layout_gravity="start"
 
         >
-        <menu>
+        <!--menu>
 
             <item
                 android:orderInCategory="4"
@@ -158,7 +158,7 @@
 
 
 
-        </menu>
+        </menu-->
 
     </item>
 

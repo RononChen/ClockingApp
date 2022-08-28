@@ -71,7 +71,7 @@ public class Login extends AppCompatActivity
     @Override
     public void onLoginSuccess(String message,int number) {
 
-        Intent intent = new Intent(this, Menu.class);
+        Intent intent = new Intent(this, GeneralMenu.class);
         intent.putExtra("CURRENT_USER",number);
         new ToastMessage(this,message);
 
@@ -189,7 +189,7 @@ public class Login extends AppCompatActivity
 
     @Override
     public void onPositiveResponse(String message) {
-        Intent intent=new Intent(Login.this,Menu.class);
+        Intent intent=new Intent(Login.this, GeneralMenu.class);
         new ToastMessage(this,message);
         startActivity(intent);
 

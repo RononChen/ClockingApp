@@ -173,7 +173,7 @@ public class ClockInOut extends AppCompatActivity
 
 
     public void onClockingSuccessful(String message) {
-        //Intent intent=new Intent(this,Menu.cl)
+        //Intent intent=new Intent(this,GeneralMenu.cl)
       Toast.makeText(this,message,Toast.LENGTH_LONG).show();
       //startActivity(intent);
     }

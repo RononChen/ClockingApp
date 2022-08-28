@@ -1,7 +1,7 @@
 package uac.imsp.clockingapp.View.util;
 
 public interface IClockInOutView{
-    //Welcome message on load
+    //GeneralMenu message on load
     void onLoad(String welcome);
 
     //Message de succès de pointage

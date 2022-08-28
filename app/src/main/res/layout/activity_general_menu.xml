@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <ScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".View.activity.GeneralMenu"
+        android:id="@+id/ScrollView02">
+
+        <LinearLayout
+            android:id="@+id/LinearLayout02"
+            android:layout_gravity="center"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+
+            android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/LinearLayout1"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="250dp"
+            android:orientation="horizontal">
+    <Button
+        android:id="@+id/menu_register"
+        android:layout_width="120dp"
+        android:layout_height="150dp"
+
+        android:drawableTop="@drawable/ic_baseline_person_add_alt_50"
+        android:layout_marginStart="25dp"
+        android:background="@color/colorPrimary"
+        android:paddingTop="20dp"
+        android:text="Enregisterer employé" />
+            <Button
+                android:id="@+id/menu_search"
+                android:layout_width="120dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="25dp"
+                android:drawableTop="@drawable/ic_baseline_format_list_bulleted_50"
+                android:layout_marginEnd="25dp"
+                android:paddingTop="20dp"
+                android:background="@color/colorPrimary"
+                android:text="Liste des employés" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/LinearLayout"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/menu_update"
+                android:layout_width="120dp"
+                android:layout_height="150dp"
+                android:layout_marginStart="25dp"
+                android:layout_marginTop="20dp"
+                android:drawableTop="@drawable/ic_baseline_edit_50"
+                android:background="@color/colorPrimary"
+                android:paddingTop="20dp"
+                android:text="@string/menu_update_button" />
+
+    <Button
+        android:id="@+id/menu_delete"
+        android:layout_width="120dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="20dp"
+        android:drawableTop="@drawable/ic_baseline_person_remove_alt_50"
+        android:background="@color/colorPrimary"
+        android:paddingTop="20dp"
+        android:text="@string/menu_delete_button" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/LinearLayout2"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+    <Button
+        android:id="@+id/menu_clock"
+
+        android:layout_width="120dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp"
+        android:drawableTop="@drawable/ic_baseline_timer_50"
+        android:paddingTop="20dp"
+        android:background="@color/colorPrimary"
+        android:text="@string/menu_clock_button" />
+    <Button
+        android:id="@+id/menu_presence_report"
+        android:layout_width="120dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="20dp"
+        android:drawableTop="@drawable/ic_baseline_menu_book_50"
+        android:paddingTop="20dp"
+        android:background="@color/colorPrimary"
+        android:text="Etats de présence" />
+        </LinearLayout>
+        <LinearLayout
+            android:id="@+id/LinearLayout3"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+    <Button
+        android:id="@+id/menu_statistics"
+        android:layout_width="120dp"
+        android:layout_height="150dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginTop="20dp"
+        android:paddingTop="20dp"
+        android:drawableTop="@drawable/ic_baseline_pie_chart_50"
+        android:background="@color/colorPrimary"
+        android:text="@string/consult_stat"
+        android:gravity="center"/>
+
+            <Button
+                android:id="@+id/menu_statistics_by_employee"
+                android:layout_width="120dp"
+                android:layout_height="150dp"
+                android:layout_marginLeft="25dp"
+                android:layout_marginRight="25dp"
+                android:layout_marginTop="20dp"
+                android:paddingTop="20dp"
+                android:drawableTop="@drawable/ic_baseline_bar_chart_50"
+                android:background="@color/colorPrimary"
+                android:text="Statistiques par employé"
+                android:gravity="center"/>
+        </LinearLayout>
+
+            <Button
+                android:id="@+id/menu_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/mybutton"
+                android:text="Mot de passe"
+                android:gravity="center"/>
+
+        </LinearLayout>
+    </ScrollView>
