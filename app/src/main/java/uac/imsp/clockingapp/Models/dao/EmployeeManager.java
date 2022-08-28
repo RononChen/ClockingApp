@@ -251,6 +251,39 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
 
     }
 
+    public boolean registrationNumberExists(@NonNull Employee employee){
+        int n;
+        String query ="SELECT matricule FROM employe WHERE matricule=?";
+        String [] selectArg={Integer.valueOf(employee.getRegistrationNumber()).toString()
+        };
+        Cursor cursor = Database.rawQuery(query,selectArg);
+
+        n=cursor.getCount();
+        cursor.close();
+        return n==1;
+    }
+    public boolean usernameExists(@NonNull Employee employee){
+
+        int n;
+        String query ="SELECT username FROM employe WHERE username =?";
+        String [] selectArg={employee.getUsername()};
+        Cursor cursor = Database.rawQuery(query,selectArg);
+
+        n=cursor.getCount();
+        cursor.close();
+        return n==1;
+    }
+    public boolean emailExists(@NonNull Employee employee){
+
+        int n;
+        String query ="SELECT couriel FROM employe WHERE couriel =?";
+        String [] selectArg={employee.getMailAddress()};
+        Cursor cursor = Database.rawQuery(query,selectArg);
+        n=cursor.getCount();
+        cursor.close();
+        return n==1;
+    }
+
 
     public void setInformations(Employee employee){
        // open();

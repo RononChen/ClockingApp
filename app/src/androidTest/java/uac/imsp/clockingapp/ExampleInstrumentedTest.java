@@ -22,12 +22,13 @@ import uac.imsp.clockingapp.View.util.IChangePasswordView;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 @RunWith(AndroidJUnit4.class)
+
 public class ExampleInstrumentedTest  implements IChangePasswordView{
     private final Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
    private final ChangePasswordController changePasswordPresenter;
 
     public ExampleInstrumentedTest(){
-        Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+        //Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
         changePasswordPresenter=new ChangePasswordController( this,appContext);
 
     assertNotNull(changePasswordPresenter);

@@ -16,17 +16,19 @@ public class PlanningSQLite extends SQLiteOpenHelper {
     public static final String COL_ID_PLANNING = "id_planning";
     public static final String COL_HEURE_DEBUT_OFFICIELLE="heure_debut_officielle";
     public static final String COL_HEURE_FIN_OFFICIELLE="heure_fin_officielle";
-    private static final String planning="INSERT INTO planning(" +
+    public static final String planning="INSERT INTO planning(" +
             "heure_debut_officielle,heure_fin_officielle)" +
 
            " VALUES (?,?)";
 
-    private static final String CREATE_PLANNING = "CREATE TABLE IF NOT EXISTS " + TABLE_PLANNING + " (" +
+
+    public static final String CREATE_PLANNING = "CREATE TABLE IF NOT EXISTS " + TABLE_PLANNING + " (" +
 
 
             COL_ID_PLANNING + " INTEGER NOT NULL  PRIMARY KEY AUTOINCREMENT, " +
             COL_HEURE_DEBUT_OFFICIELLE + " TEXT ," +
             COL_HEURE_FIN_OFFICIELLE + " TEXT )" ;
+    public  static final String DROP_PLANNING="DROP TABLE IF EXISTS "+TABLE_PLANNING;
 
 
 
@@ -57,23 +59,11 @@ public class PlanningSQLite extends SQLiteOpenHelper {
         statement.executeInsert();
 
 
-        //create structure
-        //readAndExecuteSQLScript(db,contex, R.raw.db_create);
-
-        //insert initial date
-        //readAndExecuteSQLScript(db,contex, R.raw.initial_data);
-
     }
-    /*public void readAndExecuteSQLScript(SQLiteDatabase db,
-                                        Context context,Integer sqlScriptResId)
-    {
-        //Ressources res = ctx.getRessources();
-        //PRAGMA user_version=4;
-    }*/
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS "+TABLE_PLANNING);
+        db.execSQL(DROP_PLANNING);
         onCreate(db);
 
     }

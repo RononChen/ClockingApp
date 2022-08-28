@@ -16,9 +16,11 @@ public class DaySQLite extends SQLiteOpenHelper {
 
 
 
-    private static final String CREATE_JOUR = "CREATE TABLE IF NOT EXISTS " + TABLE_JOUR + " (" +
+    public static final String CREATE_JOUR = "CREATE TABLE IF NOT EXISTS " + TABLE_JOUR + " (" +
+
             COL_ID_JOUR + " INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT , " +
             COL_DATE_JOUR+" TEXT )" ;
+    public static final String DROP_DAY="DROP TABLE IF EXISTS "+TABLE_JOUR;
 
 
 
@@ -38,7 +40,7 @@ public class DaySQLite extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS "+TABLE_JOUR);
+        db.execSQL(DROP_DAY);
         onCreate(db);
 
     }

@@ -1,5 +1,12 @@
 package uac.imsp.clockingapp.Models.dbAdapter;
 
+import static uac.imsp.clockingapp.Models.dbAdapter.ClockingSQLite.DROP_CLOCKING;
+import static uac.imsp.clockingapp.Models.dbAdapter.DaySQLite.DROP_DAY;
+import static uac.imsp.clockingapp.Models.dbAdapter.PlanningSQLite.CREATE_PLANNING;
+import static uac.imsp.clockingapp.Models.dbAdapter.PlanningSQLite.DROP_PLANNING;
+import static uac.imsp.clockingapp.Models.dbAdapter.PlanningSQLite.planning;
+import static uac.imsp.clockingapp.Models.dbAdapter.ServiceSQLite.CREATE_SERVICE;
+import static uac.imsp.clockingapp.Models.dbAdapter.ServiceSQLite.DROP_SERVICE;
 import static uac.imsp.clockingapp.Models.entity.Employee.HEAD;
 
 import android.content.Context;
@@ -39,7 +46,8 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
             COL_MATRICULE + " INTEGER NOT NULL  PRIMARY KEY, " +
             COL_NOM + " TEXT NOT NULL ," +
             COL_PRENOM + " TEXT NOT NULL," +
-            COL_SEXE + " CHAR(1) NOT NULL ," +// replace by text
+            COL_SEXE + " TEXT NOT NULL ," +// replace by text
+
 
 
             COL_EMAIL + " TEXT UNIQUE NOT NULL," +
@@ -56,6 +64,7 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
             " FOREIGN KEY(" + COL_ID_PLANNING_REF +
             " ) REFERENCES planning(" + COL_ID_PLANNING+" )" +
             ")" ;
+    private static final String DROP_EMPLOYEE="DROP TABLE IF EXISTS "+TABLE_EMPLOYE;
 
 
 
@@ -70,6 +79,7 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
         db.execSQL(CREATE_EMPLOYEE);
+        db.execSQL(CREATE_SERVICE);
       SQLiteStatement statement= db.compileStatement(super_user);
        statement.bindLong(1,1);
        statement.bindString(2,"User10");
@@ -84,12 +94,54 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
         statement.execute();
 
 
+
+        String service = "INSERT INTO service(nom)  VALUES (?)";
+         statement= db.compileStatement(service);
+        //Direction
+        statement.bindString(1,"Direction");
+        statement.executeInsert();
+
+        //Service scolarité
+        statement.bindString(1,"Service scolarité");
+        statement.executeInsert();
+
+        //Secrétariat administratif
+        statement.bindString(1,"Secrétariat administratif");
+        statement.executeInsert();
+        //Comptabilité
+        statement.bindString(1,"Comptabilité");
+        statement.executeInsert();
+        //Service de coopération
+        statement.bindString(1,"Service de coopération");
+        statement.executeInsert();
+
+
+        db.execSQL(CREATE_PLANNING);
+         statement= db.compileStatement(planning);
+
+        //08-17
+        statement.bindString(1,"08:00");
+        statement.bindString(2,"17:00");
+        statement.executeInsert();
+
+        //08-18
+
+        statement.bindString(1,"08:00");
+        statement.bindString(2,"18:00");
+        statement.executeInsert();
+
+
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS "+TABLE_EMPLOYE);
+        db.execSQL(DROP_EMPLOYEE);
+        db.execSQL(DROP_SERVICE);
+        db.execSQL(DROP_PLANNING);
+        db.execSQL(DROP_DAY);
+        db.execSQL(DROP_CLOCKING);
                 onCreate(db);
+
 
     }
 }

@@ -20,7 +20,8 @@ public class ClockingSQLite  extends SQLiteOpenHelper {
     private static final String COL_HEURE_SORTIE= "heure_sortie";
     private static final String COL_MATRICULE="matricule";
     private static  final String COL_MATRICULE_REF="matricule_ref";
-           private static final String CREATE_CLOCKING = "CREATE TABLE IF NOT EXISTS " +
+           public static final String CREATE_CLOCKING = "CREATE TABLE IF NOT EXISTS " +
+
             TABLE_POINTAGE + " (" +
             COL_ID_POINTAGE + " INTEGER NOT NULL  PRIMARY KEY AUTOINCREMENT, " +
 
@@ -33,6 +34,7 @@ public class ClockingSQLite  extends SQLiteOpenHelper {
                " ) REFERENCES employe(" + COL_MATRICULE+" ),"+
         "  FOREIGN KEY(" + COL_DATE_JOUR_REF +
             " ) REFERENCES jour(" + COL_DATE_JOUR+" ))" ;
+           public static final String DROP_CLOCKING="DROP TABLE  IF EXISTS "+TABLE_POINTAGE;
 
 
 
@@ -51,7 +53,7 @@ public class ClockingSQLite  extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE  IF EXISTS "+TABLE_POINTAGE);
+        db.execSQL(DROP_CLOCKING);
 
         onCreate(db);
 

@@ -1,16 +1,17 @@
 package uac.imsp.clockingapp.Controller.control;
 
-import static uac.imsp.clockingapp.Models.entity.Employee.EMPTY_BIRTHDATE;
 import static uac.imsp.clockingapp.Models.entity.Employee.EMPTY_FIRSTNAME;
 import static uac.imsp.clockingapp.Models.entity.Employee.EMPTY_LASTNAME;
 import static uac.imsp.clockingapp.Models.entity.Employee.EMPTY_MAIL;
 import static uac.imsp.clockingapp.Models.entity.Employee.EMPTY_NUMBER;
 import static uac.imsp.clockingapp.Models.entity.Employee.EMPTY_PASSWORD;
+import static uac.imsp.clockingapp.Models.entity.Employee.EMPTY_USERNAME;
 import static uac.imsp.clockingapp.Models.entity.Employee.INVALID_FIRSTNAME;
 import static uac.imsp.clockingapp.Models.entity.Employee.INVALID_LASTNAME;
 import static uac.imsp.clockingapp.Models.entity.Employee.INVALID_MAIL;
 import static uac.imsp.clockingapp.Models.entity.Employee.INVALID_NUMBER;
 import static uac.imsp.clockingapp.Models.entity.Employee.INVALID_PASSWORD;
+import static uac.imsp.clockingapp.Models.entity.Employee.INVALID_USERNAME;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -25,33 +26,40 @@ import java.io.ByteArrayOutputStream;
 import java.util.Objects;
 
 import uac.imsp.clockingapp.Controller.util.IRegisterEmployeeController;
-import uac.imsp.clockingapp.Models.entity.Employee;
 import uac.imsp.clockingapp.Models.dao.EmployeeManager;
-import uac.imsp.clockingapp.Models.entity.Planning;
 import uac.imsp.clockingapp.Models.dao.PlanningManager;
-import uac.imsp.clockingapp.Models.entity.Service;
 import uac.imsp.clockingapp.Models.dao.ServiceManager;
+import uac.imsp.clockingapp.Models.entity.Employee;
+import uac.imsp.clockingapp.Models.entity.Planning;
+import uac.imsp.clockingapp.Models.entity.Service;
 import uac.imsp.clockingapp.View.util.IRegisterEmployeeView;
 
 public class RegisterEmployeeController implements IRegisterEmployeeController
 {
 
     IRegisterEmployeeView registerEmployeeView;
-    ServiceManager serviceManager;
+   private ServiceManager serviceManager;
+   private Context context;
 
 
 
     public RegisterEmployeeController(IRegisterEmployeeView registerEmployeeView) {
         this.registerEmployeeView = registerEmployeeView;
+        this.context= (Context) this.registerEmployeeView;
+    }
+
+    public RegisterEmployeeController(IRegisterEmployeeView registerEmployeeView,
+                                      Context context) {
+        this.registerEmployeeView = registerEmployeeView;
+        this.context=context;
     }
 
     @Override
     public String[] onLoad() {
        // String serviceLIst[]
-        serviceManager = new ServiceManager((Context) registerEmployeeView);
+        serviceManager = new ServiceManager(context);
 
         serviceManager.open();
-
         //serviceManager.close();
 
         return serviceManager.getAllServices();
@@ -59,10 +67,10 @@ public class RegisterEmployeeController implements IRegisterEmployeeController
 
     @Override
     public void onRegisterEmployee(String number, String lastname,
-                                   String firstname, String gender, String birthdate,String mail,
+                                   String firstname,  String gender, String birthdate, String mail,
                                    String username, String password, String passwordConfirm,
                                    String selectedService, int startTime, int endTime,
-                                   byte[] picture,String type) {
+                                   byte[] picture, String type) {
 
         int registerCode;
         int n;
@@ -111,31 +119,46 @@ public class RegisterEmployeeController implements IRegisterEmployeeController
        registerEmployeeView.onRegisterEmployeeError("Prénom(s) invalide(s) !");
    else if(registerCode==EMPTY_MAIL)
        registerEmployeeView.onRegisterEmployeeError("Email requis !");
-   else if(registerCode==EMPTY_BIRTHDATE)
-       registerEmployeeView.onRegisterEmployeeError("Date de naissance requise !");
+  // else if(registerCode==EMPTY_BIRTHDATE)
+
+       //registerEmployeeView.onRegisterEmployeeError("Date de naissance requise !");
 
    else if(registerCode==INVALID_MAIL)
        registerEmployeeView.onRegisterEmployeeError("Email invalide !");
+   else if(registerCode==EMPTY_USERNAME)
+       registerEmployeeView.onRegisterEmployeeError("Username requis !");
+   else if (registerCode==INVALID_USERNAME)
+       registerEmployeeView.onRegisterEmployeeError("Username invalide !");
    else if(registerCode==EMPTY_PASSWORD)
        registerEmployeeView.onRegisterEmployeeError("Mot de passe requis !");
    else if(registerCode==INVALID_PASSWORD)
        registerEmployeeView.onRegisterEmployeeError("Mot de passe invalide !");
    else if(!Objects.equals(password, passwordConfirm))
-       registerEmployeeView.onRegisterEmployeeError("Vérifier le mot de passe et resssayer !");
+
+       registerEmployeeView.onRegisterEmployeeError("Vérifier le mot de passe " +
+               "et resssayer !");
    else{
 
-       employeeManager = new EmployeeManager((Context) registerEmployeeView);
+       employeeManager = new EmployeeManager(context);
        employeeManager.open();
 
-       if(employeeManager.exists(employee))
-           registerEmployeeView.onRegisterEmployeeError("Le matricule, le username " +
-                   "ou l'email a été déjà attribué à un employé !");
+       if(employeeManager.registrationNumberExists(employee))
+
+           registerEmployeeView.onRegisterEmployeeError("Ce matricule a été déjà" +
+                   " attribué à un employé !");
+       else if(employeeManager.emailExists(employee))
+           registerEmployeeView.onRegisterEmployeeError("Ce couriel a été déjà" +
+                   " attribué à un employé !");
+       else if(employeeManager.usernameExists(employee))
+       registerEmployeeView.onRegisterEmployeeError("Ce username a été déjà" +
+               " attribué à un employé !");
+
 
        else {
            qrCode = generateQRCode(number);
            employee.setQRCode(qrCode);
            planning = new Planning(formatTime(startTime), formatTime(endTime));
-           planningManager = new PlanningManager((Context) registerEmployeeView);
+           planningManager = new PlanningManager(context);
            planningManager.open();
            planningManager.create(planning);
            planningManager.close();
@@ -162,6 +185,14 @@ public class RegisterEmployeeController implements IRegisterEmployeeController
       employeeManager.close();
    }
 
+    }
+
+    public ServiceManager getServiceManager() {
+        return serviceManager;
+    }
+
+    public void setServiceManager(ServiceManager serviceManager) {
+        this.serviceManager = serviceManager;
     }
 
     @Override

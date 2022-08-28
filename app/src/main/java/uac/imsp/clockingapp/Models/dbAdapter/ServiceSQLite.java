@@ -14,10 +14,11 @@ public class ServiceSQLite  extends SQLiteOpenHelper {
     private static final String COL_NOM_SERVICE="nom";
 
 
-    private static final String CREATE_SERVICE = "CREATE TABLE IF NOT EXISTS  " +
+    public static final String CREATE_SERVICE = "CREATE TABLE IF NOT EXISTS  " +
             TABLE_SERVICE + " (" +
             COL_ID_SERVICE + " INTEGER NOT NULL  PRIMARY KEY AUTOINCREMENT, " +
             COL_NOM_SERVICE + " TEXT UNIQUE NOT NULL  "+")" ;
+    public static final  String DROP_SERVICE="DROP TABLE IF EXISTS "+TABLE_SERVICE;
 
 
     @Override
@@ -55,7 +56,6 @@ public class ServiceSQLite  extends SQLiteOpenHelper {
         statement.executeInsert();
         //Service de coopération
         statement.bindString(1,"Service de coopération");
-
         statement.executeInsert();
 
     }
@@ -65,7 +65,7 @@ public class ServiceSQLite  extends SQLiteOpenHelper {
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
 
         db.setVersion(newVersion);
-        db.execSQL("DROP TABLE IF EXISTS "+TABLE_SERVICE);
+        db.execSQL(DROP_SERVICE);
         onCreate(db);
 
 
