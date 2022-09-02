@@ -28,6 +28,8 @@ implements View.OnClickListener  , IStartScreenView {
     }
     public void initView(){
         Button login = findViewById(R.id.start_screen_login_button);
+        Button handler=findViewById(R.id.start_screen_file_handler);
+        handler.setOnClickListener(this);
         Button clocking = findViewById(R.id.start_screen_clock_button);
         login.setOnClickListener(this);
         clocking.setOnClickListener(this);
@@ -36,10 +38,14 @@ implements View.OnClickListener  , IStartScreenView {
 
     @Override
     public void onClick(View v) {
+        Intent intent =new Intent(this,FileHandler.class) ;
         if(v.getId()==R.id.start_screen_login_button)
             startScreenPresenter.onLogin();
         else if(v.getId()==R.id.start_screen_clock_button)
             startScreenPresenter.onClocking();
+        else if(v.getId()==R.id.start_screen_file_handler)
+            startActivity(intent);
+
 
     }
 

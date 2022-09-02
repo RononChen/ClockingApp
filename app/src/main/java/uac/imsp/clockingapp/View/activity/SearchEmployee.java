@@ -24,10 +24,10 @@ public class SearchEmployee extends AppCompatActivity
     implements IsearchEmployeeView,
         AdapterView.OnItemClickListener,View.OnClickListener,
         androidx.appcompat.widget.SearchView.OnQueryTextListener,
+        View.OnFocusChangeListener,
         DialogInterface.OnClickListener {
     private  ListView list;
     ListViewAdapter adapter;
-    private String Data;
     AlertDialog.Builder builder;
     AlertDialog dialog;
     SearchEmployeeController searchEmployeePresenter;
@@ -35,19 +35,20 @@ public class SearchEmployee extends AppCompatActivity
     private Intent intent;
     private int  Number;
     private  androidx.appcompat.widget.SearchView search;
-    public SearchEmployee(){
-        searchEmployeePresenter=new SearchEmployeeController(this);
-    }
 
-private Toolbar toolbar;
+
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_employee);
         initView();
-        //SearchManager searchManager= (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-          //search.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-
+        searchEmployeePresenter=new SearchEmployeeController(this);
+        //get employees list onStart
+        searchEmployeePresenter.onStart();
     }
 
 
@@ -61,7 +62,9 @@ private Toolbar toolbar;
     @Override
     public void onNoEmployeeFound(String message) {
 
+        list.setVisibility(View.GONE);
         new ToastMessage(this,message);
+
 
 
 
@@ -72,8 +75,8 @@ private Toolbar toolbar;
         adapter = new ListViewAdapter(this, employeeList);
         this.list.setAdapter(adapter);
         this.list.setVisibility(View.VISIBLE);
-        search.clearFocus();
-        search.setFocusable(false);
+        //search.clearFocus();
+       // search.setFocusable(false);
     }
 
     @Override
@@ -97,7 +100,7 @@ private Toolbar toolbar;
 
         startActivity(intent);
     }
-    //android:background="@drawable/search_view_rounded"
+
     @Override
     public void onDelete() {
         intent=new Intent(SearchEmployee.this,DeleteEmployee.class);
@@ -125,41 +128,26 @@ private Toolbar toolbar;
     public void initView(){
         search = findViewById(R.id.search);
         search.setOnSearchClickListener(this);
-        toolbar =findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         list=findViewById(R.id.employee_list);
         list.setVisibility(View.GONE);
         search.setOnQueryTextListener(this);
-
-      // search.setIconified(true);
-         // search.setSubmitButtonEnabled(false);
-         // search.setQueryHint("Rechercher par nom prémom ou service");
-
-
-       // search.setFocusable(true);
-        //search.requestFocusFromTouch();
-
-       // search.clearFocus();
-
-       // search.onActionViewExpanded();
-
+        search.setOnFocusChangeListener(this);
         list.setOnItemClickListener(this);
-
-
     }
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-        Data=search.getQuery().toString().trim();
-        searchEmployeePresenter.onSearch(Data);
+        String data = search.getQuery().toString().trim();
+        searchEmployeePresenter.onSearch(data);
         return false;
     }
 
     @Override
     public boolean onQueryTextChange(String newText) {
 
-       // Data=newText;
-        //search.setQuery(Data,false);
+        onQueryTextSubmit(newText);
         return false;
     }
 
@@ -172,6 +160,12 @@ private Toolbar toolbar;
     @Override
     public void onClick(View v) {
         search.setIconifiedByDefault(false);
+
+    }
+
+    @Override
+    public void onFocusChange(View v, boolean hasFocus) {
+        v.requestFocus();
 
     }
 }

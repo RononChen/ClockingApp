@@ -25,6 +25,7 @@
         android:layout_alignParentTop="true"
         android:layout_marginStart="3dp"
         android:clickable="true"
+        android:background="@drawable/shapeemail"
         app:iconifiedByDefault="false"
         app:theme="@style/SearchTextViemTheme"
         android:layout_centerHorizontal="true"
@@ -34,7 +35,10 @@
         android:layout_marginLeft="15dp"
         android:layout_marginBottom="15dp"
         android:layout_marginRight="15dp"
-        app:queryHint="Rechercher par nom, prénom ou service" />
+        android:textColor="@color/white"
+        android:textColorHighlight="@color/white"
+        android:textColorHint="@color/white"
+        app:queryHint="Rechercher par service, nom ou prénom" />
 
 </com.google.android.material.appbar.AppBarLayout>
     <!--requestFocus/-->

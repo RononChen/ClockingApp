@@ -1,14 +1,12 @@
 package uac.imsp.clockingapp.Controller.control;
 
-import static uac.imsp.clockingapp.Controller.control.RegisterEmployeeController.getBytesFromBitmap;
-
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.text.TextUtils;
 import android.util.Patterns;
 
-import java.text.ParseException;
+import java.io.ByteArrayOutputStream;
 import java.util.Hashtable;
 import java.util.Objects;
 
@@ -44,6 +42,7 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
         planningManager.open();
         serviceManager.open();*/
     }
+//    public UpdateEmployeeController(EV)
 
 
 
@@ -52,7 +51,7 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
     @Override
     //Pour obtenir les listes de matricules et de services au chargement
 
-    public  String [] onLoad(int number, Hashtable <String,Object> informations) throws ParseException {
+    public  String [] onLoad(int number, Hashtable <String,Object> informations) {
         Day day;
 
   Service service;
@@ -191,6 +190,15 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
 
 
 
+    }
+
+    private byte[] getBytesFromBitmap(Bitmap picture) {
+        if (picture != null) {
+            ByteArrayOutputStream stream = new ByteArrayOutputStream();
+            picture.compress(Bitmap.CompressFormat.PNG, 70, stream);
+            return stream.toByteArray();
+        }
+        return new byte[0];
     }
 
     @Override

@@ -1,6 +1,8 @@
 package uac.imsp.clockingapp.Models.dbAdapter;
 
+import static uac.imsp.clockingapp.Models.dbAdapter.ClockingSQLite.CREATE_CLOCKING;
 import static uac.imsp.clockingapp.Models.dbAdapter.ClockingSQLite.DROP_CLOCKING;
+import static uac.imsp.clockingapp.Models.dbAdapter.DaySQLite.CREATE_DAY;
 import static uac.imsp.clockingapp.Models.dbAdapter.DaySQLite.DROP_DAY;
 import static uac.imsp.clockingapp.Models.dbAdapter.PlanningSQLite.CREATE_PLANNING;
 import static uac.imsp.clockingapp.Models.dbAdapter.PlanningSQLite.DROP_PLANNING;
@@ -27,7 +29,6 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
     public static final String COL_SEXE = "sexe";
     public static final String COL_BIRTHDATE = "birthdate";
     public static final String COL_EMAIL = "couriel";
-    public static final String COL_QRCODE = "qr_code";
     public static final String COL_PHOTO = "photo";
     public static final String COL_USERNAME = "username";
     public static final String COL_PASSWORD = "password";
@@ -38,33 +39,34 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
     private static final String COL_ID_SERVICE = "id_service";
 
     public static final String super_user="INSERT INTO employe(matricule," +
-            "username,password,type,sexe,couriel,id_service_ref,id_planning_ref,nom,prenom)" +
+            "username,password,type,sexe,couriel,id_service_ref," +
+            "id_planning_ref,nom,prenom,birthdate)" +
 
-            " VALUES (?,?,?,?,?,?,?,?,?,?)";
 
-    private static final String CREATE_EMPLOYEE = "CREATE TABLE  IF NOT EXISTS " + TABLE_EMPLOYE + " (" +
+
+            " VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+
+
+
+    public static final String CREATE_EMPLOYEE = "CREATE TABLE  IF NOT EXISTS " + TABLE_EMPLOYE + " (" +
             COL_MATRICULE + " INTEGER NOT NULL  PRIMARY KEY, " +
             COL_NOM + " TEXT NOT NULL ," +
             COL_PRENOM + " TEXT NOT NULL," +
-            COL_SEXE + " TEXT NOT NULL ," +// replace by text
-
-
-
+            COL_SEXE + " TEXT NOT NULL ," +
             COL_EMAIL + " TEXT UNIQUE NOT NULL," +
            COL_BIRTHDATE+" TEXT , "+
-           COL_QRCODE + "  BLOB  UNIQUE ," +
             COL_PHOTO + "  BLOB ," +
             COL_USERNAME + " TEXT UNIQUE NOT NULL ," +
             COL_PASSWORD + " TEXT NOT NULL , " +
             COL_TYPE+" TEXT DEFAULT 'Simple', "+
-            COL_ID_PLANNING_REF + " TEXT  , " +
+            COL_ID_PLANNING_REF + " INTEGER  , " +
             COL_ID_SERVICE_REF + " INTEGER   ," +
             " FOREIGN KEY(" + COL_ID_SERVICE_REF +
             " ) REFERENCES service(" + COL_ID_SERVICE+" )," +
             " FOREIGN KEY(" + COL_ID_PLANNING_REF +
             " ) REFERENCES planning(" + COL_ID_PLANNING+" )" +
             ")" ;
-    private static final String DROP_EMPLOYEE="DROP TABLE IF EXISTS "+TABLE_EMPLOYE;
+    public static final String DROP_EMPLOYEE="DROP TABLE IF EXISTS "+TABLE_EMPLOYE;
 
 
 
@@ -78,25 +80,42 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
 
-        db.execSQL(CREATE_EMPLOYEE);
+
+     createDatabase(db);
+
+    }
+    public void upgradeDatabase(SQLiteDatabase db){
+        db.execSQL(DROP_EMPLOYEE);
+        db.execSQL(DROP_SERVICE);
+        db.execSQL(DROP_PLANNING);
+        db.execSQL(DROP_DAY);
+        db.execSQL(DROP_CLOCKING);
+        onCreate(db);
+
+    }
+
+    public void createDatabase(SQLiteDatabase db){
         db.execSQL(CREATE_SERVICE);
-      SQLiteStatement statement= db.compileStatement(super_user);
-       statement.bindLong(1,1);
-       statement.bindString(2,"User10");
-       statement.bindString(3,"password");
-       statement.bindString(4,HEAD);
+        db.execSQL(CREATE_PLANNING);
+        db.execSQL(CREATE_DAY);
+        db.execSQL(CREATE_EMPLOYEE);
+        db.execSQL(CREATE_CLOCKING);
+        SQLiteStatement statement= db.compileStatement(super_user);
+        statement.bindLong(1,1);
+        statement.bindString(2,"User10");
+        statement.bindString(3,"password");
+        statement.bindString(4,HEAD);
         statement.bindString(5,"M");
+
         statement.bindString(6,"super@gmail.com");
         statement.bindLong(7,1);
         statement.bindLong(8,1);
         statement.bindString(9,"AKOBA");
         statement.bindString(10,"Patrick");
+        statement.bindString(11,"1970-01-01");
         statement.execute();
-
-
-
         String service = "INSERT INTO service(nom)  VALUES (?)";
-         statement= db.compileStatement(service);
+        statement= db.compileStatement(service);
         //Direction
         statement.bindString(1,"Direction");
         statement.executeInsert();
@@ -116,8 +135,8 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
         statement.executeInsert();
 
 
-        db.execSQL(CREATE_PLANNING);
-         statement= db.compileStatement(planning);
+
+        statement= db.compileStatement(planning);
 
         //08-17
         statement.bindString(1,"08:00");
@@ -130,17 +149,11 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
         statement.bindString(2,"18:00");
         statement.executeInsert();
 
-
     }
-
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL(DROP_EMPLOYEE);
-        db.execSQL(DROP_SERVICE);
-        db.execSQL(DROP_PLANNING);
-        db.execSQL(DROP_DAY);
-        db.execSQL(DROP_CLOCKING);
-                onCreate(db);
+
+        upgradeDatabase(db);
 
 
     }

@@ -96,17 +96,7 @@ public class LoginController  implements ILoginController {
 
   else if (savedVersionCode==DOESNT_EXIST)
         {
-            /*ServiceManager serviceManager =new ServiceManager((Context) loginView);
-           EmployeeManager e= new EmployeeManager((Context) loginView);
-           e.open();
-            serviceManager.open();
 
-           /* new  ServiceManager((Context) loginView);
-
-            new PlanningManager((Context) loginView);
-            new DayManager((Context) loginView);
-
-            new ClockingManager((Context) loginView);*/
 
             loginView.onFirstRun();
         }
@@ -160,11 +150,14 @@ public class LoginController  implements ILoginController {
     @Override
     public void onConfirmResult(boolean confirmed) {
         if (confirmed)
-            loginView.onPositiveResponse("");
+            loginView.onPositiveResponse("Vous êtes connecté en tant qu'administrateur !");
         else
-            loginView.onNegetiveResponse("");
+            loginView.onNegetiveResponse("Vous êtes connecté en tant que" +
+                    "simple employé !");
 
     }
+
+
 
 }
 

@@ -14,8 +14,8 @@ public class Employee implements IEmployee {
 
                     EMPTY_USERNAME=6,
                   INVALID_USERNAME=11,
-                    EMPTY_PICTURE=7,
-                   EMPTY_QRCODE=8, EMPTY_PASSWORD=9,
+
+                    EMPTY_PICTURE=7, EMPTY_PASSWORD=9,
                             INVALID_PASSWORD=10,EMPTY_MAIL=14,INVALID_MAIL=12,
                             EMPTY_BIRTHDATE=15
 
@@ -35,7 +35,6 @@ public  final static String SIMPLE="Simple", HEAD="Directeur",CHIEF="Chef person
 
     private String MailAddress;
     private byte[] Picture;
-    private byte[] QRCode;
 
     private String Username;
     private String Password;
@@ -97,9 +96,10 @@ public  final static String SIMPLE="Simple", HEAD="Directeur",CHIEF="Chef person
         return Lastname;
     }
 
-    public int getGender() {
+    public char getGender() {
         return Gender;
     }
+
 
     public String getBirthdate() {
         return Birthdate;
@@ -113,9 +113,6 @@ public  final static String SIMPLE="Simple", HEAD="Directeur",CHIEF="Chef person
         return Picture;
     }
 
-    public byte[] getQRCode() {
-        return QRCode;
-    }
     public  String getUsername(){
         return  Username;
     }
@@ -204,10 +201,6 @@ public  final static String SIMPLE="Simple", HEAD="Directeur",CHIEF="Chef person
 
     public void setPicture(byte[] picture) {
         Picture = picture;
-    }
-
-    public void setQRCode(byte[] qRCode) {
-        QRCode = qRCode;
     }
     public void setType(String type){
         Type=type;

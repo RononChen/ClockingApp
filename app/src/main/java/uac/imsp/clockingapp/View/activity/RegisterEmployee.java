@@ -28,8 +28,10 @@ import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.FileProvider;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
 
@@ -90,7 +92,7 @@ public class RegisterEmployee extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-       /* switch (item.getItemId())
+      /* *switch (item.getItemId())
         {
             case R.id.more:
 
@@ -101,6 +103,7 @@ public class RegisterEmployee extends AppCompatActivity
 
     private void imageChooser() {
         Intent intent = new Intent();
+        //to specify any kind of image
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
 
@@ -238,6 +241,36 @@ public class RegisterEmployee extends AppCompatActivity
     public void onRegisterEmployeeError(String message) {
       Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
     }
+
+    @Override
+    public void sendEmail(String[] to, String subject, String message, String qrCodeFileName) {
+
+        File qrCodepicture =new File(getFilesDir(),qrCodeFileName);
+
+        Uri qrCodeUri;
+
+
+       qrCodeUri= FileProvider.getUriForFile(RegisterEmployee.this,
+                getApplicationContext().getPackageName()+".provider", qrCodepicture);
+
+
+        Intent emailIntent=new Intent(Intent.ACTION_SEND);
+        emailIntent.putExtra(Intent.EXTRA_EMAIL,to);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT,subject);
+        emailIntent.putExtra(Intent.EXTRA_TEXT,message);
+
+        emailIntent.setType("image/png");
+        emailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        emailIntent.putExtra(Intent.EXTRA_STREAM,qrCodeUri);
+
+        startActivity(Intent.createChooser(emailIntent,
+                "Envoyer avec")
+
+        );
+
+
+    }
+
     public String toString(EditText e){
         return  e.getText().toString();
 

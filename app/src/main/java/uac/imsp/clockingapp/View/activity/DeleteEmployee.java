@@ -143,15 +143,15 @@ public class DeleteEmployee extends AppCompatActivity
                 .setCancelable(false)
                 .setPositiveButton(pos, (dialog, which) -> {
 
-                    Toast = new ToastMessage(DeleteEmployee.this,"Confirmé");
+                     new ToastMessage(DeleteEmployee.this,"Confirmé");
                     deleteEmployeePresenter.onConfirmResult(true);
                     DeleteEmployee.this.finish();
                     startActivity(getIntent());
                 })
                 .setNegativeButton(neg, (dialog, which) -> {
 
-                    Toast = new ToastMessage(DeleteEmployee.this,"Annulé");
-                   Toast.show();
+                    new ToastMessage(DeleteEmployee.this,"Annulé");
+
                     deleteEmployeePresenter.onConfirmResult(false);
                     DeleteEmployee.this.finish();
                     startActivity(getIntent());

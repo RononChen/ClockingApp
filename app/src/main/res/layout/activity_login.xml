@@ -42,7 +42,10 @@
             android:background="@drawable/shapeemail"
             android:drawableStart="@drawable/ic_baseline_person_24"
            android:drawablePadding="10dp"
-            android:maxLines="1"
+        android:textColor="@color/white"
+        android:textColorHighlight="@color/white"
+        android:textColorHint="@color/white"
+        android:maxLines="1"
             />
     <RelativeLayout
         android:layout_width="match_parent"

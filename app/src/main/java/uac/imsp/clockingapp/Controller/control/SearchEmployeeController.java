@@ -13,9 +13,17 @@ import uac.imsp.clockingapp.View.util.IsearchEmployeeView;
 public class SearchEmployeeController  implements
         ISearchEmployeeController {
     private final IsearchEmployeeView searchEmployeeView ;
+    private  Context context;
     public SearchEmployeeController(IsearchEmployeeView searchEmployeeView){
         this.searchEmployeeView=searchEmployeeView;
+        this.context= (Context) this.searchEmployeeView;
     }
+    public SearchEmployeeController(IsearchEmployeeView searchEmployeeView,
+                                    Context context){
+        this.searchEmployeeView=searchEmployeeView;
+        this.context=context;
+    }
+
 
 
 
@@ -30,12 +38,12 @@ public class SearchEmployeeController  implements
         Employee[] employeeSet;
         EmployeeManager employeeManager;
 
-        employeeManager=new EmployeeManager((Context) searchEmployeeView);
+        employeeManager=new EmployeeManager(context);
                 employeeManager.open();
         employeeSet =employeeManager.search(data);
 
         if(employeeSet.length==0)
-            searchEmployeeView.onNoEmployeeFound("Aucun employé correspondant");
+            searchEmployeeView.onNoEmployeeFound("Aucun employé correspondant !");
         else
         {
             for (Employee employee : employeeSet) {
@@ -47,6 +55,7 @@ public class SearchEmployeeController  implements
                 list.add(result);
             }
             searchEmployeeView.onEmployeeFound(list);
+
 
         }
             employeeManager.close();
@@ -69,6 +78,12 @@ public class SearchEmployeeController  implements
             searchEmployeeView.onPresenceReport();
         else if(which==3)
             searchEmployeeView.onStatistics();
+
+    }
+
+    @Override
+    public void onStart() {
+        onSearch("*");
 
     }
 

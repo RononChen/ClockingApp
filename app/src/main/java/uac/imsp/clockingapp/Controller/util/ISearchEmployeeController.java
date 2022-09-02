@@ -7,6 +7,7 @@ public interface ISearchEmployeeController {
     void onEmployeeSelected(int number);
     void onOptionSelected(int which);
 
+    void onStart();
 
 
 

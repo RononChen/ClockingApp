@@ -4,7 +4,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
-import java.text.ParseException;
 import java.util.Hashtable;
 import java.util.Objects;
 
@@ -22,30 +21,37 @@ public class DeleteEmployeeController implements IDeleteEmployeeController {
     IDeleteEmployeeView deleteEmployeeView;
     private Employee employee;
     private EmployeeManager employeeManager;
+    private Context context;
 
     public DeleteEmployeeController(IDeleteEmployeeView deleteEmployeeView)
 
+
     {
         this.deleteEmployeeView=deleteEmployeeView;
+        this.context=(Context) this.deleteEmployeeView;
+
 
     }
+    public DeleteEmployeeController(IDeleteEmployeeView deleteEmployeeView,
+                                    Context context){
+        this.deleteEmployeeView=deleteEmployeeView;
+        this.context=context;
 
-
-
-
-
+    }
     @Override
     //get informations on load
 
-    public  void onLoad(int number, Hashtable <String,Object> informations) throws ParseException {
+    public  void onLoad(int number, Hashtable <String,Object> informations) {
+
 
         Day day;
 
         Service service;
+
         Planning planning;
-        PlanningManager planningManager = new PlanningManager((Context) deleteEmployeeView);
-        ServiceManager serviceManager = new ServiceManager((Context) deleteEmployeeView);
-        employeeManager=new EmployeeManager((Context) deleteEmployeeView);
+        PlanningManager planningManager = new PlanningManager(context);
+        ServiceManager serviceManager = new ServiceManager(context);
+        employeeManager=new EmployeeManager(context);
         employeeManager.open();
         planningManager.open();
         serviceManager.open();
@@ -83,10 +89,9 @@ public class DeleteEmployeeController implements IDeleteEmployeeController {
     @Override
     public void onDeleteEmployee() {
 
-        deleteEmployeeView.askConfirmDelete("Oui","Non",
+        deleteEmployeeView.askConfirmDelete("Oui","Non", "Confirmation",
+                "Voulez vous vraiment supprimer l'employé ?");
 
-                "Confirmation","Voulez vous " +
-                        "vraiment supprimer l'employé ?");
 
 
 
@@ -95,9 +100,10 @@ public class DeleteEmployeeController implements IDeleteEmployeeController {
     @Override
     public void onConfirmResult(Boolean confirmed) {
 
+
         if(!confirmed)
             return;
-        employeeManager=new EmployeeManager((Context) deleteEmployeeView);
+        employeeManager=new EmployeeManager(context);
         employeeManager.open();
 
         employeeManager.setInformations(employee);

@@ -1,0 +1,78 @@
+package uac.imsp.clockingapp;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.assertNotNull;
+
+import android.content.Context;
+
+import androidx.test.ext.junit.runners.AndroidJUnit4;
+import androidx.test.platform.app.InstrumentationRegistry;
+
+import org.junit.Test;
+import org.junit.runner.RunWith;
+
+import java.util.ArrayList;
+
+import uac.imsp.clockingapp.Controller.control.SearchEmployeeController;
+import uac.imsp.clockingapp.Controller.util.Result;
+import uac.imsp.clockingapp.View.util.IsearchEmployeeView;
+@RunWith(AndroidJUnit4.class)
+public class SearchEmployeeTest implements IsearchEmployeeView {
+
+    private final Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
+    private SearchEmployeeController searchEmployeeController;
+
+    public  SearchEmployeeTest(){
+        searchEmployeeController=new SearchEmployeeController(this,
+                appContext);
+        assertNotNull(searchEmployeeController);
+    }
+    @Test
+    public void testSearchEmployee(){
+        new SearchEmployeeTest();
+        assertNotNull(searchEmployeeController);
+        searchEmployeeController.onStart();
+        searchEmployeeController.onSearch("1");
+        searchEmployeeController.onSearch("");
+
+    }
+    @Override
+    public void onNoEmployeeFound(String message) {
+        assertEquals("ghj",message);
+
+    }
+
+    @Override
+    public void onEmployeeFound(ArrayList<Result> list) {
+        assertNotNull(list);
+        assertNotEquals(0,list.size());
+
+    }
+
+    @Override
+    public void onEmployeeSelected(String tilte) {
+
+    }
+
+    @Override
+    public void onUpdate() {
+
+    }
+
+    @Override
+    public void onDelete() {
+
+    }
+
+    @Override
+    public void onPresenceReport() {
+
+    }
+
+    @Override
+    public void onStatistics() {
+
+    }
+}
+

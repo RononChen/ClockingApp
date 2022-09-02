@@ -77,7 +77,9 @@ public int connectUser(Employee employee, String password){
       // open();
         SQLiteStatement statement;
         String query = "INSERT INTO employe (matricule,nom,prenom,sexe,birthdate," +
-                "couriel,qr_code,photo,username,password,type) VALUES(?,?,?,?,?,?,?,?,?,?,?) ";
+                "couriel,username,password,type) VALUES(?,?,?,?,?,?,?,?,?) ";
+
+
 
                 statement=Database.compileStatement(query);
 
@@ -88,11 +90,9 @@ public int connectUser(Employee employee, String password){
         statement.bindString (4, Character.toString((char) employee.getGender()));
         statement.bindString(5,employee.getBirthdate());
         statement.bindString(6,employee.getMailAddress());
-        statement.bindBlob(7, employee.getQRCode());
-         statement.bindBlob(8,employee.getPicture());
-        statement.bindString(9,employee.getUsername());
-        statement.bindString(10,employee.getPassword());
-        statement.bindString(11,employee.getType());
+        statement.bindString(7,employee.getUsername());
+        statement.bindString(8,employee.getPassword());
+        statement.bindString(9,employee.getType());
 
         statement.executeInsert();
 
@@ -109,6 +109,7 @@ if(cursor.moveToFirst()) {
 }
 cursor.close();
 
+
 }
 public void changePassword(Employee employee,String newPassword){
 
@@ -123,12 +124,11 @@ statement.executeUpdateDelete();
 
 
 
-
 }
 //On peut modifier le courier ou la photo de l'employé
 
 
-    //Pour modifier le courier de l'employé
+    //update the email of employee
     public void update (Employee employee, String mailAddress){
 
         String query="UPDATE employe SET couriel =? WHERE matricule=?";
@@ -189,8 +189,6 @@ statement.executeUpdateDelete();
         cursor.close();
         return service;
     }
-
-
     public void delete(Employee employee){
         String query = "DELETE FROM employe WHERE matricule=?";
         SQLiteStatement statement ;
@@ -199,26 +197,31 @@ statement.executeUpdateDelete();
         statement.bindLong(1,employee.getRegistrationNumber());
         statement.executeUpdateDelete();
     }
-
-
 //Pour rechercher un employé
 
 /*On peut rechercher par matricule,nom,prénom,sexe,date de naissance ou mail
 //Cette méthode prend la donnée à rechercher et retourne
 un tableau contenant les emplyés vérifiant le motif de recherche*/
 
-    //c'est une méthode de classe
     public  Employee[] search(String data){
-                String query="SELECT matricule, employe.nom,prenom,photo " +
+        String query,queryAll;
+
+        queryAll="SELECT matricule, employe.nom,prenom,photo " +
+                "FROM employe JOIN service ON id_service=id_service_ref " ;
+
+                 query="SELECT matricule, employe.nom,prenom,photo " +
                 "FROM employe JOIN service ON id_service=id_service_ref " +
                 "WHERE  matricule||employe.nom||prenom||service.nom " +
                 "LIKE '%'||?||'%'";
 
-
                 String [] selectArg={data};
         ArrayList <Employee> employeeSet= new ArrayList<>();
         Employee employee;
-        Cursor cursor=Database.rawQuery(query,selectArg);
+        Cursor cursor;
+        if(Objects.equals(data, "*"))
+         cursor=Database.rawQuery(queryAll,null);
+        else
+            cursor=Database.rawQuery(query,selectArg);
         //cursor.moveToFirst();
 
         while (cursor.moveToNext())
@@ -236,58 +239,48 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
 
 
     public boolean exists(@NonNull Employee employee){
-     int n;
-       String query ="SELECT matricule FROM employe WHERE matricule=? OR username=? OR couriel=?";
-       String [] selectArg={Integer.valueOf(employee.getRegistrationNumber()).toString(),
-                             employee.getUsername(),
-               employee.getMailAddress()
-       };
-        Cursor cursor = Database.rawQuery(query,selectArg);
 
-             n=cursor.getCount();
-             cursor.close();
-        return n==1;
+     return registrationNumberExists(employee);
 
 
     }
-
     public boolean registrationNumberExists(@NonNull Employee employee){
-        int n;
+        boolean test;
         String query ="SELECT matricule FROM employe WHERE matricule=?";
         String [] selectArg={Integer.valueOf(employee.getRegistrationNumber()).toString()
         };
         Cursor cursor = Database.rawQuery(query,selectArg);
+ test=cursor.moveToFirst();
 
-        n=cursor.getCount();
         cursor.close();
-        return n==1;
+
+        return test;
     }
+
     public boolean usernameExists(@NonNull Employee employee){
 
-        int n;
+        boolean test;
         String query ="SELECT username FROM employe WHERE username =?";
         String [] selectArg={employee.getUsername()};
         Cursor cursor = Database.rawQuery(query,selectArg);
+test=cursor.moveToFirst();
 
-        n=cursor.getCount();
         cursor.close();
-        return n==1;
+        return test;
     }
     public boolean emailExists(@NonNull Employee employee){
 
-        int n;
+        boolean test;
         String query ="SELECT couriel FROM employe WHERE couriel =?";
         String [] selectArg={employee.getMailAddress()};
         Cursor cursor = Database.rawQuery(query,selectArg);
-        n=cursor.getCount();
+        test=cursor.moveToFirst();
         cursor.close();
-        return n==1;
+        return test;
     }
 
 
     public void setInformations(Employee employee){
-       // open();
-
         String query;
         String [] selectArgs;
         Cursor cursor;
@@ -299,16 +292,12 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
                     Integer.valueOf(employee.getRegistrationNumber()).toString()
             };
 
-
-
-
          cursor =Database.rawQuery(query,selectArgs);
        if( cursor.moveToFirst()) {
            //employee.setRegistrationNumber();
            employee.setLastname(cursor.getString(0));
            employee.setFirstname(cursor.getString(1));
            employee.setGender(cursor.getString(2).charAt(0));
-
            employee.setPicture(cursor.getBlob(3));
            employee.setType(cursor.getString(4));
            employee.setMailAddress(cursor.getString(5));
@@ -318,9 +307,38 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
 
        }
        cursor.close();
-      // close();
+
 
     }
+    public void setInformationsWithoutPiture(Employee employee){
+
+        String query;
+        String [] selectArgs;
+        Cursor cursor;
+
+
+        query = "SELECT nom,prenom,sexe,type,couriel," +
+                "username,birthdate FROM employe WHERE matricule=?";
+        selectArgs= new String[]{
+                Integer.valueOf(employee.getRegistrationNumber()).toString()
+        };
+
+        cursor =Database.rawQuery(query,selectArgs);
+        if( cursor.moveToFirst()) {
+            //employee.setRegistrationNumber();
+            employee.setLastname(cursor.getString(0));
+            employee.setFirstname(cursor.getString(1));
+            employee.setGender(cursor.getString(2).charAt(0));
+            employee.setType(cursor.getString(3));
+            employee.setMailAddress(cursor.getString(4));
+            employee.setUsername(cursor.getString(5));
+            employee.setBirthdate(cursor.getString(6));
+
+        }
+        cursor.close();
+
+    }
+
 
 
 

@@ -7,16 +7,24 @@ public interface IEmployee {
 
      String getLastname() ;
 
-     int getGender() ;
+     char getGender() ;
 
-     String getBirthdate() ;String getMailAddress() ;
+     String getBirthdate() ;
+     String getMailAddress() ;
       byte[] getPicture() ;
 
-     byte[] getQRCode();
      String getUsername();
      String getPassword();
 
      int isValid();
 
-    void setPassword(String string);
+
+    void setPassword(String password);
+    void setUsername(String username);
+    void setFirstname(String firstname);
+    void setLastname(String lastname);
+    void setMailAddress(String mailAddress);
+    void setGender(char gender);
+    void setRegistrationNumber(int registrationNumber);
+    void setPicture(byte[] picture);
 }

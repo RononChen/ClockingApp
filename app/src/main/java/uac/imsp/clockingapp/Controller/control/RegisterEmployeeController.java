@@ -23,6 +23,9 @@ import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Objects;
 
 import uac.imsp.clockingapp.Controller.util.IRegisterEmployeeController;
@@ -40,6 +43,9 @@ public class RegisterEmployeeController implements IRegisterEmployeeController
     IRegisterEmployeeView registerEmployeeView;
    private ServiceManager serviceManager;
    private Context context;
+   private String fileName;
+    FileOutputStream qrCodeFileOutputStream;
+    File file;
 
 
 
@@ -56,6 +62,7 @@ public class RegisterEmployeeController implements IRegisterEmployeeController
 
     @Override
     public String[] onLoad() {
+
        // String serviceLIst[]
         serviceManager = new ServiceManager(context);
 
@@ -71,7 +78,9 @@ public class RegisterEmployeeController implements IRegisterEmployeeController
                                    String username, String password, String passwordConfirm,
                                    String selectedService, int startTime, int endTime,
                                    byte[] picture, String type) {
-
+String [] to=null;
+String subject=null, message=null;
+String gend=null;
         int registerCode;
         int n;
         Service service;
@@ -87,11 +96,12 @@ public class RegisterEmployeeController implements IRegisterEmployeeController
 
         PlanningManager planningManager;
         Planning planning;
-        EmployeeManager employeeManager;
+        EmployeeManager employeeManager = null;
         try {
             n = Integer.parseInt(number);
             employee=new Employee(n,lastname,firstname,gender.charAt(0),
                     birthdate,mail,picture,username,password,type);
+
             registerCode=employee.isValid();
 
 
@@ -138,7 +148,6 @@ public class RegisterEmployeeController implements IRegisterEmployeeController
        registerEmployeeView.onRegisterEmployeeError("Vérifier le mot de passe " +
                "et resssayer !");
    else{
-
        employeeManager = new EmployeeManager(context);
        employeeManager.open();
 
@@ -155,8 +164,41 @@ public class RegisterEmployeeController implements IRegisterEmployeeController
 
 
        else {
-           qrCode = generateQRCode(number);
-           employee.setQRCode(qrCode);
+           to = new String[]{employee.getMailAddress()};
+           subject = "Informations de compte employé";
+
+           gend = employee.getGender() == 'M' ? "Monsieur" : "Madame";
+           message = gend + " " + employee.getFirstname() + " " + employee.getLastname() +
+                   ", vous avez été enregistré en tant qu'employé.\nConsultez ci-dessous" +
+                   " les informations de votre compte.\n" +
+                   "Username: " + employee.getUsername() + "\n" +
+                   "Mot de passe: " + employee.getPassword() + "\n" +
+                   "Recevez également en pièce jointe votre code QR.\n" +
+                   "Il vous permettra d'enregistrer vos entrées et sorties.";
+           try {
+
+               fileName = "qr_code_" + employee.getRegistrationNumber() + "_" +
+                       employee.getFirstname() + "_" + employee.getLastname() +
+                       ".png";
+               file = new File(context.getFilesDir(), fileName);
+
+               file.createNewFile();
+
+           } catch (IOException e) {
+               e.printStackTrace();
+           }
+
+
+           qrCode = generateQRCode(number);//byte array
+           try {
+               qrCodeFileOutputStream = new FileOutputStream(file);
+               qrCodeFileOutputStream.write(qrCode);
+               qrCodeFileOutputStream.flush();
+               qrCodeFileOutputStream.close();
+           } catch (IOException e) {
+               e.printStackTrace();
+
+           }
            planning = new Planning(formatTime(startTime), formatTime(endTime));
            planningManager = new PlanningManager(context);
            planningManager.open();
@@ -170,8 +212,7 @@ public class RegisterEmployeeController implements IRegisterEmployeeController
            serviceManager.create(service);
            serviceManager.close();*/
 
-
-           service=new Service(selectedService);
+           service = new Service(selectedService);
            serviceManager.searchService(service);
            serviceManager.close();
 
@@ -179,13 +220,20 @@ public class RegisterEmployeeController implements IRegisterEmployeeController
            employeeManager.update(employee, planning);
            employeeManager.update(employee, service);
 
+           if (employee.getPicture() != null)
+               employeeManager.update(employee, employee.getPicture());
+
            registerEmployeeView.onRegisterEmployeeSuccess("Employé enregistré avec succès");
+           registerEmployeeView.sendEmail(to, subject, message, fileName);
+       }
+       employeeManager.close();
+
 
        }
-      employeeManager.close();
+
    }
 
-    }
+
 
     public ServiceManager getServiceManager() {
         return serviceManager;
@@ -195,15 +243,18 @@ public class RegisterEmployeeController implements IRegisterEmployeeController
         this.serviceManager = serviceManager;
     }
 
+
     @Override
-    public byte[] generateQRCode(String myText) {
+    public byte[] generateQRCode(String regNumber) {
         //initializing MultiFormatWriter for QR code
         MultiFormatWriter mWriter = new MultiFormatWriter();
         try {
             //BitMatrix class to encode entered text and set Width & Height
-            BitMatrix mMatrix = mWriter.encode(myText, BarcodeFormat.QR_CODE, 400, 400);
+            BitMatrix mMatrix = mWriter.encode(regNumber, BarcodeFormat.QR_CODE,
+                    400, 400);
             BarcodeEncoder mEncoder = new BarcodeEncoder();
-            Bitmap mBitmap = mEncoder.createBitmap(mMatrix);//creating bitmap of code
+            Bitmap mBitmap = mEncoder.createBitmap(mMatrix);
+            //creating bitmap of code
 
             return getBytesFromBitmap(mBitmap);
         } catch (WriterException e) {
@@ -211,13 +262,19 @@ public class RegisterEmployeeController implements IRegisterEmployeeController
         }
         return new byte[0];
     }
-    public  static byte[] getBytesFromBitmap(Bitmap bitmap) {
+    public   byte[] getBytesFromBitmap(Bitmap bitmap) {
+
         if (bitmap != null) {
+
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
-            bitmap.compress(Bitmap.CompressFormat.PNG, 70, stream);
+            bitmap.compress(Bitmap.CompressFormat.PNG,70,stream);
+
+
+
             return stream.toByteArray();
         }
         return new byte[0];
+
     }
 public String formatTime(int time) {
   if(time <10)

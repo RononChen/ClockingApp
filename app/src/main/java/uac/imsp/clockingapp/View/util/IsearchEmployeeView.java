@@ -17,6 +17,7 @@ public interface IsearchEmployeeView {
     void onDelete();
     void onPresenceReport();
     void onStatistics();
+//    void onStart();
 
 
 }
