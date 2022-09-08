@@ -16,7 +16,8 @@ public interface IUpdateEmployeeController {
 
 
                           int endTime, Bitmap picture, String type);
-    void onConfirmResult(Boolean confirmed);
+    void onConfirmResult(boolean confirmed,boolean pictureUpdated,boolean planningUpdated);
+
 
 
     void onReset();

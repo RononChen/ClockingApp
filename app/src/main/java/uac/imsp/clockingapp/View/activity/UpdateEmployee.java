@@ -48,6 +48,7 @@ public class UpdateEmployee extends AppCompatActivity
     private ImageView image;
     private Bitmap picture;
     private Integer Start, End;
+    private boolean pictureUpdated,planningUpdated;
    private AlertDialog.Builder builder;
 
     IUpdateEmployeeController updateEmployeePresenter;
@@ -240,6 +241,8 @@ public class UpdateEmployee extends AppCompatActivity
                         }
                         image.setImageBitmap(
                                 selectedImageBitmap);
+                        //picture is updated if selected bitmap is ot null
+                        pictureUpdated= selectedImageBitmap != null;
 
                     }
                 }
@@ -279,14 +282,15 @@ public class UpdateEmployee extends AppCompatActivity
                 .setPositiveButton(pos, (dialog, which) -> {
 
                     new ToastMessage(UpdateEmployee.this,"Confirmé");
-                    updateEmployeePresenter.onConfirmResult(true);
+                    updateEmployeePresenter.onConfirmResult(true,
+                            pictureUpdated,planningUpdated );
                     UpdateEmployee.this.finish();
                     startActivity(getIntent());
                 })
                 .setNegativeButton(neg, (dialog, which) -> {
                     new ToastMessage(UpdateEmployee.this,"Annulé");
 
-                    updateEmployeePresenter.onConfirmResult(false);
+                    updateEmployeePresenter.onConfirmResult(false,pictureUpdated ,planningUpdated );
                     UpdateEmployee.this.finish();
                     startActivity(getIntent());
                 });
@@ -312,6 +316,7 @@ public class UpdateEmployee extends AppCompatActivity
 
     @Override
     public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+        planningUpdated=true;
 
         if(picker.getId()==R.id.register_planning_start_choose
                 && 5<newVal && 10>newVal) {

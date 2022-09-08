@@ -53,7 +53,8 @@
                 android:textColor="@color/black"
                 android:fontFamily="@font/latoregular"
                 android:textSize="18dp"
-                android:text="@string/register_number_text" />
+                android:text="Matricule" />
+
 
             <EditText
                 android:id="@+id/register_number"

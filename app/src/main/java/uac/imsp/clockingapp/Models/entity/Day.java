@@ -67,7 +67,8 @@ public class Day  implements IDay {
 
     }
 
-/*public int getDay(){
+/*//public int getDay(){
+
 
 }*/
     public int getYear() {

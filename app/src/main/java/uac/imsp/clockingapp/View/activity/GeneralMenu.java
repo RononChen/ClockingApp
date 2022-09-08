@@ -13,15 +13,15 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import uac.imsp.clockingapp.Controller.control.MenuController;
-import uac.imsp.clockingapp.Controller.util.IMenuController;
+import uac.imsp.clockingapp.Controller.control.GeneralMenuController;
+import uac.imsp.clockingapp.Controller.util.IGeneralMenuController;
 import uac.imsp.clockingapp.R;
-import uac.imsp.clockingapp.View.util.IMenuView;
+import uac.imsp.clockingapp.View.util.IGeneralMenuView;
 
 public class GeneralMenu extends AppCompatActivity implements View.OnClickListener,
-        IMenuView {
+        IGeneralMenuView {
 
-    IMenuController menuPresenter;
+    IGeneralMenuController menuPresenter;
     private int currentUser;
     Intent intent ;
 
@@ -32,10 +32,11 @@ public class GeneralMenu extends AppCompatActivity implements View.OnClickListen
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_general_menu);
        initView();
-       menuPresenter= new MenuController(this) ;
+       menuPresenter= new GeneralMenuController(this) ;
        currentUser=getIntent().getIntExtra("CURRENT_USER",0);
     }
         @Override
+
 
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
         MenuInflater inflater=getMenuInflater();

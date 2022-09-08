@@ -1,118 +1,54 @@
 package uac.imsp.clockingapp.Controller.control;
 
-import android.content.Context;
-
 import uac.imsp.clockingapp.Controller.util.IMenuController;
-import uac.imsp.clockingapp.Models.dao.EmployeeManager;
-import uac.imsp.clockingapp.Models.entity.Employee;
 import uac.imsp.clockingapp.View.util.IMenuView;
 
-public class MenuController  implements IMenuController {
-    private IMenuView menuView;
-    private Employee employee;
-    private EmployeeManager employeeManager;
-
+public class MenuController implements IMenuController {
+    IMenuView menuView;
 
     public MenuController(IMenuView menuView){
         this.menuView=menuView;
 
-
-    }
-
-
-    @Override
-    public void onSearchEmployeeMenu(int currentUser) {
-        employeeManager=new EmployeeManager((Context) menuView);
-        employeeManager.open();
-        employee=new Employee(currentUser);
-
-   if(employeeManager.isNotSuperUser(employee))
-       menuView.onSearchEmployeeMenuError("Vous n'avez pas la permission de rechercher des employes");
-   else
-        menuView.onSearchEmployeeMenuSuccessfull();
-        employeeManager.close();
     }
 
     @Override
-    public void onUpdateEmployeeMenu(int currentUser) {
-        employeeManager=new EmployeeManager((Context) menuView);
-        employeeManager.open();
-        employee=new Employee(currentUser);
-
-        if(employeeManager.isNotSuperUser(employee))
-            menuView.onUpdateEmployeeMenuError("Vous n'avez pas la permission de modifier des employés");
-        else
-            menuView.onUpdateEmployeeMenuSuccessfull();
-        employeeManager.close();
+    public void onParametersMenu() {
 
     }
 
     @Override
-    public void onDeleteEmployeeMenu(int currentUser) {
-        employeeManager=new EmployeeManager((Context) menuView);
-        employeeManager.open();
-        employee=new Employee(currentUser);
-
-        if(employeeManager.isNotSuperUser(employee))
-            menuView.onDeleteEmployeeMenuError("Vous n'avez pas la permission de modifier des employés !");
-        else
-            menuView.onDeleteEmployeeMenuSucessfull();
-
-        employeeManager.close();
-
-
-    }
-
-
-    @Override
-    public void onRegisterEmployeeMenu(int currentUser) {
-
-        employeeManager=new EmployeeManager((Context) menuView);
-        employeeManager.open();
-        employee=new Employee(currentUser);
-
-        if(employeeManager.isNotSuperUser(employee))
-
-            menuView.onRegisterEmployeeMenuError("Vous n'avez pas la permission de supprimer des employés !");
-        else
-            menuView.onRegisterEmployeeMenuSuccessful();
-      employeeManager.close();
-    }
-
-    @Override
-    public void onClocking() {
-        menuView.onClocking();
+    public void onDarkMode() {
 
     }
 
     @Override
-    public void onConsultatisticsMenu(int currentUser) {
-        employeeManager=new EmployeeManager((Context) menuView);
-        employeeManager.open();
-        employee=new Employee(currentUser);
-
-        if(employeeManager.isNotSuperUser(employee))
-            menuView.onConsultatisticsMenuError("Vous n'avez pas cette permission");
-        else
-            menuView.onConsultatisticsMenuSuccessful();
-        employeeManager.close();
+    public void onLanguageMenu() {
+        menuView.onLanguageMenu();
 
     }
 
-
     @Override
-    public void onConsultPresenceReport() {
-        menuView.onConsultPresenceReport();
+    public void onFreeMemory() {
 
-      //All employees can cansult threir presence report
     }
 
+    @Override
+    public void onReportProblem() {
+
+    }
 
     @Override
-    public void onExit() {
-        menuView.onExit("Oui","Annuler","Confirmation","Voulez vous vraiment quitter l'application");
+    public void onLeave() {
+
+    }
+
+    @Override
+    public void onLanguageSelected(int which) {
+        if(which==0)
+            menuView.changeLanguageTo("en");
+        else if(which==1)
+            menuView.changeLanguageTo("fr");
+
 
     }
 }
-
-

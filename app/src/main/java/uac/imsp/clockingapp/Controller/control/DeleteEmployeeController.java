@@ -105,8 +105,9 @@ public class DeleteEmployeeController implements IDeleteEmployeeController {
             return;
         employeeManager=new EmployeeManager(context);
         employeeManager.open();
+        //employeeManager.setInformations(employee);
+        employeeManager.delete(employee);
 
-        employeeManager.setInformations(employee);
 
 
         employeeManager.close();

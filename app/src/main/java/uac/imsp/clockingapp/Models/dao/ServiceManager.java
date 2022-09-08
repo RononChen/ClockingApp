@@ -123,14 +123,16 @@ public class ServiceManager {
 
     }*/
     public boolean searchService(Service service){
-        Boolean test;
+        boolean test;
         String query="SELECT id_service FROM service WHERE nom=? ";
+
         String [] selectArg={
                 service.getName()
         };
         Cursor cursor=Database.rawQuery(query,selectArg);
         cursor.moveToFirst();
         test=cursor.getCount()==1;
+
 
         if(test) {
             service.setId(Integer.parseInt(cursor.getString(0)));

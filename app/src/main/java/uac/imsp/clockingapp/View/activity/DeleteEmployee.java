@@ -32,7 +32,7 @@ public class DeleteEmployee extends AppCompatActivity
     private Integer Start, End;
 
     IDeleteEmployeeController deleteEmployeePresenter;
-    private ToastMessage Toast;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -129,8 +129,7 @@ public class DeleteEmployee extends AppCompatActivity
 
     @Override
     public void onDeleteSuccessfull(String message) {
-        Toast = new ToastMessage(this, message);
-        Toast.show();
+         new ToastMessage(this, message);
 
     }
 

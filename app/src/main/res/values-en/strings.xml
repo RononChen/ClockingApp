@@ -1,0 +1,130 @@
+<resources>
+
+    <string name="app_name" translatable="false">ClockingApp</string>
+    <string name="register_button">Add</string>
+    <string name="register_name_hint">Lastname</string>
+    <string name="register_lastname_text">Lastname</string>
+    <string name="login_username_hint">Username</string>
+    <string name="login_password_hint">Password</string>
+
+
+    <string-array name="months">
+        <item>January</item>
+        <item>February</item>
+
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
+    <string name="male">Male</string>
+
+    <string name="Email">Email</string>
+    <string name="register_username_text">Username</string>
+
+    <string name="register_password">Password</string>
+    <string name="register_password_confirm">Confirm the password</string>
+    <string name="reset_button">Cancel</string>
+    <string name="birthdate">Birthdate</string>
+    <string name="register_picture">Add a picture</string>
+    <string name="login_password_text">Password</string>
+    <string name="login_username_text">Username</string>
+    <string name="login">Identify yourself</string>
+    <string name="login_button_text">Authenticate yourself</string>
+    <string name="menu_report_employee_button">Consult presence report</string>
+    <string name="menu_statistics">Consult statistics</string>
+    <string name="nom">Nom</string>
+
+    <string name="nom_">Nom</string>
+
+    <string name="sexe_i">Gender</string>
+    <string name="date_de_naissance_">Birhdat</string>
+    <string name="service">Service</string>
+    <string name="service_">Service</string>
+    <string name="heure_de_d_but">Start time</string>
+    <string name="heure_de_fin">End time</string>
+    <string name="img">img</string>
+
+    <string name="update_picture">Change the picture</string>
+
+    <string name="LAUNCH_URL">LAUNCH URL</string>
+    <string name="consult_stat">Statistics by service</string>
+
+    <string name="register_employe_type_text">Type  of employee</string>
+    <string name="register_service_label">Service</string>
+    <string name="register_planning_label">Planning de travail quotidien</string>
+    <string name="welcome">Welcome</string>
+    <string name="name">Nom et prénom</string>
+    <string name="statistics">Statistics</string>
+    <string name="update">Update</string>
+
+    <string name="clocking_text">Mark attendance</string>
+    <string name="search_status">Statute</string>
+    <string name="todo">TODO</string>
+    <string name="tod">TODO</string>
+    <string name="param_tres">Paramètres</string>
+    <string name="add_employee">Add employee</string>
+    <string name="confirm_new_password">Confirm the new password</string>
+    <string name="new_password">Nouveau mot de passe</string>
+    <string name="modify">Update</string>
+
+    <string-array name="employee_types">
+        <item>Simple</item>
+        <item>Directeur</item>
+        <item>Chef personnel</item>
+    </string-array>
+
+    <string-array name="days">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+
+    </string-array>
+    <string-array name="actions">
+        <item>Modifier</item>
+        <item>Supprimer</item>
+        <item>Presence report</item>
+        <item>Presence statistics</item>
+    </string-array>
+    <string name="start">dr</string>
+    <string name="old_password">Old password</string>
+    <string name="register_mail_address_text">Mail address</string>
+    <string name="logout">Login out</string>
+    <string name="date_de_naissance">Birthdate</string>
+    <string name="welcome_">Welcome</string>
+    <string name="actualiser">Realize</string>
+    <string name="female">Female</string>
+    <string name="start_time">Start time</string>
+    <string name="end_time">End time</string>
+    <string name="matricule">Registration number</string>
+    <string name="form_title">Employees registration form</string>
+    <string name="presence">Presence report</string>
+    <string name="welcomes">Welcome on ClockingApp</string>
+    <string name="registration_title">Enter employee informations please</string>
+    <string name="menu_delete_button">Delete employee</string>
+    <string name="delete_button">Delete</string>
+    <string name="delete">Delete</string>
+    <string name="suppression_d_employ">Employee deletion</string>
+    <string name="sexe">Gender</string>
+    <string name="menu_search_button">Search employee</string>
+    <string name="quit">Leave</string>
+    <string name="register_firstname_text">Firstname(s)</string>
+    <string name="menu_clock_button">Mark attendance</string>
+    <string name="more">More</string>
+    <string name="menu_update_button">Update employee</string>
+    <string name="modifier">Update</string>
+    <string name="update_button">Update</string>
+    <string name="english">English</string>
+
+
+</resources>

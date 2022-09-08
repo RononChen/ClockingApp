@@ -75,8 +75,6 @@ public class SearchEmployee extends AppCompatActivity
         adapter = new ListViewAdapter(this, employeeList);
         this.list.setAdapter(adapter);
         this.list.setVisibility(View.VISIBLE);
-        //search.clearFocus();
-       // search.setFocusable(false);
     }
 
     @Override

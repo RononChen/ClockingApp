@@ -1,13 +1,15 @@
 <resources>
+
     <string name="app_name">ClockingApp</string>
+
     <string name="form_title">Formulaire d\'enregistrement des employés</string>
-    <string name="start">Enregistrer un employé</string>
     <string name="registration_title">Veillez saisir les informations de l\'employé</string>
     <string name="register_button">Enregistrer</string>
     <string name="register_name_hint">Nom</string>
     <string name="register_lastname_text">Nom</string>
     <string name="login_username_hint">Username</string>
     <string name="login_password_hint">Mot de passe</string>
+
 
 
     <string-array name="months">
@@ -33,12 +35,11 @@
     <string name="register_password">Mot de passe</string>
     <string name="register_password_confirm">Confirmer le mot de passe</string>
     <string name="reset_button">Annuler</string>
-    <string name="register_number_text">Matricule </string>
     <string name="birthdate">Date de naissance</string>
     <string name="register_picture">Ajouter une photo</string>
     <string name="login_password_text">Mot de passe</string>
     <string name="login_username_text">Username</string>
-    <string name="login">Identifiez vous pour accéder  au menu</string>
+    <string name="login">Identifiez vous</string>
     <string name="login_button_text">S\'authentifier</string>
     <string name="menu_delete_button">Supprimer  employé</string>
     <string name="menu_update_button">Modifier  employé</string>
@@ -95,7 +96,6 @@
     <string name="quit">Quitter</string>
     <string name="welcome_">Accueil</string>
     <string name="param_tres">Paramètres</string>
-    <string name="add_employee">Ajouter employé</string>
     <string name="old_password">Ancien mot de passe</string>
     <string name="confirm_new_password">Confirmer le nouveau mot de passe</string>
     <string name="new_password">Nouveau mot de passe</string>
@@ -122,7 +122,17 @@
         <item>Supprimer</item>
         <item>Etat de présence</item>
         <item>Statistiques de présence</item>
+
     </string-array>
+    <string-array name="languages">
+        <item>English</item>
+        <item>French</item>
+
+    </string-array>
+    <string name="start">dr</string>
+    <string name="add_employee">Ajouter employé</string>
+    <string name="english">English</string>
+    <string name="french" translatable="false">French</string>
 
 
 </resources>

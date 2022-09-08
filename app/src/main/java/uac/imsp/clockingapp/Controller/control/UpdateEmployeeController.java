@@ -27,6 +27,7 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
     private EmployeeManager employeeManager;
    private  PlanningManager planningManager;
    private  ServiceManager serviceManager;
+   private Context context;
     Service service;
     Planning planning;
     String mail,type;
@@ -35,14 +36,17 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
     public UpdateEmployeeController(IUpdateEmployeeView updateEmployeeView)
     {
         this.updateEmployeeView=updateEmployeeView;
-       /* employeeManager=new EmployeeManager((Context) updateEmployeeView);
-        planningManager=new PlanningManager((Context) updateEmployeeView);
-        serviceManager=new ServiceManager((Context) updateEmployeeView);
-        employeeManager.open();
-        planningManager.open();
-        serviceManager.open();*/
+        this.context= (Context) updateEmployeeView;
+
     }
-//    public UpdateEmployeeController(EV)
+  public UpdateEmployeeController(IUpdateEmployeeView updateEmployeeView,
+                                  Context context){
+        this.updateEmployeeView=updateEmployeeView;
+        this.context=context;
+
+  }
+
+
 
 
 
@@ -57,26 +61,29 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
   Service service;
   Planning planning;
   String [] serviceList;
-        planningManager=new PlanningManager((Context) updateEmployeeView);
-        serviceManager=new ServiceManager((Context) updateEmployeeView);
-        employeeManager=new EmployeeManager((Context) updateEmployeeView);
-        employeeManager.open();
-        planningManager.open();
-        serviceManager.open();
+        //planningManager=new PlanningManager(context);
+
+        employeeManager=new EmployeeManager(context);
+
+        //planningManager.open();
+
         employee=new Employee(number);
+        employeeManager.open();
        employeeManager.setInformations(employee);
        planning=employeeManager.getPlanning(employee);
        service =employeeManager.getService(employee);
-       serviceManager.searchService(service);//set id
-        serviceList =serviceManager.getAllServices();
+       employeeManager.close();
 
-        serviceManager.close();
+        serviceManager=new ServiceManager(context);
+       serviceManager.open();
+        serviceList =serviceManager.getAllServices();
+       serviceManager.searchService(service);//set id
+        //serviceManager.close();
+
 
        informations.put("number",String.valueOf(employee.getRegistrationNumber()));
        informations.put("lastname",employee.getLastname());
         informations.put("firstname",employee.getFirstname());
-
-       // if(employee.getPicture()!=null)
         try {
 
             informations.put("picture", getBitMapFromBytes(employee.getPicture()));
@@ -97,18 +104,15 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
         return serviceList;
 
     }
-
-
-
     @Override
     public void onUpdateEmployee(String mail, String selectedService, int startTime,
                                  int endTime, Bitmap picture, String type) {
         String s,e;
-     //gestion du clic sur modifier employé
+     // handle click on Update
 
-        planningManager=new PlanningManager((Context) updateEmployeeView);
-        serviceManager=new ServiceManager((Context) updateEmployeeView);
-        employeeManager=new EmployeeManager((Context) updateEmployeeView);
+        planningManager=new PlanningManager(context) ;
+        serviceManager=new ServiceManager(context) ;
+        employeeManager=new EmployeeManager(context);
         employeeManager.open();
         planningManager.open();
         serviceManager.open();
@@ -131,15 +135,16 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
 
         updateEmployeeView.askConfirmUpdate("Oui","Non",
 
-                "Confirmation","Voulez vous " +
-                "vraiment appliquer ces modifications ?");
+                "Confirmation",
+                "Voulez vous vraiment appliquer ces modifications ?");
 
 
 
     }
 
     @Override
-    public void onConfirmResult(Boolean confirmed) {
+    public void onConfirmResult(boolean confirmed,boolean pictureUpdated,
+                                boolean planningUpdated) {
 
         boolean update=false;
 
@@ -148,12 +153,14 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
             return;
 
 
-            //compare the email entred to the real email of the emp
+            //compare the email entered to the real email of the emp
             if (!Objects.equals(employee.getMailAddress(), mail)) {
                 if (TextUtils.isEmpty(mail))
-                    updateEmployeeView.onUpdateEmployeeError("L'adresse email est requis !");
+                    updateEmployeeView.onUpdateEmployeeError
+                            ("Email requis !");
+
                 else if (!Patterns.EMAIL_ADDRESS.matcher(mail).matches())
-                    updateEmployeeView.onUpdateEmployeeError("Adresse email invalide !");
+                    updateEmployeeView.onUpdateEmployeeError("Email invalide !");
                 else {
                     employeeManager.update(employee, mail);
                     update = true;
@@ -165,15 +172,15 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
                 employeeManager.changeGrade(employee, type);
                 update = true;
             }
+
             if (!Objects.equals(employeeManager.getService(employee), service)
             ) {
                 employeeManager.update(employee, service);
                 update = true;
             }
-            if (!Objects.equals(employeeManager.getPlanning(employee), planning)) {
-                employeeManager.update(employee, planning);
+            if (pictureUpdated||planningUpdated)
                 update = true;
-            }
+
 
             if (employee.getPicture() != getBytesFromBitmap(picture)) {
                 employeeManager.update(employee, getBytesFromBitmap(picture));
@@ -222,6 +229,5 @@ public static Bitmap getBitMapFromBytes(byte[] array){
 
 
 }
-//public  String extractHour()
 
 }

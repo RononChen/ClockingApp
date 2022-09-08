@@ -46,7 +46,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
                 android:layout_marginTop="65dp"
-                android:text="@string/register_number_text" />
+                android:text="Matricule"/>
+
 
             <EditText
                 android:id="@+id/register_number"

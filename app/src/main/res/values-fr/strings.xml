@@ -1,0 +1,138 @@
+<resources>
+
+    <string name="app_name">ClockingApp</string>
+
+    <string name="form_title">Formulaire d\'enregistrement des employés</string>
+    <string name="registration_title">Veillez saisir les informations de l\'employé</string>
+    <string name="register_button">Enregistrer</string>
+    <string name="register_name_hint">Nom</string>
+    <string name="register_lastname_text">Nom</string>
+    <string name="login_username_hint">Username</string>
+    <string name="login_password_hint">Mot de passe</string>
+
+
+
+    <string-array name="months">
+        <item>Janvier</item>
+        <item>Février</item>
+        <item>Mars</item>
+        <item>Avril</item>
+        <item>Mai</item>
+        <item>Juin</item>
+        <item>Juillet</item>
+        <item>Août</item>
+        <item>Septembre</item>
+        <item>Octobre</item>
+        <item>Novembre</item>
+        <item>Décembre</item>
+    </string-array>
+    <string name="male">Masculin</string>
+
+    <string name="female">Féminin</string>
+    <string name="Email">Email</string>
+    <string name="register_username_text">Username</string>
+
+    <string name="register_password">Mot de passe</string>
+    <string name="register_password_confirm">Confirmer le mot de passe</string>
+    <string name="reset_button">Annuler</string>
+    <string name="birthdate">Date de naissance</string>
+    <string name="register_picture">Ajouter une photo</string>
+    <string name="login_password_text">Mot de passe</string>
+    <string name="login_username_text">Username</string>
+    <string name="login">Identifiez vous</string>
+    <string name="login_button_text">S\'authentifier</string>
+    <string name="menu_delete_button">Supprimer  employé</string>
+    <string name="menu_update_button">Modifier  employé</string>
+    <string name="menu_search_button">Rechercher  employé</string>
+    <string name="menu_report_employee_button">Consulter états de présence </string>
+    <string name="menu_statistics">Consulter statistiques</string>
+    <string name="menu_clock_button">Pointer</string>
+    <string name="suppression_d_employ">Suppression d\'employé</string>
+    <string name="matricule">Matricule</string>
+    <string name="nom">Nom</string>
+    <string name="delete_button">Supprimer</string>
+
+    <string name="nom_">Nom</string>
+    <string name="register_firstname_text">Prénom(s)</string>
+
+    <string name="sexe">Sexe</string>
+    <string name="sexe_i">Sexe</string>
+    <string name="date_de_naissance">Date de naissance</string>
+    <string name="date_de_naissance_">Date de naissance</string>
+    <string name="service">Service</string>
+    <string name="service_">Service</string>
+    <string name="heure_de_d_but">Heure de début</string>
+    <string name="heure_de_fin">Heure de fin</string>
+    <string name="modifier">Modifier</string>
+    <string name="actualiser">Actualiser</string>
+    <string name="img">img</string>
+    <string name="update_button">Modifier</string>
+
+    <string name="update_picture">Changer la photo</string>
+
+    <string name="LAUNCH_URL">LAUNCH URL</string>
+    <string name="consult_stat">Statistiques par service</string>
+
+    <string name="register_employe_type_text">Type d\'employé</string>
+    <string name="register_mail_address_text">Adresse email</string>
+    <string name="register_service_label">Service</string>
+    <string name="end_time">Heure de fin</string>
+    <string name="start_time">Heure de début</string>
+    <string name="register_planning_label">Planning de travail quotidien</string>
+    <string name="logout">Déconnexion</string>
+    <string name="welcome">Welcome</string>
+    <string name="name">Nom et prénom</string>
+    <string name="presence">Etat de présence</string>
+    <string name="statistics">Statistiques</string>
+    <string name="delete">Supprimer</string>
+    <string name="update">Modifier</string>
+
+    <string name="clocking_text">Pointer</string>
+    <string name="search_status">Statut</string>
+    <string name="welcomes">Bienvenue sur ClockingApp, une application permettant de suivre la présence des employés de l\'IMSP</string>
+    <string name="todo">TODO</string>
+    <string name="tod">TODO</string>
+    <string name="more">Plus</string>
+    <string name="quit">Quitter</string>
+    <string name="welcome_">Accueil</string>
+    <string name="param_tres">Paramètres</string>
+    <string name="old_password">Ancien mot de passe</string>
+    <string name="confirm_new_password">Confirmer le nouveau mot de passe</string>
+    <string name="new_password">Nouveau mot de passe</string>
+    <string name="modify">Modifier</string>
+
+    <string-array name="employee_types">
+        <item>Simple</item>
+        <item>Directeur</item>
+        <item>Chef personnel</item>
+    </string-array>
+
+    <string-array name="days">
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+
+    </string-array>
+    <string-array name="actions">
+        <item>Modifier</item>
+        <item>Supprimer</item>
+        <item>Etat de présence</item>
+        <item>Statistiques de présence</item>
+
+    </string-array>
+    <string-array name="languages">
+        <item>English</item>
+        <item>French</item>
+
+    </string-array>
+    <string name="start">dr</string>
+    <string name="add_employee">Ajouter employé</string>
+    <string name="english">English</string>
+    <string name="french" translatable="false">French</string>
+
+
+</resources>
