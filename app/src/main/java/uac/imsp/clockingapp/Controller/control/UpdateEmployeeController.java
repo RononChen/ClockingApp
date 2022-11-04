@@ -53,7 +53,8 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
 
 
     @Override
-    //Pour obtenir les listes de matricules et de services au chargement
+    //get service list and employee informations on load
+
 
     public  String [] onLoad(int number, Hashtable <String,Object> informations) {
         Day day;
@@ -173,13 +174,21 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
                 update = true;
             }
 
-            if (!Objects.equals(employeeManager.getService(employee), service)
+            if (!Objects.equals(employeeManager.getService(employee).getName(), service.getName())
             ) {
                 employeeManager.update(employee, service);
                 update = true;
             }
-            if (pictureUpdated||planningUpdated)
+            if (pictureUpdated) {
+                employeeManager.update(employee,getBytesFromBitmap(picture));
                 update = true;
+            }
+            if(planningUpdated)
+
+            {
+                employeeManager.update(employee,planning);
+                update=true;
+            }
 
 
             if (employee.getPicture() != getBytesFromBitmap(picture)) {

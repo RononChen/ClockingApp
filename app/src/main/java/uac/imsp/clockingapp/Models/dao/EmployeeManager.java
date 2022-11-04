@@ -24,9 +24,6 @@ public class EmployeeManager {
     private SQLiteDatabase Database=null;
     private final EmployeeSQLite employeeSQLite;
     //private Context context;
-
-
-
     public EmployeeManager(Context context) {
         employeeSQLite= new EmployeeSQLite(context);
     }
@@ -136,6 +133,7 @@ statement.executeUpdateDelete();
                 statement=Database.compileStatement(query);
         statement.bindString(1, mailAddress);
         statement.bindLong(2, employee.getRegistrationNumber());
+        statement.executeUpdateDelete();
     }
 
 
@@ -146,9 +144,10 @@ statement.executeUpdateDelete();
         statement=Database.compileStatement(query);
         statement.bindString(1, type);
         statement.bindLong(2, employee.getRegistrationNumber());
+        statement.executeUpdateDelete();
     }
 
-    //Pour modifier la photo de l'employé
+    //To update the picture of the employee
     public void update (Employee employee, byte[] picture){
         String query="UPDATE employe SET photo =? WHERE matricule=?";
         SQLiteStatement statement ;
@@ -159,10 +158,6 @@ statement.executeUpdateDelete();
     }
 
     public Planning getPlanning(Employee employee){
-
-
-        //open();
-        //EmployeeManager e = new EmployeeManager(())
         Planning planning=null ;
         String query="SELECT heure_debut_officielle,heure_fin_officielle " +
                 "FROM planning  JOIN employe ON id_planning=id_planning_ref " +
@@ -198,8 +193,7 @@ statement.executeUpdateDelete();
         statement.executeUpdateDelete();
     }
 //Pour rechercher un employé
-
-/*On peut rechercher par matricule,nom,prénom,sexe,date de naissance ou mail
+/*On peut rechercher par matricule,nom,prénom,ou service
 //Cette méthode prend la donnée à rechercher et retourne
 un tableau contenant les emplyés vérifiant le motif de recherche*/
 
@@ -355,12 +349,11 @@ test=cursor.moveToFirst();
         String query="UPDATE employe SET id_planning_ref=? WHERE matricule=?";
         SQLiteStatement statement=Database.compileStatement(query);
        statement.bindLong(1,planning.getId());
-
         statement.bindLong(2,employee.getRegistrationNumber());
         statement.executeUpdateDelete();
 
     }
-    //Retourne un tableau conteneant le matricule de tous les employés
+    //return a table that contains the l
     public String[] getAllEmployees(){
         ArrayList<String> employee= new ArrayList<>();
 
@@ -397,7 +390,6 @@ test=cursor.moveToFirst();
                 count = cursor.getInt(1);
                 row.put(service, count);
             }
-
         cursor.close();
         return  row;
     }

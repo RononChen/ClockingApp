@@ -49,10 +49,8 @@ public class UpdateEmployee extends AppCompatActivity
     private Bitmap picture;
     private Integer Start, End;
     private boolean pictureUpdated,planningUpdated;
-   private AlertDialog.Builder builder;
 
     IUpdateEmployeeController updateEmployeePresenter;
-    private ToastMessage Toast;
 
     public UpdateEmployee() {
     }
@@ -63,6 +61,7 @@ public class UpdateEmployee extends AppCompatActivity
         setContentView(R.layout.activity_update_employee);
         updateEmployeePresenter = new UpdateEmployeeController(this);
         try {
+
             initView();
         } catch (ParseException e) {
             e.printStackTrace();
@@ -93,18 +92,17 @@ public class UpdateEmployee extends AppCompatActivity
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-
-
         if (view.getId() == R.id.register_service) {
 
-            selectedService = String.valueOf(spinnerServices.getSelectedItem());
+            selectedService = spinnerServices.getItemAtPosition(position).toString();
 
 
         } else if (view.getId() == R.id.register_type)
-            selectedType = String.valueOf(spinnerTypes.getSelectedItem());
+            selectedType = spinnerTypes.getSelectedItem().toString();
 
 
     }
+
 
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
@@ -155,7 +153,8 @@ public class UpdateEmployee extends AppCompatActivity
         ArrayAdapter<String> dataAdapterR = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, services);
 
-        dataAdapterR.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dataAdapterR.setDropDownViewResource(android.R.layout.
+                simple_spinner_dropdown_item);
         spinnerServices.setAdapter(dataAdapterR);
         position=dataAdapterR.getPosition(selectedService);
         spinnerServices.setSelection(position);
@@ -163,7 +162,8 @@ public class UpdateEmployee extends AppCompatActivity
         dataAdapterR = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, employeTypes);
 
-        dataAdapterR.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        dataAdapterR.setDropDownViewResource(android.R.layout.
+                simple_spinner_dropdown_item);
         spinnerTypes.setAdapter(dataAdapterR);
         position=dataAdapterR.getPosition(selectedType);
         spinnerTypes.setSelection(position);
@@ -276,7 +276,7 @@ public class UpdateEmployee extends AppCompatActivity
     public void askConfirmUpdate(String pos, String neg, String title, String message) {
 
 
-        builder=new AlertDialog.Builder(this);
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(message)
                 .setCancelable(false)
                 .setPositiveButton(pos, (dialog, which) -> {
