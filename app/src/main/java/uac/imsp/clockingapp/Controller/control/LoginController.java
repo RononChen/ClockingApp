@@ -40,6 +40,7 @@ public class LoginController  implements ILoginController {
 
        // Construction d'un employé voulant se connecter
         Employee employee = new Employee(username,password);
+
          loginCode=employee.validUser();
         if(loginCode==EMPTY_USERNAME)
             loginView.onLoginError("Username requis !");
@@ -54,7 +55,7 @@ public class LoginController  implements ILoginController {
             //employeeManager=new EmployeeManager((Context) loginView);
             //employeeManager.open();
 
-            loginCode =employeeManager.connectUser(employee,password);
+            loginCode =employeeManager.connectUser(employee);
 
           //  employeeManager.close();
 

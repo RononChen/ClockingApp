@@ -8,6 +8,7 @@ public interface IRegisterEmployeeController {
                             String Username,String Password,String passwordConfirm,
                             String service,int startTime,int endTime,byte[] picture,String type);
     byte[] generateQRCode(String myText);
+     //String md5(String password);
 
 }
 

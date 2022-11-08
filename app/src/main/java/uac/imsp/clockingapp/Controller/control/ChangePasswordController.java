@@ -3,6 +3,9 @@ package uac.imsp.clockingapp.Controller.control;
 import android.content.Context;
 import android.text.TextUtils;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 import uac.imsp.clockingapp.Controller.util.IChangePasswordController;
 import uac.imsp.clockingapp.Models.dao.EmployeeManager;
 import uac.imsp.clockingapp.Models.entity.Employee;
@@ -37,6 +40,25 @@ private Employee employee;
           // oldPassword=
 
        }
+public String md5(String password) {
+        MessageDigest digest;
+        byte[] messageDigest;
+        StringBuffer hexString;
+        try{
+            digest=java.security.MessageDigest.getInstance("MD5");
+            messageDigest=digest.digest();
+            hexString=new StringBuffer();
+            for (byte element:messageDigest) {
+                hexString.append(Integer.toHexString(0xFF & element));
+                return hexString.toString();
+
+            }
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
 
     public String getOldPasssword() {
@@ -60,13 +82,14 @@ private Employee employee;
 
 
                 changePasswordView.onWrongPassword("Mot de passe invalide !");
-            else if (!oldPasswordEdited.equals(employee.getPassword()))
+            else if (!oldPasswordEdited.equals((md5(employee.getPassword()))))
                 changePasswordView.onWrongPassword("Mot de passe incorrect !");
 
             else if(!newPasswordConfirm.equals(newPassword))
+
                 changePasswordView.onWrongPassword("Vérifiez le mot de passe précédent et reessayez !");
             else {
-                employeeManager.changePassword(employee, newPassword);
+                employeeManager.changePassword(employee, (newPassword));
                 changePasswordView.onSuccess("Mot de passe changé avec succès");
             }
         }

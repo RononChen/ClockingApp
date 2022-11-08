@@ -215,10 +215,12 @@ String gend=null;
            service = new Service(selectedService);
            serviceManager.searchService(service);
            serviceManager.close();
-
+          //encrypt password with md5 algorithm
+           employee.setPassword(employee.getPassword());
            employeeManager.create(employee);
            employeeManager.update(employee, planning);
            employeeManager.update(employee, service);
+
 
            if (employee.getPicture() != null)
                employeeManager.update(employee, employee.getPicture());
@@ -262,6 +264,28 @@ String gend=null;
         }
         return new byte[0];
     }
+/*
+    @Override
+    public String md5(String password) {
+        MessageDigest digest;
+        byte[] messageDigest;
+        StringBuffer hexString;
+        try{
+            digest=java.security.MessageDigest.getInstance("MD5");
+            messageDigest=digest.digest();
+            hexString=new StringBuffer();
+            for (byte element:messageDigest) {
+                hexString.append(Integer.toHexString(0xFF & element));
+                return hexString.toString();
+
+            }
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
+    */
     public   byte[] getBytesFromBitmap(Bitmap bitmap) {
 
         if (bitmap != null) {

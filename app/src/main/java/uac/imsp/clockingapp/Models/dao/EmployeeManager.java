@@ -7,7 +7,8 @@ import android.database.sqlite.SQLiteStatement;
 
 import androidx.annotation.NonNull;
 
-
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -38,25 +39,25 @@ public class EmployeeManager {
             Database.close();
         }
 
-public int connectUser(Employee employee, String password){
-        int n;
-        String str;
-        int number;
+public int connectUser(Employee employee){
+
+        int nb_employee;
+        String correctPassword = null,givenPassword=employee.getPassword();
+        int regNumber;
 
         String query="SELECT matricule,password FROM employe WHERE username=?";
+
 
         String [] selectArgs={employee.getUsername()};
 
         Cursor cursor = Database.rawQuery(query,selectArgs);
                  cursor.moveToFirst();
-                 n=cursor.getCount();
-                 number=cursor.getInt(0);
-                 str=cursor.getString(1);
+                 nb_employee=cursor.getCount();
+                 regNumber=cursor.getInt(0);
+                 correctPassword=cursor.getString(1);//get  encrypted password
                  cursor.close();
-        if(n==1 && str.equals(password)) {
-            employee.setRegistrationNumber(number);
-
-            //employee=new Employee(number);
+        if(nb_employee==1 && correctPassword.equals(md5(givenPassword))) {
+            employee.setRegistrationNumber(regNumber);
             setInformations(employee);
             return 0;
         }
@@ -88,7 +89,7 @@ public int connectUser(Employee employee, String password){
         statement.bindString(5,employee.getBirthdate());
         statement.bindString(6,employee.getMailAddress());
         statement.bindString(7,employee.getUsername());
-        statement.bindString(8,employee.getPassword());
+        statement.bindString(8,md5(employee.getPassword()));
         statement.bindString(9,employee.getType());
 
         statement.executeInsert();
@@ -113,7 +114,8 @@ public void changePassword(Employee employee,String newPassword){
 String query="UPDATE employe SET password=? WHERE matricule=?";
 
 SQLiteStatement statement =Database.compileStatement(query);
-statement.bindString(1,newPassword);
+statement.bindString(1,md5(newPassword));
+
 statement.bindLong(2,employee.getRegistrationNumber());
 
 statement.executeUpdateDelete();
@@ -476,6 +478,26 @@ return  table;
 
 
     }
+    public String md5(String password) {
+        MessageDigest digest = null;
+        byte[] messageDigest;
+        StringBuilder hexString;
+        try{
+            digest=java.security.MessageDigest.getInstance("MD5");
+            digest.update(password.getBytes());
+            messageDigest=digest.digest();
+            hexString=new StringBuilder();
+            for (byte element:messageDigest) {
+                hexString.append(Integer.toHexString(0xFF & element));
+                return hexString.toString();
+
+            }
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+
 
 
 }
