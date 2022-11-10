@@ -2,10 +2,16 @@ package uac.imsp.clockingapp.View.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.concurrent.atomic.AtomicReference;
 
 import uac.imsp.clockingapp.Controller.control.StartScreenController;
 import uac.imsp.clockingapp.Controller.util.IStartScreenController;
@@ -17,34 +23,71 @@ implements View.OnClickListener  , IStartScreenView {
 
     private Intent intent;
     private IStartScreenController startScreenPresenter;
+    private TextView date;
+    private Handler timeHandler;
+    private Runnable updater;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start_screen);
-        initView();
         startScreenPresenter=new StartScreenController(this);
+        initView();
 
 
     }
+
     public void initView(){
+        AtomicReference<LocalDateTime> now=null;
+
+        String currentDate;
+        DateTimeFormatter dateTimeFormatter;
+        dateTimeFormatter =DateTimeFormatter.ofPattern("dd/MM/yyyy/ HH:mm:ss");
+        date=findViewById(R.id.start_screen_date);
+
+
+
         Button login = findViewById(R.id.start_screen_login_button);
-        Button handler=findViewById(R.id.start_screen_file_handler);
-        handler.setOnClickListener(this);
+        // -Button handler=findViewById(R.id.start_screen_file_handler);
+        //-handler.setOnClickListener(this);
         Button clocking = findViewById(R.id.start_screen_clock_button);
         login.setOnClickListener(this);
         clocking.setOnClickListener(this);
+
+        //date.setText(currentDate);
+
+          /*timeHandler=new Handler();
+
+          updater= () -> {
+              now.set(LocalDateTime.now());
+              currentDate = dateTimeFormatter.format(now.get());
+              date.setText(currentDate);
+              timeHandler.postDelayed(updater,1000);
+
+          };
+
+          timeHandler.postDelayed(updater,1000);*/
+
+
+        //startClock();
+
+
+
+
+
 
     }
 
     @Override
     public void onClick(View v) {
-        Intent intent =new Intent(this,FileHandler.class) ;
+        //-Intent intent =new Intent(this,FileHandler.class) ;
         if(v.getId()==R.id.start_screen_login_button)
             startScreenPresenter.onLogin();
         else if(v.getId()==R.id.start_screen_clock_button)
             startScreenPresenter.onClocking();
-        else if(v.getId()==R.id.start_screen_file_handler)
-            startActivity(intent);
+        /* - else if(v.getId()==R.id.start_screen_file_handler)
+            startActivity(intent);*/
 
 
     }
@@ -62,5 +105,9 @@ implements View.OnClickListener  , IStartScreenView {
         intent=new Intent(StartScreen.this,ClockInOut.class);
         startActivity(intent);
 
+
     }
+  /*  public void startClock( ){
+         timeHandler.post(updater);
+    }*/
 }

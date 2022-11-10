@@ -10,6 +10,7 @@ public class StartScreenController  implements IStartScreenController {
 
     }
 
+
     @Override
     public void onLogin() {
         startScreenView.onLogin();

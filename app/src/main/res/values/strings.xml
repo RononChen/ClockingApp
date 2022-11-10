@@ -133,6 +133,8 @@
     <string name="add_employee">Ajouter employé</string>
     <string name="english">English</string>
     <string name="french" translatable="false">French</string>
+    <string name="date" translatable="false">date</string>
+
 
 
 </resources>

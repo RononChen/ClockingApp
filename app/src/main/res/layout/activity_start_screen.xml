@@ -9,13 +9,27 @@
     android:background="@color/appOrange"
     tools:context=".View.activity.StartScreen"
     android:orientation="vertical">
+    <TextView
+        android:id="@+id/start_screen_date"
+        android:layout_width="match_parent"
+
+        android:fontFamily="@font/latoregular"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        android:layout_marginStart="25dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="20dp"
+        android:layout_gravity="center"
+        android:text="@string/date" />
+
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="90dp"
         android:layout_marginStart="100dp"
+        android:layout_marginTop="50dp"
+        android:contentDescription="@string/todo"
         app:srcCompat="@drawable/logo" />
 
     <TextView
@@ -31,7 +45,7 @@
         android:text="@string/welcomes" />
 
 
-    <Button
+    <!--Button
         android:id="@+id/start_screen_file_handler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -43,7 +57,7 @@
         android:padding="15dp"
         android:shadowColor="@android:color/transparent"
         android:background="@drawable/shapelogin"
-        android:text="Gestionnaire de fichiers"/>
+        android:text="Gestionnaire de fichiers"/-->
     <Button
         android:id="@+id/start_screen_login_button"
         android:layout_width="match_parent"
