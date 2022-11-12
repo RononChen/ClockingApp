@@ -12,10 +12,11 @@ public interface IUpdateEmployeeController {
 
 
 
+
     void onUpdateEmployee(String mail, String selectedService, int startTime,
 
 
-                          int endTime, Bitmap picture, String type);
+                          int endTime,byte[] workDays, Bitmap picture, String type);
     void onConfirmResult(boolean confirmed,boolean pictureUpdated,boolean planningUpdated);
 
 

@@ -12,6 +12,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
@@ -39,7 +40,9 @@ public class UpdateEmployee extends AppCompatActivity
                            implements View.OnClickListener,
                            AdapterView.OnItemSelectedListener,
         NumberPicker.OnValueChangeListener , NumberPicker.Formatter,
-        IUpdateEmployeeView {
+        IUpdateEmployeeView
+{
+
 
     private EditText Email;
     private TextView Programm;
@@ -49,6 +52,9 @@ public class UpdateEmployee extends AppCompatActivity
     private Bitmap picture;
     private Integer Start, End;
     private boolean pictureUpdated,planningUpdated;
+    private byte[] WorkDays;
+    private CheckBox[]myTable;
+    private byte[] oldWorkDays;
 
     IUpdateEmployeeController updateEmployeePresenter;
 
@@ -75,12 +81,17 @@ public class UpdateEmployee extends AppCompatActivity
     public void onClick(View v) {
 
         //bouton modifier
-        if (v.getId() == R.id.update_button) {
+        if (v.getId() == R.id.update_button)
+        {
             Log.d("Start : ", Start + "");
             Log.d("End : ", End + "");
+            WorkDays=workdays();
+            if(oldWorkDays!=WorkDays)
+                planningUpdated=true;
             updateEmployeePresenter.onUpdateEmployee(toString(Email), selectedService,
 
-                    Start, End, picture, selectedType);
+                    Start, End, WorkDays,picture, selectedType);
+
         } else if (v.getId() == R.id.register_reset_button) {
             updateEmployeePresenter.onReset();
         } else if (v.getId() == R.id.register_picture_button)
@@ -130,11 +141,16 @@ public class UpdateEmployee extends AppCompatActivity
         start.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
         end.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
 
-        if (informations.containsKey("start") && informations.containsKey("end")) {
+        if (informations.containsKey("start") &&
+                informations.containsKey("end")&&
+        informations.containsKey("workDays")) {
             Start = (Integer) informations.get("start");
             End = (Integer) informations.get("end");
+            WorkDays= (byte[]) informations.get("workDays");
+            oldWorkDays=WorkDays;
             start.setValue(Start);
             end.setValue(End);
+
         }
         Programm=findViewById(R.id.prog);
         Programm.setText(programm());
@@ -181,6 +197,7 @@ public class UpdateEmployee extends AppCompatActivity
         birthdate.setText(Objects.requireNonNull(informations.get("birthdate")).toString());
         if (Objects.equals(informations.get("gender"), 'F'))
             gender.setId(R.id.register_girl);
+        checkWorkdays(); //check worhdays boxes
 
         //Not updatable
         number.setEnabled(false);
@@ -247,6 +264,31 @@ public class UpdateEmployee extends AppCompatActivity
                     }
                 }
             });
+    public void checkWorkdays(){
+
+        CheckBox[] myTable=new CheckBox[7];
+        CheckBox monday=findViewById(R.id.monday),
+                tuesday=findViewById(R.id.tuesday),
+                wednesday=findViewById(R.id.wednesday),
+                thursday=findViewById(R.id.thursday),
+                friday=findViewById(R.id.friday),
+                satursday=findViewById(R.id.satursday),
+                sunday=findViewById(R.id.sunday);
+        myTable[0]=monday;
+        myTable[1]=tuesday;
+        myTable[2]=wednesday;
+        myTable[3]=thursday;
+        myTable[4]=friday;
+        myTable[5]=satursday;
+        myTable[6]=sunday;
+        int i;
+        for(i=0;i<7;i++)
+        {
+
+            myTable[i].setChecked(WorkDays[i] == 'T');
+
+        }
+    }
 
     @Override
     public void onSomethingchanged(String message) {
@@ -301,6 +343,37 @@ public class UpdateEmployee extends AppCompatActivity
 
 
 
+    }
+    public byte[] workdays(){
+
+        CheckBox monday=findViewById(R.id.monday),
+                tuesday=findViewById(R.id.tuesday),
+                wednesday=findViewById(R.id.wednesday),
+                thursday=findViewById(R.id.thursday),
+                friday=findViewById(R.id.friday),
+                satursday=findViewById(R.id.satursday),
+                sunday=findViewById(R.id.sunday);
+        myTable[0]=monday;
+        myTable[1]=tuesday;
+        myTable[2]=wednesday;
+        myTable[3]=thursday;
+        myTable[4]=friday;
+        myTable[5]=satursday;
+        myTable[6]=sunday;
+        byte[] tab =new byte[7];
+        int i;
+        for(i=0;i<7;i++)
+        {
+            if(myTable[i].isChecked())
+                tab[i]='T'; //for true
+            else
+                tab[i]='F';
+
+
+        }
+        // myTable[0].setOnCheckedChangeListener(this);
+
+        return tab;
     }
 
 
@@ -361,4 +434,6 @@ public class UpdateEmployee extends AppCompatActivity
         return str;
 
     }
+
+
 }

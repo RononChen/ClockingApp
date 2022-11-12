@@ -174,12 +174,12 @@ statement.executeUpdateDelete();
         if(cursor.moveToFirst())
 
 
-              planning = new Planning(cursor.getString(0),
-
-
-                                cursor.getString(1),
-                      cursor.getBlob(2));
-          cursor.close();
+            planning = new Planning(
+                    cursor.getString(0),
+                    cursor.getString(1),
+                    cursor.getBlob(2)
+            );
+        cursor.close();
         return planning;
     }
     public Service getService(Employee employee){
@@ -466,8 +466,9 @@ return  table;
 
             entryTime="";
         else
-           entryTime=cursor.getString(0);
-           cursor.close();
+            entryTime=cursor.getString(0);
+        cursor.close();
+
 
 
         if(day.isWeekEnd())

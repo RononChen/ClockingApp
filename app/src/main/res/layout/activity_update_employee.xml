@@ -284,6 +284,61 @@
                 android:text="@string/update_picture"
                 android:background="@drawable/mybutton"
                 android:textSize="18sp" />
+            <TextView
+                android:id="@+id/register_work_days"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/latoregular"
+                android:text="@string/work_days" />
+            <CheckBox
+                android:id="@+id/monday"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/monday"
+                android:checked="true"/>
+
+            <CheckBox
+                android:id="@+id/tuesday"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/tuesday"
+                android:checked="true"/>
+            <CheckBox
+                android:id="@+id/wednesday"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/wednesday"
+                android:checked="true"/>
+            <CheckBox
+                android:id="@+id/thursday"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/thursday"
+                android:checked="true"/>
+            <CheckBox
+                android:id="@+id/friday"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/friday"
+                android:checked="true"/>
+            <CheckBox
+                android:id="@+id/satursday"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/satursday"
+                android:checked="true"/>
+
+
+            <CheckBox
+                android:id="@+id/sunday"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/sunday"
+                android:checked="true"/>
 
             <Button
                 android:id="@+id/update_button"

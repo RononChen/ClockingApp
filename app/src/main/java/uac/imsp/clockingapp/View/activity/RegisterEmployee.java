@@ -50,6 +50,7 @@ public class RegisterEmployee extends AppCompatActivity
         RadioGroup.OnCheckedChangeListener ,
 
         AdapterView.OnItemSelectedListener
+
 {
     IRegisterEmployeeController registerEmployeePresenter;
 
@@ -65,6 +66,7 @@ public class RegisterEmployee extends AppCompatActivity
     private String SelectedService,SelectedType;
     private  Spinner spinnerServices , spinnerTypes;
     private int Start=8,End=17;
+    CheckBox[] myTable=new CheckBox[7];
 
 
 
@@ -158,6 +160,7 @@ public class RegisterEmployee extends AppCompatActivity
                     toString(Firstname),gend,Birth,toString(Email),toString(Username),
                     toString(Password),toString(PasswordConfirm),SelectedService,
                     Start,End,Picture,SelectedType,days );
+
 
 
 
@@ -391,7 +394,7 @@ public class RegisterEmployee extends AppCompatActivity
 
     }
     public byte[] workdays(){
-        CheckBox[] myTable=new CheckBox[7];
+
          CheckBox monday=findViewById(R.id.monday),
         tuesday=findViewById(R.id.tuesday),
         wednesday=findViewById(R.id.wednesday),
@@ -415,8 +418,11 @@ public class RegisterEmployee extends AppCompatActivity
             else
                 tab[i]='F';
 
+
         }
+      // myTable[0].setOnCheckedChangeListener(this);
 
 return tab;
     }
+
 }

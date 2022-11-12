@@ -102,14 +102,17 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
         informations.put("service",service.getName());
         informations.put("start",Integer.parseInt(Objects.requireNonNull(planning.extractHours().get("start"))));
         informations.put("end",Integer.parseInt(Objects.requireNonNull(planning.extractHours().get("end"))));
+        informations.put("workDays",planning.getWorkDays());
         return serviceList;
 
     }
     @Override
     public void onUpdateEmployee(String mail, String selectedService, int startTime,
-                                 int endTime, Bitmap picture, String type) {
+                                 int endTime,byte[] workDays, Bitmap picture, String type) {
         String s,e;
+
      // handle click on Update
+
 
         planningManager=new PlanningManager(context) ;
         serviceManager=new ServiceManager(context) ;
@@ -118,6 +121,7 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
         planningManager.open();
         serviceManager.open();
 
+
         this.mail=mail;
         service=new Service(selectedService);
         serviceManager.create(service);
@@ -125,7 +129,9 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
         s=formatTime(startTime);
 
         e=formatTime(endTime);
-        planning=new Planning(s,e);
+        //workDays=
+        planning=new Planning(s,e,workDays);
+
         planningManager.create(planning);//To set the planning Id
 
         this.picture=picture;
@@ -154,8 +160,10 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
             return;
 
 
+
             //compare the email entered to the real email of the emp
-            if (!Objects.equals(employee.getMailAddress(), mail)) {
+            if (!Objects.equals(employee.getMailAddress(), mail))
+            {
                 if (TextUtils.isEmpty(mail))
                     updateEmployeeView.onUpdateEmployeeError
                             ("Email requis !");
