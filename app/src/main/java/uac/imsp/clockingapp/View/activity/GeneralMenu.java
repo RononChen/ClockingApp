@@ -164,6 +164,7 @@ public class GeneralMenu extends AppCompatActivity implements View.OnClickListen
     public void onRegisterEmployeeMenuSuccessful() {
         Intent intent ;
         intent = new Intent(this, RegisterEmployee.class);
+
         startActivity(intent);
 
     }
@@ -197,13 +198,8 @@ public class GeneralMenu extends AppCompatActivity implements View.OnClickListen
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(confirmationMessage)
                 .setCancelable(false)
-                .setPositiveButton(pos, (dialog, which) -> {
-
-                    System.exit(0);
-                })
-                .setNegativeButton(neg, (dialog, which) -> {
-                    dialog.cancel();
-                });
+                .setPositiveButton(pos, (dialog, which) -> System.exit(0))
+                .setNegativeButton(neg, (dialog, which) -> dialog.cancel());
 
         AlertDialog alert = builder.create();
         alert.setTitle(title);

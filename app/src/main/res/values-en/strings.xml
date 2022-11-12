@@ -1,6 +1,5 @@
 <resources>
 
-    <string name="app_name" translatable="false">ClockingApp</string>
     <string name="register_button">Add</string>
     <string name="register_name_hint">Lastname</string>
     <string name="register_lastname_text">Lastname</string>
@@ -125,6 +124,14 @@
     <string name="modifier">Update</string>
     <string name="update_button">Update</string>
     <string name="english">English</string>
+    <string name="reg_number">Number</string>
+    <string name="monday">Monday</string>
+    <string name="tuesday">Tuesday</string>
+    <string name="thursday">Thursday</string>
+    <string name="friday">Friday</string>
+    <string name="satursday">Satursday</string>
+    <string name="sunday">Sunday</string>
+    <string name="wednesday">Wednesday</string>
 
 
 </resources>

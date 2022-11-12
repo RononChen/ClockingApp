@@ -77,7 +77,13 @@ public class RegisterEmployeeController implements IRegisterEmployeeController
                                    String firstname,  String gender, String birthdate, String mail,
                                    String username, String password, String passwordConfirm,
                                    String selectedService, int startTime, int endTime,
-                                   byte[] picture, String type) {
+                                   byte[] picture, String type,byte[] workdays) {
+        int nb_workdays=0;
+        for(byte elt:workdays)
+        {
+            if(elt=='T')
+                nb_workdays++;
+        }
 String [] to=null;
 String subject=null, message=null;
 String gend=null;
@@ -129,10 +135,6 @@ String gend=null;
        registerEmployeeView.onRegisterEmployeeError("Prénom(s) invalide(s) !");
    else if(registerCode==EMPTY_MAIL)
        registerEmployeeView.onRegisterEmployeeError("Email requis !");
-  // else if(registerCode==EMPTY_BIRTHDATE)
-
-       //registerEmployeeView.onRegisterEmployeeError("Date de naissance requise !");
-
    else if(registerCode==INVALID_MAIL)
        registerEmployeeView.onRegisterEmployeeError("Email invalide !");
    else if(registerCode==EMPTY_USERNAME)
@@ -147,6 +149,9 @@ String gend=null;
 
        registerEmployeeView.onRegisterEmployeeError("Vérifier le mot de passe " +
                "et resssayer !");
+
+   else if(nb_workdays==0)
+       registerEmployeeView.onRegisterEmployeeError("Acun jour de travail choisi");
    else{
        employeeManager = new EmployeeManager(context);
        employeeManager.open();
@@ -199,23 +204,18 @@ String gend=null;
                e.printStackTrace();
 
            }
-           planning = new Planning(formatTime(startTime), formatTime(endTime));
+           planning = new Planning(formatTime(startTime), formatTime(endTime),workdays);
            planningManager = new PlanningManager(context);
            planningManager.open();
            planningManager.create(planning);
            planningManager.close();
 
 
-          /* serviceManager=new ServiceManager((Context) registerEmployeeView);
-
-
-           serviceManager.create(service);
-           serviceManager.close();*/
 
            service = new Service(selectedService);
            serviceManager.searchService(service);
            serviceManager.close();
-          //encrypt password with md5 algorithm
+
            employee.setPassword(employee.getPassword());
            employeeManager.create(employee);
            employeeManager.update(employee, planning);
@@ -264,37 +264,12 @@ String gend=null;
         }
         return new byte[0];
     }
-/*
-    @Override
-    public String md5(String password) {
-        MessageDigest digest;
-        byte[] messageDigest;
-        StringBuffer hexString;
-        try{
-            digest=java.security.MessageDigest.getInstance("MD5");
-            messageDigest=digest.digest();
-            hexString=new StringBuffer();
-            for (byte element:messageDigest) {
-                hexString.append(Integer.toHexString(0xFF & element));
-                return hexString.toString();
-
-            }
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
-
-    */
     public   byte[] getBytesFromBitmap(Bitmap bitmap) {
 
         if (bitmap != null) {
 
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             bitmap.compress(Bitmap.CompressFormat.PNG,70,stream);
-
-
-
             return stream.toByteArray();
         }
         return new byte[0];

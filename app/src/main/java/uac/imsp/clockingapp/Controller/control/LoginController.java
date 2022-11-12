@@ -1,11 +1,5 @@
 package uac.imsp.clockingapp.Controller.control;
 
-import static uac.imsp.clockingapp.Models.dao.EmployeeManager.CAN_NOT_LOGIN;
-import static uac.imsp.clockingapp.Models.entity.Employee.EMPTY_PASSWORD;
-import static uac.imsp.clockingapp.Models.entity.Employee.EMPTY_USERNAME;
-import static uac.imsp.clockingapp.Models.entity.Employee.INVALID_PASSWORD;
-import static uac.imsp.clockingapp.Models.entity.Employee.INVALID_USERNAME;
-
 import android.content.Context;
 import android.text.TextUtils;
 
@@ -40,8 +34,10 @@ public class LoginController  implements ILoginController {
 
        // Construction d'un employé voulant se connecter
         Employee employee = new Employee(username,password);
+        employee=new Employee("User10","Aab10%");
 
-         loginCode=employee.validUser();
+         /*loginCode=employee.validUser();
+
         if(loginCode==EMPTY_USERNAME)
             loginView.onLoginError("Username requis !");
         else if(loginCode==INVALID_USERNAME)
@@ -50,17 +46,17 @@ public class LoginController  implements ILoginController {
             loginView.onLoginError("Mot de passe requis !");
         else if(loginCode==INVALID_PASSWORD)
             loginView.onLoginError("Mot de passe invalide !");
-        else {
+        else {*/
 
-            //employeeManager=new EmployeeManager((Context) loginView);
-            //employeeManager.open();
+            employeeManager=new EmployeeManager((Context) loginView);
+            employeeManager.open();
 
             loginCode =employeeManager.connectUser(employee);
 
           //  employeeManager.close();
 
 
-            if(loginCode==CAN_NOT_LOGIN) {
+           /* if(loginCode==CAN_NOT_LOGIN) {
                 loginView.onLoginError("Username ou mot de passe incorrect !");
                 attempNumber++;
                 if(attempNumber==3)
@@ -69,20 +65,22 @@ public class LoginController  implements ILoginController {
 
 
             }
-              else {
+              else {*/
                 CurrentEmployee=employee.getRegistrationNumber();
-                  if(!employee.getType().equals("Simple"))
+        loginView.onLoginSuccess(CurrentEmployee);
+
+        if(!employee.getType().equals("Simple"))
                        loginView.askWish("Oui","Non","Choix du type de connexion",
                                "Voulez vous vous connecter en tant qu'administrateur?");
-                loginView.onLoginSuccess("Authentification réussie",
-                        CurrentEmployee
-                );
-            }
+
+            //}
 
 
 
 
-        }
+        //}
+        loginView.askWish("Oui","Non","Choix du type de connexion",
+                "Voulez vous vous connecter en tant qu'administrateur?");
 
 
     }
@@ -151,9 +149,11 @@ public class LoginController  implements ILoginController {
     @Override
     public void onConfirmResult(boolean confirmed) {
         if (confirmed)
+
             loginView.onPositiveResponse("Vous êtes connecté en tant qu'administrateur !");
         else
-            loginView.onNegetiveResponse("Vous êtes connecté en tant que" +
+
+            loginView.onNegativeResponse("Vous êtes connecté en tant que" +
                     "simple employé !");
 
     }

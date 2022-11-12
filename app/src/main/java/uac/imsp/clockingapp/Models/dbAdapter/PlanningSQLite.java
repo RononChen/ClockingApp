@@ -28,18 +28,20 @@ public class PlanningSQLite extends SQLiteOpenHelper {
     public static final String COL_ID_PLANNING = "id_planning";
     public static final String COL_HEURE_DEBUT_OFFICIELLE="heure_debut_officielle";
     public static final String COL_HEURE_FIN_OFFICIELLE="heure_fin_officielle";
+    public static final String COL_JOURS_DE_TRAVAIL="jours_de_travail";
     public static final String planning="INSERT INTO planning(" +
-            "heure_debut_officielle,heure_fin_officielle)" +
+            "heure_debut_officielle,heure_fin_officielle,jours_de_travail)" +
 
-           " VALUES (?,?)";
+           " VALUES (?,?,?)";
 
 
     public static final String CREATE_PLANNING = "CREATE TABLE IF NOT EXISTS " + TABLE_PLANNING + " (" +
 
 
             COL_ID_PLANNING + " INTEGER NOT NULL  PRIMARY KEY AUTOINCREMENT, " +
-            COL_HEURE_DEBUT_OFFICIELLE + " TEXT ," +
-            COL_HEURE_FIN_OFFICIELLE + " TEXT )" ;
+            COL_HEURE_DEBUT_OFFICIELLE + " TEXT NOT NULL ," +
+            COL_HEURE_FIN_OFFICIELLE + " TEXT NOT NULL,"+
+            COL_JOURS_DE_TRAVAIL+" BLOB NOT NULL)" ;
     public  static final String DROP_PLANNING="DROP TABLE IF EXISTS "+TABLE_PLANNING;
 
 
@@ -116,16 +118,22 @@ public class PlanningSQLite extends SQLiteOpenHelper {
 
 
         statement= db.compileStatement(planning);
+       byte[] workDays= new byte[]{'T','T','T','T','T','F','F'};
+
 
         //08-17
         statement.bindString(1,"08:00");
         statement.bindString(2,"17:00");
+        statement.bindBlob(3,workDays);
+
         statement.executeInsert();
 
         //08-18
 
         statement.bindString(1,"08:00");
         statement.bindString(2,"18:00");
+        statement.bindBlob(3,workDays);
+
         statement.executeInsert();
 
 
@@ -142,8 +150,7 @@ public class PlanningSQLite extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        //db.execSQL(DROP_PLANNING);
-        //onCreate(db);
+
         upgradeDatabase(db);
 
     }

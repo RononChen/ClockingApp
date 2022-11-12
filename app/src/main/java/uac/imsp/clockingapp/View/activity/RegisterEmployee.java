@@ -16,6 +16,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.NumberPicker;
@@ -35,6 +36,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Calendar;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import uac.imsp.clockingapp.Controller.control.RegisterEmployeeController;
 import uac.imsp.clockingapp.Controller.util.IRegisterEmployeeController;
 import uac.imsp.clockingapp.R;
@@ -57,6 +59,7 @@ public class RegisterEmployee extends AppCompatActivity
     private String Birth;
     DatePickerDialog picker;
     private ImageView PreviewImage;
+    private CircleImageView circlePicture;
     private byte[] Picture;
     private String gend;
     private String SelectedService,SelectedType;
@@ -89,6 +92,7 @@ public class RegisterEmployee extends AppCompatActivity
         return super.onCreateOptionsMenu(menu);
 
     }
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -129,11 +133,12 @@ public class RegisterEmployee extends AppCompatActivity
                                     this.getContentResolver(),
                                     selectedImageUri);
                             Picture = getBytesFromBitmap(selectedImageBitmap);
+
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        PreviewImage.setImageBitmap(
-                                selectedImageBitmap);
+                        circlePicture.setImageBitmap(selectedImageBitmap);
+                       // PreviewImage.setImageBitmap(selectedImageBitmap);
 
                     }
                 }
@@ -148,10 +153,11 @@ public class RegisterEmployee extends AppCompatActivity
          if (v.getId() == R.id.register_picture_button)
             imageChooser();
         else if (v.getId() == R.id.register_button ) {
+           byte[] days= workdays();
             registerEmployeePresenter.onRegisterEmployee(toString(Number), toString(Lastname),
                     toString(Firstname),gend,Birth,toString(Email),toString(Username),
                     toString(Password),toString(PasswordConfirm),SelectedService,
-                    Start,End,Picture,SelectedType);
+                    Start,End,Picture,SelectedType,days );
 
 
 
@@ -276,6 +282,7 @@ public class RegisterEmployee extends AppCompatActivity
 
     }
     public void initView(){
+       // TextView number=findViewById(R.id.register_number);
 
         //new controller instance created
         registerEmployeePresenter = new RegisterEmployeeController(this);
@@ -310,12 +317,12 @@ public class RegisterEmployee extends AppCompatActivity
         Birthdate.setClickable(true);
         Birthdate.setFocusable(false);
         Birthdate.setInputType(InputType.TYPE_NULL);
-        //Birthdate.setEnabled(false);
         Email = findViewById(R.id.register_email);
         Username = findViewById(R.id.register_username);
         Password = findViewById(R.id.register_password);
         PasswordConfirm = findViewById(R.id.register_password_confirm);
-        PreviewImage = findViewById(R.id.register_preview_image);
+        //PreviewImage = findViewById(R.id.register_preview_image);
+        circlePicture=findViewById(R.id.register_preview_image);
         Button register = findViewById(R.id.register_button);
         Button reset = findViewById(R.id.register_reset_button);
         Button selectPicture = findViewById(R.id.register_picture_button);
@@ -383,5 +390,33 @@ public class RegisterEmployee extends AppCompatActivity
         return str;
 
     }
+    public byte[] workdays(){
+        CheckBox[] myTable=new CheckBox[7];
+         CheckBox monday=findViewById(R.id.monday),
+        tuesday=findViewById(R.id.tuesday),
+        wednesday=findViewById(R.id.wednesday),
+        thursday=findViewById(R.id.thursday),
+        friday=findViewById(R.id.friday),
+        satursday=findViewById(R.id.satursday),
+                sunday=findViewById(R.id.sunday);
+        myTable[0]=monday;
+        myTable[1]=tuesday;
+        myTable[2]=wednesday;
+        myTable[3]=thursday;
+        myTable[4]=friday;
+        myTable[5]=satursday;
+        myTable[6]=sunday;
+        byte[] tab =new byte[7];
+        int i;
+       for(i=0;i<7;i++)
+        {
+            if(myTable[i].isChecked())
+                tab[i]='T'; //for true
+            else
+                tab[i]='F';
 
+        }
+
+return tab;
+    }
 }

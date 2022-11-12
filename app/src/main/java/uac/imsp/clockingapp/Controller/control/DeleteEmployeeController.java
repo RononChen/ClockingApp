@@ -119,7 +119,5 @@ public class DeleteEmployeeController implements IDeleteEmployeeController {
 
         return BitmapFactory.decodeByteArray(array,0,array.length);
 
-
-
     }
 }

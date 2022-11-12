@@ -3,6 +3,9 @@ package uac.imsp.clockingapp.Models.entity;
 import android.text.TextUtils;
 import android.util.Patterns;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 
 public class Employee implements IEmployee {
     public final static int EMPTY_NUMBER=13,
@@ -39,6 +42,7 @@ public  final static String SIMPLE="Simple", HEAD="Directeur",CHIEF="Chef person
     private String Username;
     private String Password;
     private String Type;
+    private byte[] Workdays;
 
 
 
@@ -121,6 +125,9 @@ public  final static String SIMPLE="Simple", HEAD="Directeur",CHIEF="Chef person
     }
     public String getType(){ return Type;}
 
+
+
+
     @Override
     public int isValid() {
         if(TextUtils.isEmpty(""+RegistrationNumber))
@@ -150,7 +157,7 @@ public  final static String SIMPLE="Simple", HEAD="Directeur",CHIEF="Chef person
         else if(hasInvalidPassword())
             return  INVALID_PASSWORD;
 
-               return 0;
+        return 0;
     }
 
     @Override
@@ -220,11 +227,6 @@ public  final static String SIMPLE="Simple", HEAD="Directeur",CHIEF="Chef person
         String pattern = "^[A-ZÂÊÛÎÔÁÉÚÍÓÀÈÙÌÒÇ][A-Za-zâêîûôáéíúóàèùìòç]" +
 
                 "+([-' ][A-ZÂÊÛÎÔÁÉÚÍÓÀÈÙÌÒÇ][a-zâêîûôáéíúóàèùìòç]+)?";
-
-
-
-//A revoir
-        //return !Lastname.matches("\\w+");
         return !Lastname.matches(pattern);
 
 
@@ -232,10 +234,6 @@ public  final static String SIMPLE="Simple", HEAD="Directeur",CHIEF="Chef person
     }    public boolean hasInvalidFirstname(){
         String pattern ="^[A-ZÂÊÛÎÔÁÉÚÍÓÀÈÙÌÒÇ][a-zâêîûôáéíúóàèùìòç]+" +
                 "([-'][A-ZÂÊÛÎÔÁÉÚÍ ÓÀÈÙÌÒÇ][a-zâêîûôáéíúóàèùìòç]+)?";
-
-
-        //A revoir
-       // return !Firstname.matches("\\w+");
         return !Firstname.matches(pattern);
 
 
@@ -251,7 +249,24 @@ public  final static String SIMPLE="Simple", HEAD="Directeur",CHIEF="Chef person
 return  !Patterns.EMAIL_ADDRESS.matcher(MailAddress).matches();
     }
     public  boolean hasInvalidPassword() {
-        return !Password.matches("\\w{6,}");
+
+        return !(Password.length()>=6&& is_in_the_range("[A-Z]")&&
+
+                is_in_the_range("[a-z]")&&is_in_the_range("[0-9]")&&
+                is_in_the_range("\\W"));
+    }
+    public int nb_occur(String str, String pattern){
+
+        Matcher matcher= Pattern.compile(pattern).matcher(str);
+        int count=0;
+        while(matcher.find())
+            count++;
+        return count;
+    }
+    public boolean is_in_the_range(String pattern){
+        return 1<= nb_occur(Password,pattern);
+
 
     }
+
 }

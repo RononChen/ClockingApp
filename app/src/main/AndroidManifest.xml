@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+<manifest
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="uac.imsp.clockingapp">
 
@@ -91,7 +92,7 @@
             android:name=".View.activity.GeneralMenu"
             android:exported="false" />
         <activity
-            android:name=".View.activity.RegisterEmployee"
+            android:name="uac.imsp.clockingapp.View.activity.RegisterEmployee"
             android:exported="false" />
         <activity
             android:name=".View.activity.StartScreen"

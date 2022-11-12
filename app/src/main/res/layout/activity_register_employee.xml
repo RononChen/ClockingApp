@@ -14,6 +14,7 @@
     tools:ignore="ExtraText">
 
 
+
     <ScrollView
 
         android:id="@+id/ScrollView01"
@@ -43,24 +44,27 @@
                 android:text="@string/registration_title"
                 android:textColor="@color/black"
                 android:fontFamily="@font/latoregular"
-                android:textSize="22dp" />
+                android:textSize="22sp" />
 
 
             <TextView
+                android:id="@+id/number"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
                 android:textColor="@color/black"
                 android:fontFamily="@font/latoregular"
-                android:textSize="18dp"
-                android:text="Matricule" />
+                android:textSize="18sp"
+                android:text="@string/reg_number" />
 
 
             <EditText
                 android:id="@+id/register_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="number" />
+                android:inputType="number"
+                android:labelFor="@id/number"
+                android:autofillHints="" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -68,14 +72,15 @@
                 android:layout_marginStart="3dp"
                 android:textColor="@color/black"
                 android:fontFamily="@font/latoregular"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:text="@string/register_lastname_text" />
 
             <EditText
                 android:id="@+id/register_lastname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:autofillHints="" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -83,14 +88,15 @@
                 android:layout_marginStart="3dp"
                 android:textColor="@color/black"
                 android:fontFamily="@font/latoregular"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:text="@string/register_firstname_text" />
 
             <EditText
                 android:id="@+id/register_firstname"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:autofillHints="" />
 
 
             <RadioGroup
@@ -124,7 +130,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:textColor="@color/black"
                 android:fontFamily="@font/latoregular"
                 android:text="@string/birthdate" />
@@ -135,11 +141,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
                 android:ems="10"
-                android:inputType="date" />
+                android:inputType="date"
+                android:autofillHints="" />
 
 
             <TextView
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
@@ -151,10 +158,11 @@
                 android:id="@+id/register_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:autofillHints="" />
 
             <TextView
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
@@ -173,7 +181,7 @@
 
 
             <TextView
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
@@ -185,11 +193,12 @@
                 android:id="@+id/register_username"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:autofillHints="" />
 
 
             <TextView
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
@@ -201,11 +210,12 @@
                 android:id="@+id/register_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:autofillHints="" />
 
 
             <TextView
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
@@ -217,10 +227,11 @@
                 android:id="@+id/register_password_confirm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:autofillHints="" />
 
             <TextView
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"
@@ -239,7 +250,7 @@
             </Spinner>
 
             <TextView
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:id="@+id/register_planning"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
@@ -259,7 +270,7 @@
     android:layout_marginEnd="20dp"
     >
             <TextView
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:id="@+id/register_planning_start"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -283,7 +294,7 @@
             android:layout_height="wrap_content"
             >
             <TextView
-                android:textSize="18dp"
+                android:textSize="18sp"
                 android:id="@+id/register_planning_end"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -325,14 +336,73 @@
 
 
             <!--ImageView to preview the selected image-->
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/register_preview_image"
                 android:layout_width="match_parent"
                 android:layout_height="300dp"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp" />
+                android:src="@drawable/ic_baseline_person_100"
+                android:layout_marginEnd="16dp"
+                app:civ_border_width="2dp"
+                android:background="@color/black"
+                app:civ_border_color="#FF0000"/>
 
+            <TextView
+                android:id="@+id/register_work_days"
+                android:textSize="18sp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="3dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/latoregular"
+                android:text="@string/work_days" />
+            <CheckBox
+                android:id="@+id/monday"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/monday"
+                android:checked="true"/>
+
+            <CheckBox
+                android:id="@+id/tuesday"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/tuesday"
+                android:checked="true"/>
+            <CheckBox
+                android:id="@+id/wednesday"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/wednesday"
+                android:checked="true"/>
+            <CheckBox
+                android:id="@+id/thursday"
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/thursday"
+                android:checked="true"/>
+            <CheckBox
+                android:id="@+id/friday"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/friday"
+                android:checked="true"/>
+            <CheckBox
+                android:id="@+id/satursday"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/satursday"
+                android:checked="true"/>
+
+
+            <CheckBox
+                android:id="@+id/sunday"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="@string/sunday"
+                android:checked="true"/>
             <Button
                 android:id="@+id/register_button"
                 android:layout_width="match_parent"
@@ -350,6 +420,7 @@
                 android:text="@string/reset_button" />
 
         </LinearLayout>
+
     </ScrollView>
 
 

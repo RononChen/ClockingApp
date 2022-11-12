@@ -85,16 +85,23 @@ public class DaySQLite extends SQLiteOpenHelper {
 
 
         statement= db.compileStatement(planning);
+        byte[] workDays= new byte[]{'T','T','T','T','T','F','F'};
+
 
         //08-17
         statement.bindString(1,"08:00");
         statement.bindString(2,"17:00");
+        statement.bindBlob(3,workDays);
+
+
         statement.executeInsert();
 
         //08-18
 
         statement.bindString(1,"08:00");
         statement.bindString(2,"18:00");
+        statement.bindBlob(3,workDays);
+
         statement.executeInsert();
 
 

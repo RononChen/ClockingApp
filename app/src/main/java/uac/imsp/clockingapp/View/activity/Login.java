@@ -28,6 +28,7 @@ public class Login extends AppCompatActivity
                    implements View.OnClickListener , TextWatcher,
         ILoginView {
     private ImageView eye;
+    private int Number;
 
     private AlertDialog.Builder builder;
     private  EditText Username,Password;
@@ -69,20 +70,15 @@ public class Login extends AppCompatActivity
     }
 
     @Override
-    public void onLoginSuccess(String message,int number) {
+    public void onLoginSuccess(int number) {
+        Number=number;
 
-        Intent intent = new Intent(this, GeneralMenu.class);
-        intent.putExtra("CURRENT_USER",number);
-        new ToastMessage(this,message);
-
-        startActivity(intent);
-        Username.setText("");
-        Password.setText("");
 
 
     }
 
     @Override
+
     public void onLoginError(String message) {
 
         new ToastMessage(this,message);
@@ -171,15 +167,11 @@ public class Login extends AppCompatActivity
         builder=new AlertDialog.Builder(this);
         builder.setMessage(message)
                 .setCancelable(false)
-                .setPositiveButton(pos, (dialog, which) -> {
-                    loginPresenter.onConfirmResult(true);
+                .setPositiveButton(pos, (dialog, which)
+                        -> loginPresenter.onConfirmResult(true))
 
-                })
-                .setNegativeButton(neg, (dialog, which) -> {
-
-                   loginPresenter.onConfirmResult(false);
-
-                });
+                .setNegativeButton(neg, (dialog, which)
+                        -> loginPresenter.onConfirmResult(false));
 
         AlertDialog alert = builder.create();
         alert.setTitle(title);
@@ -190,9 +182,18 @@ public class Login extends AppCompatActivity
 
     @Override
     public void onPositiveResponse(String message) {
-        Intent intent=new Intent(Login.this, GeneralMenu.class);
+       /* Intent intent=new Intent(Login.this, GeneralMenu.class);
         new ToastMessage(this,message);
+        startActivity(intent);*/
+
+        Intent intent = new Intent(this, GeneralMenu.class);
+        intent.putExtra("CURRENT_USER",Number);
+        new ToastMessage(this,message);
+
         startActivity(intent);
+        Username.setText("");
+        Password.setText("");
+
 
 
 
@@ -200,8 +201,9 @@ public class Login extends AppCompatActivity
     }
 
     @Override
-    public void onNegetiveResponse(String message) {
-        Intent intent=new Intent(Login.this,SimpleEmployeeMenu.class);
+    public void onNegativeResponse(String message) {
+        Intent intent=new Intent(this,SimpleEmployeeMenu.class);
+        //intent.putExtra("CURRENT_")
         new ToastMessage(this,message);
         startActivity(intent);
 

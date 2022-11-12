@@ -74,11 +74,8 @@ public int connectUser(Employee employee){
     public void create (Employee employee){
       // open();
         SQLiteStatement statement;
-        String query = "INSERT INTO employe (matricule,nom,prenom,sexe,birthdate," +
+        String query = "INSERT INTO employe (matricule,nom,prenom,sexe," +
                 "couriel,username,password,type) VALUES(?,?,?,?,?,?,?,?,?) ";
-
-
-
                 statement=Database.compileStatement(query);
 
         statement.bindLong(1,employee.getRegistrationNumber());
@@ -86,13 +83,21 @@ public int connectUser(Employee employee){
         statement.bindString(2,employee.getLastname());
         statement.bindString(3,employee.getFirstname());
         statement.bindString (4, Character.toString((char) employee.getGender()));
-        statement.bindString(5,employee.getBirthdate());
-        statement.bindString(6,employee.getMailAddress());
-        statement.bindString(7,employee.getUsername());
-        statement.bindString(8,md5(employee.getPassword()));
-        statement.bindString(9,employee.getType());
+        //statement.bindString(5,employee.getBirthdate());
+        statement.bindString(5,employee.getMailAddress());
+        statement.bindString(6,employee.getUsername());
+        statement.bindString(7,md5(employee.getPassword()));
+        statement.bindString(8,employee.getType());
 
         statement.executeInsert();
+        //if the birthdate is given
+        if(!Objects.equals(employee.getBirthdate(), "")) {
+            query = "UPDATE employe SET birthdate=? WHERE matricule=?";
+            statement = Database.compileStatement(query);
+            statement.bindString(1, employee.getBirthdate());
+            statement.bindLong(2,employee.getRegistrationNumber());
+            statement.executeUpdateDelete();
+        }
 
     }
     
@@ -161,16 +166,20 @@ statement.executeUpdateDelete();
 
     public Planning getPlanning(Employee employee){
         Planning planning=null ;
-        String query="SELECT heure_debut_officielle,heure_fin_officielle " +
-                "FROM planning  JOIN employe ON id_planning=id_planning_ref " +
-                "WHERE matricule=?";
+        String query="SELECT heure_debut_officielle,heure_fin_officielle," +
+                "jours_de_travail FROM planning  JOIN employe ON " +
+                "id_planning=id_planning_ref WHERE matricule=?";
         String[] selectArgs={String.valueOf(employee.getRegistrationNumber())};
         Cursor cursor = Database.rawQuery(query,selectArgs);
         if(cursor.moveToFirst())
 
-        planning = new Planning(cursor.getString(0),
-                                cursor.getString(1));
-        cursor.close();
+
+              planning = new Planning(cursor.getString(0),
+
+
+                                cursor.getString(1),
+                      cursor.getBlob(2));
+          cursor.close();
         return planning;
     }
     public Service getService(Employee employee){
@@ -454,10 +463,11 @@ return  table;
         String.valueOf(day.getId())};
         Cursor cursor =Database.rawQuery(query,selectArgs);
         if(day.getId()==0)
+
             entryTime="";
         else
-        entryTime=cursor.getString(0);
-        cursor.close();
+           entryTime=cursor.getString(0);
+           cursor.close();
 
 
         if(day.isWeekEnd())
@@ -479,10 +489,11 @@ return  table;
 
     }
     public String md5(String password) {
-        MessageDigest digest = null;
+        MessageDigest digest ;
         byte[] messageDigest;
         StringBuilder hexString;
         try{
+
             digest=java.security.MessageDigest.getInstance("MD5");
             digest.update(password.getBytes());
             messageDigest=digest.digest();

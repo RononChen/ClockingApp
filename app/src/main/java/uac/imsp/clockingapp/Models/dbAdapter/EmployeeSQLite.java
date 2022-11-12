@@ -106,11 +106,9 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
         SQLiteStatement statement= db.compileStatement(super_user);
         statement.bindLong(1,1);
         statement.bindString(2,"User10");
-        statement.bindString(3,md5("password"));
-
+        statement.bindString(3,md5("Aab10%"));
         statement.bindString(4,HEAD);
         statement.bindString(5,"M");
-
         statement.bindString(6,"super@gmail.com");
         statement.bindLong(7,1);
         statement.bindLong(8,1);
@@ -141,16 +139,22 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
 
 
         statement= db.compileStatement(planning);
+        byte[] workDays= new byte[]{'T','T','T','T','T','F','F'};
+
 
         //08-17
         statement.bindString(1,"08:00");
         statement.bindString(2,"17:00");
+        statement.bindBlob(3,workDays);
+
         statement.executeInsert();
 
         //08-18
 
         statement.bindString(1,"08:00");
         statement.bindString(2,"18:00");
+        statement.bindBlob(3,workDays);
+
         statement.executeInsert();
 
     }
@@ -162,8 +166,9 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
 
     }
     public String md5(String password) {
-        MessageDigest digest = null;
+        MessageDigest digest ;
         byte[] messageDigest;
+
         StringBuilder hexString;
         try{
             digest=java.security.MessageDigest.getInstance("MD5");

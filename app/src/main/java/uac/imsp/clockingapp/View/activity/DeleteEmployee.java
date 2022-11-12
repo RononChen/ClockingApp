@@ -94,10 +94,11 @@ public class DeleteEmployee extends AppCompatActivity
 
         birthdate.setText(Objects.requireNonNull(informations.get("birthdate")).toString());
         if (Objects.equals(informations.get("gender"), 'F'))
-            gender.setId(R.id.register_girl);
+              gender.setId(R.id.register_girl);
+
 
                service.setText((String) informations.get("service"));
-              type.setText((String) informations.get("type"));
+               type.setText((String) informations.get("type"));
 
         if (informations.containsKey("start") && informations.containsKey("end")) {
             Start = (Integer) informations.get("start");

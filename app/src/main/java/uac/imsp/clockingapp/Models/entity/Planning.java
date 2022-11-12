@@ -7,10 +7,14 @@ public class Planning implements IPlanning {
     private int Id;
     private String StartTime;
     private String EndTime;
+    private byte[] WorkDays;
 
-    public Planning(String startTime,String endTime){
+
+
+    public Planning(String startTime,String endTime,byte[] workDays){
         StartTime=startTime;
         EndTime=endTime;
+        WorkDays=workDays;
     }
     public Planning(int id){
         Id=id;
@@ -24,6 +28,14 @@ public class Planning implements IPlanning {
     }
     public String getEndTime(){
         return EndTime;
+    }
+
+    public byte[] getWorkDays() {
+        return WorkDays;
+    }
+
+    public void setWorkDays(byte[] workDays) {
+            WorkDays = workDays;
     }
 
     public void setStartTime(String startTime){

@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 
+import java.util.Arrays;
+
 import uac.imsp.clockingapp.Models.entity.Planning;
 import uac.imsp.clockingapp.Models.dbAdapter.PlanningSQLite;
 
@@ -43,11 +45,12 @@ public class PlanningManager {
         SQLiteStatement statement;
         if(!searchPlanning(planning))
         {
-       query="INSERT INTO planning(heure_debut_officielle,heure_fin_officielle) VALUES (?,?)";
-
+       query="INSERT INTO planning(heure_debut_officielle,heure_fin_officielle," +
+               "jours_de_travail) VALUES (?,?,?)";
       statement=Database.compileStatement(query);
       statement.bindString(1,planning.getStartTime());
       statement.bindString(2,planning.getEndTime());
+      statement.bindBlob(3, planning.getWorkDays());
       statement.executeInsert();
       //The planning exists now
             //We'll search it so as to setId
@@ -61,9 +64,10 @@ public class PlanningManager {
         boolean test;
 
         String query="SELECT id_planning FROM planning WHERE heure_debut_officielle=? " +
-                "AND heure_fin_officielle=?" ;
+                "AND heure_fin_officielle=? AND jours_de_travail=?" ;
                 String [] selectArgs={
-                planning.getStartTime(),planning.getEndTime()
+                planning.getStartTime(),planning.getEndTime(),
+                        Arrays.toString(planning.getWorkDays())
         };
         Cursor cursor=Database.rawQuery(query,selectArgs);
         cursor.moveToFirst();
@@ -78,12 +82,5 @@ public class PlanningManager {
         return false;
 
         }
-    /*public Planning getPlanning(Employee employee){
-           Planning planning;
 
-    }*/
-    /*public void setId(Planning planning){
-
-
-    }*/
 }

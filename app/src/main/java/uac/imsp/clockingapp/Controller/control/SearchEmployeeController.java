@@ -31,6 +31,7 @@ public class SearchEmployeeController  implements
     public  void onSearch(String data) {
         int number;
         String lastname,firstname,service;
+        byte[] picture;
         ArrayList <Result>  list= new ArrayList<>();
         Result result;
 
@@ -39,7 +40,8 @@ public class SearchEmployeeController  implements
         EmployeeManager employeeManager;
 
         employeeManager=new EmployeeManager(context);
-                employeeManager.open();
+        employeeManager.open();
+
         employeeSet =employeeManager.search(data);
 
         if(employeeSet.length==0)
@@ -51,7 +53,9 @@ public class SearchEmployeeController  implements
                 lastname = employee.getLastname();
                 firstname = employee.getFirstname();
                 service = employeeManager.getService(employee).getName();
-                result = new Result(number, lastname, firstname, service);
+                picture=employee.getPicture();
+
+                result = new Result(number, lastname, firstname, service,"Absent",picture);
                 list.add(result);
             }
             searchEmployeeView.onEmployeeFound(list);
