@@ -11,7 +11,6 @@
     <string name="login_password_hint">Mot de passe</string>
 
 
-
     <string-array name="months">
         <item>Janvier</item>
         <item>Février</item>
