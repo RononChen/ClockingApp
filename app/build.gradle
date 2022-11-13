@@ -34,7 +34,7 @@ android {
             }
         }
     }
-
+    namespace 'uac.imsp.clockingapp'
 
 
 }
