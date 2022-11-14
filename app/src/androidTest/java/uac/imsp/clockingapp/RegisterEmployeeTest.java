@@ -215,6 +215,11 @@ public class RegisterEmployeeTest  implements IRegisterEmployeeView {
     }
 
     @Override
+    public void onShowHidePassword(int viewId, int eyeId) {
+
+    }
+
+    @Override
     public void sendEmail(String[] to, String subject, String message, String qrCodeFileName) {
 
     }

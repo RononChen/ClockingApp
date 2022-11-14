@@ -9,6 +9,8 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.text.InputType;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -58,6 +60,7 @@ public class RegisterEmployee extends AppCompatActivity
             Password, PasswordConfirm,Number, Birthdate;
     private TextView Programm;
     private String Birth;
+    private ImageView EyePwd,EyePwdConfirm;
     DatePickerDialog picker;
     private ImageView PreviewImage;
     private CircleImageView circlePicture;
@@ -66,6 +69,7 @@ public class RegisterEmployee extends AppCompatActivity
     private String SelectedService,SelectedType;
     private  Spinner spinnerServices , spinnerTypes;
     private int Start=8,End=17;
+
     CheckBox[] myTable=new CheckBox[7];
 
 
@@ -140,7 +144,6 @@ public class RegisterEmployee extends AppCompatActivity
                             e.printStackTrace();
                         }
                         circlePicture.setImageBitmap(selectedImageBitmap);
-                       // PreviewImage.setImageBitmap(selectedImageBitmap);
 
                     }
                 }
@@ -151,8 +154,12 @@ public class RegisterEmployee extends AppCompatActivity
         @Override
     public void onClick(View v) {
 
+  if(v.getId()==R.id.register_show_password)
+      registerEmployeePresenter.onShowHidePassword(Password.getId(),v.getId());
+  else if(v.getId()==R.id.register_show_password_confirm)
+      registerEmployeePresenter.onShowHidePassword(PasswordConfirm.getId(),v.getId());
 
-         if (v.getId() == R.id.register_picture_button)
+     else     if (v.getId() == R.id.register_picture_button)
             imageChooser();
         else if (v.getId() == R.id.register_button ) {
            byte[] days= workdays();
@@ -208,7 +215,6 @@ public class RegisterEmployee extends AppCompatActivity
         Username.setText("");
         Password.setText("");
         PasswordConfirm.setText("");
-        PreviewImage.setImageBitmap(null);
 
     }
 
@@ -252,6 +258,32 @@ public class RegisterEmployee extends AppCompatActivity
     }
 
     @Override
+    public void onShowHidePassword(int passwordId, int eyeId) {
+         ImageView eye=findViewById(eyeId);
+         EditText pwd=findViewById(passwordId);
+        if(pwd.getTransformationMethod().
+                equals(PasswordTransformationMethod.getInstance()))
+        {
+            eye.setImageResource(R.drawable.ic_baseline_visibility_off_18);
+
+
+            //show password
+            pwd.setTransformationMethod(HideReturnsTransformationMethod.
+                    getInstance());
+        }
+        else{
+            eye.setImageResource(R.drawable.baseline_visibility_black_18);
+
+
+            //hide password
+            pwd.setTransformationMethod(PasswordTransformationMethod.
+                    getInstance());
+        }
+
+
+    }
+
+    @Override
     public void sendEmail(String[] to, String subject, String message, String qrCodeFileName) {
 
         File qrCodepicture =new File(getFilesDir(),qrCodeFileName);
@@ -285,6 +317,10 @@ public class RegisterEmployee extends AppCompatActivity
 
     }
     public void initView(){
+        EyePwd=findViewById(R.id.register_show_password);
+        EyePwdConfirm=findViewById(R.id.register_show_password_confirm);
+        EyePwdConfirm.setOnClickListener(this);
+        EyePwd.setOnClickListener(this);
        // TextView number=findViewById(R.id.register_number);
 
         //new controller instance created
@@ -424,5 +460,6 @@ public class RegisterEmployee extends AppCompatActivity
 
 return tab;
     }
+
 
 }

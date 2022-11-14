@@ -9,7 +9,8 @@ public interface IRegisterEmployeeController {
                             String service,int startTime,int endTime,byte[] picture,String type,
                             byte[] workdays);
     byte[] generateQRCode(String myText);
-     //String md5(String password);
+    void onShowHidePassword(int viewId,int eyeId);
+
 
 }
 

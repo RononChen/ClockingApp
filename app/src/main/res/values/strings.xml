@@ -143,6 +143,11 @@
     <string name="satursday" translatable="false">Samedi</string>
     <string name="sunday" translatable="false">Dimanche</string>
     <string name="wednesday" translatable="false">Mercredi</string>
+    <string name="general_menu_register" translatable="false">Enregisterer employé</string>
+    <string name="general_menu_employee_list" translatable="false">Liste des employés</string>
+    <string name="menu_presence_report" translatable="false">Etats de présence</string>
+    <string name="menu_statistics_by_employee" translatable="false">Statistiques par employé</string>
+    <string name="search_number" translatable="false">Matricule</string>
 
 
 </resources>

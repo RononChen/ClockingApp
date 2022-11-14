@@ -51,9 +51,6 @@
             android:name=".View.activity.ConsultReport"
             android:exported="true" />
         <activity
-            android:name=".View.activity.Search"
-            android:exported="false" />
-        <activity
             android:name=".View.activity.Login"
             android:exported="false" />
         <activity

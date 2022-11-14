@@ -33,7 +33,7 @@
         android:layout_marginStart="25dp"
         android:background="@color/colorPrimary"
         android:paddingTop="20dp"
-        android:text="Enregisterer employé" />
+        android:text="@string/general_menu_register" />
             <Button
                 android:id="@+id/menu_search"
                 android:layout_width="120dp"
@@ -43,11 +43,11 @@
                 android:layout_marginEnd="25dp"
                 android:paddingTop="20dp"
                 android:background="@color/colorPrimary"
-                android:text="Liste des employés" />
+                android:text="@string/general_menu_employee_list" />
 
         </LinearLayout>
 
-        <LinearLayout
+        <!--LinearLayout
             android:id="@+id/LinearLayout"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -62,7 +62,8 @@
                 android:drawableTop="@drawable/ic_baseline_edit_50"
                 android:background="@color/colorPrimary"
                 android:paddingTop="20dp"
-                android:text="@string/menu_update_button" />
+                android:text="@string/menu_update_button"
+                style="?android:attr/buttonBarButtonStyle" />
 
     <Button
         android:id="@+id/menu_delete"
@@ -75,7 +76,7 @@
         android:background="@color/colorPrimary"
         android:paddingTop="20dp"
         android:text="@string/menu_delete_button" />
-        </LinearLayout>
+        </LinearLayout-->
 
 
         <LinearLayout
@@ -85,7 +86,6 @@
             android:orientation="horizontal">
     <Button
         android:id="@+id/menu_clock"
-
         android:layout_width="120dp"
         android:layout_height="150dp"
         android:layout_marginStart="25dp"
@@ -104,7 +104,7 @@
         android:drawableTop="@drawable/ic_baseline_menu_book_50"
         android:paddingTop="20dp"
         android:background="@color/colorPrimary"
-        android:text="Etats de présence" />
+        android:text="@string/menu_presence_report" />
         </LinearLayout>
         <LinearLayout
             android:id="@+id/LinearLayout3"
@@ -134,7 +134,7 @@
                 android:paddingTop="20dp"
                 android:drawableTop="@drawable/ic_baseline_bar_chart_50"
                 android:background="@color/colorPrimary"
-                android:text="Statistiques par employé"
+                android:text="@string/menu_statistics_by_employee"
                 android:gravity="center"/>
         </LinearLayout>
 

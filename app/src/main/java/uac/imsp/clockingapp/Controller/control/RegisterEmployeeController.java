@@ -264,6 +264,12 @@ String gend=null;
         }
         return new byte[0];
     }
+
+    @Override
+    public void onShowHidePassword(int viewId,int eyeId) {
+registerEmployeeView.onShowHidePassword(viewId, eyeId);
+    }
+
     public   byte[] getBytesFromBitmap(Bitmap bitmap) {
 
         if (bitmap != null) {

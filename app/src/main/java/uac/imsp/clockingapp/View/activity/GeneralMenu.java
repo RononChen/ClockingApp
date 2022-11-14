@@ -80,16 +80,27 @@ public class GeneralMenu extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onClick(View v) {
+        boolean presenter;
+        Intent intent;
          if(v.getId()==R.id.menu_register)
-            menuPresenter.onRegisterEmployeeMenu(currentUser);
+         {
+
+            presenter= menuPresenter.onRegisterEmployeeMenu(currentUser);
+           if(!presenter)//there is no service
+           {
+               intent=new Intent(GeneralMenu.this,NoServiceAvailable.class);
+               intent.putExtra("CURRENT_USER",currentUser);
+
+           }
+         }
         else if(v.getId()==R.id.menu_clock)
             menuPresenter.onClocking();
-        else if(v.getId()==R.id.menu_delete)
-            menuPresenter.onDeleteEmployeeMenu(currentUser);
+       /* else if(v.getId()==R.id.menu_delete)
+            menuPresenter.onDeleteEmployeeMenu(currentUser);*/
         else if (v.getId()==R.id.menu_search)
             menuPresenter.onSearchEmployeeMenu(currentUser);
-        else if(v.getId()==R.id.menu_update)
-            menuPresenter.onUpdateEmployeeMenu(currentUser);
+        /*else if(v.getId()==R.id.menu_update)
+            menuPresenter.onUpdateEmployeeMenu(currentUser);*/
         else if(v.getId()==R.id.menu_statistics)
             menuPresenter.onConsultatisticsMenu(currentUser);
         else if (v.getId()==R.id.menu_presence_report)
@@ -211,8 +222,8 @@ public class GeneralMenu extends AppCompatActivity implements View.OnClickListen
         Button register = findViewById(R.id.menu_register);
         Button clock = findViewById(R.id.menu_clock);
         Button search = findViewById(R.id.menu_search);
-        Button update = findViewById(R.id.menu_update);
-        Button delete = findViewById(R.id.menu_delete);
+       // Button update = findViewById(R.id.menu_update);
+       // Button delete = findViewById(R.id.menu_delete);
         Button consultStatistics = findViewById(R.id.menu_statistics);
         Button consultReport=findViewById(R.id.menu_presence_report);
 
@@ -221,8 +232,8 @@ Button password=findViewById(R.id.menu_password);
         clock.setOnClickListener(this);
         search.setOnClickListener(this);
         search.setOnClickListener(this);
-        update.setOnClickListener(this);
-        delete.setOnClickListener(this);
+        //update.setOnClickListener(this);
+       // delete.setOnClickListener(this);
         consultStatistics.setOnClickListener(this);
         consultReport.setOnClickListener(this);
         password.setOnClickListener(this);

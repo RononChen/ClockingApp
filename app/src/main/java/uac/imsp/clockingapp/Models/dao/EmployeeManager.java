@@ -75,7 +75,7 @@ public int connectUser(Employee employee){
       // open();
         SQLiteStatement statement;
         String query = "INSERT INTO employe (matricule,nom,prenom,sexe," +
-                "couriel,username,password,type) VALUES(?,?,?,?,?,?,?,?,?) ";
+                "couriel,username,password,type) VALUES(?,?,?,?,?,?,?,?) ";
                 statement=Database.compileStatement(query);
 
         statement.bindLong(1,employee.getRegistrationNumber());

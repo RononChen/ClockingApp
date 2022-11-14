@@ -7,11 +7,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import uac.imsp.clockingapp.Controller.util.Result;
 import uac.imsp.clockingapp.R;
 
@@ -29,24 +29,9 @@ public class ListViewAdapter  extends ArrayAdapter {
         TextView numberView;
         TextView nameView;
         TextView serviceView;
-        ImageView pictureView;
+        CircleImageView pictureView;
         TextView statusView;
     }
-
-    /*@Override
-    public int getCount() {
-        return listData.size();
-    }
-
-    @Override
-    public Object getItem(int position) {
-        return listData.get(position);
-    }
-
-    @Override
-    public long getItemId(int position) {
-        return position;
-    }*/
     public View getView(int position, View convertView, ViewGroup parent) {
         Bitmap pictureBipmap;
 
@@ -58,11 +43,11 @@ public class ListViewAdapter  extends ArrayAdapter {
             convertView = layoutInflater.inflate(R.layout.result_item_layout, null);
 
 
-            holder.numberView =(TextView) convertView.findViewById(R.id.search_number);
-            holder.nameView =  (TextView)convertView.findViewById(R.id.search_name);
-            holder.serviceView = (TextView) convertView.findViewById(R.id.search_service);
-            holder.pictureView=(ImageView)convertView.findViewById(R.id.search_cirle_picture);
-            holder.statusView=(TextView)convertView.findViewById(R.id.search_statut);
+            holder.numberView = convertView.findViewById(R.id.search_number);
+            holder.nameView = convertView.findViewById(R.id.search_name);
+            holder.serviceView = convertView.findViewById(R.id.search_service);
+            holder.pictureView= convertView.findViewById(R.id.search_cirle_picture);
+            holder.statusView= convertView.findViewById(R.id.search_statut);
 
 
 

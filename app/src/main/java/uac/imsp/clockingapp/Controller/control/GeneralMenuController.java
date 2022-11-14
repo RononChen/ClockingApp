@@ -4,6 +4,7 @@ import android.content.Context;
 
 import uac.imsp.clockingapp.Controller.util.IGeneralMenuController;
 import uac.imsp.clockingapp.Models.dao.EmployeeManager;
+import uac.imsp.clockingapp.Models.dao.ServiceManager;
 import uac.imsp.clockingapp.Models.entity.Employee;
 import uac.imsp.clockingapp.View.util.IGeneralMenuView;
 
@@ -27,9 +28,9 @@ public class GeneralMenuController  implements IGeneralMenuController {
         employeeManager.open();
         employee=new Employee(currentUser);
 
-   if(employeeManager.isNotSuperUser(employee))
+   if(employeeManager.isNotSuperUser(employee)) {
        menuView.onSearchEmployeeMenuError("Vous n'avez pas la permission de rechercher des employes");
-   else
+   } else
         menuView.onSearchEmployeeMenuSuccessfull();
         employeeManager.close();
     }
@@ -63,13 +64,19 @@ public class GeneralMenuController  implements IGeneralMenuController {
 
 
     }
-
-
     @Override
-    public void onRegisterEmployeeMenu(int currentUser) {
+    public boolean onRegisterEmployeeMenu(int currentUser) {
+        ServiceManager serviceManager=new ServiceManager((Context) menuView);
+        serviceManager.open();
+        String [] services=serviceManager.getAllServices();
 
         employeeManager=new EmployeeManager((Context) menuView);
         employeeManager.open();
+
+        if(services.length==0)//the list is empty
+
+            return false;
+
         employee=new Employee(currentUser);
 
         if(employeeManager.isNotSuperUser(employee))
@@ -78,6 +85,7 @@ public class GeneralMenuController  implements IGeneralMenuController {
         else
             menuView.onRegisterEmployeeMenuSuccessful();
       employeeManager.close();
+      return true;
     }
 
     @Override
