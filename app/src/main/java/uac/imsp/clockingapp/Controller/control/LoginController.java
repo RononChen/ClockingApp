@@ -5,6 +5,7 @@ import android.text.TextUtils;
 
 import uac.imsp.clockingapp.Controller.util.ILoginController;
 import uac.imsp.clockingapp.Models.dao.EmployeeManager;
+import uac.imsp.clockingapp.Models.entity.Day;
 import uac.imsp.clockingapp.Models.entity.Employee;
 import uac.imsp.clockingapp.View.util.ILoginView;
 
@@ -145,12 +146,40 @@ public class LoginController  implements ILoginController {
         loginView.onShowHidePassword();
 
     }
+    public void updateAttendance(Employee employee){
+        String statut;
+        employeeManager=new EmployeeManager((Context) loginView);
+        employeeManager.open();
+        if(!employeeManager.shouldWorkToday(employee))
+        {
+           if(new Day().isWeekEnd())
+               statut="Week-end";
+
+
+           else
+               statut="Hors service";
+
+        }
+        else
+            statut="Absent";
+        employeeManager.updateAttendance(employee,statut);
+        employeeManager.close();
+
+
+    }
 
     @Override
     public void onConfirmResult(boolean confirmed) {
-        if (confirmed)
-
+        if (confirmed) {
+            employeeManager=new EmployeeManager((Context) loginView);
+            employeeManager.open();
+            Employee[] employees =employeeManager.search("*");
+            employeeManager.close();
+            for(Employee employee:employees)
+                updateAttendance(employee);
             loginView.onPositiveResponse("Vous êtes connecté en tant qu'administrateur !");
+
+        }
         else
 
             loginView.onNegativeResponse("Vous êtes connecté en tant que" +

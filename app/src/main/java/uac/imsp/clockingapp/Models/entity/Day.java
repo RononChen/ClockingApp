@@ -1,5 +1,7 @@
 package uac.imsp.clockingapp.Models.entity;
 
+import android.annotation.SuppressLint;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.YearMonth;
@@ -77,8 +79,9 @@ return Integer.parseInt(FormatedYear);
 
     }
     public int getDayOfWeek()  {
-
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy", Locale.FRENCH);
+     int dayOfWeek;
+        @SuppressLint("SimpleDateFormat")
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         String dateInString = this.Date;
         java.util.Date date = null;
         try {
@@ -91,7 +94,11 @@ return Integer.parseInt(FormatedYear);
         Calendar calendar = Calendar.getInstance();
         assert date != null;
         calendar.setTime(date);
-        return calendar.get(Calendar.DAY_OF_WEEK)+1 ;
+        dayOfWeek=calendar.get(Calendar.DAY_OF_WEEK);
+        dayOfWeek--;
+        if(dayOfWeek==0)
+            dayOfWeek=7;
+        return dayOfWeek ;
     }
     public int getDayOfMonth()  {
         return Integer.parseInt(FormatedDay) ;

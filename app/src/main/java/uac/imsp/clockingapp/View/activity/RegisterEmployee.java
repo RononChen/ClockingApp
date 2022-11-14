@@ -321,7 +321,7 @@ public class RegisterEmployee extends AppCompatActivity
         EyePwdConfirm=findViewById(R.id.register_show_password_confirm);
         EyePwdConfirm.setOnClickListener(this);
         EyePwd.setOnClickListener(this);
-       // TextView number=findViewById(R.id.register_number);
+
 
         //new controller instance created
         registerEmployeePresenter = new RegisterEmployeeController(this);
@@ -378,6 +378,24 @@ public class RegisterEmployee extends AppCompatActivity
         end.setFormatter(this);
         initNumberPicker(start,6,9);
         initNumberPicker(end,16,19);
+
+        CheckBox monday=findViewById(R.id.monday),
+                tuesday=findViewById(R.id.tuesday),
+                wednesday=findViewById(R.id.wednesday),
+                thursday=findViewById(R.id.thursday),
+                friday=findViewById(R.id.friday),
+                satursday=findViewById(R.id.satursday),
+                sunday=findViewById(R.id.sunday);
+        myTable[0]=monday;
+        myTable[1]=tuesday;
+        myTable[2]=wednesday;
+        myTable[3]=thursday;
+        myTable[4]=friday;
+        myTable[5]=satursday;
+        myTable[6]=sunday;
+
+        myTable[5].setChecked(false);
+        myTable[6].setChecked(false);
     }
 
     public void initNumberPicker(NumberPicker n,int min,int max ){
@@ -430,21 +448,6 @@ public class RegisterEmployee extends AppCompatActivity
 
     }
     public byte[] workdays(){
-
-         CheckBox monday=findViewById(R.id.monday),
-        tuesday=findViewById(R.id.tuesday),
-        wednesday=findViewById(R.id.wednesday),
-        thursday=findViewById(R.id.thursday),
-        friday=findViewById(R.id.friday),
-        satursday=findViewById(R.id.satursday),
-                sunday=findViewById(R.id.sunday);
-        myTable[0]=monday;
-        myTable[1]=tuesday;
-        myTable[2]=wednesday;
-        myTable[3]=thursday;
-        myTable[4]=friday;
-        myTable[5]=satursday;
-        myTable[6]=sunday;
         byte[] tab =new byte[7];
         int i;
        for(i=0;i<7;i++)
@@ -456,7 +459,7 @@ public class RegisterEmployee extends AppCompatActivity
 
 
         }
-      // myTable[0].setOnCheckedChangeListener(this);
+
 
 return tab;
     }

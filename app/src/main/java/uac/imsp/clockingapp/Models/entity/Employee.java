@@ -31,6 +31,7 @@ public  final static String SIMPLE="Simple", HEAD="Directeur",CHIEF="Chef person
     private int RegistrationNumber;
 
     private String Firstname;
+    private String CurrentStatus;
 
     private String Lastname;
     private char Gender;
@@ -125,8 +126,21 @@ public  final static String SIMPLE="Simple", HEAD="Directeur",CHIEF="Chef person
     }
     public String getType(){ return Type;}
 
+    public byte[] getWorkdays() {
+        return Workdays;
+    }
 
+    public void setCurrentStatus(String currentStatus) {
+        CurrentStatus = currentStatus;
+    }
 
+    public void setWorkdays(byte[] workdays) {
+        Workdays = workdays;
+    }
+
+    public String getCurrentStatus() {
+        return CurrentStatus;
+    }
 
     @Override
     public int isValid() {

@@ -28,7 +28,8 @@ public class ClockingSQLite  extends SQLiteOpenHelper {
     private static final String TABLE_POINTAGE = "pointage";
     private static final String COL_ID_POINTAGE = "id_pointage";
     private static final String COL_DATE_JOUR= "date_jour";
-    private static final String COL_DATE_JOUR_REF= "id_jour_ref";
+    private static final String COL_ID_JOUR_REF = "id_jour_ref";
+    private static final String COL_ID_JOUR = "id_jour";
     private static final String COL_HEURE_ENTREE = "heure_entree";
     private static final String COL_HEURE_SORTIE= "heure_sortie";
     private static final String COL_MATRICULE="matricule";
@@ -37,16 +38,16 @@ public class ClockingSQLite  extends SQLiteOpenHelper {
 
             TABLE_POINTAGE + " (" +
             COL_ID_POINTAGE + " INTEGER NOT NULL  PRIMARY KEY AUTOINCREMENT, " +
-
-            COL_DATE_JOUR_REF+ " TEXT    ," +
+                   COL_ID_JOUR_REF + " TEXT    ," +
+                   COL_DATE_JOUR+" TEXT ,"+
             COL_HEURE_ENTREE + "   TEXT ," +
             COL_HEURE_SORTIE + " TEXT ," +
             COL_MATRICULE_REF+ " INTEGER NOT NULL ," +
 
                " FOREIGN KEY(" + COL_MATRICULE_REF +
                " ) REFERENCES employe(" + COL_MATRICULE+" ),"+
-        "  FOREIGN KEY(" + COL_DATE_JOUR_REF +
-            " ) REFERENCES jour(" + COL_DATE_JOUR+" ))" ;
+        "  FOREIGN KEY(" + COL_ID_JOUR_REF +
+            " ) REFERENCES jour(" + COL_ID_JOUR+" ))" ;
            public static final String DROP_CLOCKING="DROP TABLE  IF EXISTS "+TABLE_POINTAGE;
 
 
@@ -68,9 +69,6 @@ public class ClockingSQLite  extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        ///db.execSQL(DROP_CLOCKING);
-
-        //onCreate(db);
         upgradeDatabase(db);
 
     }

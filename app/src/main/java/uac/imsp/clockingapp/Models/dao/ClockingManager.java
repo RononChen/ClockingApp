@@ -32,20 +32,23 @@ public class ClockingManager {
             Database.close();
     }
 
-
-    //create,delete,update
-
-    //for clocking in
-
     public void clockIn(Employee employee, Day day) {
-        //open()
+        Cursor cursor;
+        String attendedEntryTime;
+        String currentEntryTime;
+        String [] selectArgs;
         int id;
         SQLiteStatement statement;
+        String query;
         id=day.getId();
 
+         query="SELECT TIME('NOW','LOCALTIME')"; //get the current time
+        cursor=Database.rawQuery(query,null);
+        currentEntryTime=cursor.getString(0);
+        cursor.close();
 
 
-        String query = " INSERT INTO pointage(matricule_ref,id_jour_ref,heure_entree) " +
+         query = "INSERT INTO pointage(matricule_ref,id_jour_ref,heure_entree) " +
                 "VALUES(?,?,TIME(?,?))";
 
 
@@ -54,14 +57,39 @@ public class ClockingManager {
         statement.bindLong(2,id);
         statement.bindString(3, "NOW");
         statement.bindString(4,"LOCALTIME");
-
         statement.executeInsert();
+        //update the current state of the employee
+       //we wanna get the attended entry time of the employee
+        query="SELECT heure_debut_officielle FROM planning " +
+                "JOIN employe ON id_planning=id_planning_ref" +
+                " WHERE matricule=?";
+        selectArgs= new String[]{String.valueOf(employee.getRegistrationNumber())};
+        cursor=Database.rawQuery(query,selectArgs);
+        //if(cursor.moveToFirst())
+            attendedEntryTime=cursor.getString(0);
+        if(currentEntryTime.compareTo(attendedEntryTime)<=0)
+            employee.setCurrentStatus("Présent");
+        else
+            employee.setCurrentStatus("Retard");
+
+
+        cursor.close();
+
+
+        query="UPDATE employee SET status=? WHERE matricule=?";
+        statement=Database.compileStatement(query);
+        statement.bindString(1,employee.getCurrentStatus());
+        statement.bindLong(2,employee.getRegistrationNumber());
+        statement.executeUpdateDelete();
+
+
+        statement.executeUpdateDelete();
+
     }
 
     //for clocking out
     public void clockOut(Employee employee, Day day) {
         int id;
-
         id=day.getId();
 
 
@@ -71,6 +99,12 @@ public class ClockingManager {
         statement.bindString(1, "TIME('NOW','LOCALTIME')");
         statement.bindLong(2, employee.getRegistrationNumber());
         statement.bindLong(3, id);
+        statement.executeUpdateDelete();
+     employee.setCurrentStatus("Sortie");
+        query="UPDATE employee SET status=? WHERE matricule=?";
+        statement=Database.compileStatement(query);
+        statement.bindString(1,employee.getCurrentStatus());
+        statement.bindLong(2,employee.getRegistrationNumber());
         statement.executeUpdateDelete();
     }
 

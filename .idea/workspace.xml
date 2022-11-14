@@ -20,34 +20,21 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ddeb6ea-e00f-4cf2-88d3-89cbf60c105a" name="Changes" comment="&quot;every is going to become OKAY&quot;">
+    <list default="true" id="7ddeb6ea-e00f-4cf2-88d3-89cbf60c105a" name="Changes" comment="&quot;show/hide password during registration--no service available&quot;">
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/androidTest/java/uac/imsp/clockingapp/RegisterEmployeeTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/androidTest/java/uac/imsp/clockingapp/RegisterEmployeeTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/GeneralMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/GeneralMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/RegisterEmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/RegisterEmployeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/util/IGeneralMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/util/IGeneralMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/util/IRegisterEmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/util/IRegisterEmployeeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/dao/ClockingManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/dao/ClockingManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/dao/EmployeeManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/dao/EmployeeManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/dao/ServiceManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/dao/ServiceManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/GeneralMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/GeneralMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/NoServiceAvailable.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/NoServiceAvailable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/dbAdapter/ClockingSQLite.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/dbAdapter/ClockingSQLite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/dbAdapter/EmployeeSQLite.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/dbAdapter/EmployeeSQLite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/entity/Day.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/entity/Day.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/entity/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/entity/Employee.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/RegisterEmployee.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/RegisterEmployee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/Search.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/util/IRegisterEmployeeView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/util/IRegisterEmployeeView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/util/ListViewAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/util/ListViewAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_general_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_general_menu.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_login.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_no_service_available.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_no_service_available.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_register.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_register_employee.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_register_employee.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_search.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_search_employee.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_search_employee.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/result_item_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/result_item_layout.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-fr/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-fr/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/test/java/uac/imsp/clockingapp/DayTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/test/java/uac/imsp/clockingapp/DayTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -135,6 +122,7 @@
     <property name="DEBUGGABLE_DEVICE" value="tecno_mobile_limited-tecno_b1p-042451198T006553" />
     <property name="DEBUGGABLE_PROCESS" value="uac.imsp.clockingapp" />
     <property name="DEBUGGER_ID" value="Auto" />
+    <property name="PROJECT_TRUSTED_KEY" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="RunOnceActivity.cidr.known.project.marker" value="true" />
@@ -150,7 +138,7 @@
     <property name="android-custom-view/home/adede/Android/Sdk/sources/android-32/android/widget/TextView.java_SELECTED" value="TextView" />
     <property name="android-custom-view/home/adede/Android/Sdk/sources/android-32/android/widget/TextView.java_TextView_DIMENSIONS" value="1080&#10;1920" />
     <property name="cidr.known.project.marker" value="true" />
-    <property name="com.android.tools.idea.sqlite.queryhistory" value="SELECT * FROM employe &#10;SELECT service.nom  FROM employe JOIN service ON id_service=id_service_ref WHERE matricule='1'&#10;SELECT id_service_ref, COUNT(*) FROM (SELECT * FROM employe JOIN pointage AS relation ON matricule = matricule_ref  JOIN jour AS second  ON relation.id_jour_ref= id_jour JOIN service ON employe.id_service_ref=id_service WHERE heure_entree IS NOT NULL AND date_jour BETWEEN '2022-07-01' AND '2022-07-20' GROUP BY service.nom) &#10;SELECT nom, COUNT(*) FROM (SELECT * FROM employe JOIN pointage AS relation ON matricule = matricule_ref  JOIN jour AS second  ON relation.id_jour_ref= id_jour JOIN service ON employe.id_service_ref=id_service WHERE heure_entree IS NOT NULL AND date_jour BETWEEN '2022-07-01' AND '2022-07-30' GROUP BY service.nom) &#10;SELECT second.nom, COUNT(*) FROM (SELECT * FROM employe JOIN pointage AS relation ON matricule = matricule_ref  JOIN jour AS second  ON relation.id_jour_ref= id_jour JOIN service ON employe.id_service_ref=id_service WHERE heure_entree IS NOT NULL AND date_jour BETWEEN '2022-07-01' AND '2022-07-30' GROUP BY service.nom) " />
+    <property name="com.android.tools.idea.sqlite.queryhistory" value="SELECT statut FROM employe WHERE matricule='1'&#10;SELECT status FROM employe WHERE matricule='1'&#10;SELECT jours_de_travail FROM planning JOIN employe ON id_planning=id_planning_ref WHERE matricule='1'&#10;SELECT nom,prenom,sexe,photo,type,couriel,username,birthdate,jours_de_travail FROM employe JOIN planning ON id_planning=id_planning_ref WHERE matricule='1'&#10;SELECT nom,prenom,sexe,photo,type,couriel,username,birthdate,jours_de_travail FROM employe JOIN planning on matricule=matricule_ref  WHERE matricule='1'" />
     <property name="com.intellij.openapi.externalSystem.service.settings.ExternalSystemGroupConfigurable" value="ALL" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
@@ -376,180 +364,89 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="testDeleteEmployee()" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
-      <module name="ClockingApp.app" />
-      <option name="TESTING_TYPE" value="3" />
-      <option name="METHOD_NAME" value="testDeleteEmployee" />
-      <option name="CLASS_NAME" value="uac.imsp.clockingapp.DeleteEmployeeTest" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_NAME_REGEX" value="" />
-      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
-      <option name="EXTRA_OPTIONS" value="" />
-      <option name="RETENTION_ENABLED" value="No" />
-      <option name="RETENTION_MAX_SNAPSHOTS" value="2" />
-      <option name="RETENTION_COMPRESS_SNAPSHOTS" value="false" />
-      <option name="CLEAR_LOGCAT" value="false" />
-      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
-      <option name="INSPECTION_WITHOUT_ACTIVITY_RESTART" value="false" />
-      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
-      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
-      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <option name="DEBUGGER_TYPE" value="Auto" />
-      <Auto>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Auto>
-      <Hybrid>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Hybrid>
-      <Java />
-      <Native>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Native>
-      <Profilers>
-        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
-        <option name="STARTUP_PROFILING_ENABLED" value="false" />
-        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
-        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Java/Kotlin Method Sample (legacy)" />
-        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
-        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
-        <option name="PROFILING_MODE" value="NOT_SET" />
-      </Profilers>
-      <method v="2">
-        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="testLanguageMenu()" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
-      <module name="ClockingApp.app" />
-      <option name="TESTING_TYPE" value="3" />
-      <option name="METHOD_NAME" value="testLanguageMenu" />
-      <option name="CLASS_NAME" value="uac.imsp.clockingapp.MenuTest" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_NAME_REGEX" value="" />
-      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
-      <option name="EXTRA_OPTIONS" value="" />
-      <option name="RETENTION_ENABLED" value="No" />
-      <option name="RETENTION_MAX_SNAPSHOTS" value="2" />
-      <option name="RETENTION_COMPRESS_SNAPSHOTS" value="false" />
-      <option name="CLEAR_LOGCAT" value="false" />
-      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
-      <option name="INSPECTION_WITHOUT_ACTIVITY_RESTART" value="false" />
-      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
-      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
-      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <option name="DEBUGGER_TYPE" value="Auto" />
-      <Auto>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Auto>
-      <Hybrid>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Hybrid>
-      <Java />
-      <Native>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Native>
-      <Profilers>
-        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
-        <option name="STARTUP_PROFILING_ENABLED" value="false" />
-        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
-        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Java/Kotlin Method Sample (legacy)" />
-        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
-        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
-        <option name="PROFILING_MODE" value="NOT_SET" />
-      </Profilers>
-      <method v="2">
-        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="testUpdateEmployee()" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
-      <module name="ClockingApp.app.androidTest" />
-      <option name="TESTING_TYPE" value="3" />
-      <option name="METHOD_NAME" value="testUpdateEmployee" />
-      <option name="CLASS_NAME" value="uac.imsp.clockingapp.UpdateEmployeeTest" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_NAME_REGEX" value="" />
-      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
-      <option name="EXTRA_OPTIONS" value="" />
-      <option name="RETENTION_ENABLED" value="No" />
-      <option name="RETENTION_MAX_SNAPSHOTS" value="2" />
-      <option name="RETENTION_COMPRESS_SNAPSHOTS" value="false" />
-      <option name="CLEAR_LOGCAT" value="false" />
-      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
-      <option name="INSPECTION_WITHOUT_ACTIVITY_RESTART" value="false" />
-      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
-      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
-      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <option name="DEBUGGER_TYPE" value="Auto" />
-      <Auto>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Auto>
-      <Hybrid>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Hybrid>
-      <Java />
-      <Native>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Native>
-      <Profilers>
-        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
-        <option name="STARTUP_PROFILING_ENABLED" value="false" />
-        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
-        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Java/Kotlin Method Sample (legacy)" />
-        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
-        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
-        <option name="PROFILING_MODE" value="NOT_SET" />
-      </Profilers>
-      <method v="2">
-        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="DayTest.test" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+    <configuration name="DayTest.getDayOfWeek" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
         <option name="externalProjectPath" value="$PROJECT_DIR$" />
         <option name="externalSystemIdString" value="GRADLE" />
-        <option name="scriptParameters" value="--tests &quot;uac.imsp.clockingapp.DayTest.test&quot;" />
+        <option name="scriptParameters" value="" />
         <option name="taskDescriptions">
           <list />
         </option>
         <option name="taskNames">
           <list>
             <option value=":app:testDebugUnitTest" />
+            <option value="--tests" />
+            <option value="&quot;uac.imsp.clockingapp.DayTest.getDayOfWeek&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="DayTest.getOfWeek" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":app:testDebugUnitTest" />
+            <option value="--tests" />
+            <option value="&quot;uac.imsp.clockingapp.DayTest.getOfWeek&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="DayTest.test" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":app:testDebugUnitTest" />
+            <option value="--tests" />
+            <option value="&quot;uac.imsp.clockingapp.DayTest.test&quot;" />
+          </list>
+        </option>
+        <option name="vmOptions" />
+      </ExternalSystemSettings>
+      <ExternalSystemDebugServerProcess>false</ExternalSystemDebugServerProcess>
+      <ExternalSystemReattachDebugProcess>true</ExternalSystemReattachDebugProcess>
+      <DebugAllEnabled>false</DebugAllEnabled>
+      <method v="2" />
+    </configuration>
+    <configuration name="DayTest.testDayWithCurrentDate" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
+      <ExternalSystemSettings>
+        <option name="executionName" />
+        <option name="externalProjectPath" value="$PROJECT_DIR$" />
+        <option name="externalSystemIdString" value="GRADLE" />
+        <option name="scriptParameters" value="" />
+        <option name="taskDescriptions">
+          <list />
+        </option>
+        <option name="taskNames">
+          <list>
+            <option value=":app:testDebugUnitTest" />
+            <option value="--tests" />
+            <option value="&quot;uac.imsp.clockingapp.DayTest.testDayWithCurrentDate&quot;" />
           </list>
         </option>
         <option name="vmOptions" />
@@ -585,19 +482,19 @@
     <list>
       <item itemvalue="Android App.app" />
       <item itemvalue="Android App.Menu" />
-      <item itemvalue="Android Instrumented Tests.testDeleteEmployee()" />
-      <item itemvalue="Android Instrumented Tests.testLanguageMenu()" />
-      <item itemvalue="Android Instrumented Tests.testUpdateEmployee()" />
-      <item itemvalue="Gradle.DayTest.test" />
       <item itemvalue="Gradle.ValidPasswordTest" />
+      <item itemvalue="Gradle.DayTest.testDayWithCurrentDate" />
+      <item itemvalue="Gradle.DayTest.test" />
+      <item itemvalue="Gradle.DayTest.getDayOfWeek" />
+      <item itemvalue="Gradle.DayTest.getOfWeek" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Gradle.ValidPasswordTest" />
-        <item itemvalue="Android Instrumented Tests.testUpdateEmployee()" />
-        <item itemvalue="Android Instrumented Tests.testDeleteEmployee()" />
-        <item itemvalue="Android Instrumented Tests.testLanguageMenu()" />
+        <item itemvalue="Gradle.DayTest.testDayWithCurrentDate" />
+        <item itemvalue="Gradle.DayTest.getOfWeek" />
+        <item itemvalue="Gradle.DayTest.getDayOfWeek" />
         <item itemvalue="Gradle.DayTest.test" />
+        <item itemvalue="Gradle.ValidPasswordTest" />
       </list>
     </recent_temporary>
   </component>
@@ -897,7 +794,14 @@
       <option name="project" value="LOCAL" />
       <updated>1668367337742</updated>
     </task>
-    <option name="localTasksCounter" value="42" />
+    <task id="LOCAL-00042" summary="&quot;show/hide password during registration--no service available&quot;">
+      <created>1668407436031</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1668407436031</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -939,7 +843,8 @@
     <MESSAGE value="&quot;Ready to continue&quot;" />
     <MESSAGE value="&quot;CircleImageView and employee status added to searchView layout and ListViewAdapter&#10;Workdays added to Planning&quot;" />
     <MESSAGE value="&quot;every is going to become OKAY&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="&quot;every is going to become OKAY&quot;" />
+    <MESSAGE value="&quot;show/hide password during registration--no service available&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;show/hide password during registration--no service available&quot;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

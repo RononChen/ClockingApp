@@ -40,6 +40,7 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
         public static final String COL_ID_PLANNING="id_planning";
    private static final String COL_ID_SERVICE_REF = "id_service_ref";
     private static final String COL_ID_SERVICE = "id_service";
+    private static final String COL_STATUS = "statut";
 
     public static final String super_user="INSERT INTO employe(matricule," +
             "username,password,type,sexe,couriel,id_service_ref," +
@@ -64,6 +65,7 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
             COL_TYPE+" TEXT DEFAULT 'Simple', "+
             COL_ID_PLANNING_REF + " INTEGER  , " +
             COL_ID_SERVICE_REF + " INTEGER   ," +
+            COL_STATUS+" TEXT DEFAULT 'Hors Service',"+
             " FOREIGN KEY(" + COL_ID_SERVICE_REF +
             " ) REFERENCES service(" + COL_ID_SERVICE+" )," +
             " FOREIGN KEY(" + COL_ID_PLANNING_REF +
