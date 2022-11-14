@@ -31,11 +31,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            <ImageView
+            <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/register_preview_image"
-                android:layout_width="220dp"
-                android:layout_height="280dp"
-                android:layout_marginStart="170dp" />
+                android:layout_width="match_parent"
+                android:layout_height="300dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/ic_baseline_person_100"
+                android:layout_marginEnd="16dp"
+                app:civ_border_width="2dp"
+                android:background="@color/black"
+                app:civ_border_color="#FF0000"/>
 
 
             <TextView

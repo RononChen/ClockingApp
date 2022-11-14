@@ -14,7 +14,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.NumberPicker;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
@@ -29,6 +28,7 @@ import java.text.ParseException;
 import java.util.Hashtable;
 import java.util.Objects;
 
+import de.hdodenhof.circleimageview.CircleImageView;
 import uac.imsp.clockingapp.Controller.control.UpdateEmployeeController;
 import uac.imsp.clockingapp.Controller.util.IUpdateEmployeeController;
 import uac.imsp.clockingapp.R;
@@ -48,8 +48,9 @@ public class UpdateEmployee extends AppCompatActivity
     private TextView Programm;
     private String selectedService, selectedType;
     private Spinner spinnerTypes, spinnerServices;
-    private ImageView image;
+    private CircleImageView image;
     private Bitmap picture;
+    CheckBox monday, tuesday, wednesday, thursday, friday, satursday, sunday;
     private Integer Start, End;
     private boolean pictureUpdated,planningUpdated;
     private byte[] WorkDays;
@@ -85,7 +86,8 @@ public class UpdateEmployee extends AppCompatActivity
         {
             Log.d("Start : ", Start + "");
             Log.d("End : ", End + "");
-            WorkDays=workdays();
+            WorkDays=new byte[7];
+            WorkDays=workDays();
             if(oldWorkDays!=WorkDays)
                 planningUpdated=true;
             updateEmployeePresenter.onUpdateEmployee(toString(Email), selectedService,
@@ -155,7 +157,7 @@ public class UpdateEmployee extends AppCompatActivity
         Programm=findViewById(R.id.prog);
         Programm.setText(programm());
 
-        ImageView previewImage = findViewById(R.id.register_preview_image);
+        image = findViewById(R.id.register_preview_image);
         Button update = findViewById(R.id.update_button);
         Button selectPicture = findViewById(R.id.register_picture_button);
         RadioGroup gender = findViewById(R.id.register_gender);
@@ -185,8 +187,8 @@ public class UpdateEmployee extends AppCompatActivity
         spinnerTypes.setSelection(position);
         initNumberPicker(start, 6, 9);
         initNumberPicker(end, 16, 19);
-
-        previewImage.setImageBitmap((Bitmap) informations.get("picture"));
+if(informations.get("picture")!=null)
+        image.setImageBitmap((Bitmap) informations.get("picture"));
         number.setText(Objects.requireNonNull(informations.get("number")).toString());
         lastname.setText(Objects.requireNonNull(informations.get("lastname")).toString());
         firstname.setText(Objects.requireNonNull(informations.get("firstname")).toString());
@@ -197,7 +199,14 @@ public class UpdateEmployee extends AppCompatActivity
         birthdate.setText(Objects.requireNonNull(informations.get("birthdate")).toString());
         if (Objects.equals(informations.get("gender"), 'F'))
             gender.setId(R.id.register_girl);
-        checkWorkdays(); //check worhdays boxes
+         monday=findViewById(R.id.monday);
+                tuesday=findViewById(R.id.tuesday);
+                wednesday=findViewById(R.id.wednesday);
+                thursday=findViewById(R.id.thursday);
+                friday=findViewById(R.id.friday);
+                satursday=findViewById(R.id.satursday);
+                sunday=findViewById(R.id.sunday);
+        checkWorkdays(); //check workdays boxes
 
         //Not updatable
         number.setEnabled(false);
@@ -258,22 +267,15 @@ public class UpdateEmployee extends AppCompatActivity
                         }
                         image.setImageBitmap(
                                 selectedImageBitmap);
-                        //picture is updated if selected bitmap is ot null
+                        //picture is updated if selected bitmap is not null
                         pictureUpdated= selectedImageBitmap != null;
 
                     }
                 }
             });
     public void checkWorkdays(){
-
-        CheckBox[] myTable=new CheckBox[7];
-        CheckBox monday=findViewById(R.id.monday),
-                tuesday=findViewById(R.id.tuesday),
-                wednesday=findViewById(R.id.wednesday),
-                thursday=findViewById(R.id.thursday),
-                friday=findViewById(R.id.friday),
-                satursday=findViewById(R.id.satursday),
-                sunday=findViewById(R.id.sunday);
+//to set checked the workdays and unchecked the others days
+        myTable=new CheckBox[7];
         myTable[0]=monday;
         myTable[1]=tuesday;
         myTable[2]=wednesday;
@@ -344,22 +346,7 @@ public class UpdateEmployee extends AppCompatActivity
 
 
     }
-    public byte[] workdays(){
-
-        CheckBox monday=findViewById(R.id.monday),
-                tuesday=findViewById(R.id.tuesday),
-                wednesday=findViewById(R.id.wednesday),
-                thursday=findViewById(R.id.thursday),
-                friday=findViewById(R.id.friday),
-                satursday=findViewById(R.id.satursday),
-                sunday=findViewById(R.id.sunday);
-        myTable[0]=monday;
-        myTable[1]=tuesday;
-        myTable[2]=wednesday;
-        myTable[3]=thursday;
-        myTable[4]=friday;
-        myTable[5]=satursday;
-        myTable[6]=sunday;
+    public byte[] workDays(){
         byte[] tab =new byte[7];
         int i;
         for(i=0;i<7;i++)
@@ -371,7 +358,7 @@ public class UpdateEmployee extends AppCompatActivity
 
 
         }
-        // myTable[0].setOnCheckedChangeListener(this);
+
 
         return tab;
     }

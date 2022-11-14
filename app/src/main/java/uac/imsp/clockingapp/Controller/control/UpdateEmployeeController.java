@@ -162,7 +162,7 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
 
 
             //compare the email entered to the real email of the emp
-            if (!Objects.equals(employee.getMailAddress(), mail))
+        if (!Objects.equals(employee.getMailAddress(), mail))
             {
                 if (TextUtils.isEmpty(mail))
                     updateEmployeeView.onUpdateEmployeeError
