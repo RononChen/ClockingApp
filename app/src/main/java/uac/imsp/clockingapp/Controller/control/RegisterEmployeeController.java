@@ -151,7 +151,7 @@ String gend=null;
                "et resssayer !");
 
    else if(nb_workdays==0)
-       registerEmployeeView.onRegisterEmployeeError("Acun jour de travail choisi");
+       registerEmployeeView.onRegisterEmployeeError("Aucun jour de travail choisi");
    else{
        employeeManager = new EmployeeManager(context);
        employeeManager.open();

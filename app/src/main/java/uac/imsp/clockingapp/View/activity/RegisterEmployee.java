@@ -69,8 +69,10 @@ public class RegisterEmployee extends AppCompatActivity
     private String SelectedService,SelectedType;
     private  Spinner spinnerServices , spinnerTypes;
     private int Start=8,End=17;
+     CheckBox monday,tuesday,wednesday,thursday,friday,satursday,sunday;
 
     CheckBox[] myTable=new CheckBox[7];
+    byte[] days=new byte[7];
 
 
 
@@ -162,7 +164,7 @@ public class RegisterEmployee extends AppCompatActivity
      else     if (v.getId() == R.id.register_picture_button)
             imageChooser();
         else if (v.getId() == R.id.register_button ) {
-           byte[] days= workdays();
+          days= workdays();
             registerEmployeePresenter.onRegisterEmployee(toString(Number), toString(Lastname),
                     toString(Firstname),gend,Birth,toString(Email),toString(Username),
                     toString(Password),toString(PasswordConfirm),SelectedService,
@@ -234,6 +236,21 @@ public class RegisterEmployee extends AppCompatActivity
         SelectedService = String.valueOf(spinnerServices.getSelectedItem());
         else if(view.getId()==R.id.register_type)
             SelectedType=String.valueOf(spinnerTypes.getSelectedItem());
+
+    }
+    public void selectSpinnerItemByValue(Spinner spinner, String value, int resID) {
+        int i;
+        ArrayAdapter<CharSequence> adapter =
+                ArrayAdapter.createFromResource(this, resID,
+                        android.R.layout.simple_spinner_item);
+
+        spinner.setAdapter(adapter);
+
+        if (value != null) {
+            i = adapter.getPosition(value);
+            spinner.setSelection(i);
+        }
+
 
     }
 
@@ -379,12 +396,12 @@ public class RegisterEmployee extends AppCompatActivity
         initNumberPicker(start,6,9);
         initNumberPicker(end,16,19);
 
-        CheckBox monday=findViewById(R.id.monday),
-                tuesday=findViewById(R.id.tuesday),
-                wednesday=findViewById(R.id.wednesday),
-                thursday=findViewById(R.id.thursday),
-                friday=findViewById(R.id.friday),
-                satursday=findViewById(R.id.satursday),
+                monday=findViewById(R.id.monday);
+                tuesday=findViewById(R.id.tuesday);
+                wednesday=findViewById(R.id.wednesday);
+                thursday=findViewById(R.id.thursday);
+                friday=findViewById(R.id.friday);
+                satursday=findViewById(R.id.satursday);
                 sunday=findViewById(R.id.sunday);
         myTable[0]=monday;
         myTable[1]=tuesday;
@@ -452,10 +469,11 @@ public class RegisterEmployee extends AppCompatActivity
         int i;
        for(i=0;i<7;i++)
         {
-            if(myTable[i].isChecked())
+            /*if(myTable[i].isChecked())
                 tab[i]='T'; //for true
             else
-                tab[i]='F';
+                tab[i]='F';*/
+            tab[i]= (byte) (myTable[i].isChecked()?'T':'F');
 
 
         }

@@ -5,10 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 
-import java.util.Arrays;
-
-import uac.imsp.clockingapp.Models.entity.Planning;
 import uac.imsp.clockingapp.Models.dbAdapter.PlanningSQLite;
+import uac.imsp.clockingapp.Models.entity.Planning;
 
 
 public class PlanningManager {
@@ -62,15 +60,21 @@ public class PlanningManager {
     //setl'id du planning  puis retourne true s'il existe et false sinon
     public boolean searchPlanning(Planning planning){
         boolean test;
+        byte[] workdays=planning.getWorkDays();
+        //Blob blob = new javax.sql.rowset.serial.;
+       //// Bitmap bm = BitmapFactory.decodeByteArray(workdays, 0 ,workdays.length);
+       //// Blob b=workdays;
 
+        //SerialBlob blob;
+       // Blob blob = new SerialBlob(hashValue);
         String query="SELECT id_planning FROM planning WHERE heure_debut_officielle=? " +
                 "AND heure_fin_officielle=? AND jours_de_travail=?" ;
                 String [] selectArgs={
                 planning.getStartTime(),planning.getEndTime(),
-                        Arrays.toString(planning.getWorkDays())
+                        new String(planning.getWorkDays())
         };
         Cursor cursor=Database.rawQuery(query,selectArgs);
-        cursor.moveToFirst();
+       cursor.moveToFirst();
         test=cursor.getCount()==1;
         if(test) {
             planning.setId(Integer.parseInt(cursor.getString(0)));

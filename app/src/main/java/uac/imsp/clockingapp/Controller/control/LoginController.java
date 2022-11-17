@@ -163,7 +163,7 @@ public class LoginController  implements ILoginController {
         else
             statut="Absent";
         employeeManager.updateAttendance(employee,statut);
-        employeeManager.close();
+        //employeeManager.close();
 
 
     }

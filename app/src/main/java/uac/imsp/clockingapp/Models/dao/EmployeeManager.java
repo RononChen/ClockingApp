@@ -91,7 +91,7 @@ public class EmployeeManager {
 
         statement.executeInsert();
         //if the birthdate is given
-        if (!Objects.equals(employee.getBirthdate(), "")) {
+        if (employee.getBirthdate()!=null) {
             query = "UPDATE employe SET birthdate=? WHERE matricule=?";
             statement = Database.compileStatement(query);
             statement.bindString(1, employee.getBirthdate());
