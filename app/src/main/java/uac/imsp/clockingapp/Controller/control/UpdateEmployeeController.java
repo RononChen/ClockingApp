@@ -60,6 +60,7 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
         Day day;
 
   Service service;
+  String birthdate;
   Planning planning;
   String [] serviceList;
         //planningManager=new PlanningManager(context);
@@ -96,8 +97,18 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
         informations.put("email",employee.getMailAddress());
         informations.put("username",employee.getUsername());
         informations.put("gender",employee.getGender());
-        day=new Day(employee.getBirthdate());
-        informations.put("birthdate",day.getFrenchFormat());
+        try {
+            day = new Day(employee.getBirthdate());
+            birthdate=day.getFrenchFormat();
+
+        }
+        catch (NullPointerException e){
+            birthdate="";
+            informations.put("birthdate",birthdate);
+            e.printStackTrace();
+
+        }
+
         informations.put("type",employee.getType());
         informations.put("service",service.getName());
         informations.put("start",Integer.parseInt(Objects.requireNonNull(planning.extractHours().get("start"))));

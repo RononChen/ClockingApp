@@ -213,6 +213,7 @@ String gend=null;
 
 
            service = new Service(selectedService);
+           serviceManager.open();
            serviceManager.searchService(service);
            serviceManager.close();
 

@@ -205,6 +205,7 @@ if(informations.get("picture")!=null)
         Email.setText(Objects.requireNonNull(informations.get("email")).toString());
         username.setText(Objects.requireNonNull(informations.get("username")).toString());
 
+
         birthdate.setText(Objects.requireNonNull(informations.get("birthdate")).toString());
         if (Objects.equals(informations.get("gender"), 'F'))
             gender.setId(R.id.register_girl);
@@ -222,6 +223,14 @@ if(informations.get("picture")!=null)
         firstname.setEnabled(false);
         lastname.setEnabled(false);
         birthdate.setEnabled(false);
+        if (Objects.requireNonNull(informations.get("birthdate")).toString().equals(""))
+        {
+           // TextView tv=findViewById(R.id.tv);
+            (( TextView )findViewById(R.id.tv)).setVisibility(View.GONE);
+            birthdate.setVisibility(View.GONE);
+
+        }
+
         username.setEnabled(false);
         gender.setEnabled(false);
 

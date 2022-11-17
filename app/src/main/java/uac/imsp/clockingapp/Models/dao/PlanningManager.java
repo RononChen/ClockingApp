@@ -5,9 +5,11 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 
+import java.util.Arrays;
+
 import uac.imsp.clockingapp.Models.dbAdapter.PlanningSQLite;
 import uac.imsp.clockingapp.Models.entity.Planning;
-
+//import javax.sql.rowset.serial.*;
 
 public class PlanningManager {
     private SQLiteDatabase Database = null;
@@ -59,30 +61,32 @@ public class PlanningManager {
     }
     //setl'id du planning  puis retourne true s'il existe et false sinon
     public boolean searchPlanning(Planning planning){
+        byte[] retrievedData=new byte[7];
         boolean test;
         byte[] workdays=planning.getWorkDays();
-        //Blob blob = new javax.sql.rowset.serial.;
-       //// Bitmap bm = BitmapFactory.decodeByteArray(workdays, 0 ,workdays.length);
-       //// Blob b=workdays;
 
-        //SerialBlob blob;
-       // Blob blob = new SerialBlob(hashValue);
-        String query="SELECT id_planning FROM planning WHERE heure_debut_officielle=? " +
-                "AND heure_fin_officielle=? AND jours_de_travail=?" ;
+        String query="SELECT id_planning,jours_de_travail FROM planning" +
+                " WHERE heure_debut_officielle=? " +
+                "AND heure_fin_officielle=?" ;
                 String [] selectArgs={
                 planning.getStartTime(),planning.getEndTime(),
-                        new String(planning.getWorkDays())
+
         };
         Cursor cursor=Database.rawQuery(query,selectArgs);
-       cursor.moveToFirst();
-        test=cursor.getCount()==1;
-        if(test) {
-            planning.setId(Integer.parseInt(cursor.getString(0)));
-            cursor.close();
-            return true;
+        int id;
+
+        while (cursor.moveToNext())
+        {
+            id= (int) cursor.getLong(0);
+          retrievedData=cursor.getBlob(1)  ;
+          if(Arrays.equals(retrievedData, workdays))
+          {
+              cursor.close();
+              planning.setId(id);
+              return true;
+          }
 
         }
-        cursor.close();
         return false;
 
         }
