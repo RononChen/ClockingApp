@@ -225,7 +225,6 @@ if(informations.get("picture")!=null)
         birthdate.setEnabled(false);
         if (Objects.requireNonNull(informations.get("birthdate")).toString().equals(""))
         {
-           // TextView tv=findViewById(R.id.tv);
             (( TextView )findViewById(R.id.tv)).setVisibility(View.GONE);
             birthdate.setVisibility(View.GONE);
 

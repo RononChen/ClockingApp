@@ -67,6 +67,7 @@ public class RegisterEmployee extends AppCompatActivity
     private byte[] Picture;
     private String gend;
     private String SelectedService,SelectedType;
+    private String [] services,employeTypes;
     private  Spinner spinnerServices , spinnerTypes;
     private int Start=8,End=17;
      CheckBox monday,tuesday,wednesday,thursday,friday,satursday,sunday;
@@ -231,11 +232,21 @@ public class RegisterEmployee extends AppCompatActivity
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+int pos;
+        if(parent.getId()==R.id.register_service) {
+            //SelectedService = String.valueOf(spinnerServices.getSelectedItem());
+            SelectedService = parent.getItemAtPosition(position).toString();
+            /*pos=position;
+            SelectedService=services[pos];*/
 
-        if(view.getId()==R.id.register_service)
-        SelectedService = String.valueOf(spinnerServices.getSelectedItem());
-        else if(view.getId()==R.id.register_type)
-            SelectedType=String.valueOf(spinnerTypes.getSelectedItem());
+        }
+        else if(parent.getId()==R.id.register_type) {
+            //SelectedType=String.valueOf(spinnerTypes.getSelectedItem());
+            SelectedType = parent.getItemAtPosition(position).toString();
+            /*pos=position;
+            SelectedType=employeTypes[pos];*/
+
+        }
 
     }
     public void selectSpinnerItemByValue(Spinner spinner, String value, int resID) {
@@ -343,8 +354,8 @@ public class RegisterEmployee extends AppCompatActivity
         //new controller instance created
         registerEmployeePresenter = new RegisterEmployeeController(this);
         // The view gets service list from the controller
-        String[] services = registerEmployeePresenter.onLoad();
-         String [] employeTypes=getResources().getStringArray(R.array.employee_types);
+         services = registerEmployeePresenter.onLoad();
+          employeTypes=getResources().getStringArray(R.array.employee_types);
         SelectedType=employeTypes[0];
         SelectedService=services[0];
         spinnerServices = findViewById(R.id.register_service);

@@ -208,14 +208,14 @@ String gend=null;
            planningManager = new PlanningManager(context);
            planningManager.open();
            planningManager.create(planning);
-           planningManager.close();
+           //planningManager.close();
 
 
 
            service = new Service(selectedService);
            serviceManager.open();
            serviceManager.searchService(service);
-           serviceManager.close();
+           //serviceManager.close();
 
            employee.setPassword(employee.getPassword());
            employeeManager.create(employee);
