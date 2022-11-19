@@ -34,6 +34,7 @@ public class ClockingSQLite  extends SQLiteOpenHelper {
     private static final String COL_HEURE_SORTIE= "heure_sortie";
     private static final String COL_MATRICULE="matricule";
     private static  final String COL_MATRICULE_REF="matricule_ref";
+    private static final String COL_STATUT="status";
            public static final String CREATE_CLOCKING = "CREATE TABLE IF NOT EXISTS " +
 
             TABLE_POINTAGE + " (" +
@@ -42,6 +43,7 @@ public class ClockingSQLite  extends SQLiteOpenHelper {
                    COL_DATE_JOUR+" TEXT ,"+
             COL_HEURE_ENTREE + "   TEXT ," +
             COL_HEURE_SORTIE + " TEXT ," +
+                   COL_STATUT+" TEXT ,"+
             COL_MATRICULE_REF+ " INTEGER NOT NULL ," +
 
                " FOREIGN KEY(" + COL_MATRICULE_REF +
@@ -57,6 +59,7 @@ public class ClockingSQLite  extends SQLiteOpenHelper {
 
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
+
 
 
 

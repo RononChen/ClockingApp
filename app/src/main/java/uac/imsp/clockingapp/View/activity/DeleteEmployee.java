@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -93,8 +94,15 @@ public class DeleteEmployee extends AppCompatActivity
         username.setText(Objects.requireNonNull(informations.get("username")).toString());
 
         birthdate.setText(Objects.requireNonNull(informations.get("birthdate")).toString());
+
+        if (Objects.requireNonNull(informations.get("birthdate")).toString().equals(""))
+        {
+            ((TextView)findViewById(R.id.tv)).setVisibility(View.GONE);
+            birthdate.setVisibility(View.GONE);
+
+        }
         if (Objects.equals(informations.get("gender"), 'F'))
-              gender.setId(R.id.register_girl);
+                gender.setId(R.id.register_girl);
 
 
                service.setText((String) informations.get("service"));
@@ -146,7 +154,7 @@ public class DeleteEmployee extends AppCompatActivity
                      new ToastMessage(DeleteEmployee.this,"Confirmé");
                     deleteEmployeePresenter.onConfirmResult(true);
                     DeleteEmployee.this.finish();
-                    startActivity(getIntent());
+                    //startActivity(getIntent());
                 })
                 .setNegativeButton(neg, (dialog, which) -> {
 

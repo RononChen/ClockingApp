@@ -43,6 +43,20 @@ public class DayTest {
         assertFalse(now.isWeekEnd());
 
     }
+    @Test
+    public void runtest(){
+        Day day=new Day(2022,11,18);
+        int n= day.getFirstDayOfMonth();
+        assertEquals(2,n);
+
+    }
+    @Test
+    public void assureMonthLengthIsCorrect(){
+        Day day=new Day(2022,11,18);
+        assertEquals(30,day.getLenthOfMonth());
+        day=new Day(2022,12,3);
+        assertEquals(31,day.getLenthOfMonth());
+    }
 @Test
     public void getOfWeek()  {
 Day d= new Day();

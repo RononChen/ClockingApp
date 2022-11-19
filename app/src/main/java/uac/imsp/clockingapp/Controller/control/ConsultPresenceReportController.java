@@ -24,7 +24,24 @@ public class ConsultPresenceReportController implements IConsultPresenceReportCo
     @Override
     public void onConsultPresenceReport(int number) {
         employee = new Employee(number);
-        consultPresenceReportView.onStart("Sélectionnez le mois");
+        consultPresenceReportView.onStart("");
+
+
+        Day day=new Day();
+        int month= day.getMonth();
+
+        Character [] state=null;
+        EmployeeManager employeeManager;
+        employeeManager=new EmployeeManager((Context) consultPresenceReportView);
+        employeeManager.open();
+        state=employeeManager.getPresenceReportForEmployee(employee,month);
+
+
+        //employeeManager.close();
+       // day=new Day();
+
+
+        consultPresenceReportView.onMonthSelected(state,day.getFirstDayOfMonth());
         
     }
 

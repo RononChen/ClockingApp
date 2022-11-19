@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Objects;
@@ -409,7 +408,7 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
 
     // presence report in a month for an employee (satursday and sunday aren't concerned)
     public Character[] getPresenceReportForEmployee(
-            Employee employee, int month) throws ParseException {
+            Employee employee, int month)  {
         Day day, d;
         Character[] table;
         int i;
@@ -451,14 +450,14 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
 
 
     }
-
-    public char compute(Employee employee, Day day) throws ParseException {
+/*** This function take an employee and a day as paramater and
+  returns the matching presence state***/
+    public char compute(Employee employee, Day day)  {
         char state;
         String normalStartTime;
-        String entryTime = null;
-        String query = "SELECT heure_entree FROM(SELECT * FROM pointage AS Relation JOIN jour" +
-
-                " ON Relation.id_jour_ref=id_jour  WHERE matricule_ref=?" +
+        String entryTime;
+        String query = "SELECT heure_entree FROM(SELECT * FROM pointage AS Relation" +
+                " JOIN jour ON Relation.id_jour_ref=id_jour  WHERE matricule_ref=?" +
                 " AND id_jour=?)";
         String[] selectArgs = {String.valueOf(employee.getRegistrationNumber()),
                 String.valueOf(day.getId())};
@@ -512,7 +511,7 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
     }
 
 
-    public boolean shouldWorkToday(Employee employee) {
+    public boolean shouldNotWorkToday(Employee employee) {
         Cursor cursor;
         byte[] workDays;
         //byte
@@ -526,9 +525,9 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
         cursor.moveToFirst();
         workDays=cursor.getBlob(0);
         cursor.close();
-        return workDays[dayOfWeek - 1] == 'T';
+        return workDays[dayOfWeek - 1] != 'T';
     }
-    public void updateAttendance(Employee employee, String status){
+    public void updateCurrentAttendance(Employee employee, String status){
         SQLiteStatement statement;
         employee.setCurrentStatus(status);
         String query="UPDATE employe SET statut=? WHERE matricule=?";
@@ -538,6 +537,7 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
         statement.executeUpdateDelete();
 
     }
+
     public void setStatus(Employee employee){
         Cursor cursor;
         String status;

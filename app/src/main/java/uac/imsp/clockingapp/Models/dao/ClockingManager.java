@@ -31,7 +31,7 @@ public class ClockingManager {
         if (Database != null && Database.isOpen())
             Database.close();
     }
-
+/**This method allows us to clock the given employee in it requires the employee wotks the given day**/
     public void clockIn(Employee employee, Day day) {
         Cursor cursor;
         String attendedEntryTime;
@@ -68,12 +68,14 @@ public class ClockingManager {
         //if(cursor.moveToFirst())
             attendedEntryTime=cursor.getString(0);
         if(currentEntryTime.compareTo(attendedEntryTime)<=0)
+
             employee.setCurrentStatus("Présent");
         else
             employee.setCurrentStatus("Retard");
 
 
         cursor.close();
+        updateDailyAttendance(employee,employee.getCurrentStatus());
 
 
         query="UPDATE employee SET status=? WHERE matricule=?";
@@ -83,6 +85,18 @@ public class ClockingManager {
         statement.executeUpdateDelete();
 
 
+        statement.executeUpdateDelete();
+
+    }
+
+    public void updateDailyAttendance(Employee employee,String status){
+        String query="UPDATE pointage SET statut=?" +
+                " WHERE matricule_ref=? AND date_jour=DATE(?,?)";
+        SQLiteStatement statement=Database.compileStatement(query);
+        statement.bindString(1,status);
+        statement.bindLong(2,employee.getRegistrationNumber());
+        statement.bindString(3,"NOW");
+        statement.bindString(3,"LOCALTIME");
         statement.executeUpdateDelete();
 
     }
@@ -107,7 +121,7 @@ public class ClockingManager {
         statement.bindLong(2,employee.getRegistrationNumber());
         statement.executeUpdateDelete();
     }
-
+/**This method check if the given employee has(already) clocked in the given day**/
     public boolean hasNotClockedIn(Employee employee,Day day) {
         int id=day.getId();
         int n;

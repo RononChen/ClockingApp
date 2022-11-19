@@ -74,7 +74,7 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
        employeeManager.setInformations(employee);
        planning=employeeManager.getPlanning(employee);
        service =employeeManager.getService(employee);
-       employeeManager.close();
+       //employeeManager.close();
 
         serviceManager=new ServiceManager(context);
        serviceManager.open();
@@ -215,7 +215,7 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
 
                 update = true;
             }
-            employeeManager.close();
+            //employeeManager.close();
 
             if (update)
                 updateEmployeeView.onSomethingchanged("Employé modifié avec succès");

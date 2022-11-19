@@ -123,11 +123,12 @@ return Integer.parseInt(FormatedYear);
 
     }
     public int  getFirstDayOfMonth()  {
+        //wether it is monday, tuesday , etc
 
 
         Day d = new Day(this.getYear(),this.getMonth(),1);
 
-        return  d.getDayOfMonth();
+        return  d.getDayOfWeek();
     }
     public int getLenthOfMonth()  {
         YearMonth yearMonth=YearMonth.of(getYear(),getMonth());

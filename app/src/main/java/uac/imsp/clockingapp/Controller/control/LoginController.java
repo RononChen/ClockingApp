@@ -150,7 +150,7 @@ public class LoginController  implements ILoginController {
         String statut;
         employeeManager=new EmployeeManager((Context) loginView);
         employeeManager.open();
-        if(!employeeManager.shouldWorkToday(employee))
+        if(employeeManager.shouldNotWorkToday(employee))
         {
            if(new Day().isWeekEnd())
                statut="Week-end";
@@ -162,7 +162,7 @@ public class LoginController  implements ILoginController {
         }
         else
             statut="Absent";
-        employeeManager.updateAttendance(employee,statut);
+        employeeManager.updateCurrentAttendance(employee,statut);
         //employeeManager.close();
 
 

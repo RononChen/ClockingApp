@@ -45,7 +45,7 @@ public class DeleteEmployeeController implements IDeleteEmployeeController {
 
 
         Day day;
-
+String birthdate;
         Service service;
 
         Planning planning;
@@ -75,8 +75,18 @@ public class DeleteEmployeeController implements IDeleteEmployeeController {
         informations.put("email",employee.getMailAddress());
         informations.put("username",employee.getUsername());
         informations.put("gender",employee.getGender());
-        day=new Day(employee.getBirthdate());
-        informations.put("birthdate",day.getFrenchFormat());
+        try {
+            day = new Day(employee.getBirthdate());
+            birthdate=day.getFrenchFormat();
+
+        }
+        catch (NullPointerException e){
+            birthdate="";
+            informations.put("birthdate",birthdate);
+            e.printStackTrace();
+
+        }
+        informations.put("birthdate",birthdate);
         informations.put("type",employee.getType());
         informations.put("service",service.getName());
         informations.put("start",Integer.parseInt(Objects.requireNonNull(planning.extractHours().get("start"))));
@@ -110,7 +120,7 @@ public class DeleteEmployeeController implements IDeleteEmployeeController {
 
 
 
-        employeeManager.close();
+        //employeeManager.close();
 
             deleteEmployeeView.onDeleteSuccessfull("Employé supprimé avec succès");
 

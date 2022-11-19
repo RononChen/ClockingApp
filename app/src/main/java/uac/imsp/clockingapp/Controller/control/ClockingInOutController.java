@@ -25,7 +25,7 @@ private  IClockInOutView clockInOutView;
 
         @Override
     public void onClocking(int number) {
-        //Take into time account later
+        //Take  time into account later
             Employee employee;
             Day day;
             EmployeeManager employeeManager;
@@ -48,34 +48,38 @@ private  IClockInOutView clockInOutView;
                 //employee does not exist
                 clockInOutView.onClockingError("Employé non retrouvé");
 
-            else
-            //The employee exists
+            else //The employee exists
             {
-                //Connection to clocking table
-                clockingManager = new ClockingManager((Context) clockInOutView);
-                //open  clocking connection
-                clockingManager.open();
-             if (clockingManager.hasNotClockedIn(employee,day)) {
+
+                //check if the employee shouldWorkToday or not
+                //case not
+                if (employeeManager.shouldNotWorkToday(employee))
+                    clockInOutView.onClockingError("Vous n'êtes pas censé travailler aujourd'hui");
+                else {
+
+                    //Connection to clocking table
+                    clockingManager = new ClockingManager((Context) clockInOutView);
+                    //open  clocking connection
+                    clockingManager.open();
+                    if (clockingManager.hasNotClockedIn(employee, day)) {
 
 
-                    clockingManager.clockIn(employee,day);
+                        clockingManager.clockIn(employee, day);
 
-                    clockInOutView.onClockingSuccessful("Entrée marquée avec succès");
+                        clockInOutView.onClockingSuccessful("Entrée marquée avec succès");
+                    } else if (clockingManager.hasNotClockedOut(employee, day)) {
+                        clockingManager.clockOut(employee, day);
+                        clockInOutView.onClockingSuccessful("Sortie marquée avec succès");
+                    } else {
+                        clockInOutView.onClockingError("Vous avez déjà marqué votre entrée-sortie de la journée");
+                    }
+                    //close  clocking connection
+                    clockingManager.close();
+
                 }
-             else if (clockingManager.hasNotClockedOut(employee,day)) {
-                    clockingManager.clockOut(employee,day);
-                    clockInOutView.onClockingSuccessful("Sortie marquée avec succès");
-                }
-
-             else {
-                   clockInOutView.onClockingError("Vous avez déjà marqué votre entrée-sortie de la journée");
-                }
-                //close  clocking connection
-                clockingManager.close();
-
             }
             //close employee management connection
-            employeeManager.close();
+            //employeeManager.close();
 
         }
 

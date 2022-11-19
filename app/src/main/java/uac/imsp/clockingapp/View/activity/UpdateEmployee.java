@@ -105,7 +105,7 @@ public class UpdateEmployee extends AppCompatActivity
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        if (view.getId() == R.id.register_service) {
+        if (spinnerServices.getId() == R.id.register_service) {
           provisionalService=  parent.getItemAtPosition(position).toString();
            // provisionalService = spinnerServices.getItemAtPosition(position).toString();
            // provisionalService=spinnerServices.getSelectedItem().toString();
@@ -114,7 +114,7 @@ public class UpdateEmployee extends AppCompatActivity
 
 
 
-        } else if (view.getId() == R.id.register_type)
+        } else if (spinnerTypes.getId() == R.id.register_type)
             //provisionalType = spinnerTypes.getSelectedItem().toString();
            // provisionalType=spinnerTypes.getSelectedItem().toString();
            // provisionalType=String.valueOf(spinnerTypes.getSelectedItem());

@@ -119,6 +119,7 @@
             </RadioGroup>
 
             <TextView
+                android:id="@+id/tv"
                 android:textSize="18sp"
                 android:textColor="@color/black"
                 android:fontFamily="@font/latoregular"
