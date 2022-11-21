@@ -5,7 +5,7 @@ public interface IConsultPresenceReportView {
     void onStart(String message);
 
 
-    void onMonthSelected(Character[] report, int fitstDayNumber);
+    void onMonthSelected(String[] report, int fitstDayNumber);
 
 
 

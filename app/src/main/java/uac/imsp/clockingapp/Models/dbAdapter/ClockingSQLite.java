@@ -3,7 +3,9 @@ package uac.imsp.clockingapp.Models.dbAdapter;
 import static uac.imsp.clockingapp.Models.dbAdapter.DaySQLite.CREATE_DAY;
 import static uac.imsp.clockingapp.Models.dbAdapter.DaySQLite.DROP_DAY;
 import static uac.imsp.clockingapp.Models.dbAdapter.EmployeeSQLite.CREATE_EMPLOYEE;
+import static uac.imsp.clockingapp.Models.dbAdapter.EmployeeSQLite.CREATE_TEMP;
 import static uac.imsp.clockingapp.Models.dbAdapter.EmployeeSQLite.DROP_EMPLOYEE;
+import static uac.imsp.clockingapp.Models.dbAdapter.EmployeeSQLite.DROP_TEMP;
 import static uac.imsp.clockingapp.Models.dbAdapter.EmployeeSQLite.super_user;
 import static uac.imsp.clockingapp.Models.dbAdapter.PlanningSQLite.CREATE_PLANNING;
 import static uac.imsp.clockingapp.Models.dbAdapter.PlanningSQLite.DROP_PLANNING;
@@ -40,10 +42,10 @@ public class ClockingSQLite  extends SQLiteOpenHelper {
             TABLE_POINTAGE + " (" +
             COL_ID_POINTAGE + " INTEGER NOT NULL  PRIMARY KEY AUTOINCREMENT, " +
                    COL_ID_JOUR_REF + " TEXT    ," +
-                   COL_DATE_JOUR+" TEXT ,"+
+                   COL_DATE_JOUR+" TEXT UNIQUE ,"+
             COL_HEURE_ENTREE + "   TEXT ," +
             COL_HEURE_SORTIE + " TEXT ," +
-                   COL_STATUT+" TEXT ,"+
+                   COL_STATUT+" TEXT DEFAULT NULL ,"+
             COL_MATRICULE_REF+ " INTEGER NOT NULL ," +
 
                " FOREIGN KEY(" + COL_MATRICULE_REF +
@@ -81,6 +83,7 @@ public class ClockingSQLite  extends SQLiteOpenHelper {
         db.execSQL(CREATE_DAY);
         db.execSQL(CREATE_EMPLOYEE);
         db.execSQL(CREATE_CLOCKING);
+        db.execSQL( CREATE_TEMP);
         SQLiteStatement statement= db.compileStatement(super_user);
         statement.bindLong(1,1);
         statement.bindString(2,"User10");
@@ -144,6 +147,7 @@ public class ClockingSQLite  extends SQLiteOpenHelper {
         db.execSQL(DROP_PLANNING);
         db.execSQL(DROP_DAY);
         db.execSQL(DROP_CLOCKING);
+        db.execSQL(DROP_TEMP);
         onCreate(db);
 
     }

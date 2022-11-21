@@ -223,7 +223,7 @@ public class ConsultPresenceReport extends AppCompatActivity
         }
 
         @Override
-        public void onMonthSelected(Character[] report, int firstDayNumberInWeek) {
+        public void onMonthSelected(String[] report, int firstDayNumberInWeek) {
 
 
            int i,j,cpt=0;

@@ -30,7 +30,7 @@ public class ConsultPresenceReportController implements IConsultPresenceReportCo
         Day day=new Day();
         int month= day.getMonth();
 
-        Character [] state=null;
+        String [] state=null;
         EmployeeManager employeeManager;
         employeeManager=new EmployeeManager((Context) consultPresenceReportView);
         employeeManager.open();
@@ -50,7 +50,7 @@ public class ConsultPresenceReportController implements IConsultPresenceReportCo
 
         Day day;
 
-        Character [] state;
+        String[] state;
         EmployeeManager employeeManager;
         employeeManager=new EmployeeManager((Context) consultPresenceReportView);
         employeeManager.open();

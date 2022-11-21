@@ -48,16 +48,17 @@ public class ClockingManager {
         cursor.close();
 
 
-         query = "INSERT INTO pointage(matricule_ref,id_jour_ref,heure_entree) " +
-                "VALUES(?,?,TIME(?,?))";
+         query = "UPDATE  pointage SET id_jour_ref=? AND heure_entree=?" +
+                 " WHERE matricule_ref=? AND date_jour=TIME(?,?) ";
 
 
         statement = Database.compileStatement(query);
-        statement.bindLong(1, employee.getRegistrationNumber());
-        statement.bindLong(2,id);
-        statement.bindString(3, "NOW");
-        statement.bindString(4,"LOCALTIME");
-        statement.executeInsert();
+        statement.bindLong(1,id);
+        statement.bindString(2,"NOW");
+        statement.bindLong(3, employee.getRegistrationNumber());
+        statement.bindString(4, "NOW");
+        statement.bindString(5,"LOCALTIME");
+        statement.executeUpdateDelete();
         //update the current state of the employee
        //we wanna get the attended entry time of the employee
         query="SELECT heure_debut_officielle FROM planning " +
@@ -126,9 +127,13 @@ public class ClockingManager {
         int id=day.getId();
         int n;
         //open();
-        String query = "SELECT * FROM pointage WHERE matricule_ref=? AND id_jour_ref=?";
+        String query = "SELECT * FROM pointage WHERE matricule_ref=? AND id_jour_ref=?" +
+                " AND statut!=? AND statut!=?";
         String[] selectArgs = {
-                String.valueOf(employee.getRegistrationNumber()),String.valueOf(id)
+                String.valueOf(employee.getRegistrationNumber()),String.valueOf(id),
+                "Présent",
+                "Retard"
+
         };
         Cursor cursor = Database.rawQuery(query, selectArgs);
 

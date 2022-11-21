@@ -43,6 +43,7 @@ import uac.imsp.clockingapp.Controller.control.RegisterEmployeeController;
 import uac.imsp.clockingapp.Controller.util.IRegisterEmployeeController;
 import uac.imsp.clockingapp.R;
 import uac.imsp.clockingapp.View.util.IRegisterEmployeeView;
+import uac.imsp.clockingapp.View.util.ToastMessage;
 
 
 public class RegisterEmployee extends AppCompatActivity
@@ -71,6 +72,7 @@ public class RegisterEmployee extends AppCompatActivity
     private  Spinner spinnerServices , spinnerTypes;
     private int Start=8,End=17;
      CheckBox monday,tuesday,wednesday,thursday,friday,satursday,sunday;
+     private Button workManager;
 
     CheckBox[] myTable=new CheckBox[7];
     byte[] days=new byte[7];
@@ -78,7 +80,7 @@ public class RegisterEmployee extends AppCompatActivity
 
 
 
-    @SuppressLint("DefaultLocale")
+    @SuppressLint({"DefaultLocale", "MissingInflatedId"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -86,8 +88,10 @@ public class RegisterEmployee extends AppCompatActivity
         setContentView(R.layout.activity_register_employee);
        // Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
-
+workManager=findViewById(R.id.work_manager);
+workManager.setOnClickListener(this);
         initView();
+
         gend="M";
 
 
@@ -156,6 +160,12 @@ public class RegisterEmployee extends AppCompatActivity
     @SuppressLint("DefaultLocale")
         @Override
     public void onClick(View v) {
+        if(v.getId()==R.id.work_manager)
+        {
+            new ToastMessage(this,"kfgkl");
+            Intent intent=new Intent(RegisterEmployee.this,MainActivity.class);
+            startActivity(intent);
+        }
 
   if(v.getId()==R.id.register_show_password)
       registerEmployeePresenter.onShowHidePassword(Password.getId(),v.getId());

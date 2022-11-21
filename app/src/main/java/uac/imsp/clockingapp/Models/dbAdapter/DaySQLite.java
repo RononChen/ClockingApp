@@ -3,7 +3,9 @@ package uac.imsp.clockingapp.Models.dbAdapter;
 import static uac.imsp.clockingapp.Models.dbAdapter.ClockingSQLite.CREATE_CLOCKING;
 import static uac.imsp.clockingapp.Models.dbAdapter.ClockingSQLite.DROP_CLOCKING;
 import static uac.imsp.clockingapp.Models.dbAdapter.EmployeeSQLite.CREATE_EMPLOYEE;
+import static uac.imsp.clockingapp.Models.dbAdapter.EmployeeSQLite.CREATE_TEMP;
 import static uac.imsp.clockingapp.Models.dbAdapter.EmployeeSQLite.DROP_EMPLOYEE;
+import static uac.imsp.clockingapp.Models.dbAdapter.EmployeeSQLite.DROP_TEMP;
 import static uac.imsp.clockingapp.Models.dbAdapter.EmployeeSQLite.super_user;
 import static uac.imsp.clockingapp.Models.dbAdapter.PlanningSQLite.CREATE_PLANNING;
 import static uac.imsp.clockingapp.Models.dbAdapter.PlanningSQLite.DROP_PLANNING;
@@ -49,6 +51,7 @@ public class DaySQLite extends SQLiteOpenHelper {
         db.execSQL(CREATE_DAY);
         db.execSQL(CREATE_EMPLOYEE);
         db.execSQL(CREATE_CLOCKING);
+        db.execSQL(CREATE_TEMP);
         SQLiteStatement statement= db.compileStatement(super_user);
         statement.bindLong(1,1);
         statement.bindString(2,"User10");
@@ -112,6 +115,7 @@ public class DaySQLite extends SQLiteOpenHelper {
         db.execSQL(DROP_PLANNING);
         db.execSQL(DROP_DAY);
         db.execSQL(DROP_CLOCKING);
+        db.execSQL( DROP_TEMP);
         onCreate(db);
 
     }

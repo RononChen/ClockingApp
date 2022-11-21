@@ -43,7 +43,7 @@ public class EmployeeManager {
     public int connectUser(Employee employee) {
 
         int nb_employee;
-        String correctPassword = null, givenPassword = employee.getPassword();
+        String correctPassword , givenPassword = employee.getPassword();
         int regNumber;
 
         String query = "SELECT matricule,password FROM employe WHERE username=?";
@@ -407,20 +407,47 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
     }
 
     // presence report in a month for an employee (satursday and sunday aren't concerned)
-    public Character[] getPresenceReportForEmployee(
+    public String[] getPresenceReportForEmployee(
             Employee employee, int month)  {
+        //int nb;
+        Hashtable<String,String> status=new Hashtable<>();
+
         Day day, d;
-        Character[] table;
+        String date,state;
+        String[] table;
+        String []selectArgs;
         int i;
         day = new Day();
-        table = new Character[day.getLenthOfMonth()];
+        d=day;
+        table = new String[day.getLenthOfMonth()];
 
+        String query="SELECT date_jour,statut FROM pointage WHERE matricule_ref=? " +
+                "AND date_jour BETWEEN ? AND ?  ";
+        day=new Day(day.getYear(),month,1);
+        d=new Day(d.getYear(),month,d.getLenthOfMonth());
+        selectArgs=new String[]
+                {
+                String.valueOf(employee.getRegistrationNumber()),
+                        day.getDate(),
+                        d.getDate()
+        };
+        Cursor cursor=Database.rawQuery(query,selectArgs );
+        while ((cursor.moveToNext()))
+        {
+            date=cursor.getString(0);
+            state=cursor.getString(1);
+            status.put(date,state);
+        }
+   cursor.close();
+      day=new Day();
         for (i = 0; i < table.length; i++) {
-            d = new Day(day.getYear(), month, i + 1);
-
-            table[i] = compute(employee, d);
+            //to browse the calendar especially the concerned month
+            day = new Day(day.getYear(), month, i + 1);
+            if(status.containsKey(day.getDate()))
+                table[i]=status.get(day.getDate());
 
         }
+
 
 
         return table;
@@ -511,6 +538,7 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
     }
 
 
+
     public boolean shouldNotWorkToday(Employee employee) {
         Cursor cursor;
         byte[] workDays;
@@ -537,11 +565,44 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
         statement.executeUpdateDelete();
 
     }
+    public void setDayAttendance(Employee employee,String status){
+        SQLiteStatement statement;
+        String query;
+        Day day=new Day();
+        employee.setCurrentStatus(status);
+        updateCurrentAttendance(employee,status);
+         query="INSERT INTO pointage (matricule_ref,date_jour,statut)" +
+                " VALUES(?,?,?)";
+        statement=Database.compileStatement(query);
+        statement.bindLong(1,employee.getRegistrationNumber());
+        statement.bindString(2,day.getDate());
+        statement.bindString(3,status);
+        statement.executeInsert();
 
+    }
+public void updateVariable(){
+
+        Day day=new Day();
+String query="UPDATE variable SET last_update=?";
+SQLiteStatement statement=Database.compileStatement(query);
+statement.bindString(1,day.getDate());
+statement.executeUpdateDelete();
+
+
+}
+public String selectVariable(){
+        String date="";
+    String query="SELECT last_update FROM variable";
+    Cursor cursor=Database.rawQuery(query,null);
+    if(cursor.moveToFirst())
+        date=cursor.getString(0);
+
+    cursor.close();
+        return date;
+}
     public void setStatus(Employee employee){
         Cursor cursor;
         String status;
-        Day day=new Day();
         String query = "SELECT statut FROM employe WHERE matricule=?";
         String[] selectArgs = {String.valueOf(employee.getRegistrationNumber())};
         cursor = Database.rawQuery(query, selectArgs);

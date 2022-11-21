@@ -1,7 +1,9 @@
 package uac.imsp.clockingapp.View.activity;
 
 
+import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -20,6 +22,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import uac.imsp.clockingapp.BuildConfig;
 import uac.imsp.clockingapp.Controller.control.LoginController;
 import uac.imsp.clockingapp.Controller.util.ILoginController;
+import uac.imsp.clockingapp.Models.UpdateReceiver;
 import uac.imsp.clockingapp.R;
 import uac.imsp.clockingapp.View.util.ILoginView;
 import uac.imsp.clockingapp.View.util.ToastMessage;
@@ -37,6 +40,11 @@ public class Login extends AppCompatActivity
             PREF_VERSION_CODE_KEY="version_code";
     final int DOESNT_EXIST=-1;
 
+    private AlarmManager manager;
+    private PendingIntent pendingIntent;
+    private static final int REQ_CODE = 0;
+
+
 
     ILoginController loginPresenter;
 
@@ -53,6 +61,12 @@ public class Login extends AppCompatActivity
         //update the shares preferences with the current version code
 
         preferences.edit().putInt(PREF_VERSION_CODE_KEY,currentVersionCode).apply();
+        Intent alarmIntent = new Intent(this, UpdateReceiver.class);
+         pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), REQ_CODE, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+        manager = (AlarmManager)getSystemService(ALARM_SERVICE);
+        manager.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000, pendingIntent);
+        //manager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + 84600 * 1000, pendingIntent);
+
 
 
     }
@@ -65,8 +79,6 @@ public class Login extends AppCompatActivity
                 Password.getText().toString());
         else if(v.getId()==R.id.login_show_password)
             loginPresenter.onShowHidePassword();
-
-
     }
 
     @Override

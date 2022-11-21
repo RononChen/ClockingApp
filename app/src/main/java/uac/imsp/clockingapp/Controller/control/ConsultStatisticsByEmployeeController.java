@@ -4,6 +4,7 @@ import android.content.Context;
 
 import java.text.ParseException;
 import java.util.Hashtable;
+import java.util.Objects;
 
 import uac.imsp.clockingapp.Controller.util.IConsultStatisticsByEmployeeController;
 import uac.imsp.clockingapp.Models.dao.EmployeeManager;
@@ -34,12 +35,12 @@ public class ConsultStatisticsByEmployeeController implements
     @Override
     public void onMonthSelected(int month) throws ParseException {
         int n;
-        int p=0,a=0,f=0,w=0,r=0;
+        int p=0,a=0,hs=0,w=0,r=0;
         Day day;
         Hashtable <Character,Float> stat;
 
         stat=new Hashtable<>();
-        Character [] state;
+        String[] state;
         EmployeeManager employeeManager;
         employeeManager=new EmployeeManager((Context) consultStatisticsByEmployeeView);
         employeeManager.open();
@@ -47,26 +48,26 @@ public class ConsultStatisticsByEmployeeController implements
         employeeManager.close();
         //day=new Day();
         n=state.length;
-        for (Character ch: state
+        for (String str: state
              )
         {
-            if(ch=='P')
+            if(Objects.equals(str, "Présent"))
                 p++;
-            else if(ch=='A')
+            else if(str.equals("Absent"))
                 a++;
-            else if(ch=='R')
+            else if(str.equals("Retard"))
                 r++;
-            else if(ch=='F')
-                f++;
-            else if(ch=='W')
-                w++;
+            else if(str.equals("Hors service"))
+                hs++;
+           /* else if(ch=='W')
+                w++;*/
 
         }
         stat.put('P', 10*(float) (p/n));
         stat.put('A', 10*(float) (a/n));
-        stat.put('R', 10*(float) (f/n));
-        stat.put('F', 10*(float) (f/n));
-        stat.put('W', 10*(float) (w/n));
+        stat.put('R', 10*(float) (r/n));
+        stat.put('H', 10*(float) (hs/n));
+
         consultStatisticsByEmployeeView.onMonthSelected(stat);
 
 

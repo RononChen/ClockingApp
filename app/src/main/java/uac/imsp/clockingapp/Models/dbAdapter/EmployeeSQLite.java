@@ -41,6 +41,7 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
    private static final String COL_ID_SERVICE_REF = "id_service_ref";
     private static final String COL_ID_SERVICE = "id_service";
     private static final String COL_STATUS = "statut";
+    private static final  String TABLE_TEMP="variable";
 
     public static final String super_user="INSERT INTO employe(matricule," +
             "username,password,type,sexe,couriel,id_service_ref," +
@@ -51,7 +52,8 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
             " VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 
 
-
+public static final String CREATE_TEMP= "CREATE TEMP TABLE IF NOT EXISTS variable" +
+        " AS SELECT DATE(NOW,LOCALTIME) AS last_update ";
     public static final String CREATE_EMPLOYEE = "CREATE TABLE  IF NOT EXISTS " + TABLE_EMPLOYE + " (" +
             COL_MATRICULE + " INTEGER NOT NULL  PRIMARY KEY, " +
             COL_NOM + " TEXT NOT NULL ," +
@@ -72,6 +74,7 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
             " ) REFERENCES planning(" + COL_ID_PLANNING+" )" +
             ")" ;
     public static final String DROP_EMPLOYEE="DROP TABLE IF EXISTS "+TABLE_EMPLOYE;
+    public  static final String DROP_TEMP="DROP TABLE IF EXISTS "+TABLE_TEMP;
 
 
 
@@ -95,6 +98,7 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
         db.execSQL(DROP_PLANNING);
         db.execSQL(DROP_DAY);
         db.execSQL(DROP_CLOCKING);
+        db.execSQL(DROP_TEMP);
         onCreate(db);
 
     }
@@ -105,6 +109,7 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
         db.execSQL(CREATE_DAY);
         db.execSQL(CREATE_EMPLOYEE);
         db.execSQL(CREATE_CLOCKING);
+        db.execSQL(CREATE_TEMP);
         SQLiteStatement statement= db.compileStatement(super_user);
         statement.bindLong(1,1);
         statement.bindString(2,"User10");

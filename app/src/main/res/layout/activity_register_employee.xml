@@ -57,6 +57,17 @@
                 android:textSize="18sp"
                 android:text="@string/reg_number" />
 
+            <Button
+                android:id="@+id/work_manager"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/mybutton"
+                android:layout_marginBottom="40dp"
+
+                android:text="WorkManager"
+                tools:ignore="MissingConstraints" />
+
+
 
             <EditText
                 android:id="@+id/register_number"
