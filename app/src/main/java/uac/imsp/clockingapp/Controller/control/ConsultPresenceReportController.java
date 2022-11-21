@@ -4,7 +4,6 @@ import static uac.imsp.clockingapp.Controller.control.LoginController.CurrentEmp
 
 import android.content.Context;
 
-import java.text.ParseException;
 import java.util.Hashtable;
 
 import uac.imsp.clockingapp.Controller.util.IConsultPresenceReportController;
@@ -46,7 +45,7 @@ public class ConsultPresenceReportController implements IConsultPresenceReportCo
     }
 
 
-    public void onMonthSelected(int month) throws ParseException {
+    public void onMonthSelected(int month)  {
 
         Day day;
 
@@ -57,7 +56,7 @@ public class ConsultPresenceReportController implements IConsultPresenceReportCo
         state=employeeManager.getPresenceReportForEmployee(employee,month);
 
 
-        employeeManager.close();
+        //employeeManager.close();
                 day=new Day();
 
 
@@ -72,11 +71,13 @@ public class ConsultPresenceReportController implements IConsultPresenceReportCo
 
     @Override
     public Hashtable < Hashtable<Integer,String>,
-            Character>  onOwnMonthSelected() throws ParseException {
+            Character>  onOwnMonthSelected()  {
 
      int month=0;
-     onMonthSelected(month);
-     return  null;
+
+            onMonthSelected(month);
+
+        return  null;
 
     }
 }

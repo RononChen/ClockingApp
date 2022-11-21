@@ -1,6 +1,8 @@
 package uac.imsp.clockingapp.View.activity;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -13,6 +15,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.atomic.AtomicReference;
 
+import uac.imsp.clockingapp.BuildConfig;
 import uac.imsp.clockingapp.Controller.control.StartScreenController;
 import uac.imsp.clockingapp.Controller.util.IStartScreenController;
 import uac.imsp.clockingapp.R;
@@ -26,11 +29,24 @@ implements View.OnClickListener  , IStartScreenView {
     private TextView date;
     private Handler timeHandler;
     private Runnable updater;
+    int currentVersionCode,savedVersionCode;
+    final String PREFS_NAME="MyPrefsFile",
+            PREF_VERSION_CODE_KEY="version_code";
+    final int DOESNT_EXIST=-1;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        startScreenPresenter = new StartScreenController(this);
+        // Get current version code
+        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        savedVersionCode= preferences.getInt(PREF_VERSION_CODE_KEY,DOESNT_EXIST);
+        currentVersionCode= BuildConfig.VERSION_CODE;
+        startScreenPresenter.onLoad(savedVersionCode,currentVersionCode);
+        //update the shares preferences with the current version code
+
+        preferences.edit().putInt(PREF_VERSION_CODE_KEY,currentVersionCode).apply();
         setContentView(R.layout.activity_start_screen);
         startScreenPresenter=new StartScreenController(this);
         initView();
@@ -106,6 +122,27 @@ implements View.OnClickListener  , IStartScreenView {
         startActivity(intent);
 
 
+    }
+
+    @Override
+    public void onFirstRun() {
+        Intent intent=new Intent(StartScreen.this, SetUp.class);
+        //stop Login activity
+        StartScreen.this.finish();
+        // start SetUp activity
+        startActivity(intent);
+
+    }
+
+    @Override
+    public void onUpgrade() {
+
+    }
+
+    @Override
+    public void onNormalRun() {
+        setContentView(R.layout.activity_start_screen);
+        initView();
     }
   /*  public void startClock( ){
          timeHandler.post(updater);

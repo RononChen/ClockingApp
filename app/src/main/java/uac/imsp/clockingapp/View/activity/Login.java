@@ -4,9 +4,7 @@ package uac.imsp.clockingapp.View.activity;
 import android.app.AlarmManager;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -19,7 +17,6 @@ import android.widget.ImageView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import uac.imsp.clockingapp.BuildConfig;
 import uac.imsp.clockingapp.Controller.control.LoginController;
 import uac.imsp.clockingapp.Controller.util.ILoginController;
 import uac.imsp.clockingapp.Models.UpdateReceiver;
@@ -35,10 +32,10 @@ public class Login extends AppCompatActivity
 
     private AlertDialog.Builder builder;
     private  EditText Username,Password;
-    int currentVersionCode,savedVersionCode;
+   /* int currentVersionCode,savedVersionCode;
     final String PREFS_NAME="MyPrefsFile",
             PREF_VERSION_CODE_KEY="version_code";
-    final int DOESNT_EXIST=-1;
+    final int DOESNT_EXIST=-1;*/
 
     private AlarmManager manager;
     private PendingIntent pendingIntent;
@@ -52,15 +49,17 @@ public class Login extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_login);
+        initView();
         loginPresenter = new LoginController(this);
-        // Get current version code
+       /* // Get current version code
         SharedPreferences preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         savedVersionCode= preferences.getInt(PREF_VERSION_CODE_KEY,DOESNT_EXIST);
         currentVersionCode= BuildConfig.VERSION_CODE;
         loginPresenter.onLoad(savedVersionCode,currentVersionCode);
         //update the shares preferences with the current version code
 
-        preferences.edit().putInt(PREF_VERSION_CODE_KEY,currentVersionCode).apply();
+        preferences.edit().putInt(PREF_VERSION_CODE_KEY,currentVersionCode).apply();*/
         Intent alarmIntent = new Intent(this, UpdateReceiver.class);
          pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), REQ_CODE, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         manager = (AlarmManager)getSystemService(ALARM_SERVICE);
@@ -96,7 +95,7 @@ public class Login extends AppCompatActivity
         new ToastMessage(this,message);
     }
 
-    @Override
+  /*  @Override
     public void onFirstRun() {
         Intent intent=new Intent(Login.this, SetUp.class);
         //stop Login activity
@@ -109,15 +108,14 @@ public class Login extends AppCompatActivity
     @Override
     public void onNormalRun() {
 
-        setContentView(R.layout.activity_login);
-        initView();
+
 
     }
 
     @Override
     public void onUpgrade() {
 
-    }
+    }*/
 
     @Override
     public void onClocking() {

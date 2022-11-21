@@ -32,6 +32,29 @@ public class StartScreenController  implements IStartScreenController {
         startScreenView.onClocking();
 
     }
+
+    @Override
+    public void onLoad(int savedVersionCode, int currentVersionCode) {
+        final int DOESNT_EXIST=-1;
+
+        if(savedVersionCode==currentVersionCode)
+            startScreenView.onNormalRun();
+
+        else if (savedVersionCode==DOESNT_EXIST)
+        {
+
+
+            startScreenView.onFirstRun();
+        }
+        else if (savedVersionCode < currentVersionCode )
+            startScreenView.onUpgrade();
+
+
+
+
+
+    }
+
     /**This method update the daily attendance of  all employees at the first lunch of the
      * application each day.**/
     public void updateDailyAttendance(){

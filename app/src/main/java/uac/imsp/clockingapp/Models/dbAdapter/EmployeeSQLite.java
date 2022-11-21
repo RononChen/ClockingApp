@@ -52,8 +52,8 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
             " VALUES (?,?,?,?,?,?,?,?,?,?,?)";
 
 
-public static final String CREATE_TEMP= "CREATE TEMP TABLE IF NOT EXISTS variable" +
-        " AS SELECT DATE(NOW,LOCALTIME) AS last_update ";
+public static final String CREATE_TEMP= "CREATE  TABLE IF NOT EXISTS variable" +
+        " AS SELECT DATE('NOW','LOCALTIME') AS last_update ";
     public static final String CREATE_EMPLOYEE = "CREATE TABLE  IF NOT EXISTS " + TABLE_EMPLOYE + " (" +
             COL_MATRICULE + " INTEGER NOT NULL  PRIMARY KEY, " +
             COL_NOM + " TEXT NOT NULL ," +
@@ -109,7 +109,8 @@ public static final String CREATE_TEMP= "CREATE TEMP TABLE IF NOT EXISTS variabl
         db.execSQL(CREATE_DAY);
         db.execSQL(CREATE_EMPLOYEE);
         db.execSQL(CREATE_CLOCKING);
-        db.execSQL(CREATE_TEMP);
+      db.execSQL(CREATE_TEMP);
+
         SQLiteStatement statement= db.compileStatement(super_user);
         statement.bindLong(1,1);
         statement.bindString(2,"User10");

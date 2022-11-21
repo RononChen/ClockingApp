@@ -60,19 +60,7 @@ public class PlanningSQLite extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
 
 
-       /* db.execSQL(CREATE_PLANNING);
-        SQLiteStatement statement= db.compileStatement(planning);
 
-        //08-17
-        statement.bindString(1,"08:00");
-        statement.bindString(2,"17:00");
-        statement.executeInsert();
-
-        //08-18
-
-        statement.bindString(1,"08:00");
-        statement.bindString(2,"18:00");
-        statement.executeInsert();*/
 
         createDatabase(db);
 

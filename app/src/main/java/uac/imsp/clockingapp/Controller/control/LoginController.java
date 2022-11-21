@@ -86,8 +86,7 @@ public class LoginController  implements ILoginController {
 
     }
 
-    @Override
-
+   /* @Override
     public void onLoad(int savedVersionCode,int currentVersionCode) {
         final int DOESNT_EXIST=-1;
 
@@ -100,8 +99,6 @@ public class LoginController  implements ILoginController {
 
             loginView.onFirstRun();
         }
-
-
   else if (savedVersionCode < currentVersionCode )
       loginView.onUpgrade();
 
@@ -109,7 +106,7 @@ public class LoginController  implements ILoginController {
 
 
 
-    }
+    }*/
 
     @Override
     public void onClocking() {
