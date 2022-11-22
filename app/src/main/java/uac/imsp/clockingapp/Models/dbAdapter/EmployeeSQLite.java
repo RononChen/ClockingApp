@@ -53,7 +53,7 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
 
 
 public static final String CREATE_TEMP= "CREATE  TABLE IF NOT EXISTS variable" +
-        " AS SELECT DATE('NOW','LOCALTIME') AS last_update ";
+        " AS SELECT '1970-01-01' AS last_update ";
     public static final String CREATE_EMPLOYEE = "CREATE TABLE  IF NOT EXISTS " + TABLE_EMPLOYE + " (" +
             COL_MATRICULE + " INTEGER NOT NULL  PRIMARY KEY, " +
             COL_NOM + " TEXT NOT NULL ," +

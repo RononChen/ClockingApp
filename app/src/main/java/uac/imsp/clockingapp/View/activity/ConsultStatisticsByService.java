@@ -1,9 +1,10 @@
 package uac.imsp.clockingapp.View.activity;
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,11 +28,13 @@ import uac.imsp.clockingapp.View.util.IConsultStatisticsByServiceView;
 import uac.imsp.clockingapp.View.util.ToastMessage;
 
 public class ConsultStatisticsByService extends AppCompatActivity
-implements IConsultStatisticsByServiceView {
+implements IConsultStatisticsByServiceView,
+        View.OnClickListener {
     private IConsultStatisticsByServiceController consultStatisticsByServicePresenter;
     PieChart pieChart;
     private Hashtable<String,Integer> statistics;
     private Toast Toast;
+    private Button previous,next;
     private int cpt=0;
 
     DatePickerDialog picker;
@@ -43,13 +46,21 @@ implements IConsultStatisticsByServiceView {
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_consult_statistic_by_service);
-            pieChart = findViewById(R.id.pieChart_view);
-            initPieChart();
+           initView();
             consultStatisticsByServicePresenter=new
                     ConsultStatisticsByServiceController(this);
             consultStatisticsByServicePresenter.onConsultStatisticsByService();
 
 
+
+        }
+        public void initView(){
+            pieChart = findViewById(R.id.pieChart_view);
+            initPieChart();
+            previous=findViewById(R.id.stat_previous);
+            next=findViewById(R.id.stat__next);
+            previous.setOnClickListener(this);
+            next.setOnClickListener(this);
 
         }
 
@@ -116,7 +127,7 @@ implements IConsultStatisticsByServiceView {
 
     }
 
-    @Override
+    /*@Override
     public void onConsultStatistics(String title, String message) {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
@@ -140,46 +151,28 @@ implements IConsultStatisticsByServiceView {
         alert.show();
 
 
-    }
+    }*/
 
     @Override
     public void onNoServiceFound(String message) {
-            Toast=new ToastMessage(this,message);
-           // finish();
-
+            new ToastMessage(this,message);
 
     }
 
-
     @Override
-    public void askTime(String message) {
-            cpt++;
-        Toast = new ToastMessage(ConsultStatisticsByService.this,
-                message);
-        picker = new DatePickerDialog(ConsultStatisticsByService.this,
-                (view, year1, monthOfYear, dayOfMonth) -> {
+    public void onServiceFound(Hashtable<String, Integer> rowSet) {
+        statistics=rowSet;
+        showPieChart();
 
-if(cpt==1)
-            consultStatisticsByServicePresenter.onStartDateSelected(year1,
-                    monthOfYear+1,dayOfMonth);
-else if(cpt==2)
-{
-
-    consultStatisticsByServicePresenter.onEndDateSelected(year1,
-            monthOfYear+1,dayOfMonth);
-    cpt=0;
-
-}
-
-                },
-                year, month, day);
-
-        picker.show();
     }
-
     @Override
-    public void onEndDateSelected(Hashtable<String, Integer> rowSet) {
-            statistics=rowSet;
-            showPieChart();
+    public void onClick(View v) {
+        if (v.getId()==R.id.stat_previous)
+
+            consultStatisticsByServicePresenter.onPreviousMonth();
+
+        else if (v.getId() == R.id.report_next)
+            consultStatisticsByServicePresenter.onNextMonth();
+
     }
 }

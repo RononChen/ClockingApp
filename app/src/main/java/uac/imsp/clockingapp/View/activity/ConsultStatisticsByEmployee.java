@@ -1,9 +1,10 @@
 package uac.imsp.clockingapp.View.activity;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,7 +14,6 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
-import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -23,10 +23,11 @@ import uac.imsp.clockingapp.R;
 import uac.imsp.clockingapp.View.util.IConsultStatisticsByEmployeeView;
 
 public class ConsultStatisticsByEmployee extends AppCompatActivity
- implements IConsultStatisticsByEmployeeView , DialogInterface.OnClickListener {
+ implements IConsultStatisticsByEmployeeView,
+        View.OnClickListener {
     private IConsultStatisticsByEmployeeController consultStatisticsByEmployeePresenter;
-    private int actionNumber;
-private Hashtable <Character, Float> statistics;
+    private TextView Date;
+    private Button previous,next;
 
     // variable for our bar chart
     BarChart barChart;
@@ -45,30 +46,31 @@ private Hashtable <Character, Float> statistics;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consult_statistics_by_employee);
-        barChart = findViewById(R.id.chart);
+       initView();
 
-        actionNumber=getIntent().getIntExtra("ACTION_NUMBER",1);
+        int actionNumber = getIntent().getIntExtra("ACTION_NUMBER", 1);
         consultStatisticsByEmployeePresenter=new ConsultStatisticsByEmployeeController(this);
 
         consultStatisticsByEmployeePresenter.onConsultStatisticsForEmployee(actionNumber);
     }
 
     @Override
-    public void onStart(String message) {
-        String [] months=getResources().getStringArray(R.array.months);
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle(message);
-        builder.setItems(months,this);
-        AlertDialog dialog = builder.create();
-
-        dialog.show();
+    public void onStart(String date) {
+        Date.setText(date);
 
 
     }
+public void initView(){
+    barChart = findViewById(R.id.chart);
+    Date=findViewById(R.id.stat_date);
+    previous=findViewById(R.id.stat_previous);
+    next=findViewById(R.id.stat__next);
+    previous.setOnClickListener(this);
+    next.setOnClickListener(this);
 
+}
     @Override
     public void onMonthSelected(Hashtable<Character, Float> statistics) {
-        this.statistics=statistics;
 
 
         // calling method to get bar entries.
@@ -107,14 +109,14 @@ private Hashtable <Character, Float> statistics;
 
     }
 
-
     @Override
-    public void onClick(DialogInterface dialog, int which) {
-        try {
-            consultStatisticsByEmployeePresenter.onMonthSelected(which);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+    public void onClick(View v) {
+if (v.getId()==R.id.stat_previous)
+
+    consultStatisticsByEmployeePresenter.onPreviousMonth();
+
+ else if (v.getId() == R.id.report_next)
+    consultStatisticsByEmployeePresenter.onNextMonth();
 
     }
 }

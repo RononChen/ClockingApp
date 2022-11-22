@@ -17,29 +17,27 @@ public class ConsultStatisticsByServiceController implements
 
 
     private IConsultStatisticsByServiceView consultStatisticsByServiceView;
-    private String startDate,endDate;
+   // private String startDate;
+    private  Day day;
+
     public ConsultStatisticsByServiceController(IConsultStatisticsByServiceView
                                                         consultStatisticsByServiceView)
     {
         this.consultStatisticsByServiceView=consultStatisticsByServiceView;
+        day=new Day();
 
 
 
 
-    }
-
-
-
-    @Override
-    public String formatDate(int year, int month, int day) {
- Day d=new Day(year,month,day);
-        //SQLiteDateFormat : year-month-day
-
-        return  d.getDate();
     }
 
     @Override
     public void onConsultStatisticsByService() {
+        Hashtable<String,Integer> rowSet;
+        EmployeeManager employeeManager;
+        employeeManager =new EmployeeManager((Context) consultStatisticsByServiceView);
+        employeeManager.open();
+        employeeManager.close();
         Service [] serviceSet;
         ServiceManager serviceManager;
         serviceManager=new ServiceManager((Context) consultStatisticsByServiceView);
@@ -49,40 +47,47 @@ public class ConsultStatisticsByServiceController implements
         if(serviceSet.length==0)
             consultStatisticsByServiceView.onNoServiceFound("Aucun service n'a été enregistré");
        else {
-           //Ask to select the period or to cancell
-            this.consultStatisticsByServiceView.onConsultStatistics("Période", "Sélectionnez la période");
-
+            employeeManager.open();
+            rowSet= employeeManager.getStatisticsByService(day.getMonth(),day.getYear());
+            consultStatisticsByServiceView.onServiceFound(rowSet);
 
         }
     }
 
-
     @Override
-    public void onStartDateSelected(int year,int month,int day) {
+    public void onPreviousMonth() {
+        if(day.getDayOfMonth()==1)//we should go to the previous year
+            ///moving to the december month of the previous year
+            day=new Day(day.getYear()-1,12,1);
 
-        //get startDate and ask endDate
-   startDate=formatDate( year, month, day);
-   consultStatisticsByServiceView.askTime("Sélectionnez la date de fin");
+        else//[february-december]
+            //moving to the previous month of the current year
+            day=new Day(day.getYear(),day.getMonth()-1,1);
 
-    }
-    public void onEndDateSelected(int year,int month,int day) {
-        Hashtable <String,Integer> rowSet;
-        EmployeeManager employeeManager;
+        onConsultStatisticsByService();
 
-        endDate=formatDate( year, month, day);
-        employeeManager =new EmployeeManager((Context) consultStatisticsByServiceView);
-        employeeManager.open();
-       rowSet= employeeManager.getStatisticsByService(startDate,endDate);
-       employeeManager.close();
-       consultStatisticsByServiceView.onEndDateSelected(rowSet);
+
 
     }
 
     @Override
-    public void onConfirmResult(boolean confirm) {
-if(confirm)
-    this.consultStatisticsByServiceView.askTime("Sélectionnez la date de début");
+    public void onNextMonth() {
+        //we'll check the current month
+        //if it is december(12)
+        if(day.getMonth()==12)
+            //we'll move to the january month of the new year
+            day=new Day(day.getYear()+1,1,1);
+        else
+            //we'll move to the next month of the current year
+            day=new Day(day.getYear(),day.getMonth()+1,1);
+        onConsultStatisticsByService();
+
+
     }
 
 
-}
+    }
+
+
+
+

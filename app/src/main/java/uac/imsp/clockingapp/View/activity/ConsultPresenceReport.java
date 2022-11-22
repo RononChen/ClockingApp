@@ -134,9 +134,7 @@ final TextView txt = new TextView(ConsultPresenceReport.this);
 */
         package uac.imsp.clockingapp.View.activity;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
@@ -146,8 +144,6 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.text.ParseException;
-
 import uac.imsp.clockingapp.Controller.control.ConsultPresenceReportController;
 import uac.imsp.clockingapp.Controller.util.IConsultPresenceReportController;
 import uac.imsp.clockingapp.R;
@@ -155,14 +151,11 @@ import uac.imsp.clockingapp.View.util.IConsultPresenceReportView;
 
 public class ConsultPresenceReport extends AppCompatActivity
         implements IConsultPresenceReportView,
-        DialogInterface.OnClickListener,
         View.OnClickListener {
         private TableLayout report;
         private TableRow tableRow;
         private TextView textView;
-        private Button previous,next;
-        private int actionNumber;
-       // private AlertDialog.Builder builder;
+        private TextView Date;
 
         IConsultPresenceReportController consultPresenceReportPresenter;
 
@@ -182,8 +175,9 @@ public class ConsultPresenceReport extends AppCompatActivity
                 String[] strings;
                 int i;
                 report =findViewById(R.id.report_table);
+                Date=findViewById(R.id.report_date);
 
-                actionNumber=getIntent().getIntExtra("CURRENT_NUMBER", 1);
+                int actionNumber = getIntent().getIntExtra("CURRENT_NUMBER", 1);
                  strings = new String[]{"Lundi", "Mardi", "Mercredi",
                         "Jeudi", "Vendredi"};
 
@@ -200,9 +194,10 @@ public class ConsultPresenceReport extends AppCompatActivity
                 }
                 report.addView(tableRow);
                 consultPresenceReportPresenter.onConsultPresenceReport(actionNumber);
-                previous=findViewById(R.id.report_previous);
-                next=findViewById(R.id.report_next);
+                Button previous = findViewById(R.id.report_previous);
+                Button next = findViewById(R.id.report_next);
                 previous.setOnClickListener(this);
+                next.setOnClickListener(this);
                 next.setOnClickListener(this);
 
 
@@ -211,15 +206,8 @@ public class ConsultPresenceReport extends AppCompatActivity
         }
 
         @Override
-        public void onStart(String message) {
-                String [] months=getResources().getStringArray(R.array.months);
-               /* AlertDialog.Builder builder = new AlertDialog.Builder(this);
-                builder.setTitle(message);
-                builder.setItems(months,this);
-                AlertDialog dialog = builder.create();
-
-                dialog.show();*/
-
+        public void onStart(String date) {
+                Date.setText(date);
         }
 
         @Override
@@ -255,22 +243,11 @@ public class ConsultPresenceReport extends AppCompatActivity
 
         }
 
-
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-                try {
-
-                        consultPresenceReportPresenter.onMonthSelected(which+1);
-                } catch (ParseException e) {
-                        e.printStackTrace();
-                        Log.e("date parsing error","AN error occured");
-                }
-
-        }
-
         @Override
         public void onClick(View v) {
-            /*if(v.getId()==R.id.report_previous)
-             else if(v.getId()==R.id.report_next)*/
+                if(v.getId()==R.id.report_previous)
+                        consultPresenceReportPresenter.onPreviousMonth();
+                else if (v.getId()==R.id.report_next)
+                        consultPresenceReportPresenter.onNextMonth();
         }
 }

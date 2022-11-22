@@ -1,6 +1,4 @@
 package uac.imsp.clockingapp.Controller.util;
-import java.text.ParseException;
-import java.util.Hashtable;
 
 public interface IConsultPresenceReportController {
 
@@ -9,9 +7,11 @@ public interface IConsultPresenceReportController {
 
 
     //when he selects the month the controller can compute the presence report
-     void onMonthSelected(int month) throws ParseException;
+    // void onMonthSelected() ;
+     void onPreviousMonth();
+     void onNextMonth();
      void onConsultOwnStatistics() ;
-      Hashtable < Hashtable<Integer,String>,Character> onOwnMonthSelected() throws ParseException;
+     // Hashtable < Hashtable<Integer,String>,Character> onOwnMonthSelected() ;
 
 
 

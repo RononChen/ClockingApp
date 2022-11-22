@@ -380,10 +380,17 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
 
     }
 
-    public Hashtable<String, Integer> getStatisticsByService(String start, String end) {
-
+    public Hashtable<String, Integer> getStatisticsByService(int month,int year) {
+Day day=new Day(year,month,1);
+Day d;
+int length=day.getLenthOfMonth();
+d=new Day(year,month,length-1);
         String service;
         int count;
+        String start,end;
+        start=day.getDate();
+        end=d.getDate();
+
 
         Hashtable<String, Integer> row = new Hashtable<>();
         String query = "SELECT service.nom, COUNT(*) FROM" +
@@ -408,7 +415,7 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
 
     // presence report in a month for an employee (satursday and sunday aren't concerned)
     public String[] getPresenceReportForEmployee(
-            Employee employee, int month)  {
+            Employee employee, int month, int year)  {
         //int nb;
         Hashtable<String,String> status=new Hashtable<>();
 
@@ -417,7 +424,7 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
         String[] table;
         String []selectArgs;
         int i;
-        day = new Day();
+        day = new Day(month,year);
         d=day;
         table = new String[day.getLenthOfMonth()];
 
@@ -439,12 +446,11 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
             status.put(date,state);
         }
    cursor.close();
-      day=new Day();
+      day=new Day(day.getYear(),day.getMonth(),1);
         for (i = 0; i < table.length; i++) {
             //to browse the calendar especially the concerned month
             day = new Day(day.getYear(), month, i + 1);
-            if(status.containsKey(day.getDate()))
-                table[i]=status.get(day.getDate());
+            table[i] = status.getOrDefault(day.getDate(), "");
 
         }
 

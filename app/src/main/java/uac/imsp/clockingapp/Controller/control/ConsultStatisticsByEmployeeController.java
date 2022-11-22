@@ -2,7 +2,6 @@ package uac.imsp.clockingapp.Controller.control;
 
 import android.content.Context;
 
-import java.text.ParseException;
 import java.util.Hashtable;
 import java.util.Objects;
 
@@ -15,41 +14,34 @@ import uac.imsp.clockingapp.View.util.IConsultStatisticsByEmployeeView;
 public class ConsultStatisticsByEmployeeController implements
         IConsultStatisticsByEmployeeController {
     private Employee employee;
+    private  Day day;
     private IConsultStatisticsByEmployeeView consultStatisticsByEmployeeView;
     public ConsultStatisticsByEmployeeController(IConsultStatisticsByEmployeeView
                                                  consultStatisticsByEmployeeView)
     {
         this.consultStatisticsByEmployeeView=consultStatisticsByEmployeeView;
+        day=new Day();
 
     }
 
     @Override
     public void onConsultStatisticsForEmployee(int number) {
-        employee = new Employee(number);
-        consultStatisticsByEmployeeView.onStart("Sélectionnez le mois");
-
-
-    }
-
-
-    @Override
-    public void onMonthSelected(int month) throws ParseException {
+        String date;
         int n;
-        int p=0,a=0,hs=0,w=0,r=0;
-        Day day;
+        int p=0,a=0,r=0;
+
         Hashtable <Character,Float> stat;
 
         stat=new Hashtable<>();
         String[] state;
+        date="Le "+day.getFormatedDay()+" "+day.getFormatedMonth()+" "+day.getFormatedYear();;
+
         EmployeeManager employeeManager;
         employeeManager=new EmployeeManager((Context) consultStatisticsByEmployeeView);
         employeeManager.open();
-        state=employeeManager.getPresenceReportForEmployee(employee,month);
-        employeeManager.close();
-        //day=new Day();
+        state=employeeManager.getPresenceReportForEmployee(employee,day.getMonth(), day.getYear());
         n=state.length;
-        for (String str: state
-             )
+        for (String str: state)
         {
             if(Objects.equals(str, "Présent"))
                 p++;
@@ -57,19 +49,44 @@ public class ConsultStatisticsByEmployeeController implements
                 a++;
             else if(str.equals("Retard"))
                 r++;
-            else if(str.equals("Hors service"))
-                hs++;
-           /* else if(ch=='W')
-                w++;*/
 
         }
         stat.put('P', 10*(float) (p/n));
         stat.put('A', 10*(float) (a/n));
         stat.put('R', 10*(float) (r/n));
-        stat.put('H', 10*(float) (hs/n));
 
         consultStatisticsByEmployeeView.onMonthSelected(stat);
 
+
+
+    }
+
+
+    @Override
+    public void onPreviousMonth() {
+        if(day.getDayOfMonth()==1)//we should go to the previous year
+            ///moving to the december month of the previous year
+            day=new Day(day.getYear()-1,12,1);
+
+        else//[february-december]
+            //moving to the previous month of the current year
+            day=new Day(day.getYear(),day.getMonth()-1,1);
+
+        onConsultStatisticsForEmployee(employee.getRegistrationNumber());
+
+    }
+
+    @Override
+    public void onNextMonth() {
+        //we'll check the current month
+        //if it is december(12)
+        if(day.getMonth()==12)
+            //we'll move to the january month of the new year
+            day=new Day(day.getYear()+1,1,1);
+        else
+            //we'll move to the next month of the current year
+            day=new Day(day.getYear(),day.getMonth()+1,1);
+        onConsultStatisticsForEmployee(employee.getRegistrationNumber());
 
     }
 }

@@ -73,7 +73,8 @@ public class StartScreenController  implements IStartScreenController {
          if the employees daily attendence is not already updated the current day
          */
         if(!Objects.equals(lastUpdate, day.getDate()))
-           for(Employee employee:employees){
+           for(Employee employee:employees)
+           {
                if(employeeManager.shouldNotWorkToday(employee))
                   status="Hors service";
                else

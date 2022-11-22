@@ -5,6 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical"
     tools:context=".View.activity.ConsultPresenceReport">
+        <TextView
+            android:id="@+id/report_date"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:text="01 Janvier 1970"
+            android:layout_width="wrap_content"/>
 
         <TableLayout
             android:id="@+id/report_table"
@@ -13,7 +19,9 @@
             android:layout_marginStart="49dp"
             android:layout_marginTop="22dp" >
 
+
         </TableLayout>
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:orientation="horizontal"
@@ -26,8 +34,9 @@
             android:layout_height="wrap_content"/>
         <Button
             android:id="@+id/report_next"
-            android:text="Précédent"
+            android:text="Suivant"
             android:layout_width="wrap_content"
+            android:layout_marginEnd="0dp"
             android:layout_height="wrap_content"/>
         </LinearLayout>
 </LinearLayout>
