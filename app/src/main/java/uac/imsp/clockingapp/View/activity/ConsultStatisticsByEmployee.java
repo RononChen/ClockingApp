@@ -81,8 +81,8 @@ public void initView(){
         barEntriesArrayList.add(new BarEntry(1f, statistics.get('P')));
         barEntriesArrayList.add(new BarEntry(2f,  statistics.get('A')));
         barEntriesArrayList.add(new BarEntry(3f, statistics.get('R')));
-        barEntriesArrayList.add(new BarEntry(4f, statistics.get('W')));
-        barEntriesArrayList.add(new BarEntry(5f, statistics.get('F')));
+        //barEntriesArrayList.add(new BarEntry(4f, statistics.get('W')));
+        //barEntriesArrayList.add(new BarEntry(5f, statistics.get('F')));
 
 
         // creating a new bar data set.

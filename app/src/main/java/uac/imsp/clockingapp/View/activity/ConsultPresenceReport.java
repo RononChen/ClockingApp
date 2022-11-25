@@ -209,11 +209,18 @@ public class ConsultPresenceReport extends AppCompatActivity
         public void onStart(String date) {
                 Date.setText(date);
         }
-
+  /**
+   This function takes as arguments :
+   1-the report which is a table of strings that contains the presence state
+   of employee during the concerned month
+   2-the firstDayNumberInWeek which the number (from 1 to 7) of the the
+   firstday in the current month (as a day of the first week)
+   **/
         @Override
         public void onMonthSelected(String[] report, int firstDayNumberInWeek) {
 
-
+String text;
+boolean test=true;
            int i,j,cpt=0;
            for (i=1;i<=5;i++)
            {
@@ -223,15 +230,23 @@ public class ConsultPresenceReport extends AppCompatActivity
                    tableRow=new TableRow(ConsultPresenceReport.this);
                    for (j=1;j<=5;j++)
                    {
-                           if (i == 1 && j < firstDayNumberInWeek)
-                                   continue;
-
-
+                           //cpt++;
+                          /* if(j>=firstDayNumberInWeek)
+                                   cpt++;*/
                            textView=new TextView(this);
                            textView.setGravity(Gravity.START);
-                           textView.setText(String.valueOf(report[cpt]));
+                           if (i == 1 && j < firstDayNumberInWeek) {
+                                   text = "";
+                                   test=false;
+                           }
+                           else {
+                                   text = String.valueOf(report[cpt]);
+                                   test = true;
+                           }
+                           textView.setText(text);
                            tableRow.addView(textView);
-                           cpt++; //count the number of filled cases
+                           //if(test)
+                                   cpt++; //increment the number of filled cases
 
                    }
                    this.report.addView(tableRow);

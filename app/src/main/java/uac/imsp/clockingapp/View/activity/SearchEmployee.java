@@ -117,7 +117,7 @@ public class SearchEmployee extends AppCompatActivity
 
     @Override
     public void onStatistics() {
-        intent=new Intent(SearchEmployee.this, ConsultStatisticsByService.class);
+        intent=new Intent(SearchEmployee.this, ConsultStatisticsByEmployee.class);
         intent.putExtra("NUMBER",Number);
         startActivity(intent);
 

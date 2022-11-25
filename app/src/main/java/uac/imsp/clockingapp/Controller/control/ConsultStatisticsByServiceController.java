@@ -37,13 +37,13 @@ public class ConsultStatisticsByServiceController implements
         EmployeeManager employeeManager;
         employeeManager =new EmployeeManager((Context) consultStatisticsByServiceView);
         employeeManager.open();
-        employeeManager.close();
+       // employeeManager.close();
         Service [] serviceSet;
         ServiceManager serviceManager;
         serviceManager=new ServiceManager((Context) consultStatisticsByServiceView);
         serviceManager.open();
         serviceSet=serviceManager.getAllService();
-        serviceManager.close();
+        //serviceManager.close();
         if(serviceSet.length==0)
             consultStatisticsByServiceView.onNoServiceFound("Aucun service n'a été enregistré");
        else {

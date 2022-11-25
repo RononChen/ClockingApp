@@ -39,6 +39,7 @@ public class ConsultStatisticsByEmployeeController implements
         EmployeeManager employeeManager;
         employeeManager=new EmployeeManager((Context) consultStatisticsByEmployeeView);
         employeeManager.open();
+        employee=new Employee(number);
         state=employeeManager.getPresenceReportForEmployee(employee,day.getMonth(), day.getYear());
         n=state.length;
         for (String str: state)

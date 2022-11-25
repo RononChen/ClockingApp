@@ -364,22 +364,6 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
         statement.executeUpdateDelete();
 
     }
-
-    //return a table that contains the l
-    public String[] getAllEmployees() {
-        ArrayList<String> employee = new ArrayList<>();
-
-        String query = "SELECT matricule FROM employe ORDER BY matricule ";
-        Cursor cursor = Database.rawQuery(query, null);
-        while (cursor.moveToNext())
-            employee.add(cursor.getString(0));
-        cursor.close();
-
-        return employee.toArray(new String[employee.size()]);
-
-
-    }
-
     public Hashtable<String, Integer> getStatisticsByService(int month,int year) {
 Day day=new Day(year,month,1);
 Day d;
@@ -393,14 +377,10 @@ d=new Day(year,month,length-1);
 
 
         Hashtable<String, Integer> row = new Hashtable<>();
-        String query = "SELECT service.nom, COUNT(*) FROM" +
-                " (SELECT * FROM employe " +
-                "JOIN pointage AS relation ON matricule = matricule_ref " +
-                " JOIN jour AS second  ON relation.id_jour_ref= id_jour " +
-                "JOIN service ON employe.id_service_ref=id_service " +
-                "WHERE heure_entree IS NOT NULL AND date_jour BETWEEN ? AND ? " +
-                "GROUP BY service.nom) AS final " +
-                "JOIN service ON final.id_service_ref=service.id_service ";
+        String query = "SELECT id_service_ref, COUNT(*) FROM" +
+                "( SELECT id_service_ref FROM employe JOIN   service AS Relation   ON id_service=id_service_ref " +
+                " JOIN pointage AS Final  ON matricule =Final.matricule_ref " +
+                "WHERE Final.statut=? AND date_jour BETWEEN ? AND ?) GROUP BY id_service_ref " ;
         String[] selectArgs = {start, end};
         Cursor cursor = Database.rawQuery(query, selectArgs);
 
@@ -422,6 +402,7 @@ d=new Day(year,month,length-1);
         Day day, d;
         String date,state;
         String[] table;
+        Cursor cursor;
         String []selectArgs;
         int i;
         day = new Day(month,year);
@@ -438,7 +419,7 @@ d=new Day(year,month,length-1);
                         day.getDate(),
                         d.getDate()
         };
-        Cursor cursor=Database.rawQuery(query,selectArgs );
+         cursor=Database.rawQuery(query,selectArgs );
         while ((cursor.moveToNext()))
         {
             date=cursor.getString(0);
