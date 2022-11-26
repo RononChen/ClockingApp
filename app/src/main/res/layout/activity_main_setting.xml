@@ -5,8 +5,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     tools:context=".View.activity.settings.MainSetting">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -185,5 +189,6 @@
             app:drawableStartCompat="@drawable/ic_baseline_help_outline_25" />
 
          </LinearLayout>
+    </LinearLayout>
 
 </ScrollView>

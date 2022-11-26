@@ -21,29 +21,11 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ddeb6ea-e00f-4cf2-88d3-89cbf60c105a" name="Changes" comment="&quot;icons added&quot;">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/MainSetting.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_dark_mode_25.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_description_25.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_edit_attributes_25.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_edit_notifications_25.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_help_outline_25.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_language_25.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_logout_25.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_mode_edit_25.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_password_25.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_person_add_25.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_person_remove_25.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_picture_in_picture_25.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_report_problem_25.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_supervised_user_circle_25.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main_setting.xml" afterDir="false" />
+    <list default="true" id="7ddeb6ea-e00f-4cf2-88d3-89cbf60c105a" name="Changes" comment="&quot;main setting activity layout is created and general menu layout updated with setting icon&quot;">
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/GeneralMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/GeneralMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main_setting.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main_setting.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/general_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/general_menu.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -149,6 +131,7 @@
     <property name="android-custom-view/home/adede/Android/Sdk/sources/android-32/android/widget/TextView.java_TextView_DIMENSIONS" value="1080&#10;1920" />
     <property name="android-custom-view/home/firminsh/Android/Sdk/sources/android-32/android/view/View.java_SELECTED" value="View" />
     <property name="android-custom-view/home/firminsh/Android/Sdk/sources/android-32/android/widget/AdapterView.java_SELECTED" value="AdapterView" />
+    <property name="android-custom-view/home/firminsh/Android/Sdk/sources/android-32/android/widget/ScrollView.java_SELECTED" value="ScrollView" />
     <property name="cidr.known.project.marker" value="true" />
     <property name="com.android.tools.idea.sqlite.queryhistory" value="SELECT date_jour,statut FROM pointage WHERE matricule_ref='1' AND date_jour BETWEEN '2022-11-01' AND '2022-11-31'  &#10;SELECT * FROM pointage&#10;SELECT * FROM variable&#10;SELECT last_update FROM variable&#10;SELECT service.nom  FROM employe JOIN service ON id_service=id_service_ref WHERE matricule='89'&#10;SELECT service.nom  FROM employe JOIN service ON id_service=id_service_ref WHERE matricule='58'&#10;SELECT service.nom  FROM employe JOIN service ON id_service=id_service_ref WHERE matricule='1'" />
     <property name="com.intellij.openapi.externalSystem.service.settings.ExternalSystemGroupConfigurable" value="ALL" />
@@ -516,13 +499,6 @@
       <option name="presentableId" value="Default" />
       <updated>1657575710173</updated>
     </task>
-    <task id="LOCAL-00003" summary="&quot;Controller ok&quot;">
-      <created>1658953092013</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1658953092013</updated>
-    </task>
     <task id="LOCAL-00004" summary="&quot;test successful&quot;">
       <created>1658979144264</created>
       <option name="number" value="00004" />
@@ -859,7 +835,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669408193617</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="&quot;main setting activity layout is created and general menu layout updated with setting icon&quot;">
+      <created>1669432911151</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1669432911151</updated>
+    </task>
+    <option name="localTasksCounter" value="53" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -878,7 +861,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="&quot;ConsultPresenceReportView initialized&quot;" />
     <MESSAGE value="&quot;test&quot;" />
     <MESSAGE value="&quot;Register employee presentable&quot;" />
     <MESSAGE value="&quot;Model updated&quot;" />
@@ -903,7 +885,8 @@
     <MESSAGE value="&quot;Login and StartScreen features are corrected&quot;" />
     <MESSAGE value="&quot;report features corrected&quot;" />
     <MESSAGE value="&quot;icons added&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="&quot;icons added&quot;" />
+    <MESSAGE value="&quot;main setting activity layout is created and general menu layout updated with setting icon&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;main setting activity layout is created and general menu layout updated with setting icon&quot;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
