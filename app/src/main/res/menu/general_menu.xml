@@ -13,7 +13,7 @@
     <item
         android:orderInCategory="1"
         app:showAsAction="always"
-        android:id="@+id/home"
+        android:id="@+id/settings"
         android:title="Paramètres"
         android:icon="@drawable/ic_baseline_settings_20"
         android:gravity="start"

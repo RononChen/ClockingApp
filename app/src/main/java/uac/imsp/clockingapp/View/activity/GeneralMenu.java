@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import uac.imsp.clockingapp.Controller.control.GeneralMenuController;
 import uac.imsp.clockingapp.Controller.util.IGeneralMenuController;
 import uac.imsp.clockingapp.R;
+import uac.imsp.clockingapp.View.activity.settings.MainSetting;
 import uac.imsp.clockingapp.View.util.IGeneralMenuView;
 
 public class GeneralMenu extends AppCompatActivity implements View.OnClickListener,
@@ -52,10 +53,12 @@ public class GeneralMenu extends AppCompatActivity implements View.OnClickListen
             case R.id.dash:
                 startActivity(new Intent(this,Menu.class));
                 break;
-           /* case R.id.add :
-                menuPresenter.onRegisterEmployeeMenu(currentUser);
+            case R.id.settings : {
+                startActivity(new Intent(this, MainSetting.class));
+                //menuPresenter.onRegisterEmployeeMenu(currentUser);
+            }
                 break;
-            case R.id.update:
+            /*case R.id.update:
                 menuPresenter.onUpdateEmployeeMenu(currentUser);
                 break;
             case R.id.delete:
