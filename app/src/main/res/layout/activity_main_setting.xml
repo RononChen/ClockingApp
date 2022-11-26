@@ -38,7 +38,8 @@
             android:layout_width="wrap_content"
             android:text="Aperçu détaillé de l'application de l'application"
              android:id="@+id/setting_overview"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            app:drawableStartCompat="@drawable/ic_baseline_details_25" />
         <TextView
             android:layout_width="wrap_content"
             android:text="Version de l'application"
@@ -131,8 +132,7 @@
             android:layout_width="wrap_content"
             android:text="Notifications employé"
             android:id="@+id/setting_employee"
-            android:layout_height="wrap_content"
-            app:drawableStartCompat="@drawable/ic_baseline_edit_notifications_25" />
+            android:layout_height="wrap_content"/>
         <TextView
             android:layout_width="wrap_content"
             android:text="Lors de l'ajout"

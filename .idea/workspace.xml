@@ -21,12 +21,10 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ddeb6ea-e00f-4cf2-88d3-89cbf60c105a" name="Changes" comment="&quot;main setting activity layout is created and general menu layout updated with setting icon&quot;">
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/GeneralMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/GeneralMenu.java" afterDir="false" />
+    <list default="true" id="7ddeb6ea-e00f-4cf2-88d3-89cbf60c105a" name="Changes" comment="&quot;general menu updated&quot;">
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_details_25.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main_setting.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main_setting.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/general_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/general_menu.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -499,20 +497,6 @@
       <option name="presentableId" value="Default" />
       <updated>1657575710173</updated>
     </task>
-    <task id="LOCAL-00004" summary="&quot;test successful&quot;">
-      <created>1658979144264</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1658979144264</updated>
-    </task>
-    <task id="LOCAL-00005" summary="&quot;test successful&quot;">
-      <created>1658979492874</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1658979492874</updated>
-    </task>
     <task id="LOCAL-00006" summary="&quot;All controllers class are written&quot;">
       <created>1658998902541</created>
       <option name="number" value="00006" />
@@ -842,7 +826,21 @@
       <option name="project" value="LOCAL" />
       <updated>1669432911151</updated>
     </task>
-    <option name="localTasksCounter" value="53" />
+    <task id="LOCAL-00053" summary="&quot;main menu layout corrected&quot;">
+      <created>1669433888065</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1669433888065</updated>
+    </task>
+    <task id="LOCAL-00054" summary="&quot;general menu updated&quot;">
+      <created>1669433930303</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1669433930303</updated>
+    </task>
+    <option name="localTasksCounter" value="55" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -861,8 +859,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="&quot;test&quot;" />
-    <MESSAGE value="&quot;Register employee presentable&quot;" />
     <MESSAGE value="&quot;Model updated&quot;" />
     <MESSAGE value="&quot;Application is being improved&quot;" />
     <MESSAGE value="&quot;Password changing module added&quot;" />
@@ -886,7 +882,9 @@
     <MESSAGE value="&quot;report features corrected&quot;" />
     <MESSAGE value="&quot;icons added&quot;" />
     <MESSAGE value="&quot;main setting activity layout is created and general menu layout updated with setting icon&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="&quot;main setting activity layout is created and general menu layout updated with setting icon&quot;" />
+    <MESSAGE value="&quot;main menu layout corrected&quot;" />
+    <MESSAGE value="&quot;general menu updated&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;general menu updated&quot;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
