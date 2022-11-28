@@ -53,6 +53,8 @@ IMainSettingsController mainSettingsPresenter;
 		nameLayout=findViewById(R.id.setting_name_layout);
 		nameLayout.setOnClickListener(this);
 		name=findViewById(R.id.setting_name);
+		email=findViewById(R.id.setting_mail);
+		desc=findViewById(R.id.setting_description);
 		emailLayout=findViewById(R.id.setting_mail_layout);
 		emailLayout.setOnClickListener(this);
 		descLayout=findViewById(R.id.setting_description_layout);
