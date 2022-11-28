@@ -15,6 +15,27 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
+            android:name=".View.activity.settings.ManageUsername"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".View.activity.settings.Overview"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".View.activity.settings.ShareAppViaQRCode"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".View.activity.settings.MainSetting"
             android:exported="false">
             <meta-data
@@ -32,7 +53,7 @@
         <receiver
             android:name=".Models.UpdateReceiver"
             android:enabled="true"
-            android:exported="false"></receiver>
+            android:exported="false" />
 
         <activity
             android:name=".View.activity.NoServiceAvailable"

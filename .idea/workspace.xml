@@ -21,9 +21,31 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ddeb6ea-e00f-4cf2-88d3-89cbf60c105a" name="Changes" comment="&quot;general menu updated&quot;">
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_details_25.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
+    <list default="true" id="7ddeb6ea-e00f-4cf2-88d3-89cbf60c105a" name="Changes" comment="&quot;main setting layout updated&quot;">
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/settings/MainSettingsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/settings/ManageUsernameController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/settings/OverviewController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/util/settings/IMainSettingsController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/util/settings/IManageUsernameController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/util/settings/IOverviewController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/ManageUsername.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/Overview.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/ShareAppViaQRCode.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/util/settings/IMainSettingsView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/util/settings/IManageUsernameView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/util/settings/IOverviewView.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_manage_username.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_overview.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_share_app_via_qrcode.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/RegisterEmployee.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/RegisterEmployee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/StartScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/StartScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/MainSetting.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/MainSetting.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_main_setting.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_main_setting.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -34,7 +56,7 @@
   <component name="CodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[042451198T006553]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/home/firminsh/.android/avd/New_Device_2_API_31.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -64,10 +86,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="layoutResourceFile" />
-        <option value="Interface" />
         <option value="resourceFile" />
         <option value="valueResourceFile" />
         <option value="Class" />
+        <option value="Interface" />
       </list>
     </option>
   </component>
@@ -187,6 +209,9 @@
       <recent name="uac.imsp.clockingapp.Controller" />
       <recent name="uac.imsp.clockingapp.View" />
     </key>
+    <key name="android.template.-704405778">
+      <recent name="uac.imsp.clockingapp.View.activity.settings" />
+    </key>
     <key name="android.template.449697694">
       <recent name="uac.imsp.clockingapp" />
     </key>
@@ -208,6 +233,9 @@
     </key>
     <key name="android.template.764448370">
       <recent name="uac.imsp.clockingapp.View.activity" />
+    </key>
+    <key name="android.template.-641244076">
+      <recent name="uac.imsp.clockingapp.View.activity.settings" />
     </key>
     <key name="android.template.1324743782">
       <recent name="uac.imsp.clockingapp.View.activity" />
@@ -496,13 +524,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1657575710173</updated>
-    </task>
-    <task id="LOCAL-00006" summary="&quot;All controllers class are written&quot;">
-      <created>1658998902541</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1658998902541</updated>
     </task>
     <task id="LOCAL-00007" summary="&quot;View starting&quot;">
       <created>1659010719858</created>
@@ -840,7 +861,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669433930303</updated>
     </task>
-    <option name="localTasksCounter" value="55" />
+    <task id="LOCAL-00055" summary="&quot;main setting layout updated&quot;">
+      <created>1669434232397</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1669434232397</updated>
+    </task>
+    <option name="localTasksCounter" value="56" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -859,7 +887,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="&quot;Model updated&quot;" />
     <MESSAGE value="&quot;Application is being improved&quot;" />
     <MESSAGE value="&quot;Password changing module added&quot;" />
     <MESSAGE value="&quot;Unit tests written for ChangePassword&quot;" />
@@ -884,7 +911,8 @@
     <MESSAGE value="&quot;main setting activity layout is created and general menu layout updated with setting icon&quot;" />
     <MESSAGE value="&quot;main menu layout corrected&quot;" />
     <MESSAGE value="&quot;general menu updated&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="&quot;general menu updated&quot;" />
+    <MESSAGE value="&quot;main setting layout updated&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;main setting layout updated&quot;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

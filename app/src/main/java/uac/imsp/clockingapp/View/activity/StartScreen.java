@@ -37,16 +37,46 @@ implements View.OnClickListener  , IStartScreenView {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        SharedPreferences.Editor editor;
+        SharedPreferences preferences;
+
         super.onCreate(savedInstanceState);
         startScreenPresenter = new StartScreenController(this);
-        // Get current version code
-        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+
+        //initializing
+        preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        editor=preferences.edit();
         savedVersionCode= preferences.getInt(PREF_VERSION_CODE_KEY,DOESNT_EXIST);
+        // Get current version code
         currentVersionCode= BuildConfig.VERSION_CODE;
         startScreenPresenter.onLoad(savedVersionCode,currentVersionCode);
-        //update the shares preferences with the current version code
 
-        preferences.edit().putInt(PREF_VERSION_CODE_KEY,currentVersionCode).apply();
+
+        //update the shared preferences with the current version code
+        editor.putInt(PREF_VERSION_CODE_KEY,currentVersionCode);
+        //For entreprise informations settings
+
+        editor.putString("entrepriseName","");
+        editor.putString("entrepriseEmail","");
+        editor.putString("entrepriseDescription","");
+        //For userDoc
+        editor.putString("userDoc","");
+
+
+        editor.putBoolean("emailAsUsername",false);
+        editor.putBoolean("generateUsername",false);
+        editor.putBoolean("showUsernameDuringAdd",true);
+        editor.putBoolean("generatePassword",false);
+        editor.putBoolean("showPasswordDuringAdd",false);
+       //For others settings
+        editor.putBoolean("darkMode",false);
+        editor.putString("language","Français");
+        editor.putBoolean("notifyAdd",true);
+        editor.putBoolean("notifyDelete",false);
+        editor.putBoolean("notifyUpdate",false);
+        editor.putBoolean("useFingerprint",false);
+        editor.putBoolean("useQRCode",true);
+        editor.apply();
         setContentView(R.layout.activity_start_screen);
         startScreenPresenter=new StartScreenController(this);
         initView();

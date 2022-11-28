@@ -337,15 +337,10 @@ int pos;
         emailIntent.putExtra(Intent.EXTRA_EMAIL,to);
         emailIntent.putExtra(Intent.EXTRA_SUBJECT,subject);
         emailIntent.putExtra(Intent.EXTRA_TEXT,message);
-
         emailIntent.setType("image/png");
         emailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         emailIntent.putExtra(Intent.EXTRA_STREAM,qrCodeUri);
-
-        startActivity(Intent.createChooser(emailIntent,
-                "Envoyer avec")
-
-        );
+        startActivity(Intent.createChooser(emailIntent, "Envoyer avec"));
 
 
     }

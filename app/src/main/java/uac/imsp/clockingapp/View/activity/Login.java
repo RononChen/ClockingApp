@@ -32,10 +32,6 @@ public class Login extends AppCompatActivity
 
     private AlertDialog.Builder builder;
     private  EditText Username,Password;
-   /* int currentVersionCode,savedVersionCode;
-    final String PREFS_NAME="MyPrefsFile",
-            PREF_VERSION_CODE_KEY="version_code";
-    final int DOESNT_EXIST=-1;*/
 
     private AlarmManager manager;
     private PendingIntent pendingIntent;
@@ -52,14 +48,6 @@ public class Login extends AppCompatActivity
         setContentView(R.layout.activity_login);
         initView();
         loginPresenter = new LoginController(this);
-       /* // Get current version code
-        SharedPreferences preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        savedVersionCode= preferences.getInt(PREF_VERSION_CODE_KEY,DOESNT_EXIST);
-        currentVersionCode= BuildConfig.VERSION_CODE;
-        loginPresenter.onLoad(savedVersionCode,currentVersionCode);
-        //update the shares preferences with the current version code
-
-        preferences.edit().putInt(PREF_VERSION_CODE_KEY,currentVersionCode).apply();*/
         Intent alarmIntent = new Intent(this, UpdateReceiver.class);
          pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), REQ_CODE, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         manager = (AlarmManager)getSystemService(ALARM_SERVICE);
@@ -94,28 +82,6 @@ public class Login extends AppCompatActivity
 
         new ToastMessage(this,message);
     }
-
-  /*  @Override
-    public void onFirstRun() {
-        Intent intent=new Intent(Login.this, SetUp.class);
-        //stop Login activity
-        Login.this.finish();
-        // start SetUp activity
-        startActivity(intent);
-
-    }
-
-    @Override
-    public void onNormalRun() {
-
-
-
-    }
-
-    @Override
-    public void onUpgrade() {
-
-    }*/
 
     @Override
     public void onClocking() {
@@ -203,12 +169,7 @@ public class Login extends AppCompatActivity
         startActivity(intent);
         Username.setText("");
         Password.setText("");
-
-
-
-
-
-    }
+          }
 
     @Override
     public void onNegativeResponse(String message) {
