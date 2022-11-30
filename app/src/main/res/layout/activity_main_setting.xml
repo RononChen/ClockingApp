@@ -68,7 +68,7 @@
             app:drawableStartCompat="@drawable/ic_baseline_menu_book_25" />
         <LinearLayout
             android:id="@+id/setting_cache_label"
-            android:orientation="horizontal"
+            android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
         <TextView
@@ -98,6 +98,7 @@
             android:layout_height="wrap_content"/>
         <LinearLayout
             android:id="@+id/setting_name_layout"
+            android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
         <TextView
@@ -108,13 +109,13 @@
             app:drawableStartCompat="@drawable/ic_baseline_mode_edit_25" />
             <TextView
                 android:layout_width="wrap_content"
-                android:text=""
                 android:id="@+id/setting_name"
                 android:layout_height="wrap_content" />
 
         </LinearLayout>
         <LinearLayout
             android:id="@+id/setting_mail_layout"
+            android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
         <TextView
@@ -138,16 +139,18 @@
             app:drawableStartCompat="@drawable/ic_baseline_picture_in_picture_25" />
         <LinearLayout
             android:id="@+id/setting_description_layout"
+            android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
             android:text="Description"
             android:id="@+id/setting_description_label"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            app:drawableStartCompat="@drawable/ic_baseline_description_25" />
             <TextView
                 android:layout_width="wrap_content"
-                android:text="Description"
+                android:text=""
                 android:id="@+id/setting_description"
                 android:layout_height="wrap_content" />
         </LinearLayout>
@@ -159,8 +162,9 @@
         android:id="@+id/setting_employee_account"
         android:orientation="vertical"-->
         <TextView
+
             android:layout_width="wrap_content"
-            android:text="Paramètres de compte employé"
+            android:text="Paramètres de compte et de notification employé"
             android:id="@+id/setting_account"
             android:layout_height="wrap_content"/>
         <!--TextView
@@ -177,40 +181,11 @@
             app:drawableStartCompat="@drawable/ic_baseline_password_25" />
            </LinearLayout-->
 
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/setting_employee_notifications_title"
-        android:orientation="vertical"
-        >
-        <TextView
-            android:layout_width="wrap_content"
-            android:text="Notifications employé"
-            android:id="@+id/setting_employee"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:text="Lors de l'ajout"
-            android:id="@+id/setting_add"
-            android:layout_height="wrap_content"
-            app:drawableStartCompat="@drawable/ic_baseline_person_add_25" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:text="Lors de la suppression"
-            android:id="@+id/setting_delete"
-            android:layout_height="wrap_content"
-            app:drawableStartCompat="@drawable/ic_baseline_person_remove_25" />
-        <TextView
-            android:layout_width="wrap_content"
-            android:text="Lors de la modification"
-            android:id="@+id/setting_update"
-            android:layout_height="wrap_content"
-            app:drawableStartCompat="@drawable/ic_baseline_edit_attributes_25" />
-            </LinearLayout>
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/setting_others"
+        android:id="@+id/setting_others_layout"
         android:orientation="vertical"
         >
         <TextView
@@ -224,7 +199,7 @@
             android:text="Geste de pointage"
             android:id="@+id/setting_attendance"
             android:layout_height="wrap_content"
-            app:drawableStartCompat="@drawable/ic_baseline_dark_mode_25" />
+            app:drawableStartCompat="@drawable/ic_baseline_timer_25" />
         <TextView
             android:layout_width="wrap_content"
             android:text="Mode sombre"

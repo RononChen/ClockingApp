@@ -19,19 +19,23 @@ import uac.imsp.clockingapp.BuildConfig;
 import uac.imsp.clockingapp.Controller.control.settings.MainSettingsController;
 import uac.imsp.clockingapp.Controller.util.settings.IMainSettingsController;
 import uac.imsp.clockingapp.R;
+import uac.imsp.clockingapp.View.activity.settings.others.Clocking;
 import uac.imsp.clockingapp.View.util.settings.IMainSettingsView;
 
 public class MainSetting extends AppCompatActivity implements View.OnClickListener, IMainSettingsView {
-TextView share,shareViaQR,overview,appVersion,clearCache,cacheSize,name,email,desc;
+TextView share,shareViaQR,overview,appVersion,clearCache,cacheSize,name,
+		email,desc,accountSettings;
 	EditText input;
 Intent intent;
-LinearLayout nameLayout,emailLayout,descLayout;
+LinearLayout nameLayout,emailLayout,descLayout,otherSLayout;
 long cacheSizeValue;
 String dialogInput;
-boolean submited=false;
+
 SharedPreferences preferences;
 	final String PREFS_NAME="MyPrefsFile";
 	SharedPreferences.Editor editor;
+	String Mail,Name,Desc;
+	String prefs;
 
 IMainSettingsController mainSettingsPresenter;
 	@Override
@@ -51,10 +55,14 @@ IMainSettingsController mainSettingsPresenter;
 		clearCache=findViewById(R.id.setting_clear_cache);
 		cacheSize=findViewById(R.id.setting_cache_size);
 		nameLayout=findViewById(R.id.setting_name_layout);
+		/*otherSLayout=findViewById(R.id.setting_others_layout);
+		otherSLayout.setOnClickListener(this);*/
 		nameLayout.setOnClickListener(this);
 		name=findViewById(R.id.setting_name);
 		email=findViewById(R.id.setting_mail);
 		desc=findViewById(R.id.setting_description);
+		accountSettings=findViewById(R.id.setting_account);
+		accountSettings.setOnClickListener(this);
 		emailLayout=findViewById(R.id.setting_mail_layout);
 		emailLayout.setOnClickListener(this);
 		descLayout=findViewById(R.id.setting_description_layout);
@@ -89,7 +97,14 @@ else if(v.getId()==R.id.setting_mail_layout)
 	mainSettingsPresenter.onEmail();
 else if(v.getId()==R.id.setting_description_layout)
 	mainSettingsPresenter.onDescription();
-	}
+else if(v.getId()==R.id.setting_account)
+mainSettingsPresenter.onAccount();
+else if (v.getId()==R.id.setting_attendance)
+{
+	mainSettingsPresenter.onClocking();
+}
+
+}
 
 	@Override
 	public void onShareApp(String msg) {
@@ -103,9 +118,12 @@ else if(v.getId()==R.id.setting_description_layout)
 	public void retrieveSharedPreferences(){
 		preferences= getApplicationContext().getSharedPreferences(PREFS_NAME,
 				Context.MODE_PRIVATE);
-	name.setText(preferences.getString("entrepriseName",""));
-	email.setText(preferences.getString("entrepriseEmail",""));
-	desc.setText(preferences.getString("entrepriseDescription",""));
+		Name=preferences.getString("entrepriseName","");
+		Mail=preferences.getString("entrepriseEmail","");
+		Desc=preferences.getString("entrepriseDescription","");
+	name.setText(Name);
+	email.setText(Mail);
+	desc.setText(Desc);
 
 	}
 
@@ -123,47 +141,41 @@ cacheSize.setText(String.valueOf(cacheSizeValue));
 
 	@Override
 	public void onName(String title, String msg, String pos, String neg) {
-		inputDialog(title,msg,pos,neg);
-		if(submited)
-		{
-			editor=preferences.edit();
-			editor.putString("entrepriseName",dialogInput);
-		}
+		inputDialog(title,msg,pos,neg,0 );
 
-		submited=false;
 	}
 
 	@Override
 	public void onEmail(String title, String msg, String pos, String neg) {
-		inputDialog(title,msg,pos,neg);
-		if(submited)
-		{
-			editor=preferences.edit();
-			editor.putString("entrepriseEmail",dialogInput);
-		}
-
-		submited=false;
+		inputDialog(title,msg,pos,neg,1 );
 
 	}
 
 	@Override
 	public void onDescription(String title, String msg, String pos, String neg) {
-		inputDialog(title,msg,pos,neg);
-		if(submited)
-		{
-			editor=preferences.edit();
-			editor.putString("entrepriseDescription",dialogInput);
-		}
-
-		submited=false;
+		inputDialog(title,msg,pos,neg,2 );
 
 	}
 
 
 	@Override
 	public void onOverview() {
-
+		intent=new Intent(MainSetting.this,Overview.class);
+		startActivity(intent);
 	}
+
+	@Override
+	public void onAccount() {
+intent=new Intent(MainSetting.this,ManageUsername.class);
+startActivity(intent);
+	}
+
+	@Override
+	public void onClocking() {
+		intent=new Intent(MainSetting.this, Clocking.class);
+		startActivity(intent);
+	}
+
 	public void cacheSize(){
 		cacheSizeValue=0;
 		File[] files = getCacheDir().listFiles();
@@ -173,29 +185,58 @@ cacheSize.setText(String.valueOf(cacheSizeValue));
 		}
 
 	}
-	public void  inputDialog(String title,String msg, String pos, String neg ){
+	public void  inputDialog(String title,String msg, String pos, String neg,int value ){
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		input = new EditText(MainSetting.this);
 		LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
 				LinearLayout.LayoutParams.MATCH_PARENT,
 				LinearLayout.LayoutParams.MATCH_PARENT);
+
 		input.setLayoutParams(lp);
+		if(value==0)
+			prefs=Name;
+		else if(value==1)
+			prefs=Mail;
+		else if(value==2)
+			prefs=Desc;
+		input.setText(prefs);
+		input.setSelectAllOnFocus(true);
 		builder.setView(input);
 		builder.setMessage(msg)
 				.setCancelable(false)
 				.setPositiveButton(pos, (dialog, which) -> {
 
-					dialogInput=input.getText().toString();
-					submited=true;
+					dialogInput= input.getText().toString().trim();
+					prefs = dialogInput;
+					editor=preferences.edit();
+					if(value==0) {
+
+						name.setText(dialogInput);
+						editor.putString("entrepriseName",dialogInput);
+
+
+					}
+					else if(value==1) {
+						email.setText(dialogInput);
+						editor.putString("entrepriseEmail",dialogInput);
+					}
+					else if(value==2) {
+
+						desc.setText(dialogInput);
+						editor.putString("entrepriseDescription",dialogInput);
+					}
+					editor.apply();
+					retrieveSharedPreferences();
 				})
 				.setNegativeButton(neg,(dialog,which)->{
 
 				});
-
 		AlertDialog alert = builder.create();
 		alert.setTitle(title);
 		alert.show();
+
+
 
 	}
 }

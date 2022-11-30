@@ -50,6 +50,11 @@ public class MainSettingsController implements IMainSettingsController {
 	}
 
 	@Override
+	public void onAccount() {
+mainSettingsView.onAccount();
+	}
+
+	@Override
 	public void onClearAppCache() {
 		deleteCache();
 
@@ -69,13 +74,25 @@ public class MainSettingsController implements IMainSettingsController {
 
 	@Override
 	public void onEmail() {
+		mainSettingsView.onEmail("Adresse mail de l'entreprise",
+				"Editer l'adresse email de l'entreprise",
+				"Appliquer","Annuler");
+
+	}
+
+	@Override
+	public void onClocking() {
 
 	}
 
 	@Override
 	public void onDescription() {
+		mainSettingsView.onDescription("Description de l'entreprise",
+				"Editer la description de l'entreprise",
+				"Appliquer","Annuler");
 
 	}
+
 
 	@Override
 	public void onUsername() {

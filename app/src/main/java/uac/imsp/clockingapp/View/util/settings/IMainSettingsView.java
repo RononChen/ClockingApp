@@ -9,4 +9,6 @@ public interface IMainSettingsView {
 	void onDescription(String title,String msg,String pos,String neg);
 
 	void onOverview();
+	void onAccount();
+	void onClocking();
 }

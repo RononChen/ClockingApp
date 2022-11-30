@@ -15,6 +15,48 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
+            android:name=".View.activity.settings.others.Help"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".View.activity.settings.others.ReportProblem"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".View.activity.settings.others.Languages"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".View.activity.settings.others.DarkMode"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".View.activity.settings.others.Clocking"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <!--activity
+            android:name=".View.activity.settings.others.Others"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity-->
+        <activity
             android:name=".View.activity.settings.ManageUsername"
             android:exported="false">
             <meta-data

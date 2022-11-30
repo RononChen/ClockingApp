@@ -32,7 +32,6 @@ public class LocalHelper {
         resources.updateConfiguration(configuration,resources.getDisplayMetrics());
         return context;
     }
-    /* ctx=LocHe.setLocale(....this,"en"*/
 
     private static Context updateResources(Context context, String language) {
         Locale locale=new Locale(language);

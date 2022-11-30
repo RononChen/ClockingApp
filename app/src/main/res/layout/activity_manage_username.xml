@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".View.activity.settings.ManageUsername">
 
     <LinearLayout
@@ -27,17 +27,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
         <RadioButton
-            android:id="@+id/email"
+            android:id="@+id/use_email"
+            android:text="Utiliser l'email comme username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
             <RadioButton
                 android:id="@+id/generate_username"
                 android:layout_width="wrap_content"
+                android:text="Générer le username"
                 android:layout_height="wrap_content"/>
 
         </RadioGroup>
         <com.google.android.material.switchmaterial.SwitchMaterial
-            android:id="@+id/switch_show"
+            android:id="@+id/switch_edit_username"
             android:text="Editer le username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
@@ -55,7 +57,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
-            android:id="@id/text"
+            android:text="Lors d'un ajout d'employé"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <RadioGroup
@@ -63,6 +65,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <RadioButton
+                android:text="Générer le mot de passe"
                 android:id="@+id/generate_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
@@ -72,6 +75,33 @@
             android:text="Afficher le mot de passe"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/setting_employee_notifications_title"
+            android:orientation="vertical"
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:text="Notifications employé"
+                android:id="@+id/setting_employee"
+                android:layout_height="wrap_content"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:text="Lors de l'ajout"
+                android:id="@+id/setting_add"
+                android:layout_height="wrap_content" />
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:text="Lors de la suppression"
+                android:id="@+id/setting_delete"
+                android:layout_height="wrap_content"/>
+            <CheckBox
+                android:layout_width="wrap_content"
+                android:text="Lors de la modification"
+                android:id="@+id/setting_update"
+                android:layout_height="wrap_content"/>
+        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>

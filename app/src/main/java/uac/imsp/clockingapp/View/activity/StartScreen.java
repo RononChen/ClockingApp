@@ -33,12 +33,14 @@ implements View.OnClickListener  , IStartScreenView {
     final String PREFS_NAME="MyPrefsFile",
             PREF_VERSION_CODE_KEY="version_code";
     final int DOESNT_EXIST=-1;
+    SharedPreferences.Editor editor;
+    SharedPreferences preferences;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        SharedPreferences.Editor editor;
-        SharedPreferences preferences;
+
+
 
         super.onCreate(savedInstanceState);
         startScreenPresenter = new StartScreenController(this);
@@ -54,28 +56,6 @@ implements View.OnClickListener  , IStartScreenView {
 
         //update the shared preferences with the current version code
         editor.putInt(PREF_VERSION_CODE_KEY,currentVersionCode);
-        //For entreprise informations settings
-
-        editor.putString("entrepriseName","");
-        editor.putString("entrepriseEmail","");
-        editor.putString("entrepriseDescription","");
-        //For userDoc
-        editor.putString("userDoc","");
-
-
-        editor.putBoolean("emailAsUsername",false);
-        editor.putBoolean("generateUsername",false);
-        editor.putBoolean("showUsernameDuringAdd",true);
-        editor.putBoolean("generatePassword",false);
-        editor.putBoolean("showPasswordDuringAdd",false);
-       //For others settings
-        editor.putBoolean("darkMode",false);
-        editor.putString("language","Français");
-        editor.putBoolean("notifyAdd",true);
-        editor.putBoolean("notifyDelete",false);
-        editor.putBoolean("notifyUpdate",false);
-        editor.putBoolean("useFingerprint",false);
-        editor.putBoolean("useQRCode",true);
         editor.apply();
         setContentView(R.layout.activity_start_screen);
         startScreenPresenter=new StartScreenController(this);
@@ -159,6 +139,34 @@ implements View.OnClickListener  , IStartScreenView {
         Intent intent=new Intent(StartScreen.this, SetUp.class);
         //stop Login activity
         StartScreen.this.finish();
+        //For entreprise informations settings
+        preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        editor=preferences.edit();
+
+        editor.putString("entrepriseName","");
+        editor.putString("entrepriseEmail","");
+        editor.putString("entrepriseDescription","");
+        //For userDoc
+        editor.putString("userDoc","");
+       // editor.apply();
+
+
+        editor.putBoolean("emailAsUsername",false);
+        editor.putBoolean("generateUsername",false);
+        editor.putBoolean("editUsername",true);
+        editor.putBoolean("generatePassword",false);
+        editor.putBoolean("showPasswordDuringAdd",false);
+        //For others settings
+        editor.putBoolean("darkMode",false);
+        editor.putString("language","Français");
+        editor.putBoolean("notifyAdd",true);
+        editor.putBoolean("notifyDelete",false);
+        editor.putBoolean("notifyUpdate",false);
+        editor.putBoolean("useFingerprint",false);
+        editor.putBoolean("useQRCode",true);
+        editor.putString("lang","fr");
+
+
         // start SetUp activity
         startActivity(intent);
 

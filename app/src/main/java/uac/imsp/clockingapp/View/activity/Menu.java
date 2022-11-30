@@ -36,7 +36,7 @@ public class Menu extends AppCompatActivity  implements View.OnClickListener,
     @Override
     public void onClick(View v) {
         if(v.getId()==R.id.menu_language)
-        onLanguageMenu();
+              onLanguageMenu();
 
     }
 
@@ -53,7 +53,7 @@ public class Menu extends AppCompatActivity  implements View.OnClickListener,
     @Override
     public void changeLanguageTo(String lang) {
          LocalHelper.setLocale(Menu.this,lang);
-        //Resources resources=context.getResources();
+
 
     }
 

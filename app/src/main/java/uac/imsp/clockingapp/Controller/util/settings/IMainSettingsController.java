@@ -7,11 +7,13 @@ public interface IMainSettingsController {
 	void onOverview();
 	void onAppversin();
 	void onUsersDoc();
+	void onAccount();
 	void onClearAppCache();
 	//About the establishment
 	void onName();
 	void onPicture();
 	void onEmail();
+	void onClocking();
 	void onDescription();
 	//employee account
 	void onUsername();
