@@ -10,7 +10,7 @@
         android:id="@+id/stat_date"
         android:layout_height="wrap_content"
         android:textSize="15sp"
-        android:text="01 Janvier 1970"
+        android:text="@string/period"
         android:layout_width="wrap_content"/>
 
 
@@ -25,15 +25,17 @@
 
         <Button
             android:id="@+id/stat_previous"
-            android:text="Précédent"
+            android:text="@string/previous"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            style="?android:attr/buttonBarButtonStyle" />
         <Button
             android:id="@+id/stat__next"
-            android:text="Suivant"
+            android:text="@string/next"
             android:layout_width="wrap_content"
             android:layout_marginEnd="0dp"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            style="?android:attr/buttonBarButtonStyle" />
     </LinearLayout>
 
 

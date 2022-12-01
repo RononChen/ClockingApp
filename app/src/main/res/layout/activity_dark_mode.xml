@@ -8,7 +8,7 @@ android:orientation="vertical"
     tools:context=".View.activity.settings.others.DarkMode">
     <com.google.android.material.switchmaterial.SwitchMaterial
         android:id="@+id/dark_mode"
-        android:text="Mode sombre"
+        android:text="@string/dark"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 

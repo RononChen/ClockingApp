@@ -20,10 +20,14 @@ import uac.imsp.clockingapp.Controller.control.settings.MainSettingsController;
 import uac.imsp.clockingapp.Controller.util.settings.IMainSettingsController;
 import uac.imsp.clockingapp.R;
 import uac.imsp.clockingapp.View.activity.settings.others.Clocking;
+import uac.imsp.clockingapp.View.activity.settings.others.DarkMode;
+import uac.imsp.clockingapp.View.activity.settings.others.Help;
+import uac.imsp.clockingapp.View.activity.settings.others.Languages;
+import uac.imsp.clockingapp.View.activity.settings.others.ReportProblem;
 import uac.imsp.clockingapp.View.util.settings.IMainSettingsView;
 
 public class MainSetting extends AppCompatActivity implements View.OnClickListener, IMainSettingsView {
-TextView share,shareViaQR,overview,appVersion,clearCache,cacheSize,name,
+TextView share,shareViaQR,overview,appVersion,clearCache,cacheSize,name,clock,dark,lang,problem,help,
 		email,desc,accountSettings;
 	EditText input;
 Intent intent;
@@ -61,7 +65,17 @@ IMainSettingsController mainSettingsPresenter;
 		name=findViewById(R.id.setting_name);
 		email=findViewById(R.id.setting_mail);
 		desc=findViewById(R.id.setting_description);
+		clock=findViewById(R.id.setting_attendance);
+		dark=findViewById(R.id.setting_dark);
+		lang=findViewById(R.id.setting_languages);
+		problem=findViewById(R.id.setting_problem);
+		help=findViewById(R.id.setting_help);
 		accountSettings=findViewById(R.id.setting_account);
+		clock.setOnClickListener(this);
+		dark.setOnClickListener(this);
+		lang.setOnClickListener(this);
+		problem.setOnClickListener(this);
+		help.setOnClickListener(this);
 		accountSettings.setOnClickListener(this);
 		emailLayout=findViewById(R.id.setting_mail_layout);
 		emailLayout.setOnClickListener(this);
@@ -103,8 +117,17 @@ else if (v.getId()==R.id.setting_attendance)
 {
 	mainSettingsPresenter.onClocking();
 }
+else if(v.getId()==R.id.setting_dark)
+	mainSettingsPresenter.onDarkMode();
+else if(v.getId()==R.id.setting_languages)
+	mainSettingsPresenter.onLanguague();
+else if(v.getId()==R.id.setting_help)
+	mainSettingsPresenter.onHelp();
+else if(v.getId()==R.id.setting_problem)
+	mainSettingsPresenter.onReportProblem();
 
 }
+
 
 	@Override
 	public void onShareApp(String msg) {
@@ -170,10 +193,40 @@ intent=new Intent(MainSetting.this,ManageUsername.class);
 startActivity(intent);
 	}
 
+
 	@Override
-	public void onClocking() {
+	public void onClock() {
 		intent=new Intent(MainSetting.this, Clocking.class);
 		startActivity(intent);
+
+	}
+
+	@Override
+	public void onDark() {
+		intent=new Intent(MainSetting.this, DarkMode.class);
+		startActivity(intent);
+
+	}
+
+	@Override
+	public void onLanguage() {
+		intent=new Intent(MainSetting.this, Languages.class);
+		startActivity(intent);
+
+	}
+
+	@Override
+	public void onProblem() {
+		intent=new Intent(MainSetting.this, ReportProblem.class);
+		startActivity(intent);
+
+	}
+
+	@Override
+	public void onHelp() {
+		intent=new Intent(MainSetting.this, Help.class);
+		startActivity(intent);
+
 	}
 
 	public void cacheSize(){

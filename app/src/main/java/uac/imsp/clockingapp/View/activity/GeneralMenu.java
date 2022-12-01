@@ -50,10 +50,9 @@ public class GeneralMenu extends AppCompatActivity implements View.OnClickListen
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId())
         {
-            case R.id.dash:
-                startActivity(new Intent(this,Menu.class));
-                break;
-            case R.id.settings : {
+
+            case R.id.settings :
+            {
                 startActivity(new Intent(this, MainSetting.class));
                 //menuPresenter.onRegisterEmployeeMenu(currentUser);
             }

@@ -14,12 +14,12 @@
 >
         <TextView
             android:id="@+id/username_label"
-            android:text="Gestion de nom d'utilisateur"
+            android:text="@string/manage_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
             android:id="@+id/text"
-            android:text="Lors d'un ajout d'employé"
+            android:text="@string/during_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <RadioGroup
@@ -28,19 +28,19 @@
             android:layout_height="wrap_content">
         <RadioButton
             android:id="@+id/use_email"
-            android:text="Utiliser l'email comme username"
+            android:text="@string/mail_as_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
             <RadioButton
                 android:id="@+id/generate_username"
                 android:layout_width="wrap_content"
-                android:text="Générer le username"
+                android:text="@string/generate_username"
                 android:layout_height="wrap_content"/>
 
         </RadioGroup>
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/switch_edit_username"
-            android:text="Editer le username"
+            android:text="@string/edit_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
     </LinearLayout>
@@ -53,11 +53,11 @@
         >
         <TextView
             android:id="@+id/password_label"
-            android:text="Gestion du mot de passe"
+            android:text="@string/manage_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
-            android:text="Lors d'un ajout d'employé"
+            android:text="@string/during_emp_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <RadioGroup
@@ -65,14 +65,14 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <RadioButton
-                android:text="Générer le mot de passe"
+                android:text="@string/generate_password"
                 android:id="@+id/generate_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </RadioGroup>
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:id="@+id/switch_show_password"
-            android:text="Afficher le mot de passe"
+            android:text="@string/show_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <LinearLayout
@@ -83,22 +83,22 @@
             >
             <TextView
                 android:layout_width="wrap_content"
-                android:text="Notifications employé"
+                android:text="@string/emp_not"
                 android:id="@+id/setting_employee"
                 android:layout_height="wrap_content"/>
             <CheckBox
                 android:layout_width="wrap_content"
-                android:text="Lors de l'ajout"
+                android:text="@string/during_add"
                 android:id="@+id/setting_add"
                 android:layout_height="wrap_content" />
             <CheckBox
                 android:layout_width="wrap_content"
-                android:text="Lors de la suppression"
+                android:text="@string/during_delete"
                 android:id="@+id/setting_delete"
                 android:layout_height="wrap_content"/>
             <CheckBox
                 android:layout_width="wrap_content"
-                android:text="Lors de la modification"
+                android:text="@string/during_update"
                 android:id="@+id/setting_update"
                 android:layout_height="wrap_content"/>
         </LinearLayout>

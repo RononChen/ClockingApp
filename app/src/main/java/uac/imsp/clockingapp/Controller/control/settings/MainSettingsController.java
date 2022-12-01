@@ -82,6 +82,7 @@ mainSettingsView.onAccount();
 
 	@Override
 	public void onClocking() {
+		mainSettingsView.onClock();
 
 	}
 
@@ -107,6 +108,7 @@ mainSettingsView.onAccount();
 	@Override
 	public void onAdd() {
 
+
 	}
 
 	@Override
@@ -121,21 +123,26 @@ mainSettingsView.onAccount();
 
 	@Override
 	public void onLanguague() {
+		mainSettingsView.onLanguage();
+
 
 	}
 
 	@Override
 	public void onDarkMode() {
+		mainSettingsView.onDark();
 
 	}
 
 	@Override
 	public void onHelp() {
+		mainSettingsView.onHelp();
 
 	}
 
 	@Override
 	public void onReportProblem() {
+		mainSettingsView.onProblem();
 
 	}
 	public  void deleteCache() {

@@ -35,15 +35,17 @@
     <string name="login_password_text">Password</string>
     <string name="login_username_text">Username</string>
     <string name="login">Identify yourself</string>
-    <string name="login_button_text">Authenticate yourself</string>
+    <string name="login_button_text">Authenticate</string>
     <string name="menu_report_employee_button">Consult presence report</string>
     <string name="menu_statistics">Consult statistics</string>
-    <string name="nom">Nom</string>
+    <string name="nom">Name</string>
+    <string name="during_add">During employee add</string>
+    <string name="mail_as_username">Use email as username</string>
 
-    <string name="nom_">Nom</string>
+    <string name="nom_">Name</string>
 
     <string name="sexe_i">Gender</string>
-    <string name="date_de_naissance_">Birhdat</string>
+    <string name="date_de_naissance_">Birhdate</string>
     <string name="service">Service</string>
     <string name="service_">Service</string>
     <string name="heure_de_d_but">Start time</string>
@@ -57,26 +59,26 @@
 
     <string name="register_employe_type_text">Type  of employee</string>
     <string name="register_service_label">Service</string>
-    <string name="register_planning_label">Planning de travail quotidien</string>
-    <string name="welcome">Welcome</string>
-    <string name="name">Nom et prénom</string>
+    <string name="register_planning_label">Daily work schedule</string>
+    <string name="welcome">Welcome to ClockingApp, an app to track attendance of IMSP employees</string>
+    <string name="name">Latname and Firstname(s)</string>
     <string name="statistics">Statistics</string>
     <string name="update">Update</string>
 
     <string name="clocking_text">Mark attendance</string>
-    <string name="search_status">Statute</string>
+    <string name="search_status">Status</string>
     <string name="todo">TODO</string>
     <string name="tod">TODO</string>
-    <string name="param_tres">Paramètres</string>
+    <string name="param_tres">Settings</string>
     <string name="add_employee">Add employee</string>
     <string name="confirm_new_password">Confirm the new password</string>
-    <string name="new_password">Nouveau mot de passe</string>
+    <string name="new_password">New password</string>
     <string name="modify">Update</string>
 
     <string-array name="employee_types">
         <item>Simple</item>
-        <item>Directeur</item>
-        <item>Chef personnel</item>
+        <item>Director</item>
+        <item>Personal chef</item>
     </string-array>
 
     <string-array name="days">
@@ -90,8 +92,8 @@
 
     </string-array>
     <string-array name="actions">
-        <item>Modifier</item>
-        <item>Supprimer</item>
+        <item>Update</item>
+        <item>Delete</item>
         <item>Presence report</item>
         <item>Presence statistics</item>
     </string-array>
@@ -101,7 +103,7 @@
     <string name="logout">Login out</string>
     <string name="date_de_naissance">Birthdate</string>
     <string name="welcome_">Welcome</string>
-    <string name="actualiser">Realize</string>
+    <string name="actualiser">Actualize</string>
     <string name="female">Female</string>
     <string name="start_time">Start time</string>
     <string name="end_time">End time</string>
@@ -124,7 +126,14 @@
     <string name="modifier">Update</string>
     <string name="update_button">Update</string>
     <string name="english">English</string>
-    <string name="reg_number">Number</string>
+    <string name="french" >French</string>
+    <string name="general_menu_register">Register employee</string>
+    <string name="general_menu_employee_list">Liste des employés</string>
+    <string name="menu_presence_report">Etats de présence</string>
+    <string name="menu_statistics_by_employee">Statistiques par employé</string>
+    <string name="search_number">Matricule</string>
+    <string name="work_days" >Jours de travail</string>
+    <string name="reg_number">Registration number</string>
     <string name="monday">Monday</string>
     <string name="tuesday">Tuesday</string>
     <string name="thursday">Thursday</string>
@@ -132,6 +141,50 @@
     <string name="satursday">Satursday</string>
     <string name="sunday">Sunday</string>
     <string name="wednesday">Wednesday</string>
+    <string name="attendance_gesture">Attendance gesture</string>
+    <string name="qr_code_scan">QR Code scan</string>
+    <string name="fingerprint_scan">Fingerprint scan</string>
+    <string name="period">Janvier 01 1970</string>
+    <string name="previous">Previous</string>
+    <string name="next">Next</string>
+    <string name="dark">Mode sombre</string>
+    <string name="languages">Langues</string>
+    <string name="report_problem">Report a problem</string>
+    <string name="help">Help?</string>
+    <string name="more_parameters">More parameters</string>
+    <string name="set">Employee account and notification settings</string>
+    <string name="description">Description</string>
+    <string name="picture">Picture</string>
+    <string name="about_est">About the establishment</string>
+    <string name="size">size</string>
+    <string name="clear_cache">Clear cache</string>
+    <string name="user_guide">User guide</string>
+    <string name="app_version">App version</string>
+    <string name="share_via_qr">Share app via qr code</string>
+    <string name="details">Detailed App Overview</string>
+    <string name="share_app">Share App</string>
+    <string name="about_app">About app</string>
+    <string name="manage_username">Username management</string>
+    <string name="generate_username">Generate username</string>
+    <string name="edit_username">Edit username</string>
+    <string name="manage_password">Password management</string>
+    <string name="during_emp_add">During employee add</string>
+    <string name="generate_password">Generate password</string>
+    <string name="show_password">Show password</string>
+    <string name="emp_not">Employee notices</string>
+    <string name="during_delete">During delete</string>
+    <string name="during_update">During update</string>
+    <string name="no_service">No service available. Press the button to add more</string>
+    <string name="add">Ajouter</string>
+    <string name="overview">Overview</string>
+    <string name="version">App version:</string>
+    <string name="device_name">Device name:</string>
+    <string name="device_manufacturer">Device manufacturer:</string>
+    <string name="version_name">Operating system version name:</string>
+    <string name="sdk_version">Operating system SDK version</string>
+    <string name="copy">Copy</string>
+    <string name="desc">To share the app, scan this QR code using another device</string>
+    <string name="share">Share</string>
 
 
 </resources>

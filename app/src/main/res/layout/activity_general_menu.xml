@@ -25,7 +25,8 @@
         android:layout_marginStart="25dp"
         android:background="@color/colorPrimary"
         android:paddingTop="20dp"
-        android:text="@string/general_menu_register" />
+        android:text="@string/general_menu_register"
+        style="?android:attr/buttonBarButtonStyle" />
             <Button
                 android:id="@+id/menu_search"
                 android:layout_width="120dp"
@@ -35,7 +36,8 @@
                 android:layout_marginEnd="25dp"
                 android:paddingTop="20dp"
                 android:background="@color/colorPrimary"
-                android:text="@string/general_menu_employee_list" />
+                android:text="@string/general_menu_employee_list"
+                style="?android:attr/buttonBarButtonStyle" />
 
         </LinearLayout>
 
@@ -85,7 +87,8 @@
         android:drawableTop="@drawable/ic_baseline_timer_50"
         android:paddingTop="20dp"
         android:background="@color/colorPrimary"
-        android:text="@string/menu_clock_button" />
+        android:text="@string/menu_clock_button"
+        style="?android:attr/buttonBarButtonStyle" />
             <Button
                 android:id="@+id/menu_statistics_by_servie"
                 android:layout_width="120dp"
@@ -96,40 +99,10 @@
                 android:drawableTop="@drawable/ic_baseline_pie_chart_50"
                 android:background="@color/colorPrimary"
                 android:text="@string/consult_stat"
-                android:gravity="center"/>
-    <!--Button
-        android:id="@+id/menu_presence_report"
-        android:layout_width="120dp"
-        android:layout_height="150dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginTop="20dp"
-        android:drawableTop="@drawable/ic_baseline_menu_book_50"
-        android:paddingTop="20dp"
-        android:background="@color/colorPrimary"
-        android:text="@string/menu_presence_report" /-->
-        </LinearLayout>
-        <!--LinearLayout
-            android:id="@+id/LinearLayout3"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+                android:gravity="center"
+                style="?android:attr/buttonBarButtonStyle" />
+            </LinearLayout>
 
-
-
-            <Button
-                android:id="@+id/menu_statistics_by_employee"
-                android:layout_width="120dp"
-                android:layout_height="150dp"
-                android:layout_marginLeft="25dp"
-                android:layout_marginRight="25dp"
-                android:layout_marginTop="20dp"
-                android:paddingTop="20dp"
-                android:drawableTop="@drawable/ic_baseline_bar_chart_50"
-                android:background="@color/colorPrimary"
-                android:text="@string/menu_statistics_by_employee"
-                android:gravity="center"/>
-        </LinearLayout-->
 
             <Button
                 android:id="@+id/menu_password"
@@ -139,7 +112,7 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginTop="16dp"
                 android:background="@drawable/mybutton"
-                android:text="Mot de passe"
+                android:text="@string/login_password_text"
                 android:gravity="center"/>
 
         </LinearLayout>

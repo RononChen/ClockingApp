@@ -1,5 +1,6 @@
 package uac.imsp.clockingapp.View.activity.settings.others;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.RadioButton;
@@ -20,23 +21,26 @@ public class Clocking extends AppCompatActivity
 	RadioButton useQRCode,useFingerprint;
 	boolean UseQRCode,UseFingerPrint;
 	IClockingController clockingPresenter;
+	final  String PREFS_NAME="MyPrefsFile";
 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_clocking);
-		initView();
-		retrieveSharedPreferences();
 		clockingPresenter=new ClockingController(this);
+		retrieveSharedPreferences();
+		initView();
+
+
 
 	}
 	public void initView(){
 		radioGroup=findViewById(R.id.group);
 		useQRCode =findViewById(R.id.use_qr_code);
 		useFingerprint=findViewById(R.id.use_fingerprint);
-		useQRCode.setSelected(UseQRCode);
-		useFingerprint.setSelected(UseFingerPrint);
+		useQRCode.setChecked(UseQRCode);
+		useFingerprint.setChecked(!UseQRCode);
 		radioGroup.setOnCheckedChangeListener(this);
 
 	}
@@ -55,8 +59,11 @@ if(group.getId()==R.id.group)
 
 	}
 	public void retrieveSharedPreferences(){
+		preferences= getApplicationContext().getSharedPreferences(PREFS_NAME,
+				Context.MODE_PRIVATE);
+		editor=preferences.edit();
 		UseQRCode =preferences.getBoolean("useQRCode",true);
-		UseFingerPrint =preferences.getBoolean("useFingerprint",false);
+		//UseFingerPrint =preferences.getBoolean("useFingerprint",false);
 
 	}
 
@@ -65,10 +72,12 @@ if(group.getId()==R.id.group)
 		editor.putBoolean("useQRCode",true);
 
 	}
-
+//carte arduino capteur d'empreinte application  mobile  code
 	@Override
 	public void onUseFingerPrint() {
-		editor.putBoolean("useFingerprint",true);
+
+		editor.putBoolean("useQRCode",false);
+
 
 	}
 }

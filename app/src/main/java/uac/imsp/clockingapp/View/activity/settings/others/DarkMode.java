@@ -1,5 +1,6 @@
 package uac.imsp.clockingapp.View.activity.settings.others;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.CompoundButton;
@@ -20,23 +21,27 @@ public class DarkMode extends AppCompatActivity
 	SharedPreferences.Editor editor;
 	Boolean DarkMode;
 	IDarkModeController darkModePresenter;
+	String 	PREFS_NAME="MyPrefsFile";
 	boolean isChecked;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		editor= preferences.edit();
 		super.onCreate(savedInstanceState);
+		darkModePresenter=new DarkModeController(this);
 		setContentView(R.layout.activity_dark_mode);
 		initView();
 		retrieveSharedPreferences();
-		darkMode.setSelected(DarkMode);
-		darkModePresenter=new DarkModeController(this);
+		darkMode.setChecked(DarkMode);
+
 	}
 	public void initView(){
 darkMode=findViewById(R.id.dark_mode);
 darkMode.setOnCheckedChangeListener(this);
 	}
 	public void retrieveSharedPreferences(){
+		preferences= getApplicationContext().getSharedPreferences(PREFS_NAME,
+				Context.MODE_PRIVATE);
+		editor=preferences.edit();
 
 DarkMode=preferences.getBoolean("darkMode",false);
 	}
@@ -48,13 +53,14 @@ if(buttonView.getId()==R.id.dark_mode)
 	this.isChecked=isChecked;
 	darkModePresenter.onDarkMode();
 }
-editor.apply();
+
 
 	}
 
 	@Override
 	public void onDarkMode() {
 		editor.putBoolean("darkMode",isChecked);
+		editor.apply();
 
 	}
 }

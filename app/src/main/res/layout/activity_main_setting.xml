@@ -19,24 +19,24 @@
         >
         <TextView
             android:layout_width="wrap_content"
-            android:text="A propos de l'application"
+            android:text="@string/about_app"
             android:id="@+id/setting_about_title"
             android:layout_height="wrap_content"/>
         <TextView
             android:layout_width="wrap_content"
-            android:text="Patager l'application"
+            android:text="@string/share_app"
             android:id="@+id/setting_share"
             android:layout_height="wrap_content"
             app:drawableStartCompat="@drawable/ic_baseline_share_25" />
         <TextView
             android:layout_width="wrap_content"
-            android:text="Partager l'application via code QR"
+            android:text="@string/share_via_qr"
             android:id="@+id/setting_share_with_qr"
             android:layout_height="wrap_content"
             app:drawableLeftCompat="@drawable/ic_baseline_qr_code_scanner_25" />
         <TextView
             android:layout_width="wrap_content"
-            android:text="Aperçu détaillé de l'application"
+            android:text="@string/details"
              android:id="@+id/setting_overview"
             android:layout_height="wrap_content"
             app:drawableStartCompat="@drawable/ic_baseline_details_25" />
@@ -47,7 +47,7 @@
             android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
-            android:text="Version de l'application"
+            android:text="@string/app_version"
             android:id="@+id/setting_version_label"
             android:layout_height="wrap_content"
             app:drawableStartCompat="@drawable/ic_baseline_phone_android_25" />
@@ -62,7 +62,7 @@
 
         <TextView
             android:layout_width="wrap_content"
-            android:text="Documentation utilisateurs"
+            android:text="@string/user_guide"
             android:id="@+id/setting_docs"
             android:layout_height="wrap_content"
             app:drawableStartCompat="@drawable/ic_baseline_menu_book_25" />
@@ -73,13 +73,13 @@
             android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
-            android:text="Effacer le cache"
+            android:text="@string/clear_cache"
             android:id="@+id/setting_clear_cache"
             android:layout_height="wrap_content"
             app:drawableStartCompat="@drawable/ic_baseline_delete_sweep_25" />
             <TextView
                 android:layout_width="wrap_content"
-                android:text="size"
+                android:text="@string/size"
                 android:id="@+id/setting_cache_size"
                 android:layout_height="wrap_content"/>
         </LinearLayout>
@@ -93,7 +93,7 @@
         >
         <TextView
             android:layout_width="wrap_content"
-            android:text="A propos de l'établissement"
+            android:text="@string/about_est"
             android:id="@+id/setting_establishment"
             android:layout_height="wrap_content"/>
         <LinearLayout
@@ -103,7 +103,7 @@
             android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
-            android:text="Nom"
+            android:text="@string/name"
             android:id="@+id/setting_name_label"
             android:layout_height="wrap_content"
             app:drawableStartCompat="@drawable/ic_baseline_mode_edit_25" />
@@ -120,7 +120,7 @@
             android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
-            android:text="Email"
+            android:text="@string/register_mail_address_text"
             android:id="@+id/setting_mail_label"
             android:layout_height="wrap_content"
             app:drawableStartCompat="@drawable/ic_baseline_alternate_email_25" />
@@ -133,7 +133,7 @@
         </LinearLayout>
         <TextView
             android:layout_width="wrap_content"
-            android:text="Photo"
+            android:text="@string/picture"
             android:id="@+id/setting_picture"
             android:layout_height="wrap_content"
             app:drawableStartCompat="@drawable/ic_baseline_picture_in_picture_25" />
@@ -144,7 +144,7 @@
             android:layout_height="wrap_content">
         <TextView
             android:layout_width="wrap_content"
-            android:text="Description"
+            android:text="@string/description"
             android:id="@+id/setting_description_label"
             android:layout_height="wrap_content"
             app:drawableStartCompat="@drawable/ic_baseline_description_25" />
@@ -164,7 +164,7 @@
         <TextView
 
             android:layout_width="wrap_content"
-            android:text="Paramètres de compte et de notification employé"
+            android:text="@string/set"
             android:id="@+id/setting_account"
             android:layout_height="wrap_content"/>
         <!--TextView
@@ -190,37 +190,37 @@
         >
         <TextView
             android:layout_width="wrap_content"
-            android:text="Autres"
+            android:text="@string/more_parameters"
             android:id="@+id/setting_other_label"
             android:layout_height="wrap_content"/>
 
         <TextView
             android:layout_width="wrap_content"
-            android:text="Geste de pointage"
+            android:text="@string/attendance_gesture"
             android:id="@+id/setting_attendance"
             android:layout_height="wrap_content"
             app:drawableStartCompat="@drawable/ic_baseline_timer_25" />
         <TextView
             android:layout_width="wrap_content"
-            android:text="Mode sombre"
+            android:text="@string/dark"
             android:id="@+id/setting_dark"
             android:layout_height="wrap_content"
             app:drawableStartCompat="@drawable/ic_baseline_dark_mode_25" />
         <TextView
             android:layout_width="wrap_content"
-            android:text="Langues"
+            android:text="@string/languages"
             android:id="@+id/setting_languages"
             android:layout_height="wrap_content"
             app:drawableStartCompat="@drawable/ic_baseline_language_25" />
         <TextView
             android:layout_width="wrap_content"
-            android:text="Signaler un problème"
+            android:text="@string/report_problem"
             android:id="@+id/setting_problem"
             android:layout_height="wrap_content"
             app:drawableStartCompat="@drawable/ic_baseline_report_problem_25" />
         <TextView
             android:layout_width="wrap_content"
-            android:text="De l'aide?"
+            android:text="@string/help"
             android:id="@+id/setting_help"
             android:layout_height="wrap_content"
             app:drawableStartCompat="@drawable/ic_baseline_help_outline_25" />

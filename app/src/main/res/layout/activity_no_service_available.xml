@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,7 +9,7 @@
 
     <TextView
         android:id="@+id/no_service_message"
-        android:text="Aucun service enregistré.Appuyez sur le bouton pour en ajouter"
+        android:text="@string/no_service"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -19,7 +18,7 @@
 
     <Button
         android:id="@+id/no_service_add"
-        android:text="Ajouter"
+        android:text="@string/add"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
          />

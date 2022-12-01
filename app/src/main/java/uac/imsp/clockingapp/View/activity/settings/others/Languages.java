@@ -1,5 +1,6 @@
 package uac.imsp.clockingapp.View.activity.settings.others;
 
+import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.widget.RadioButton;
@@ -23,6 +24,7 @@ public class Languages extends AppCompatActivity implements ILanguagesView,
 	SharedPreferences preferences;
 	SharedPreferences.Editor editor;
 	ILanguagesController languagesPresenter;
+	final  String PREFS_NAME="MyPrefsFile";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -32,9 +34,9 @@ public class Languages extends AppCompatActivity implements ILanguagesView,
 		retrievePreferences();
 		languagesPresenter=new LanguagesController(this);
 		if(Objects.equals(currentLanguage, "fr"))
-			fr.setSelected(true);
+			fr.setChecked(true);
 		else if(Objects.equals(currentLanguage, "en"))
-			en.setSelected(true);
+			en.setChecked(true);
 
 	}
 	public void initView(){
@@ -44,6 +46,9 @@ public class Languages extends AppCompatActivity implements ILanguagesView,
 		radioGroup.setOnCheckedChangeListener(this);
 	}
 	public void retrievePreferences(){
+		preferences= getApplicationContext().getSharedPreferences(PREFS_NAME,
+				Context.MODE_PRIVATE);
+		editor=preferences.edit();
 		currentLanguage=preferences.getString("lang","fr");
 	}
 

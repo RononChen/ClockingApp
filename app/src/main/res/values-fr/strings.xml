@@ -1,14 +1,14 @@
 <resources>
 
-    <string name="app_name">ClockingApp</string>
-
     <string name="form_title">Formulaire d\'enregistrement des employés</string>
     <string name="registration_title">Veillez saisir les informations de l\'employé</string>
     <string name="register_button">Enregistrer</string>
     <string name="register_name_hint">Nom</string>
+    <string name="work_days" >Jours de travail</string>
     <string name="register_lastname_text">Nom</string>
     <string name="login_username_hint">Username</string>
     <string name="login_password_hint">Mot de passe</string>
+
 
 
 
@@ -100,6 +100,14 @@
     <string name="confirm_new_password">Confirmer le nouveau mot de passe</string>
     <string name="new_password">Nouveau mot de passe</string>
     <string name="modify">Modifier</string>
+    <string name="general_menu_register">Enregisterer employé</string>
+    <string name="general_menu_employee_list">Liste des employés</string>
+    <string name="menu_presence_report">Etats de présence</string>
+    <string name="menu_statistics_by_employee">Statistiques par employé</string>
+    <string name="search_number">Matricule</string>
+    <string name="qr_code_scan">Scannage de Code QR</string>
+    <string name="fingerprint_scan">Scannage d\'empreintes digitales</string>
+    <string name="mail_as_username">Utiliser l\'email comme username</string>
 
     <string-array name="employee_types">
         <item>Simple</item>
@@ -131,9 +139,59 @@
     </string-array>
     <string name="start">dr</string>
     <string name="add_employee">Ajouter employé</string>
-    <string name="english">English</string>
-    <string name="french" translatable="false">French</string>
-    <string name="reg_number" translatable="false">Number</string>
+    <string name="english">Anglais</string>
+    <string name="french" >Français</string>
+    <string name="reg_number" >Matricule</string>
+    <string name="monday" >Lundi</string>
+    <string name="tuesday">Mardi</string>
+    <string name="thursday">Jeudi</string>
+    <string name="friday">Vendredi</string>
+    <string name="satursday">Samedi</string>
+    <string name="sunday">Dimanche</string>
+    <string name="wednesday">Mercredi</string>
+    <string name="attendance_gesture">Geste de pointage</string>
+    <string name="period">01 Janvier 1970</string>
+    <string name="previous">Précédent</string>
+    <string name="next">Suivant</string>
+    <string name="dark">Mode sombre</string>
+    <string name="languages">Langues</string>
+    <string name="report_problem">Signaler un problème</string>
+    <string name="help">De l\'aide?</string>
+    <string name="more_parameters">Autres</string>
+    <string name="set">Paramètres de compte et de notification employé</string>
+    <string name="description">Description</string>
+    <string name="picture">Photo</string>
+    <string name="about_est">A propos de l\'établissement</string>
+    <string name="size">size</string>
+    <string name="clear_cache">Effacer le cache</string>
+    <string name="user_guide">Guide utilisateurs</string>
+    <string name="app_version">Version de l\'application</string>
+    <string name="share_via_qr">Partager l\'application via code QR</string>
+    <string name="details">Aperçu détaillé de l\'application</string>
+    <string name="share_app">Patager l\'application</string>
+    <string name="about_app">A propos de l\'application</string>
+    <string name="manage_username">Gestion de nom d\'utilisateur</string>
+    <string name="during_add">Lors d\'un ajout d\'employé</string>
+    <string name="generate_username">Générer le username</string>
+    <string name="edit_username">Editer le username</string>
+    <string name="manage_password">Gestion du mot de passe</string>
+    <string name="during_emp_add">Lors d\'un ajout d\'employé</string>
+    <string name="generate_password">Générer le mot de passe</string>
+    <string name="show_password">Afficher le mot de passe</string>
+    <string name="emp_not">Notifications employé</string>
+    <string name="during_delete">Lors de la suppression</string>
+    <string name="during_update">Lors de la modification</string>
+    <string name="no_service">Aucun service enregistré. Appuyez sur le bouton pour en ajouter</string>
+    <string name="add">Ajouter</string>
+    <string name="overview">Appperçu général</string>
+    <string name="version">Version de l\'application:</string>
+    <string name="device_name">Nom de l\'appareil:</string>
+    <string name="device_manufacturer">Fabricant de l\'appareil:</string>
+    <string name="version_name">Nom de version du système d\'exploitation:</string>
+    <string name="sdk_version">Version de SDK du système d\'exploitation</string>
+    <string name="copy">Copier</string>
+    <string name="desc">Pour partager l\'application, scannez ce code QR en utilisant un autre appareil</string>
+    <string name="share">Partager</string>
 
 
 </resources>
