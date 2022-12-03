@@ -60,8 +60,8 @@
     <string name="register_employe_type_text">Type  of employee</string>
     <string name="register_service_label">Service</string>
     <string name="register_planning_label">Daily work schedule</string>
-    <string name="welcome">Welcome to ClockingApp, an app to track attendance of IMSP employees</string>
-    <string name="name">Latname and Firstname(s)</string>
+
+    <string name="name">Lastname and Firstname(s)</string>
     <string name="statistics">Statistics</string>
     <string name="update">Update</string>
 
@@ -103,6 +103,7 @@
     <string name="logout">Login out</string>
     <string name="date_de_naissance">Birthdate</string>
     <string name="welcome_">Welcome</string>
+    <string name="welcome">Welcome</string>
     <string name="actualiser">Actualize</string>
     <string name="female">Female</string>
     <string name="start_time">Start time</string>
@@ -110,7 +111,7 @@
     <string name="matricule">Registration number</string>
     <string name="form_title">Employees registration form</string>
     <string name="presence">Presence report</string>
-    <string name="welcomes">Welcome on ClockingApp</string>
+    <string name="welcomes">Welcome to ClockingApp, an app to track attendance of IMSP employees</string>
     <string name="registration_title">Enter employee informations please</string>
     <string name="menu_delete_button">Delete employee</string>
     <string name="delete_button">Delete</string>
@@ -128,11 +129,11 @@
     <string name="english">English</string>
     <string name="french" >French</string>
     <string name="general_menu_register">Register employee</string>
-    <string name="general_menu_employee_list">Liste des employés</string>
-    <string name="menu_presence_report">Etats de présence</string>
-    <string name="menu_statistics_by_employee">Statistiques par employé</string>
-    <string name="search_number">Matricule</string>
-    <string name="work_days" >Jours de travail</string>
+    <string name="general_menu_employee_list">Employees list</string>
+    <string name="menu_presence_report">Presence status</string>
+    <string name="menu_statistics_by_employee">Statistics by employee</string>
+    <string name="search_number">Registration number</string>
+    <string name="work_days" >Work days</string>
     <string name="reg_number">Registration number</string>
     <string name="monday">Monday</string>
     <string name="tuesday">Tuesday</string>
@@ -147,8 +148,8 @@
     <string name="period">Janvier 01 1970</string>
     <string name="previous">Previous</string>
     <string name="next">Next</string>
-    <string name="dark">Mode sombre</string>
-    <string name="languages">Langues</string>
+    <string name="dark">Dark mode</string>
+    <string name="languages">Languages</string>
     <string name="report_problem">Report a problem</string>
     <string name="help">Help?</string>
     <string name="more_parameters">More parameters</string>
@@ -185,6 +186,7 @@
     <string name="copy">Copy</string>
     <string name="desc">To share the app, scan this QR code using another device</string>
     <string name="share">Share</string>
+    <string name="fingerprint">Scannez votre empreinte pour marquer votre entrée ou sortie</string>
 
 
 </resources>

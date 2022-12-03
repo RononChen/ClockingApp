@@ -19,7 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import uac.imsp.clockingapp.Controller.control.LoginController;
 import uac.imsp.clockingapp.Controller.util.ILoginController;
-import uac.imsp.clockingapp.Models.UpdateReceiver;
+//import uac.imsp.clockingapp.Models.UpdateReceiver;
 import uac.imsp.clockingapp.R;
 import uac.imsp.clockingapp.View.util.ILoginView;
 import uac.imsp.clockingapp.View.util.ToastMessage;
@@ -48,12 +48,12 @@ public class Login extends AppCompatActivity
         setContentView(R.layout.activity_login);
         initView();
         loginPresenter = new LoginController(this);
-        Intent alarmIntent = new Intent(this, UpdateReceiver.class);
+        /*Intent alarmIntent = new Intent(this, UpdateReceiver.class);
          pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), REQ_CODE, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
         manager = (AlarmManager)getSystemService(ALARM_SERVICE);
         manager.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000, pendingIntent);
         //manager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + 84600 * 1000, pendingIntent);
-
+*/
 
 
     }

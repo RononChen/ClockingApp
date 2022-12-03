@@ -1,7 +1,9 @@
 package uac.imsp.clockingapp.View.activity;
 
 import android.Manifest;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
@@ -41,11 +43,15 @@ public class ClockInOut extends AppCompatActivity
     Button btnAction;
     String intentData = "";
     IClockInOutController clockInOutPresenter;
+    boolean useQRcode;
+    SharedPreferences preferences;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_scanner);
+        retrieveSharedPreferences();
+        if(useQRcode)
+            setContentView(R.layout.activity_scanner);
         initViews();
 
         clockInOutPresenter = new ClockingInOutController(this);
@@ -57,7 +63,12 @@ public class ClockInOut extends AppCompatActivity
         btnAction = findViewById(R.id.btnAction);
         btnAction.setOnClickListener(this);
     }
-
+public void retrieveSharedPreferences(){
+        String PREFS_NAME="MyPrefsFile";
+    preferences= getApplicationContext().getSharedPreferences(PREFS_NAME,
+            Context.MODE_PRIVATE);
+    useQRcode=preferences.getBoolean("useQRCode",true);
+}
 
 
     @Override
@@ -99,11 +110,6 @@ public class ClockInOut extends AppCompatActivity
         c.setFacing(CameraSource.CAMERA_FACING_FRONT)
                 .setRequestedPreviewSize(1920,1080)
                 .setAutoFocusEnabled(true);
-
-        /* cameraSource = new CameraSource.Builder(this, barcodeDetector)
-                .setRequestedPreviewSize(1920, 1080)
-                .setAutoFocusEnabled(true) //you should add this feature
-                .build();*/
 
         cameraSource= c.build();
 

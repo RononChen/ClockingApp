@@ -234,7 +234,8 @@ public  final static String SIMPLE="Simple", HEAD="Directeur",CHIEF="Chef person
     public  boolean hasInvalidUsername() {
 
 
-        return !Username.matches("^[A-Z][A-Za-z0-9]{5,29}$");
+        return !Username.matches("^[A-Z][A-Za-z0-9]{5,29}$")
+                &&!Patterns.EMAIL_ADDRESS.matcher(Username).matches();
     }
 
     public boolean hasInvalidLastName() {

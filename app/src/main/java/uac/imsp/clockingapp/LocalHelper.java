@@ -9,7 +9,7 @@ import android.os.Build;
 import java.util.Locale;
 
 public class LocalHelper {
-    private static final String SELECTED_LANGUAGE="Locale.Helper.Selected.Language";
+
     //the metthod is used to set the language at runtime
     @SuppressLint("ObsoleteSdkInt")
     public static Context setLocale(Context context, String language){
@@ -39,6 +39,7 @@ public class LocalHelper {
         Configuration configuration=context.getResources().getConfiguration();
         configuration.setLocale(locale);
         configuration.setLayoutDirection(locale);
+        //context.getApplicationContext().getResources().updateConfiguration(config, null);
       return   context.createConfigurationContext(configuration);
     }
 

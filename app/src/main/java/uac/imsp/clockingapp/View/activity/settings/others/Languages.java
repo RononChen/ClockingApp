@@ -1,7 +1,9 @@
 package uac.imsp.clockingapp.View.activity.settings.others;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
@@ -25,14 +27,17 @@ public class Languages extends AppCompatActivity implements ILanguagesView,
 	SharedPreferences.Editor editor;
 	ILanguagesController languagesPresenter;
 	final  String PREFS_NAME="MyPrefsFile";
+	private static final String SELECTED_LANGUAGE="Locale.Helper.Selected.Language";
+	int cpt=0;
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_languages);
-		initView();
-		retrievePreferences();
 		languagesPresenter=new LanguagesController(this);
+		retrievePreferences();
+		initView();
 		if(Objects.equals(currentLanguage, "fr"))
 			fr.setChecked(true);
 		else if(Objects.equals(currentLanguage, "en"))
@@ -48,13 +53,31 @@ public class Languages extends AppCompatActivity implements ILanguagesView,
 	public void retrievePreferences(){
 		preferences= getApplicationContext().getSharedPreferences(PREFS_NAME,
 				Context.MODE_PRIVATE);
+
 		editor=preferences.edit();
 		currentLanguage=preferences.getString("lang","fr");
 	}
 
 	@Override
-	public void onLanguageChanged(String lang) {
+	public  void  onLanguageChanged(String lang) {
+
+
 		LocalHelper.setLocale(Languages.this,lang);
+		//persistance
+		/*editor.putString("", lang);
+		editor.apply();*/
+		editor.putString("lang",lang);
+		editor.apply();
+		if(cpt!=0)
+restartApp();
+		cpt++;
+	}
+	public void restartApp() {
+		PackageManager pm = getPackageManager();
+		Intent intent = pm.getLaunchIntentForPackage(getPackageName());
+		finishAffinity(); // Finishes all activities.
+		startActivity(intent);    // Start the launch activity
+		overridePendingTransition(0, 0);
 	}
 
 	@Override
@@ -68,9 +91,9 @@ public class Languages extends AppCompatActivity implements ILanguagesView,
 
 			else if(checkedId==R.id.languages_eng)
 			lang="en";
-			editor.putString("lang",lang);
-			editor.apply();
-			onLanguageChanged(lang);
+			languagesPresenter.onLanguageChanged(lang);
+
+
 		}
 
 

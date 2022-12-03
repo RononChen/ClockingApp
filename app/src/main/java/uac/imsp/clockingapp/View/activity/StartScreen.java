@@ -3,6 +3,7 @@ package uac.imsp.clockingapp.View.activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -18,6 +20,7 @@ import java.util.concurrent.atomic.AtomicReference;
 import uac.imsp.clockingapp.BuildConfig;
 import uac.imsp.clockingapp.Controller.control.StartScreenController;
 import uac.imsp.clockingapp.Controller.util.IStartScreenController;
+import uac.imsp.clockingapp.LocalHelper;
 import uac.imsp.clockingapp.R;
 import uac.imsp.clockingapp.View.util.IStartScreenView;
 
@@ -35,33 +38,51 @@ implements View.OnClickListener  , IStartScreenView {
     final int DOESNT_EXIST=-1;
     SharedPreferences.Editor editor;
     SharedPreferences preferences;
-
+    String lang;
+  boolean dark;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-
-
         super.onCreate(savedInstanceState);
+        preferences = getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
+        lang = preferences.getString("lang", "fr");
+        dark=preferences.getBoolean("dark",false);
+        //if(dark)
+           AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        LocalHelper.setLocale(StartScreen.this, lang);
+
+
+       // onRestart();
+
         startScreenPresenter = new StartScreenController(this);
+//restartApp();
 
         //initializing
-        preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        editor=preferences.edit();
-        savedVersionCode= preferences.getInt(PREF_VERSION_CODE_KEY,DOESNT_EXIST);
+
+        editor = preferences.edit();
+        savedVersionCode = preferences.getInt(PREF_VERSION_CODE_KEY, DOESNT_EXIST);
         // Get current version code
-        currentVersionCode= BuildConfig.VERSION_CODE;
-        startScreenPresenter.onLoad(savedVersionCode,currentVersionCode);
+        currentVersionCode = BuildConfig.VERSION_CODE;
+        startScreenPresenter.onLoad(savedVersionCode, currentVersionCode);
 
 
         //update the shared preferences with the current version code
-        editor.putInt(PREF_VERSION_CODE_KEY,currentVersionCode);
+        editor.putInt(PREF_VERSION_CODE_KEY, currentVersionCode);
         editor.apply();
         setContentView(R.layout.activity_start_screen);
-        startScreenPresenter=new StartScreenController(this);
+
+        startScreenPresenter = new StartScreenController(this);
         initView();
 
 
+    }
+
+    public void restartApp() {
+        PackageManager pm = getPackageManager();
+        Intent intent = pm.getLaunchIntentForPackage(getPackageName());
+        finishAffinity(); // Finishes all activities.
+        startActivity(intent);    // Start the launch activity
+        overridePendingTransition(0, 0);
     }
 
     public void initView(){
@@ -80,6 +101,7 @@ implements View.OnClickListener  , IStartScreenView {
         Button clocking = findViewById(R.id.start_screen_clock_button);
         login.setOnClickListener(this);
         clocking.setOnClickListener(this);
+       // restartApp();
 
         //date.setText(currentDate);
 
@@ -152,7 +174,6 @@ implements View.OnClickListener  , IStartScreenView {
 
 
         editor.putBoolean("emailAsUsername",false);
-        editor.putBoolean("generateUsername",false);
         editor.putBoolean("editUsername",true);
         editor.putBoolean("generatePassword",false);
         editor.putBoolean("showPasswordDuringAdd",false);
@@ -165,6 +186,8 @@ implements View.OnClickListener  , IStartScreenView {
         editor.putBoolean("useFingerprint",false);
         editor.putBoolean("useQRCode",true);
         editor.putString("lang","fr");
+        editor.putBoolean("dark",false);
+        editor.apply();
 
 
         // start SetUp activity

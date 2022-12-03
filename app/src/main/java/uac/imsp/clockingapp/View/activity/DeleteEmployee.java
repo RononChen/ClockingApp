@@ -1,6 +1,9 @@
 package uac.imsp.clockingapp.View.activity;
 
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.view.View;
@@ -8,7 +11,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioGroup;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -28,27 +30,41 @@ public class DeleteEmployee extends AppCompatActivity
         implements View.OnClickListener,
 
         IDeleteEmployeeView {
-
-    private ImageView image;
     private Integer Start, End;
 
     IDeleteEmployeeController deleteEmployeePresenter;
+    boolean notice;
+    EditText email;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        retrieveSharedPreferences();
         setContentView(R.layout.activity_delete_employee);
 
         deleteEmployeePresenter = new DeleteEmployeeController(this);
-        try {
+
             initView();
-        } catch (ParseException e) {
-            e.printStackTrace();
-
-        }
 
 
+
+    }
+    public void  retrieveSharedPreferences(){
+        String PREFS_NAME="MyPrefsFile";
+        SharedPreferences preferences= getApplicationContext().getSharedPreferences(PREFS_NAME,
+                Context.MODE_PRIVATE);
+        notice=preferences.getBoolean("notifyDelete",true);
+
+    }
+    public void sendEmail(String[] to, String subject, String message) {
+
+        Intent emailIntent=new Intent(Intent.ACTION_SEND);
+        emailIntent.putExtra(Intent.EXTRA_EMAIL,to);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT,subject);
+        emailIntent.putExtra(Intent.EXTRA_TEXT,message);
+        emailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+            startActivity(Intent.createChooser(emailIntent, "Envoyer avec"));
     }
 
     @Override
@@ -64,17 +80,21 @@ public class DeleteEmployee extends AppCompatActivity
     }
 
 
-    public void initView() throws ParseException {
+    public void initView()  {
 
 
         int actionNumber = getIntent().getIntExtra("ACTION_NUMBER", 1);
 
         Hashtable<String, Object> informations = new Hashtable<>();
-        deleteEmployeePresenter.onLoad(actionNumber, informations);
+        try {
+            deleteEmployeePresenter.onLoad(actionNumber, informations);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
 
         EditText number = findViewById(R.id.register_number);
         EditText lastname = findViewById(R.id.register_lastname);
-        EditText email = findViewById(R.id.register_email);
+         email = findViewById(R.id.register_email);
         EditText firstname = findViewById(R.id.register_firstname);
         EditText username = findViewById(R.id.register_username);
         EditText birthdate = findViewById(R.id.register_birthdate);
@@ -97,15 +117,15 @@ public class DeleteEmployee extends AppCompatActivity
 
         if (Objects.requireNonNull(informations.get("birthdate")).toString().equals(""))
         {
-            ((TextView)findViewById(R.id.tv)).setVisibility(View.GONE);
+            findViewById(R.id.tv).setVisibility(View.GONE);
             birthdate.setVisibility(View.GONE);
 
         }
         if (Objects.equals(informations.get("gender"), 'F'))
-                gender.setId(R.id.register_girl);
+                  gender.setId(R.id.register_girl);
 
 
-               service.setText((String) informations.get("service"));
+        service.setText((String) informations.get("service"));
                type.setText((String) informations.get("type"));
 
         if (informations.containsKey("start") && informations.containsKey("end")) {
@@ -138,7 +158,10 @@ public class DeleteEmployee extends AppCompatActivity
 
     @Override
     public void onDeleteSuccessfull(String message) {
+        String subject="Notification de suppression d'employé";
+        String msg="Vous avez été supprimé de la liste des employés";
          new ToastMessage(this, message);
+         sendEmail(new String[]{email.getText().toString()},subject,msg);
 
     }
 

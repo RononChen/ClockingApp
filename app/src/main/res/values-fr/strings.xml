@@ -80,7 +80,7 @@
     <string name="start_time">Heure de début</string>
     <string name="register_planning_label">Planning de travail quotidien</string>
     <string name="logout">Déconnexion</string>
-    <string name="welcome">Welcome</string>
+    <string name="welcome">Bienvenu</string>
     <string name="name">Nom et prénom</string>
     <string name="presence">Etat de présence</string>
     <string name="statistics">Statistiques</string>
@@ -192,6 +192,7 @@
     <string name="copy">Copier</string>
     <string name="desc">Pour partager l\'application, scannez ce code QR en utilisant un autre appareil</string>
     <string name="share">Partager</string>
+    <string name="fingerprint">Scan your fingerprint to mark your entrance or exit</string>
 
 
 </resources>

@@ -3,12 +3,16 @@ package uac.imsp.clockingapp.View.activity;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.text.Editable;
 import android.text.InputType;
+import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
 import android.view.Menu;
@@ -43,7 +47,6 @@ import uac.imsp.clockingapp.Controller.control.RegisterEmployeeController;
 import uac.imsp.clockingapp.Controller.util.IRegisterEmployeeController;
 import uac.imsp.clockingapp.R;
 import uac.imsp.clockingapp.View.util.IRegisterEmployeeView;
-import uac.imsp.clockingapp.View.util.ToastMessage;
 
 
 public class RegisterEmployee extends AppCompatActivity
@@ -52,7 +55,8 @@ public class RegisterEmployee extends AppCompatActivity
         View.OnClickListener,
         RadioGroup.OnCheckedChangeListener ,
 
-        AdapterView.OnItemSelectedListener
+        AdapterView.OnItemSelectedListener,
+        TextWatcher
 
 {
     IRegisterEmployeeController registerEmployeePresenter;
@@ -71,8 +75,10 @@ public class RegisterEmployee extends AppCompatActivity
     private String [] services,employeTypes;
     private  Spinner spinnerServices , spinnerTypes;
     private int Start=8,End=17;
+    final  String PREFS_NAME="MyPrefsFile";
+    boolean editUsername,useMailAsUsername,generatePassword,notice;
      CheckBox monday,tuesday,wednesday,thursday,friday,satursday,sunday;
-     private Button workManager;
+     //private Button workManager;
 
     CheckBox[] myTable=new CheckBox[7];
     byte[] days=new byte[7];
@@ -88,9 +94,24 @@ public class RegisterEmployee extends AppCompatActivity
         setContentView(R.layout.activity_register_employee);
        // Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
-workManager=findViewById(R.id.work_manager);
-workManager.setOnClickListener(this);
+//workManager=findViewById(R.id.work_manager);
+//workManager.setOnClickListener(this);
         initView();
+        retrieveSharedPreferences();
+        if(useMailAsUsername) {
+            Username.setEnabled(false);
+            //Username.addTextChangedListener(this);
+            Email.addTextChangedListener(this);
+        }
+        if(generatePassword)
+        {
+            Password.setText(generatePassword());
+            Password.setEnabled(false);
+            PasswordConfirm.setText(generatePassword());
+            PasswordConfirm.setEnabled(false);
+
+        }
+
 
         gend="M";
 
@@ -103,6 +124,18 @@ workManager.setOnClickListener(this);
         MenuInflater inflater=getMenuInflater();
         inflater.inflate(R.menu.general_menu,menu);
         return super.onCreateOptionsMenu(menu);
+
+    }
+    public void retrieveSharedPreferences(){
+
+        SharedPreferences preferences= getApplicationContext().getSharedPreferences(PREFS_NAME,
+                Context.MODE_PRIVATE);
+        editUsername=preferences.getBoolean("editUsername",true);
+       // generateUsername=preferences.getBoolean("generateUsername",false);
+        useMailAsUsername=preferences.getBoolean("emailAsUsername",false);
+        generatePassword=preferences.getBoolean("generatePassword",false);
+        notice=preferences.getBoolean("notifyDuringAdd",true);
+
 
     }
 
@@ -160,12 +193,13 @@ workManager.setOnClickListener(this);
     @SuppressLint("DefaultLocale")
         @Override
     public void onClick(View v) {
-        if(v.getId()==R.id.work_manager)
+        String username,password;
+       /* if(v.getId()==R.id.work_manager)
         {
             new ToastMessage(this,"kfgkl");
             Intent intent=new Intent(RegisterEmployee.this,MainActivity.class);
             startActivity(intent);
-        }
+        }*/
 
   if(v.getId()==R.id.register_show_password)
       registerEmployeePresenter.onShowHidePassword(Password.getId(),v.getId());
@@ -176,8 +210,11 @@ workManager.setOnClickListener(this);
             imageChooser();
         else if (v.getId() == R.id.register_button ) {
           days= workdays();
+          username=toString(Username);
+          /*if(useMailAsUsername)
+                username=toString(Email);*/
             registerEmployeePresenter.onRegisterEmployee(toString(Number), toString(Lastname),
-                    toString(Firstname),gend,Birth,toString(Email),toString(Username),
+                    toString(Firstname),gend,Birth,toString(Email),username,
                     toString(Password),toString(PasswordConfirm),SelectedService,
                     Start,End,Picture,SelectedType,days );
 
@@ -217,6 +254,10 @@ workManager.setOnClickListener(this);
             return stream.toByteArray();
         }
         return null;
+    }
+
+    public String  generatePassword(){
+        return "Aab10%";
     }
     public  void resetInput() {
 
@@ -340,7 +381,8 @@ int pos;
         emailIntent.setType("image/png");
         emailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         emailIntent.putExtra(Intent.EXTRA_STREAM,qrCodeUri);
-        startActivity(Intent.createChooser(emailIntent, "Envoyer avec"));
+        if(notice)
+            startActivity(Intent.createChooser(emailIntent, "Envoyer avec"));
 
 
     }
@@ -350,6 +392,7 @@ int pos;
 
     }
     public void initView(){
+
         EyePwd=findViewById(R.id.register_show_password);
         EyePwdConfirm=findViewById(R.id.register_show_password_confirm);
         EyePwdConfirm.setOnClickListener(this);
@@ -499,4 +542,19 @@ return tab;
     }
 
 
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+        Username.setText(s.toString());
+
+    }
 }

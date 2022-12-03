@@ -16,7 +16,9 @@ public class LanguagesController implements ILanguagesController {
 
 	}
 	@Override
-	public void onLanguageChanged() {
+	public void onLanguageChanged(String lang) {
+		languagesView.onLanguageChanged(lang);
+
 
 	}
 }

@@ -2,7 +2,9 @@ package uac.imsp.clockingapp.View.activity;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -56,17 +58,26 @@ public class UpdateEmployee extends AppCompatActivity
     private byte[] WorkDays;
     private CheckBox[]myTable;
     private byte[] oldWorkDays;
+    boolean notice;
 
 
     IUpdateEmployeeController updateEmployeePresenter;
 
     public UpdateEmployee() {
     }
+    public void  retrieveSharedPreferences(){
+        String PREFS_NAME="MyPrefsFile";
+        SharedPreferences preferences= getApplicationContext().getSharedPreferences(PREFS_NAME,
+                Context.MODE_PRIVATE);
+        notice=preferences.getBoolean("notifyDelete",true);
+
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_employee);
+        retrieveSharedPreferences();
         updateEmployeePresenter = new UpdateEmployeeController(this);
         try {
 
@@ -102,6 +113,16 @@ public class UpdateEmployee extends AppCompatActivity
 
 
     }
+
+    public void sendEmail(String[] to, String subject, String message) {
+
+    Intent emailIntent=new Intent(Intent.ACTION_SEND);
+    emailIntent.putExtra(Intent.EXTRA_EMAIL,to);
+    emailIntent.putExtra(Intent.EXTRA_SUBJECT,subject);
+    emailIntent.putExtra(Intent.EXTRA_TEXT,message);
+    emailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+    startActivity(Intent.createChooser(emailIntent, "Envoyer avec"));
+}
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
@@ -321,6 +342,10 @@ if(informations.get("picture")!=null)
     @Override
     public void onSomethingchanged(String message) {
          new ToastMessage(this, message);
+        String subject="Notification de mise à jour d'employé";
+        String msg="Certaines de vos informations ont été modifiées";
+        new ToastMessage(this, message);
+        sendEmail(new String[]{Email.getText().toString()},subject,msg);
 
 
     }

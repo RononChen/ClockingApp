@@ -1,11 +1,14 @@
 package uac.imsp.clockingapp.View.activity.settings.others;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.CompoundButton;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
 
@@ -60,7 +63,20 @@ if(buttonView.getId()==R.id.dark_mode)
 	@Override
 	public void onDarkMode() {
 		editor.putBoolean("darkMode",isChecked);
+		if(isChecked)
+		AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+		else
+			AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 		editor.apply();
+		//restartApp();
 
+
+	}
+	public void restartApp() {
+		PackageManager pm = getPackageManager();
+		Intent intent = pm.getLaunchIntentForPackage(getPackageName());
+		finishAffinity(); // Finishes all activities.
+		startActivity(intent);    // Start the launch activity
+		overridePendingTransition(0, 0);
 	}
 }
