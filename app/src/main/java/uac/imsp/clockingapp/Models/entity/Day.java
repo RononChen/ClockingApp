@@ -95,6 +95,9 @@ return Integer.parseInt(FormatedYear);
             day=new Day(this.getYear(),this.getMonth()-1,1);
         return day;
     }
+    public String getMonthPart(){
+        return this.getDate().split("-")[0]+"-"+this.getDate().split("-")[1];
+    }
     public int getDayOfWeek()  {
      int dayOfWeek;
         @SuppressLint("SimpleDateFormat")

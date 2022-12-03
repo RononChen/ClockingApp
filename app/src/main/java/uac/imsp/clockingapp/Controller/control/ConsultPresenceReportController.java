@@ -16,7 +16,8 @@ public class ConsultPresenceReportController implements IConsultPresenceReportCo
     private final Context context;
     //private int Month,Year;
     private Day day;
-    private Day currentDay;
+    private final Day currentDay;
+    int cpt=0;
 
     public ConsultPresenceReportController(IConsultPresenceReportView consultPresenceReportView){
 
@@ -33,39 +34,47 @@ public class ConsultPresenceReportController implements IConsultPresenceReportCo
         String period;
         String [] state;
         EmployeeManager employeeManager;
-        period="Du 01 "+day.getFormatedMonth()+" "+day.getFormatedYear()+
-                " au "+
-                day.getLenthOfMonth()+" "+day.getFormatedMonth()+" "+day.getFormatedYear();
-        //date="Le "+day.getFormatedDay()+" "+day.getFormatedMonth()+" "+day.getFormatedYear();
-        employee = new Employee(number);
-        consultPresenceReportView.onStart(period);
-
-        employeeManager=new EmployeeManager(context);
+        boolean accessible =true;
+        employee=new Employee(1);
+        employeeManager = new EmployeeManager(context);
         employeeManager.open();
         employeeManager.retrieveAddDate(employee);
 
-        state=employeeManager.getPresenceReportForEmployee(employee,day.getMonth(),day.getYear());
+        if (day.addMonth().getMonthPart().compareTo(currentDay.getMonthPart()) > 0) {
+            consultPresenceReportView.onReportError(true);
+            accessible =false;
+        }
+        if (day.subtractMonth().getMonthPart().
+                compareTo(new Day(employee.getAdddDate()).getMonthPart()) < 0) {
+            consultPresenceReportView.onReportError(false);
+            accessible =false;
+        }
+        period = "Du 01 " + day.getFormatedMonth() + " " + day.getFormatedYear() +
+                " au " +
+                day.getLenthOfMonth() + " " + day.getFormatedMonth() + " " + day.getFormatedYear();
+if(accessible||cpt==0) {
+    consultPresenceReportView.onStart(period);
 
-        consultPresenceReportView.onMonthSelected(state,day.getFirstDayOfMonth());
-      if  ( day.addMonth().getDate().compareTo(currentDay.getDate())>0)
-          consultPresenceReportView.onReportError(true);
-      if(day.subtractMonth().getDate().compareTo(currentDay.getDate())<0)
-          consultPresenceReportView.onReportError(false);
 
 
+    state = employeeManager.getPresenceReportForEmployee(employee, day.getMonth(), day.getYear());
+
+    consultPresenceReportView.onMonthSelected(state, day.getFirstDayOfMonth());
+    // if(cpt!=0)
+    // {
+
+    //}
+    // cpt++;
+
+}
         
     }
 
     @Override
     public void onPreviousMonth() {
-        Day currentDay=new Day();
-        Day add=new Day(employee.getAdddDate());
-        add=new Day(add.getYear(),add.getMonth(),1);
         //Employee employee;
 
-        if(add.getDate().compareTo(currentDay.getDate())<0) {
-
-            if (day.getDayOfMonth() == 1)//we should go to the previous year
+                   if (day.getDayOfMonth() == 1)//we should go to the previous year
                 ///moving to the december month of the previous year
                 day = new Day(day.getYear() - 1, 12, 1);
 
@@ -74,17 +83,15 @@ public class ConsultPresenceReportController implements IConsultPresenceReportCo
                 day = new Day(day.getYear(), day.getMonth() - 1, 1);
 
             onConsultPresenceReport(employee.getRegistrationNumber());
-        }
-        else
-            consultPresenceReportView.onReportError(false);
-    }
+
+          }
 
     @Override
     public void onNextMonth() {
-        Day currentDay=new Day();
+
 
         // we'll check if the next month is passed
-        if(day.getDate().compareTo(currentDay.getDate())<0) {
+       //
 
             //we'll check the current month
             //if it is december(12)
@@ -96,9 +103,9 @@ public class ConsultPresenceReportController implements IConsultPresenceReportCo
                 //we'll move to the next month of the current year
                 day = new Day(day.getYear(), day.getMonth() + 1, 1);
             onConsultPresenceReport(employee.getRegistrationNumber());
-        }
-        else
-            consultPresenceReportView.onReportError(true);
+
+
+
 
     }
 

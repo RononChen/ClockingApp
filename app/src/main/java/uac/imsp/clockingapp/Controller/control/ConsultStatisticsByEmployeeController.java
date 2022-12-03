@@ -26,7 +26,6 @@ public class ConsultStatisticsByEmployeeController implements
 
     @Override
     public void onConsultStatisticsForEmployee(int number) {
-        String date;
         int n;
         int p=0,a=0,r=0;
 
@@ -34,7 +33,7 @@ public class ConsultStatisticsByEmployeeController implements
 
         stat=new Hashtable<>();
         String[] state;
-        date="Le "+day.getFormatedDay()+" "+day.getFormatedMonth()+" "+day.getFormatedYear();;
+        ;
 
         EmployeeManager employeeManager;
         employeeManager=new EmployeeManager((Context) consultStatisticsByEmployeeView);

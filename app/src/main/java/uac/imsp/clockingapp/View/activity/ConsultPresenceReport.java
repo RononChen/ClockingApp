@@ -175,6 +175,12 @@ public class ConsultPresenceReport extends AppCompatActivity
         public void initView(){
                 String[] strings;
                 int i;
+                previous = findViewById(R.id.report_previous);
+                next = findViewById(R.id.report_next);
+                previous.setOnClickListener(this);
+                next.setOnClickListener(this);
+                next.setOnClickListener(this);
+
                 report =findViewById(R.id.report_table);
                 Date=findViewById(R.id.report_date);
 
@@ -195,11 +201,7 @@ public class ConsultPresenceReport extends AppCompatActivity
                 }
                 report.addView(tableRow);
                 consultPresenceReportPresenter.onConsultPresenceReport(actionNumber);
-                 previous = findViewById(R.id.report_previous);
-                 next = findViewById(R.id.report_next);
-                previous.setOnClickListener(this);
-                next.setOnClickListener(this);
-                next.setOnClickListener(this);
+
 
 
 
@@ -208,6 +210,7 @@ public class ConsultPresenceReport extends AppCompatActivity
 
         @Override
         public void onStart(String date) {
+
                 Date.setText(date);
         }
   /**
@@ -221,7 +224,7 @@ public class ConsultPresenceReport extends AppCompatActivity
         public void onMonthSelected(String[] report, int firstDayNumberInWeek) {
 
 String text;
-boolean test=true;
+               this.report=findViewById(R.id.report_table);
            int i,j,cpt=0;
            for (i=1;i<=5;i++)
            {
@@ -231,22 +234,20 @@ boolean test=true;
                    tableRow=new TableRow(ConsultPresenceReport.this);
                    for (j=1;j<=5;j++)
                    {
-                           //cpt++;
-                          /* if(j>=firstDayNumberInWeek)
-                                   cpt++;*/
+
                            textView=new TextView(this);
                            textView.setGravity(Gravity.START);
                            if (i == 1 && j < firstDayNumberInWeek) {
                                    text = "";
-                                   test=false;
+                                   //test=false;
                            }
                            else {
                                    text = String.valueOf(report[cpt]);
-                                   test = true;
+
                            }
                            textView.setText(text);
                            tableRow.addView(textView);
-                           //if(test)
+
                                    cpt++; //increment the number of filled cases
 
                    }

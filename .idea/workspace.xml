@@ -27,17 +27,14 @@
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/ConsultPresenceReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/ConsultPresenceReportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/dao/EmployeeManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/dao/EmployeeManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/ConsultStatisticsByEmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/ConsultStatisticsByEmployeeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/dbAdapter/ClockingSQLite.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/dbAdapter/ClockingSQLite.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/dbAdapter/DaySQLite.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/dbAdapter/DaySQLite.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/dbAdapter/EmployeeSQLite.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/dbAdapter/EmployeeSQLite.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/dbAdapter/PlanningSQLite.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/dbAdapter/PlanningSQLite.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/dbAdapter/ServiceSQLite.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/dbAdapter/ServiceSQLite.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/entity/Day.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/entity/Day.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/entity/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/entity/Employee.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/ConsultPresenceReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/ConsultPresenceReport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/util/IConsultPresenceReportView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/util/IConsultPresenceReportView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_consult_presence_report2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_consult_presence_report2.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -522,13 +519,6 @@
       <option name="presentableId" value="Default" />
       <updated>1657575710173</updated>
     </task>
-    <task id="LOCAL-00013" summary="&quot;Register employee presentable&quot;">
-      <created>1659194525208</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1659194525208</updated>
-    </task>
     <task id="LOCAL-00014" summary="&quot;Register employee presentable&quot;">
       <created>1659237557800</created>
       <option name="number" value="00014" />
@@ -865,7 +855,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670049019337</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="&quot;setting features in improvement&quot;">
+      <created>1670057275337</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1670057275337</updated>
+    </task>
+    <option name="localTasksCounter" value="63" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -952,6 +949,16 @@
           <url>file://$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/others/DarkMode.java</url>
           <line>66</line>
           <option name="timeStamp" value="74" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/ConsultPresenceReportController.java</url>
+          <line>33</line>
+          <option name="timeStamp" value="83" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/ConsultPresenceReportController.java</url>
+          <line>47</line>
+          <option name="timeStamp" value="87" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
