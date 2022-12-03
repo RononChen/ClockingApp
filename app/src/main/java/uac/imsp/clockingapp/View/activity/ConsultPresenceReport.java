@@ -156,6 +156,7 @@ public class ConsultPresenceReport extends AppCompatActivity
         private TableRow tableRow;
         private TextView textView;
         private TextView Date;
+        private  Button previous,next;
 
         IConsultPresenceReportController consultPresenceReportPresenter;
 
@@ -194,8 +195,8 @@ public class ConsultPresenceReport extends AppCompatActivity
                 }
                 report.addView(tableRow);
                 consultPresenceReportPresenter.onConsultPresenceReport(actionNumber);
-                Button previous = findViewById(R.id.report_previous);
-                Button next = findViewById(R.id.report_next);
+                 previous = findViewById(R.id.report_previous);
+                 next = findViewById(R.id.report_next);
                 previous.setOnClickListener(this);
                 next.setOnClickListener(this);
                 next.setOnClickListener(this);
@@ -255,6 +256,15 @@ boolean test=true;
 
 
 
+
+        }
+
+        @Override
+        public void onReportError(boolean nextError) {
+                if(nextError)
+                        next.setClickable(false);
+                else
+                        previous.setClickable(true);
 
         }
 

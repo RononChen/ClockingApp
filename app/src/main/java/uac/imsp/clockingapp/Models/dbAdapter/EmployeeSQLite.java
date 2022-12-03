@@ -36,6 +36,7 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
     public static final String COL_USERNAME = "username";
     public static final String COL_PASSWORD = "password";
     public static final String COL_TYPE="type";
+    public static final String COL_ADD_DATE="date_ajout";
     public static final String COL_ID_PLANNING_REF= "id_planning_ref";
         public static final String COL_ID_PLANNING="id_planning";
    private static final String COL_ID_SERVICE_REF = "id_service_ref";
@@ -45,11 +46,11 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
 
     public static final String super_user="INSERT INTO employe(matricule," +
             "username,password,type,sexe,couriel,id_service_ref," +
-            "id_planning_ref,nom,prenom,birthdate)" +
+            "id_planning_ref,nom,prenom,birthdate,date_ajout)" +
 
 
 
-            " VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+            " VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
 
 
 public static final String CREATE_TEMP= "CREATE  TABLE IF NOT EXISTS variable" +
@@ -68,6 +69,7 @@ public static final String CREATE_TEMP= "CREATE  TABLE IF NOT EXISTS variable" +
             COL_ID_PLANNING_REF + " INTEGER  , " +
             COL_ID_SERVICE_REF + " INTEGER   ," +
             COL_STATUS+" TEXT DEFAULT 'Hors Service',"+
+            COL_ADD_DATE+" TEXT ,"+
             " FOREIGN KEY(" + COL_ID_SERVICE_REF +
             " ) REFERENCES service(" + COL_ID_SERVICE+" )," +
             " FOREIGN KEY(" + COL_ID_PLANNING_REF +
@@ -123,6 +125,7 @@ public static final String CREATE_TEMP= "CREATE  TABLE IF NOT EXISTS variable" +
         statement.bindString(9,"AKOBA");
         statement.bindString(10,"Patrick");
         statement.bindString(11,"1970-01-01");
+        statement.bindString(12,"DATE('NOW','LOCALTIME'))");
         statement.execute();
         String service = "INSERT INTO service(nom)  VALUES (?)";
         statement= db.compileStatement(service);

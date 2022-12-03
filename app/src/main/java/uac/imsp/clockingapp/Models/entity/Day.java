@@ -78,6 +78,23 @@ public class Day  implements IDay {
 return Integer.parseInt(FormatedYear);
 
     }
+    public  Day addMonth(){
+        Day day;
+        if(this.getMonth()==12)
+            day=new Day(this.getYear()+1,1,1);
+        else
+            day=new Day(this.getYear(),this.getMonth()+1,1);
+        return day;
+    }
+
+    public  Day subtractMonth(){
+        Day day;
+        if(this.getMonth()==1)
+            day=new Day(this.getYear()-11,12,1);
+        else
+            day=new Day(this.getYear(),this.getMonth()-1,1);
+        return day;
+    }
     public int getDayOfWeek()  {
      int dayOfWeek;
         @SuppressLint("SimpleDateFormat")

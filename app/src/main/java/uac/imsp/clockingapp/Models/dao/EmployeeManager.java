@@ -71,10 +71,11 @@ public class EmployeeManager {
     //create,delete,update
 
     public void create(Employee employee) {
+
         // open();
         SQLiteStatement statement;
         String query = "INSERT INTO employe (matricule,nom,prenom,sexe," +
-                "couriel,username,password,type) VALUES(?,?,?,?,?,?,?,?) ";
+                "couriel,username,password,type,date_ajout) VALUES(?,?,?,?,?,?,?,?,?) ";
         statement = Database.compileStatement(query);
 
         statement.bindLong(1, employee.getRegistrationNumber());
@@ -87,7 +88,7 @@ public class EmployeeManager {
         statement.bindString(6, employee.getUsername());
         statement.bindString(7, md5(employee.getPassword()));
         statement.bindString(8, employee.getType());
-
+        statement.bindString(8, "DATE('NOW','LOCALTIME'");
         statement.executeInsert();
         //if the birthdate is given
         if (employee.getBirthdate()!=null) {
@@ -98,6 +99,15 @@ public class EmployeeManager {
             statement.executeUpdateDelete();
         }
 
+    }
+    public void retrieveAddDate(Employee employee){
+        String querry="SELECT date_ajout FROM employe WHERE matricule=?";
+        String[] selectArgs={String.valueOf(employee.getRegistrationNumber())};
+        Cursor cursor=Database.rawQuery(querry,selectArgs);
+        if(cursor.moveToNext())
+            employee.setAdddDate(cursor.getString(0));
+
+        cursor.close();
     }
 
     public void setAccount(Employee employee) {

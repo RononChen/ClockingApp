@@ -6,6 +6,7 @@ public interface IConsultPresenceReportView {
 
 
     void onMonthSelected(String[] report, int fitstDayNumber);
+    void onReportError(boolean nextError);
 
 
 
