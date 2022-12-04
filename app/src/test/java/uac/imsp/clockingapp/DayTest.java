@@ -48,6 +48,9 @@ public class DayTest {
         Day day=new Day(2022,11,18);
         int n= day.getFirstDayOfMonth();
         assertEquals(2,n);
+        day=new Day();
+        n=day.getFirstDayOfMonth();
+        assertEquals(4,n);
 
     }
     @Test

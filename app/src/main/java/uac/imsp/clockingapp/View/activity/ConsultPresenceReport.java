@@ -134,8 +134,8 @@ final TextView txt = new TextView(ConsultPresenceReport.this);
 */
         package uac.imsp.clockingapp.View.activity;
 
+import android.graphics.Color;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TableLayout;
@@ -144,8 +144,11 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Objects;
+
 import uac.imsp.clockingapp.Controller.control.ConsultPresenceReportController;
 import uac.imsp.clockingapp.Controller.util.IConsultPresenceReportController;
+import uac.imsp.clockingapp.Models.entity.Day;
 import uac.imsp.clockingapp.R;
 import uac.imsp.clockingapp.View.util.IConsultPresenceReportView;
 
@@ -154,10 +157,12 @@ public class ConsultPresenceReport extends AppCompatActivity
         View.OnClickListener {
         private TableLayout report;
         private TableRow tableRow;
-        private TextView textView;
         private TextView Date;
         private  Button previous,next;
-
+        private  int cpt=0;
+        private int firstDayNumberInWeek;
+        private  int count=0;
+private String[] Report;
         IConsultPresenceReportController consultPresenceReportPresenter;
 
 
@@ -173,8 +178,6 @@ public class ConsultPresenceReport extends AppCompatActivity
 
         }
         public void initView(){
-                String[] strings;
-                int i;
                 previous = findViewById(R.id.report_previous);
                 next = findViewById(R.id.report_next);
                 previous.setOnClickListener(this);
@@ -185,21 +188,7 @@ public class ConsultPresenceReport extends AppCompatActivity
                 Date=findViewById(R.id.report_date);
 
                 int actionNumber = getIntent().getIntExtra("CURRENT_NUMBER", 1);
-                 strings = new String[]{"Lundi", "Mardi", "Mercredi",
-                        "Jeudi", "Vendredi"};
 
-
-                tableRow=new TableRow(ConsultPresenceReport.this);
-                for(i=0;i<5;i++)
-                {
-                        textView=new TextView(this);
-                        textView.setGravity(Gravity.START);
-                        textView.setText(strings[i]);
-                        tableRow.addView(textView);
-
-
-                }
-                report.addView(tableRow);
                 consultPresenceReportPresenter.onConsultPresenceReport(actionNumber);
 
 
@@ -222,48 +211,140 @@ public class ConsultPresenceReport extends AppCompatActivity
    **/
         @Override
         public void onMonthSelected(String[] report, int firstDayNumberInWeek) {
-                int count=this.report.getChildCount();
-                for(int i=0;i<count;i++) {
-                        if (i == 0)
+
+                Report=report;
+                this.firstDayNumberInWeek=firstDayNumberInWeek;
+                fillRows();
+
+
+        }
+
+        public void fillRows() {
+                boolean test;
+                cpt=0;
+
+                int i;
+                //fill the first row
+                tableRow=findViewById(R.id.row1);
+                for(i=1;i<=7;i++)
+                {
+                        if(i<firstDayNumberInWeek)
                                 continue;
-                        this.report.removeView(this.report.getChildAt(i));
+                        cpt++;
+                        ((TextView) tableRow.getChildAt(i-1)).setText(String.valueOf(cpt));
+
+                        colorReport(i);
+
+
+
                 }
 
 
-                String text;
-               this.report=findViewById(R.id.report_table);
-           int i,j,cpt=0;
-           for (i=1;i<=5;i++)
-           {
+              test=  fillRowFrom2to4();
 
-                   if(cpt==report.length)
-                           break;
-                   tableRow=new TableRow(ConsultPresenceReport.this);
-                   for (j=1;j<=5;j++)
-                   {
-
-                           textView=new TextView(this);
-                           textView.setGravity(Gravity.START);
-                           if (i == 1 && j < firstDayNumberInWeek) {
-                                   text = "";
-                                   //test=false;
-                           }
-                           else {
-                                   text = String.valueOf(report[cpt]);
-
-                           }
-                           textView.setText(text);
-                           tableRow.addView(textView);
-
-                                   cpt++; //increment the number of filled cases
-
-                   }
-                   this.report.addView(tableRow);
-
-           }
+                if(!test) {
 
 
+                        tableRow = findViewById(R.id.row5);
 
+                        //row5
+                        for (i = 1; i <= 7; i++) {
+                                if (cpt == Report.length) {
+                                        tableRow = findViewById(R.id.row6);
+                                        report.removeView(tableRow);
+                                        test=true;
+                                        break;
+                                }
+
+                                cpt++;
+                                ((TextView) tableRow.getChildAt(i - 1)).setText(String.valueOf(cpt));
+                                 colorReport(i);
+
+                        }
+                        if(!test)
+                        {
+          //row6
+                                tableRow = findViewById(R.id.row6);
+
+                                for (i = 1; i <= 7; i++) {
+                                        if (cpt == Report.length)
+                                                break;
+
+                                             cpt++;
+                                        ((TextView) tableRow.getChildAt(i - 1)).setText(String.valueOf(cpt));
+                                          colorReport(i);
+
+                                }
+
+                        }
+                }
+
+        }
+
+
+
+
+
+
+
+        public boolean fillRowFrom2to4() {
+                fillRowBetween2And4(2);
+                fillRowBetween2And4(3);
+              return  fillRowBetween2And4(4);
+
+        }
+        public void colorReport(int i){
+                Day day=new Day();
+                if(Objects.equals(Report[cpt - 1], "Présent"))
+                        tableRow.getChildAt(i-1).setBackgroundColor(Color.GREEN);
+                else   if(Objects.equals(Report[cpt - 1], "Absent"))
+                        tableRow.getChildAt(i-1).setBackgroundColor(Color.RED);
+                else if(Objects.equals(Report[cpt - 1], "Retard"))
+                        tableRow.getChildAt(i-1).setBackgroundColor(Color.YELLOW);
+                else if(Objects.equals(Report[cpt - 1], "Hors service"))
+                        tableRow.getChildAt(i-1).setBackgroundColor(Color.BLUE);
+
+                if(count==0&&day.getDayOfMonth()==cpt)
+                        {
+                                ((TextView)tableRow.getChildAt(i-1)).setTextColor(Color.WHITE);
+                                count++;
+                        }
+
+
+        }
+
+        public boolean fillRowBetween2And4(int rowNumber){
+                int i;
+                switch (rowNumber){
+                        case 2:
+                                tableRow=findViewById(R.id.row2);
+                                break;
+                        case 3:
+                                tableRow=findViewById(R.id.row3);
+                                break;
+                        case 4:
+                                tableRow=findViewById(R.id.row4);
+                                break;
+                        default:
+                                break;
+
+                }
+                for(i=1;i<=7;i++)
+                {
+                        if(cpt==Report.length) {
+                                tableRow = findViewById(R.id.row5);
+                                report.removeView(tableRow);
+                                tableRow = findViewById(R.id.row6);
+                                report.removeView(tableRow);
+
+                                return true;
+                        }
+                        cpt++;
+                        ((TextView) tableRow.getChildAt(i-1)).setText(String.valueOf(cpt));
+
+                }
+
+return false;
 
         }
 

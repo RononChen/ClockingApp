@@ -60,11 +60,6 @@ if(accessible||cpt==0) {
     state = employeeManager.getPresenceReportForEmployee(employee, day.getMonth(), day.getYear());
 
     consultPresenceReportView.onMonthSelected(state, day.getFirstDayOfMonth());
-    // if(cpt!=0)
-    // {
-
-    //}
-    // cpt++;
 
 }
         
