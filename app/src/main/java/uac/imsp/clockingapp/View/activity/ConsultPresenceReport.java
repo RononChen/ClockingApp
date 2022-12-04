@@ -222,8 +222,15 @@ public class ConsultPresenceReport extends AppCompatActivity
    **/
         @Override
         public void onMonthSelected(String[] report, int firstDayNumberInWeek) {
+                int count=this.report.getChildCount();
+                for(int i=0;i<count;i++) {
+                        if (i == 0)
+                                continue;
+                        this.report.removeView(this.report.getChildAt(i));
+                }
 
-String text;
+
+                String text;
                this.report=findViewById(R.id.report_table);
            int i,j,cpt=0;
            for (i=1;i<=5;i++)

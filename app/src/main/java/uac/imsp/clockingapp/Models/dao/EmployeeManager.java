@@ -105,7 +105,7 @@ public class EmployeeManager {
         String[] selectArgs={String.valueOf(employee.getRegistrationNumber())};
         Cursor cursor=Database.rawQuery(querry,selectArgs);
         if(cursor.moveToNext())
-            employee.setAdddDate(cursor.getString(0));
+            employee.setAddDate(cursor.getString(0));
 
         cursor.close();
     }

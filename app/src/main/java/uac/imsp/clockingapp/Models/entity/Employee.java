@@ -44,7 +44,7 @@ public  final static String SIMPLE="Simple", HEAD="Directeur",CHIEF="Chef person
     private String Password;
     private String Type;
     private byte[] Workdays;
-    private  String AdddDate;
+    private  String AddDate;
 
 
 
@@ -70,12 +70,12 @@ public  final static String SIMPLE="Simple", HEAD="Directeur",CHIEF="Chef person
 
     }
 
-    public String getAdddDate() {
-        return AdddDate;
+    public String getAddDate() {
+        return AddDate;
     }
 
-    public void setAdddDate(String adddDate) {
-        AdddDate = adddDate;
+    public void setAddDate(String addDate) {
+        AddDate = addDate;
     }
 
     public Employee(int registrationNumber, String lastname, String firstname,

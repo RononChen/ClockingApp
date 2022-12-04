@@ -45,7 +45,7 @@ public class ConsultPresenceReportController implements IConsultPresenceReportCo
             accessible =false;
         }
         if (day.subtractMonth().getMonthPart().
-                compareTo(new Day(employee.getAdddDate()).getMonthPart()) < 0) {
+                compareTo(new Day(employee.getAddDate()).getMonthPart()) < 0) {
             consultPresenceReportView.onReportError(false);
             accessible =false;
         }
