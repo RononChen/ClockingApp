@@ -4,7 +4,7 @@ import java.util.Hashtable;
 
 public interface IConsultStatisticsByEmployeeView {
 
-    void onStart(String message);
+    void onStart(String date);
     void onMonthSelected(Hashtable<Character,Float> statistics);
 
 

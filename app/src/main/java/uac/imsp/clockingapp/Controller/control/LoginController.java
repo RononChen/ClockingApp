@@ -174,13 +174,12 @@ public class LoginController  implements ILoginController {
             employeeManager.close();
             for(Employee employee:employees)
                 updateAttendance(employee);
-            loginView.onPositiveResponse("Vous êtes connecté en tant qu'administrateur !");
+            loginView.onPositiveResponse();
 
         }
         else
 
-            loginView.onNegativeResponse("Vous êtes connecté en tant que" +
-                    "simple employé !");
+            loginView.onNegativeResponse();
 
     }
 

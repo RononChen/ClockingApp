@@ -60,14 +60,10 @@ public class SearchEmployee extends AppCompatActivity
     }
 
     @Override
-    public void onNoEmployeeFound(String message) {
-
+    public void onNoEmployeeFound() {
+        String message=getString(R.string.no_employee);
         list.setVisibility(View.GONE);
         new ToastMessage(this,message);
-
-
-
-
     }
 
     @Override

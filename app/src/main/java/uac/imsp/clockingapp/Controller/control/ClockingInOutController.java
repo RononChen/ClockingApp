@@ -13,12 +13,76 @@ import uac.imsp.clockingapp.View.util.IClockInOutView;
 public class ClockingInOutController
         implements IClockInOutController {
 
-private  IClockInOutView clockInOutView;
+private final IClockInOutView clockInOutView;
+private final Context context;
     public ClockingInOutController(IClockInOutView clockInOutView) {
 
         this.clockInOutView=clockInOutView;
-        clockInOutView.onLoad( "Scannez votre code QR pour pointer");
+        clockInOutView.onLoad();
+        this.context= (Context) this.clockInOutView;
 
+    }
+
+    public ClockingInOutController(IClockInOutView clockInOutView,Context context) {
+        this.clockInOutView=clockInOutView;
+        clockInOutView.onLoad();
+            this.context=context;
+    }
+
+    public void clock(int number,String date,String time){
+        //Take  time into account later
+        Employee employee;
+        Day day;
+        EmployeeManager employeeManager;
+        ClockingManager clockingManager;
+        DayManager dayManager;
+
+        employee = new Employee(number);
+        //connection to  database , employee table
+        employeeManager = new EmployeeManager(context);
+        //open employee connection
+        employeeManager.open();
+        day=new Day(date);
+        dayManager=new DayManager(context);
+        dayManager.open();
+        //A day is created and has an id
+        dayManager.create(day);
+
+
+        if (!employeeManager.exists(employee))
+            //employee does not exist
+            clockInOutView.onClockingError(1);
+
+        else //The employee exists
+        {
+
+            //check if the employee shouldWorkToday or not
+            //case not
+            if (employeeManager.shouldNotWorkToday(employee))
+                clockInOutView.onClockingError(2);
+            else {
+
+                //Connection to clocking table
+                clockingManager = new ClockingManager((Context) clockInOutView);
+                //open  clocking connection
+                clockingManager.open();
+                if (clockingManager.hasNotClockedIn(employee, day)) {
+
+
+                    clockingManager.clockIn(employee, day.getDate(),time);
+
+                    clockInOutView.onClockInSuccessful();
+                } else if (clockingManager.hasNotClockedOut(employee, day)) {
+                    clockingManager.clockOut(employee, day);
+                    clockInOutView.onClockInSuccessful();
+                } else {
+                    clockInOutView.onClockingError(3);
+                }
+                //close  clocking connection
+                clockingManager.close();
+
+            }
+        }
 
 
     }
@@ -34,11 +98,11 @@ private  IClockInOutView clockInOutView;
 
             employee = new Employee(number);
             //connection to  database , employee table
-            employeeManager = new EmployeeManager((Context) clockInOutView);
+            employeeManager = new EmployeeManager(context);
             //open employee connection
             employeeManager.open();
             day=new Day();
-            dayManager=new DayManager((Context) clockInOutView);
+            dayManager=new DayManager(context);
             dayManager.open();
             //A day is created and has an id
             dayManager.create(day);
@@ -46,7 +110,7 @@ private  IClockInOutView clockInOutView;
 
             if (!employeeManager.exists(employee))
                 //employee does not exist
-                clockInOutView.onClockingError("Employé non retrouvé");
+                clockInOutView.onClockingError(1);
 
             else //The employee exists
             {
@@ -54,7 +118,7 @@ private  IClockInOutView clockInOutView;
                 //check if the employee shouldWorkToday or not
                 //case not
                 if (employeeManager.shouldNotWorkToday(employee))
-                    clockInOutView.onClockingError("Vous n'êtes pas censé travailler aujourd'hui");
+                    clockInOutView.onClockingError(2);
                 else {
 
                     //Connection to clocking table
@@ -66,12 +130,12 @@ private  IClockInOutView clockInOutView;
 
                         clockingManager.clockIn(employee, day);
 
-                        clockInOutView.onClockingSuccessful("Entrée marquée avec succès");
+                        clockInOutView.onClockInSuccessful();
                     } else if (clockingManager.hasNotClockedOut(employee, day)) {
                         clockingManager.clockOut(employee, day);
-                        clockInOutView.onClockingSuccessful("Sortie marquée avec succès");
+                        clockInOutView.onClockOutSuccessful();
                     } else {
-                        clockInOutView.onClockingError("Vous avez déjà marqué votre entrée-sortie de la journée");
+                        clockInOutView.onClockingError(3);
                     }
                     //close  clocking connection
                     clockingManager.close();

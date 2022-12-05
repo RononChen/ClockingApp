@@ -4,7 +4,7 @@ public interface IUpdateEmployeeView {
     void onSomethingchanged(String message);
     void onNothingChanged(String message);
     void onUpdateEmployeeError(String message);
-    void askConfirmUpdate(String pos, String neg, String title, String message);
+    void askConfirmUpdate();
 
 
 }

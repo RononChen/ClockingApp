@@ -10,7 +10,7 @@ import uac.imsp.clockingapp.View.util.IGeneralMenuView;
 
 public class GeneralMenuController  implements IGeneralMenuController {
 
-    private IGeneralMenuView menuView;
+    private final IGeneralMenuView menuView;
     private Employee employee;
     private EmployeeManager employeeManager;
 
@@ -28,11 +28,12 @@ public class GeneralMenuController  implements IGeneralMenuController {
         employeeManager.open();
         employee=new Employee(currentUser);
 
-   if(employeeManager.isNotSuperUser(employee)) {
-       menuView.onSearchEmployeeMenuError("Vous n'avez pas la permission de rechercher des employes");
-   } else
+   /*if(employeeManager.isNotSuperUser(employee)) {
+        menuView.onSearchEmployeeMenuError("Vous n'avez pas la permission de rechercher des employes");
+   }*/
+  // else
         menuView.onSearchEmployeeMenuSuccessfull();
-        employeeManager.close();
+   employeeManager.close();
     }
 
     @Override
@@ -41,9 +42,9 @@ public class GeneralMenuController  implements IGeneralMenuController {
         employeeManager.open();
         employee=new Employee(currentUser);
 
-        if(employeeManager.isNotSuperUser(employee))
+       /* if(employeeManager.isNotSuperUser(employee))
             menuView.onUpdateEmployeeMenuError("Vous n'avez pas la permission de modifier des employés");
-        else
+        else*/
             menuView.onUpdateEmployeeMenuSuccessfull();
         employeeManager.close();
 
@@ -55,9 +56,9 @@ public class GeneralMenuController  implements IGeneralMenuController {
         employeeManager.open();
         employee=new Employee(currentUser);
 
-        if(employeeManager.isNotSuperUser(employee))
+       /* if(employeeManager.isNotSuperUser(employee))
             menuView.onDeleteEmployeeMenuError("Vous n'avez pas la permission de modifier des employés !");
-        else
+        else*/
             menuView.onDeleteEmployeeMenuSucessfull();
 
         employeeManager.close();
@@ -79,10 +80,10 @@ public class GeneralMenuController  implements IGeneralMenuController {
 
         employee=new Employee(currentUser);
 
-        if(employeeManager.isNotSuperUser(employee))
+        /*if(employeeManager.isNotSuperUser(employee))
 
             menuView.onRegisterEmployeeMenuError("Vous n'avez pas la permission de supprimer des employés !");
-        else
+        else*/
             menuView.onRegisterEmployeeMenuSuccessful();
       employeeManager.close();
       return true;
@@ -100,9 +101,9 @@ public class GeneralMenuController  implements IGeneralMenuController {
         employeeManager.open();
         employee=new Employee(currentUser);
 
-        if(employeeManager.isNotSuperUser(employee))
+        /*if(employeeManager.isNotSuperUser(employee))
             menuView.onConsultatisticsMenuError("Vous n'avez pas cette permission");
-        else
+        else*/
             menuView.onConsultatisticsMenuSuccessful();
         employeeManager.close();
 
@@ -119,7 +120,7 @@ public class GeneralMenuController  implements IGeneralMenuController {
 
     @Override
     public void onExit() {
-        menuView.onExit("Oui","Annuler","Confirmation","Voulez vous vraiment quitter l'application");
+        menuView.onExit("Oui","Annuler","Confirmation de sortie","Voulez vous vraiment quitter l'application");
 
     }
 }

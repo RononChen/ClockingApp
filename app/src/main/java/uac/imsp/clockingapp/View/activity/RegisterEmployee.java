@@ -325,7 +325,8 @@ int pos;
 
 
     @Override
-    public void onRegisterEmployeeSuccess(String message) {
+    public void onRegisterEmployeeSuccess() {
+        String message=getString(R.string.registration_successful);
 
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
         resetInput();

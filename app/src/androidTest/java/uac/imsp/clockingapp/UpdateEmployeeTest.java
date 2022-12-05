@@ -73,7 +73,11 @@ public class UpdateEmployeeTest  implements IUpdateEmployeeView {
 
 
     @Override
-    public void askConfirmUpdate(String pos, String neg, String title, String message) {
+    public void askConfirmUpdate() {
+        String pos= appContext.getString(R.string.yes);
+        String neg= appContext.getString(R.string.no);
+        String title= appContext.getString(R.string.confirmation);
+        String message= appContext.getString(R.string.confirmation_update);
         assertEquals("Oui",pos);
         assertEquals("Non",neg);
         assertEquals("Confirmation",title);

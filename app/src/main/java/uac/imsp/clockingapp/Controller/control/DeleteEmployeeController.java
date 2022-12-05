@@ -21,7 +21,7 @@ public class DeleteEmployeeController implements IDeleteEmployeeController {
     IDeleteEmployeeView deleteEmployeeView;
     private Employee employee;
     private EmployeeManager employeeManager;
-    private Context context;
+    private final Context context;
 
     public DeleteEmployeeController(IDeleteEmployeeView deleteEmployeeView)
 
@@ -122,7 +122,7 @@ String birthdate;
 
         //employeeManager.close();
 
-            deleteEmployeeView.onDeleteSuccessfull("Employé supprimé avec succès");
+            deleteEmployeeView.onDeleteSuccessfull();
 
     }
     public static Bitmap getBitMapFromBytes(byte[] array){

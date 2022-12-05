@@ -42,7 +42,7 @@ public class RegisterEmployeeController implements IRegisterEmployeeController
 
     IRegisterEmployeeView registerEmployeeView;
    private ServiceManager serviceManager;
-   private Context context;
+   private final Context context;
    private String fileName;
     FileOutputStream qrCodeFileOutputStream;
     File file;
@@ -84,9 +84,9 @@ public class RegisterEmployeeController implements IRegisterEmployeeController
             if(elt=='T')
                 nb_workdays++;
         }
-String [] to=null;
-String subject=null, message=null;
-String gend=null;
+String [] to;
+String subject, message;
+String gend;
         int registerCode;
         int n;
         Service service;
@@ -102,7 +102,7 @@ String gend=null;
 
         PlanningManager planningManager;
         Planning planning;
-        EmployeeManager employeeManager = null;
+        EmployeeManager employeeManager;
         try {
             n = Integer.parseInt(number);
             employee=new Employee(n,lastname,firstname,gender.charAt(0),
@@ -158,8 +158,7 @@ String gend=null;
 
        if(employeeManager.registrationNumberExists(employee))
 
-           registerEmployeeView.onRegisterEmployeeError("Ce matricule a été déjà" +
-                   " attribué à un employé !");
+           registerEmployeeView.onRegisterEmployeeError("Ce matricule a été déjà été attribué à un employé !");
        else if(employeeManager.emailExists(employee))
            registerEmployeeView.onRegisterEmployeeError("Ce couriel a été déjà" +
                    " attribué à un employé !");
@@ -226,7 +225,7 @@ String gend=null;
            if (employee.getPicture() != null)
                employeeManager.update(employee, employee.getPicture());
 
-           registerEmployeeView.onRegisterEmployeeSuccess("Employé enregistré avec succès");
+           registerEmployeeView.onRegisterEmployeeSuccess();
            registerEmployeeView.sendEmail(to, subject, message, fileName);
        }
        employeeManager.close();

@@ -75,27 +75,27 @@ public String md5(String password) {
              if(TextUtils.isEmpty(oldPasswordEdited) ||
                      TextUtils.isEmpty(newPassword)||TextUtils.isEmpty(newPasswordConfirm)
              )
-                 changePasswordView.onWrongPassword("Tous les champs sont requis !");
+                 changePasswordView.onWrongPassword();
 
            else if (!oldPasswordEdited.matches("\\w{6,}") ||
                      !newPassword.matches("\\w{6,}"))
 
 
-                changePasswordView.onWrongPassword("Mot de passe invalide !");
+                changePasswordView.onWrongPassword();
             else if (!oldPasswordEdited.equals((md5(employee.getPassword()))))
-                changePasswordView.onWrongPassword("Mot de passe incorrect !");
+                changePasswordView.onWrongPassword();
 
             else if(!newPasswordConfirm.equals(newPassword))
 
-                changePasswordView.onWrongPassword("Vérifiez le mot de passe précédent et reessayez !");
+                changePasswordView.onWrongPassword();
             else {
                 employeeManager.changePassword(employee, (newPassword));
-                changePasswordView.onSuccess("Mot de passe changé avec succès");
+                changePasswordView.onSuccess();
             }
         }
 
         catch(NullPointerException e ){
-            changePasswordView.onWrongPassword("Tous les champs sont requis !");
+            changePasswordView.onWrongPassword();
             }
 
 

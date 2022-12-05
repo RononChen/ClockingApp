@@ -128,17 +128,11 @@ public class UpdateEmployee extends AppCompatActivity
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         if (spinnerServices.getId() == R.id.register_service) {
           provisionalService=  parent.getItemAtPosition(position).toString();
-           // provisionalService = spinnerServices.getItemAtPosition(position).toString();
-           // provisionalService=spinnerServices.getSelectedItem().toString();
-            //provisionalService = String.valueOf(spinnerServices.getSelectedItem());
 
 
 
 
         } else if (spinnerTypes.getId() == R.id.register_type)
-            //provisionalType = spinnerTypes.getSelectedItem().toString();
-           // provisionalType=spinnerTypes.getSelectedItem().toString();
-           // provisionalType=String.valueOf(spinnerTypes.getSelectedItem());
           provisionalType= (String) parent.getItemAtPosition(position);
 
 
@@ -246,7 +240,7 @@ if(informations.get("picture")!=null)
         birthdate.setEnabled(false);
         if (Objects.requireNonNull(informations.get("birthdate")).toString().equals(""))
         {
-            (( TextView )findViewById(R.id.tv)).setVisibility(View.GONE);
+            findViewById(R.id.tv).setVisibility(View.GONE);
             birthdate.setVisibility(View.GONE);
 
         }
@@ -277,10 +271,7 @@ if(informations.get("picture")!=null)
     @Override
     protected void onDestroy() {
         super.onDestroy();
-       /* spinnerServices=null;
-        spinnerTypes=null;*/
-
-    }
+           }
 
     private void imageChooser() {
         Intent i = new Intent();
@@ -368,9 +359,11 @@ if(informations.get("picture")!=null)
     }
 
     @Override
-    public void askConfirmUpdate(String pos, String neg, String title, String message) {
-
-
+    public void askConfirmUpdate() {
+        String pos=getString(R.string.yes);
+        String neg=getString(R.string.no);
+        String title=getString(R.string.confirmation);
+        String message=getString(R.string.confirmation_update);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(message)
                 .setCancelable(false)
@@ -379,8 +372,6 @@ if(informations.get("picture")!=null)
                     new ToastMessage(UpdateEmployee.this,"Confirmé");
                     updateEmployeePresenter.onConfirmResult(true,
                             pictureUpdated,planningUpdated );
-                   // UpdateEmployee.this.finish();
-                   // startActivity(getIntent());
 
                 })
                 .setNegativeButton(neg, (dialog, which) -> {

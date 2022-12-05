@@ -12,7 +12,7 @@ import uac.imsp.clockingapp.Models.entity.Employee;
 import uac.imsp.clockingapp.View.util.IStartScreenView;
 
 public class StartScreenController  implements IStartScreenController {
-    private IStartScreenView startScreenView;
+    private final IStartScreenView startScreenView;
     public StartScreenController(IStartScreenView startScreenView){
         this.startScreenView=startScreenView;
         updateDailyAttendance();

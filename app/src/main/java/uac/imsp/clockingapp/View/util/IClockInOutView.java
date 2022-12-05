@@ -2,12 +2,13 @@ package uac.imsp.clockingapp.View.util;
 
 public interface IClockInOutView{
     //GeneralMenu message on load
-    void onLoad(String welcome);
+    void onLoad();
 
     //Message de succès de pointage
-    void onClockingSuccessful(String message);
+    void onClockInSuccessful();
+    void onClockOutSuccessful();
     //Message d'erreur de pointage ou employe non retrouvé
-    void onClockingError(String message);
+    void onClockingError(int errorNumber);
 
 }
 

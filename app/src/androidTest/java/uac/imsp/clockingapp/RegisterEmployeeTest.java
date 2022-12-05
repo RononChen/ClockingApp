@@ -166,7 +166,8 @@ public class RegisterEmployeeTest  implements IRegisterEmployeeView {
 
    }
     @Override
-    public void onRegisterEmployeeSuccess(String message) {
+    public void onRegisterEmployeeSuccess() {
+        String message="";
         assertEquals("Employé enregistré avec succès",message);
 
 

@@ -1,16 +1,12 @@
 <resources>
-
     <string name="register_button">Add</string>
     <string name="register_name_hint">Lastname</string>
     <string name="register_lastname_text">Lastname</string>
     <string name="login_username_hint">Username</string>
     <string name="login_password_hint">Password</string>
-
-
     <string-array name="months">
         <item>January</item>
         <item>February</item>
-
         <item>March</item>
         <item>April</item>
         <item>May</item>
@@ -23,10 +19,8 @@
         <item>December</item>
     </string-array>
     <string name="male">Male</string>
-
     <string name="Email">Email</string>
     <string name="register_username_text">Username</string>
-
     <string name="register_password">Password</string>
     <string name="register_password_confirm">Confirm the password</string>
     <string name="reset_button">Cancel</string>
@@ -41,9 +35,7 @@
     <string name="nom">Name</string>
     <string name="during_add">During employee add</string>
     <string name="mail_as_username">Use email as username</string>
-
     <string name="nom_">Name</string>
-
     <string name="sexe_i">Gender</string>
     <string name="date_de_naissance_">Birhdate</string>
     <string name="service">Service</string>
@@ -51,20 +43,15 @@
     <string name="heure_de_d_but">Start time</string>
     <string name="heure_de_fin">End time</string>
     <string name="img">img</string>
-
     <string name="update_picture">Change the picture</string>
-
     <string name="LAUNCH_URL">LAUNCH URL</string>
     <string name="consult_stat">Statistics by service</string>
-
     <string name="register_employe_type_text">Type  of employee</string>
     <string name="register_service_label">Service</string>
     <string name="register_planning_label">Daily work schedule</string>
-
     <string name="name">Lastname and Firstname(s)</string>
     <string name="statistics">Statistics</string>
     <string name="update">Update</string>
-
     <string name="clocking_text">Mark attendance</string>
     <string name="search_status">Status</string>
     <string name="todo">TODO</string>
@@ -74,13 +61,11 @@
     <string name="confirm_new_password">Confirm the new password</string>
     <string name="new_password">New password</string>
     <string name="modify">Update</string>
-
     <string-array name="employee_types">
         <item>Simple</item>
         <item>Director</item>
         <item>Personal chef</item>
     </string-array>
-
     <string-array name="days">
         <item>Monday</item>
         <item>Tuesday</item>
@@ -89,7 +74,6 @@
         <item>Friday</item>
         <item>Saturday</item>
         <item>Sunday</item>
-
     </string-array>
     <string-array name="actions">
         <item>Update</item>
@@ -187,6 +171,63 @@
     <string name="desc">To share the app, scan this QR code using another device</string>
     <string name="share">Share</string>
     <string name="fingerprint">Scannez votre empreinte pour marquer votre entrée ou sortie</string>
+   <string name="confirm_login">Do you want to login as administrator?</string>
+    <string name="confirm_login_title">Choice of connection type</string>
+    <string name="yes" >Yes</string>
+    <string name="no" >No</string>
+    <string name="required" >Required !</string>
+    <string name="at_least" >At least 6 characters required!</string>
+    <string name="at_most" >At most 30 characters required !</string>
+    <string name="notify_admin_login" >You are logged in as an administrator!</string>
+    <string name="notify_simple_login" >You are connected as a simple employee!</string>
+    <string name="all__fields_required" > All fields are required !</string>
+    <string name="invalid_password">Invalid password!</string>
+    <string name="incorrect_password">Incorrect password !</string>
+    <string name="chech_and_retry">Check the previous password and try again!</string>
+    <string name="password_changed_successfully">Password successfully changed</string>
+    <string name="employee_not_found">Employee not found</string>
+    <string name="should_not_work_today">You are not supposed to work today</string>
+    <string name="enter_pointed">Entry marked successfully</string>
+    <string name="out_pointed">Exit marked successfully</string>
+    <string name="in_out_already_marked">You have already marked your entry-exit for the day</string>
+    <string name="no_service_available">No services have been registered</string>
+    <string name="delete_confirmation">Delete confirmation</string>
+    <string name="delete_confirmation_message">Are you sure you want to delete the employee?</string>
+    <string name="notify_delete_sucessfull">Employee deleted successfully</string>
+    <string name="exit_confirmation">Exit Confirmation</string>
+    <string name="exit_confirmation_message">Do you really want to quit the application?</string>
+    <string name="cancel">Cancel</string>
+    <string name="number_required" >Registration number required !</string>
+    <string name="last_name_required" >Lastname required !</string>
+    <string name="firstname_required" >Firstname(s) required !</string>
+    <string name="mail_required" >Mail required !</string>
+    <string name="username_required" >Username required !</string>
+    <string name="password_required" >Password required !</string>
+    <string name="number_invalid" >Invalide registration number !</string>
+    <string name="last_name_invalid" >Invalide lastname !</string>
+    <string name="firstname_invalid" >Invalide firstname !</string>
+    <string name="mail_invalid" >Invalide mail !</string>
+    <string name="username_invalid" >Invalide username !</string>
+    <string name="password_invalid" >Invalide passwor !</string>
+    <string name="no_workday_choosen" >No working day chosen</string>
+    <string name="number_already_assigned" >This number has already been assigned to an employee!</string>
+    <string name="mail_already_assigned" >This email address has already been assigned to an employee!</string>
+    <string name="username_already_assigned" >This username has already been assigned to an employee!</string>
+    <string name="account_informations" >Employee account information</string>
+    <string name="registration_successful" >Successfully registered employee</string>
+    <string name="no_employee" >No corresponding employee!</string>
+    <string name="select_option" >Select an option</string>
+    <string name="confirmation" >Confirmation</string>
+    <string name="confirmation_update" >Are you sure you want to apply these changes?</string>
+    <string name="no_update" >No information has been changed</string>
+
+
+
+
+
+
+
+
 
 
 </resources>

@@ -25,9 +25,8 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
     IUpdateEmployeeView  updateEmployeeView;
     private Employee employee;
     private EmployeeManager employeeManager;
-   private  PlanningManager planningManager;
-   private  ServiceManager serviceManager;
-   private Context context;
+    private  ServiceManager serviceManager;
+   private final Context context;
     Service service;
     Planning planning;
     String mail,type;
@@ -125,7 +124,7 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
      // handle click on Update
 
 
-        planningManager=new PlanningManager(context) ;
+        PlanningManager planningManager = new PlanningManager(context);
         serviceManager=new ServiceManager(context) ;
         employeeManager=new EmployeeManager(context);
         employeeManager.open();
@@ -151,10 +150,9 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
 
         employeeManager.setInformations(employee);
 
-        updateEmployeeView.askConfirmUpdate("Oui","Non",
+        updateEmployeeView.askConfirmUpdate(
 
-                "Confirmation",
-                "Voulez vous vraiment appliquer ces modifications ?");
+        );
 
 
 

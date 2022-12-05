@@ -38,7 +38,8 @@ public class SearchEmployeeTest implements IsearchEmployeeView {
 
     }
     @Override
-    public void onNoEmployeeFound(String message) {
+    public void onNoEmployeeFound() {
+        String message= appContext.getString(R.string.no_employee);
         assertEquals("ghj",message);
 
     }

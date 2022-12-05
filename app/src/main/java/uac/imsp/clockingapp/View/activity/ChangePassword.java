@@ -32,13 +32,15 @@ public class ChangePassword extends AppCompatActivity
     }
 
     @Override
-    public void onSuccess(String message) {
+    public void onSuccess() {
+        String message=getString(R.string.password_changed_successfully);
         new ToastMessage(this,message);
 
     }
 
     @Override
-    public void onWrongPassword(String message) {
+    public void onWrongPassword() {
+        String message=getString(R.string.password_invalid);
         new ToastMessage(this,message);
 
     }

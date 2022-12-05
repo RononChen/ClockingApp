@@ -8,7 +8,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -115,41 +114,6 @@ public class GeneralMenu extends AppCompatActivity implements View.OnClickListen
 
     }
 
-
-    @Override
-    public void onSearchEmployeeMenuError(String message) {
-
-    Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onUpdateEmployeeMenuError(String message) {
-
-        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
-
-    }
-
-    @Override
-
-    public void onDeleteEmployeeMenuError(String message) {
-        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
-
-
-    }
-
-    @Override
-    public void onRegisterEmployeeMenuError(String message) {
-        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
-
-
-    }
-
-    @Override
-    public void onConsultatisticsMenuError(String message) {
-        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
-
-
-    }
 
     @Override
     public void onSearchEmployeeMenuSuccessfull() {

@@ -74,7 +74,8 @@ public class DeleteEmployeeTest  implements IDeleteEmployeeView {
 
     }
     @Override
-    public void onDeleteSuccessfull(String message) {
+    public void onDeleteSuccessfull() {
+        String message= appContext.getString(R.string.notify_delete_sucessfull);
         assertEquals("Employé supprimé avec succès",message);
 
     }

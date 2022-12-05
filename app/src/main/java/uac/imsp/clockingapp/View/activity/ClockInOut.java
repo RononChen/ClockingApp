@@ -37,7 +37,6 @@ public class ClockInOut extends AppCompatActivity
 
     SurfaceView surfaceView;
     TextView txtBarcodeValue;
-    //private CameraSource cameraSource;
     private  CameraSource cameraSource;
     private static final int REQUEST_CAMERA_PERMISSION = 201;
     Button btnAction;
@@ -80,7 +79,7 @@ public void retrieveSharedPreferences(){
     protected void onResume() {
 
         super.onResume();
-        onLoad("");
+        onLoad();
 
     }
 
@@ -94,7 +93,8 @@ public void retrieveSharedPreferences(){
 
 
     @Override
-    public void onLoad(String welcome) {
+    public void onLoad() {
+        String welcome=getString(R.string.clocking_text);
 
 
         Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
@@ -177,15 +177,36 @@ public void retrieveSharedPreferences(){
     }
 
 
-    public void onClockingSuccessful(String message) {
+    public void onClockInSuccessful() {
+        String message=getString(R.string.enter_pointed);
         //Intent intent=new Intent(this,GeneralMenu.cl)
       Toast.makeText(this,message,Toast.LENGTH_LONG).show();
       //startActivity(intent);
     }
 
+    @Override
+    public void onClockOutSuccessful() {
+        String message=getString(R.string.out_pointed);
+        Toast.makeText(this,message,Toast.LENGTH_LONG).show();
+    }
 
 
-    public void onClockingError(String message) {
+    public void onClockingError(int errorNumber) {
+        String message;
+        switch (errorNumber){
+            case 1:
+                message=getString(R.string.employee_not_found);
+                break;
+            case 2:
+                message=getString(R.string.should_not_work_today);
+                break;
+            case 3:
+                message=getString(R.string.in_out_already_marked);
+                break;
+            default:
+                message="message";
+                break;
+        }
         Toast.makeText(this,message,Toast.LENGTH_LONG).show();
 
     }

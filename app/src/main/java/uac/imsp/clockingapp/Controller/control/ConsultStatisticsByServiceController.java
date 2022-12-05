@@ -16,7 +16,7 @@ public class ConsultStatisticsByServiceController implements
 
 
 
-    private IConsultStatisticsByServiceView consultStatisticsByServiceView;
+    private final IConsultStatisticsByServiceView consultStatisticsByServiceView;
    // private String startDate;
     private  Day day;
 
@@ -45,7 +45,7 @@ public class ConsultStatisticsByServiceController implements
         serviceSet=serviceManager.getAllService();
         //serviceManager.close();
         if(serviceSet.length==0)
-            consultStatisticsByServiceView.onNoServiceFound("Aucun service n'a été enregistré");
+            consultStatisticsByServiceView.onNoServiceFound();
        else {
             employeeManager.open();
             rowSet= employeeManager.getStatisticsByService(day.getMonth(),day.getYear());

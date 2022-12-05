@@ -8,7 +8,7 @@ public interface IsearchEmployeeView {
 
 
 
-    void onNoEmployeeFound(String message);
+    void onNoEmployeeFound();
     void onEmployeeFound(ArrayList<Result> list);
 
 

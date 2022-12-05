@@ -1,11 +1,9 @@
 package uac.imsp.clockingapp.View.activity;
 
-import android.app.DatePickerDialog;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -33,11 +31,9 @@ implements IConsultStatisticsByServiceView,
     private IConsultStatisticsByServiceController consultStatisticsByServicePresenter;
     PieChart pieChart;
     private Hashtable<String,Integer> statistics;
-    private Toast Toast;
     private Button previous,next;
     private int cpt=0;
 
-    DatePickerDialog picker;
     final Calendar cldr = Calendar.getInstance();
     int day = cldr.get(Calendar.DAY_OF_MONTH);
     int month = cldr.get(Calendar.MONTH);
@@ -154,7 +150,8 @@ implements IConsultStatisticsByServiceView,
     }*/
 
     @Override
-    public void onNoServiceFound(String message) {
+    public void onNoServiceFound() {
+        String message=getString(R.string.no_service_available);
             new ToastMessage(this,message);
 
     }

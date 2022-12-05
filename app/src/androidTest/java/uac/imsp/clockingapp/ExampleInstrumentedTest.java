@@ -59,13 +59,15 @@ public class ExampleInstrumentedTest  implements IChangePasswordView{
 
 
     @Override
-    public void onSuccess(String message) {
+    public void onSuccess() {
+        String message= appContext.getString(R.string.password_changed_successfully);
         assertEquals("Mot de passe changé avec succès",message);
 
     }
 
     @Override
-    public void onWrongPassword(String message) {
+    public void onWrongPassword() {
+        String  message= appContext.getString(R.string.password_invalid);
         assertTrue("Tous les champs sont requis !".equals(message)||
                "Mot de passe invalide !".equals(message)||
                "Mot de passe incorrect !".equals(message)||

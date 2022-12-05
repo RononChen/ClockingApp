@@ -157,7 +157,8 @@ public class DeleteEmployee extends AppCompatActivity
     }
 
     @Override
-    public void onDeleteSuccessfull(String message) {
+    public void onDeleteSuccessfull() {
+        String message=getString(R.string.notify_delete_sucessfull);
         String subject="Notification de suppression d'employé";
         String msg="Vous avez été supprimé de la liste des employés";
          new ToastMessage(this, message);

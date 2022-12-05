@@ -13,7 +13,7 @@ import uac.imsp.clockingapp.View.util.IsearchEmployeeView;
 public class SearchEmployeeController  implements
         ISearchEmployeeController {
     private final IsearchEmployeeView searchEmployeeView ;
-    private  Context context;
+    private final Context context;
     public SearchEmployeeController(IsearchEmployeeView searchEmployeeView){
         this.searchEmployeeView=searchEmployeeView;
         this.context= (Context) this.searchEmployeeView;
@@ -45,7 +45,7 @@ public class SearchEmployeeController  implements
         employeeSet =employeeManager.search(data);
 
         if(employeeSet.length==0)
-            searchEmployeeView.onNoEmployeeFound("Aucun employé correspondant !");
+            searchEmployeeView.onNoEmployeeFound();
         else
         {
             for (Employee employee : employeeSet) {
