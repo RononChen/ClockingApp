@@ -27,7 +27,7 @@ public class ConsultPresenceReport extends AppCompatActivity
         private  Button previous,next;
         private  int cpt=0;
         private int firstDayNumberInWeek;
-        private  int count=0;
+        private int rowNum =0;
 private String[] Report;
         IConsultPresenceReportController consultPresenceReportPresenter;
 
@@ -81,7 +81,7 @@ private String[] Report;
                 Report=report;
                 this.firstDayNumberInWeek=firstDayNumberInWeek;
                 fillRows();
-                colorCurrentDate();
+               // colorCurrentDate();
 
 
         }
@@ -90,17 +90,18 @@ private String[] Report;
                 boolean test;
                 cpt=0;
 
-                int i;
+                int colVar;
                 //fill the first row
                 tableRow=findViewById(R.id.row1);
-                for(i=1;i<=7;i++)
+                for(colVar =1; colVar <=7; colVar++)
                 {
-                        if(i<firstDayNumberInWeek)
+                        rowNum =1;
+                        if(colVar <firstDayNumberInWeek)
                                 continue;
                         cpt++;
-                        ((TextView) tableRow.getChildAt(i-1)).setText(String.valueOf(cpt));
+                        ((TextView) tableRow.getChildAt(colVar -1)).setText(String.valueOf(cpt));
 
-                        colorReport(i);
+                        colorReport(colVar);
 
 
 
@@ -110,12 +111,13 @@ private String[] Report;
               test=  fillRowFrom2to4();
 
                 if(!test) {
+                        rowNum =5;
 
 
                         tableRow = findViewById(R.id.row5);
 
                         //row5
-                        for (i = 1; i <= 7; i++) {
+                        for (colVar = 1; colVar <= 7; colVar++) {
                                 if (cpt == Report.length) {
                                         tableRow = findViewById(R.id.row6);
                                         report.removeView(tableRow);
@@ -124,31 +126,51 @@ private String[] Report;
                                 }
 
                                 cpt++;
-                                ((TextView) tableRow.getChildAt(i - 1)).setText(String.valueOf(cpt));
-                                 colorReport(i);
+                                ((TextView) tableRow.getChildAt(colVar - 1)).setText(String.valueOf(cpt));
+                                 colorReport(colVar);
 
                         }
                         if(!test)
                         {
+                                rowNum =6;
           //row6
                                 tableRow = findViewById(R.id.row6);
 
-                                for (i = 1; i <= 7; i++) {
-                                         if (cpt == Report.length)
+                                for (colVar = 1; colVar <= 7; colVar++) {
+                                          if (cpt == Report.length)
                                                 break;
-
-                                             cpt++;
-                                        ((TextView) tableRow.getChildAt(i - 1)).setText(String.valueOf(cpt));
-                                          colorReport(i);
+                                          cpt++;
+                                        ((TextView) tableRow.getChildAt(colVar - 1)).setText(String.valueOf(cpt));
+                                          colorReport(colVar);
 
                                 }
 
                         }
                 }
+                fun();
 
         }
 
+public void fun(){
+                Day day=new Day();
+                TextView tv;
+                int i,j;
+                for(i=0;i<6;i++) {
+                        tableRow = (TableRow) report.getChildAt(i);
+                        for(j=0;j<7;j++) {
+                                tv = (TextView) tableRow.getChildAt(j);
+                                if(tv.getText().toString().equals(String.valueOf(day.getDayOfMonth())))
+                                        //tableRow.getChildAt(j).setBackgroundColor(Color.RED);
+                                        tv.setTextColor(Color.rgb(255, 153, 153));
 
+                        }
+
+
+                }
+                cpt=0;
+
+
+}
 
 
 
@@ -161,7 +183,7 @@ private String[] Report;
 
         }
         public void colorReport(int i){
-                Day day=new Day();
+
                 if(Objects.equals(Report[cpt - 1], "Présent"))
                         tableRow.getChildAt(i-1).setBackgroundColor(Color.GREEN);
                 else   if(Objects.equals(Report[cpt - 1], "Absent"))
@@ -171,35 +193,12 @@ private String[] Report;
                 else if(Objects.equals(Report[cpt - 1], "Hors service"))
                         tableRow.getChildAt(i-1).setBackgroundColor(Color.BLUE);
 
-
-
-
         }
-        public void colorCurrentDate(){
-                int i;
-                int j = -1;
-                Day day=new Day();
-                for(i=0;i<Report.length;i++)
-                        if(count==0&&i+1==day.getDayOfMonth())
-                        {
-                                if(0<=i&&i<7)
-                                        j=0;
-                                else  if(7<=i&&i<14)
-                                        j=1;
-                                else  if(14<=i&&i<21)
-                                        j=3;
-                                else  if(21<=i&&i<28)
-                                        j=4;
-                                else  if(28<=i&&i<35)
-                                        j=5;
-                                ((TextView)tableRow.getChildAt(j)).setTextColor(Color.WHITE);
-                                 count++;
-                                break;
-                        }
-        }
+
 
         public boolean fillRowBetween2And4(int rowNumber){
                 int i;
+                rowNum =rowNumber;
                 switch (rowNumber){
                         case 2:
                                 tableRow=findViewById(R.id.row2);
@@ -232,7 +231,31 @@ private String[] Report;
 return false;
 
         }
+public void findTableRow(){
+                switch (rowNum) {
+                        case 1:
+                                tableRow = findViewById(R.id.row1);
+                                break;
+                        case 2:
+                                tableRow = findViewById(R.id.row2);
+                                break;
+                        case 3:
+                                tableRow = findViewById(R.id.row3);
+                                break;
+                        case 4:
+                                tableRow = findViewById(R.id.row4);
+                                break;
+                        case 5:
+                                tableRow = findViewById(R.id.row5);
+                                break;
+                        case 6:
+                                tableRow = findViewById(R.id.row6);
+                                break;
+                        default:
+                                break;
+                }
 
+}
         @Override
         public void onReportError(boolean nextError) {
                 if(nextError)
