@@ -131,11 +131,11 @@
     <string name="start">dr</string>
     <string name="add_employee">Ajouter employé</string>
     <string name="english">Anglais</string>
-    <string name="french" >Français</string>
+    <string name="french">Français</string>
     <string name="date" translatable="false">date</string>
-    <string name="work_days" >WorkDays</string>
+    <string name="work_days">WorkDays</string>
 
-    <string name="monday" >Lundi</string>
+    <string name="monday">Lundi</string>
     <string name="tuesday">Mardi</string>
     <string name="thursday">Jeudi</string>
     <string name="friday">Vendredi</string>

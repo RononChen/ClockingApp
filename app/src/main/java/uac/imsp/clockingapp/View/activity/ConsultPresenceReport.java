@@ -1,137 +1,3 @@
-/*package uac.imsp.clockingapp.View.activity;
-
-import android.app.Activity;
-import android.graphics.Color;
-import android.graphics.Typeface;
-import android.os.Bundle;
-import android.util.TypedValue;
-import android.view.Gravity;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
-import android.widget.Toast;
-
-import uac.imsp.clockingapp.R;
-
-public class  ConsultPresenceReport extends Activity{
-
-
-        EditText txt1;
-        EditText txt2;
-        int Row;
-        int Col;
-        int count, i, j;
-        String str;
-        String stm;
-        Button Create;
-        TableLayout TabLayout_Create;
-        TableLayout TabLayout_Show;
-        Button Show;
-protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_consult_presence_report2);
-
-        txt1 = (EditText) findViewById(R.id.editText1);
-        txt2 = (EditText) findViewById(R.id.editText2);
-        Create = (Button) findViewById(R.id.button1);
-        Show = (Button) findViewById(R.id.Show);
-        TabLayout_Create = (TableLayout) findViewById(R.id.TableLayout);
-        TabLayout_Show = (TableLayout) findViewById(R.id.TableLayout2);
-        Create.setOnClickListener(new View.OnClickListener() {
-
-@Override
-public void onClick(View arg0) {
-
-
-import android.os.Bundle;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import uac.imsp.clockingapp.R;str = txt1.getText().toString();
-        stm = txt2.getText().toString();
-
-        Row = Integer.parseInt(str);
-        Col = Row = Integer.parseInt(stm);
-
-        Toast.makeText(ConsultPresenceReport.this,
-        str, Toast.LENGTH_SHORT).show();
-        Toast.makeText(ConsultPresenceReport.this,
-        stm, Toast.LENGTH_SHORT).show();
-
-
-        // TextView[] txt;
-
-        for (i = 1; i <= Row; i++) {
-final TableRow row = new TableRow(ConsultPresenceReport.this);
-        if (i%2 == 0) {
-        row.setBackgroundColor(Color.MAGENTA);
-        } else {
-        row.setBackgroundColor(Color.GRAY);
-        }
-
-        for (j = 1; j <= Col; j++) {
-
-final EditText txt = new EditText(ConsultPresenceReport.this);
-        txt.setTextColor(Color.GREEN);
-        txt.setTextSize(TypedValue.COMPLEX_UNIT_PT, 8);
-        txt.setTypeface(Typeface.SERIF, Typeface.BOLD);
-        txt.setGravity(Gravity.LEFT);
-        txt.setGravity(Gravity.LEFT);
-        txt.setText("C" + i + j + " ");
-
-        row.addView(txt);
-        }
-        TabLayout_Create.addView(row);
-
-        }
-
-
-        }
-        });
-
-        Show.setOnClickListener(new View.OnClickListener() {
-
-@Override
-public void onClick(View arg0) {
-        // TODO Auto-generated method stub
-
-        for (i = 0; i < Row; i++) {
-final TableRow row = (TableRow) TabLayout_Create.getChildAt(i);
-final TableRow row1 = new TableRow(ConsultPresenceReport.this);
-
-        if (i % 2 == 0) {
-        row1.setBackgroundColor(Color.YELLOW);
-        } else {
-        row1.setBackgroundColor(Color.RED);
-        }
-        for (j = 0; j < Col; j++) {
-final EditText etxt = (EditText) row.getChildAt(j);
-
-final TextView txt = new TextView(ConsultPresenceReport.this);
-        txt.setTextColor(Color.GREEN);
-        txt.setTextSize(TypedValue.COMPLEX_UNIT_PT, 8);
-        txt.setTypeface(Typeface.SERIF, Typeface.BOLD);
-        txt.setGravity(Gravity.LEFT);
-        txt.setText(etxt.getText());
-        row1.addView(txt);
-        }
-        TabLayout_Show.addView(row1);
-        }
-
-        }
-        });
-
-        }
-
-        }
-
-*/
         package uac.imsp.clockingapp.View.activity;
 
 import android.graphics.Color;
@@ -215,6 +81,7 @@ private String[] Report;
                 Report=report;
                 this.firstDayNumberInWeek=firstDayNumberInWeek;
                 fillRows();
+                colorCurrentDate();
 
 
         }
@@ -267,7 +134,7 @@ private String[] Report;
                                 tableRow = findViewById(R.id.row6);
 
                                 for (i = 1; i <= 7; i++) {
-                                        if (cpt == Report.length)
+                                         if (cpt == Report.length)
                                                 break;
 
                                              cpt++;
@@ -304,13 +171,31 @@ private String[] Report;
                 else if(Objects.equals(Report[cpt - 1], "Hors service"))
                         tableRow.getChildAt(i-1).setBackgroundColor(Color.BLUE);
 
-                if(count==0&&day.getDayOfMonth()==cpt)
+
+
+
+        }
+        public void colorCurrentDate(){
+                int i;
+                int j = -1;
+                Day day=new Day();
+                for(i=0;i<Report.length;i++)
+                        if(count==0&&i+1==day.getDayOfMonth())
                         {
-                                ((TextView)tableRow.getChildAt(i-1)).setTextColor(Color.WHITE);
-                                count++;
+                                if(0<=i&&i<7)
+                                        j=0;
+                                else  if(7<=i&&i<14)
+                                        j=1;
+                                else  if(14<=i&&i<21)
+                                        j=3;
+                                else  if(21<=i&&i<28)
+                                        j=4;
+                                else  if(28<=i&&i<35)
+                                        j=5;
+                                ((TextView)tableRow.getChildAt(j)).setTextColor(Color.WHITE);
+                                 count++;
+                                break;
                         }
-
-
         }
 
         public boolean fillRowBetween2And4(int rowNumber){

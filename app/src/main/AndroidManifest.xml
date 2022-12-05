@@ -15,6 +15,13 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
+            android:name=".View.activity.Savefingerprint"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".View.activity.settings.others.Help"
             android:exported="false">
             <meta-data
@@ -49,13 +56,15 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <!--activity
+        <!--
+activity
             android:name=".View.activity.settings.others.Others"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
-        </activity-->
+        </activity
+        -->
         <activity
             android:name=".View.activity.settings.Overview"
             android:exported="false">

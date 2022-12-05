@@ -50,8 +50,7 @@ public class ClockInOut extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         retrieveSharedPreferences();
-        if(useQRcode)
-            setContentView(R.layout.activity_scanner);
+        setContentView(useQRcode? R.layout.activity_scanner:R.layout.fingerprint_gesture);
         initViews();
 
         clockInOutPresenter = new ClockingInOutController(this);
