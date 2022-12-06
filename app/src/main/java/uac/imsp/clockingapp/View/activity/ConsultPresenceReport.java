@@ -22,13 +22,10 @@ public class ConsultPresenceReport extends AppCompatActivity
         implements IConsultPresenceReportView,
         View.OnClickListener {
         private TableLayout report;
-        private TableRow tableRow;
         private TextView Date;
         private  Button previous,next;
-        private  int cpt=0;
         private int firstDayNumberInWeek;
-        private int rowNum =0;
-private String[] Report;
+ private String[] Report;
         IConsultPresenceReportController consultPresenceReportPresenter;
 
 
@@ -49,18 +46,12 @@ private String[] Report;
                 previous.setOnClickListener(this);
                 next.setOnClickListener(this);
                 next.setOnClickListener(this);
-
                 report =findViewById(R.id.report_table);
                 Date=findViewById(R.id.report_date);
 
                 int actionNumber = getIntent().getIntExtra("CURRENT_NUMBER", 1);
 
                 consultPresenceReportPresenter.onConsultPresenceReport(actionNumber);
-
-
-
-
-
         }
 
         @Override
@@ -80,182 +71,70 @@ private String[] Report;
 
                 Report=report;
                 this.firstDayNumberInWeek=firstDayNumberInWeek;
-                fillRows();
-               // colorCurrentDate();
-
-
+                setReportVisible();
         }
 
-        public void fillRows() {
-                boolean test;
-                cpt=0;
 
-                int colVar;
-                //fill the first row
-                tableRow=findViewById(R.id.row1);
-                for(colVar =1; colVar <=7; colVar++)
+
+        public void setReportVisible(){
+                TableRow tableRow;
+                boolean allBrowsed=false;
+                Day day=new Day();
+                TextView textView;
+                int i,j,c=-1;
+                for(i=1;i<=6;i++)
                 {
-                        rowNum =1;
-                        if(colVar <firstDayNumberInWeek)
-                                continue;
-                        cpt++;
-                        ((TextView) tableRow.getChildAt(colVar -1)).setText(String.valueOf(cpt));
-
-                        colorReport(colVar);
 
 
-
-                }
-
-
-              test=  fillRowFrom2to4();
-
-                if(!test) {
-                        rowNum =5;
-
-
-                        tableRow = findViewById(R.id.row5);
-
-                        //row5
-                        for (colVar = 1; colVar <= 7; colVar++) {
-                                if (cpt == Report.length) {
-                                        tableRow = findViewById(R.id.row6);
+                        if(allBrowsed)
+                        {
+                                for(c=i;c<=6;c++) {
+                                        tableRow = (TableRow) report.getChildAt(c);
                                         report.removeView(tableRow);
-                                        test=true;
+                                }
+                                break;
+                        }
+
+                        tableRow = (TableRow) report.getChildAt(i);
+                        for(j=1;j<=7;j++) {
+                                if (i == 1 && j < firstDayNumberInWeek)
+                                        continue;
+
+                                c++;
+                                //all days are browsed
+                                if(c==Report.length) {
+                                        allBrowsed=true;
+                                        /*for(c=j-1;c<7;c++)
+                                        {
+                                            textView= (TextView) tableRow.getChildAt(c);
+                                           textView.setVisibility(View.GONE);
+                                        }*/
+
                                         break;
                                 }
 
-                                cpt++;
-                                ((TextView) tableRow.getChildAt(colVar - 1)).setText(String.valueOf(cpt));
-                                 colorReport(colVar);
+                                textView=((TextView) (tableRow.getChildAt(j - 1)));
+                                textView.setText(String.valueOf(c+1));
+                                //mark the current date
+                                if(c+1==day.getDayOfMonth())
+                                        textView.setTextColor(Color.rgb(15,99,66));
 
+                                if(Objects.equals(Report[c], "Présent"))
+                                        tableRow.getChildAt(j-1).setBackgroundColor(Color.GREEN);
+                                else   if(Objects.equals(Report[c], "Absent"))
+                                        tableRow.getChildAt(j-1).setBackgroundColor(Color.RED);
+                                else if(Objects.equals(Report[c], "Retard"))
+                                        tableRow.getChildAt(j-1).setBackgroundColor(Color.YELLOW);
+                                else if(Objects.equals(Report[c], "Hors service"))
+                                        tableRow.getChildAt(j-1).setBackgroundColor(Color.BLUE);
                         }
-                        if(!test)
-                        {
-                                rowNum =6;
-          //row6
-                                tableRow = findViewById(R.id.row6);
-
-                                for (colVar = 1; colVar <= 7; colVar++) {
-                                          if (cpt == Report.length)
-                                                break;
-                                          cpt++;
-                                        ((TextView) tableRow.getChildAt(colVar - 1)).setText(String.valueOf(cpt));
-                                          colorReport(colVar);
-
-                                }
-
-                        }
-                }
-                fun();
-
-        }
-
-public void fun(){
-                Day day=new Day();
-                TextView tv;
-                int i,j;
-                for(i=0;i<6;i++) {
-                        tableRow = (TableRow) report.getChildAt(i);
-                        for(j=0;j<7;j++) {
-                                tv = (TextView) tableRow.getChildAt(j);
-                                if(tv.getText().toString().equals(String.valueOf(day.getDayOfMonth())))
-                                        //tableRow.getChildAt(j).setBackgroundColor(Color.RED);
-                                        tv.setTextColor(Color.rgb(255, 153, 153));
-
-                        }
-
 
                 }
-                cpt=0;
 
-
-}
-
-
-
-
-
-        public boolean fillRowFrom2to4() {
-                fillRowBetween2And4(2);
-                fillRowBetween2And4(3);
-              return  fillRowBetween2And4(4);
-
-        }
-        public void colorReport(int i){
-
-                if(Objects.equals(Report[cpt - 1], "Présent"))
-                        tableRow.getChildAt(i-1).setBackgroundColor(Color.GREEN);
-                else   if(Objects.equals(Report[cpt - 1], "Absent"))
-                        tableRow.getChildAt(i-1).setBackgroundColor(Color.RED);
-                else if(Objects.equals(Report[cpt - 1], "Retard"))
-                        tableRow.getChildAt(i-1).setBackgroundColor(Color.YELLOW);
-                else if(Objects.equals(Report[cpt - 1], "Hors service"))
-                        tableRow.getChildAt(i-1).setBackgroundColor(Color.BLUE);
 
         }
 
 
-        public boolean fillRowBetween2And4(int rowNumber){
-                int i;
-                rowNum =rowNumber;
-                switch (rowNumber){
-                        case 2:
-                                tableRow=findViewById(R.id.row2);
-                                break;
-                        case 3:
-                                tableRow=findViewById(R.id.row3);
-                                break;
-                        case 4:
-                                tableRow=findViewById(R.id.row4);
-                                break;
-                        default:
-                                break;
-
-                }
-                for(i=1;i<=7;i++)
-                {
-                        if(cpt==Report.length) {
-                                tableRow = findViewById(R.id.row5);
-                                report.removeView(tableRow);
-                                tableRow = findViewById(R.id.row6);
-                                report.removeView(tableRow);
-
-                                return true;
-                        }
-                        cpt++;
-                        ((TextView) tableRow.getChildAt(i-1)).setText(String.valueOf(cpt));
-
-                }
-
-return false;
-
-        }
-public void findTableRow(){
-                switch (rowNum) {
-                        case 1:
-                                tableRow = findViewById(R.id.row1);
-                                break;
-                        case 2:
-                                tableRow = findViewById(R.id.row2);
-                                break;
-                        case 3:
-                                tableRow = findViewById(R.id.row3);
-                                break;
-                        case 4:
-                                tableRow = findViewById(R.id.row4);
-                                break;
-                        case 5:
-                                tableRow = findViewById(R.id.row5);
-                                break;
-                        case 6:
-                                tableRow = findViewById(R.id.row6);
-                                break;
-                        default:
-                                break;
-                }
-
-}
         @Override
         public void onReportError(boolean nextError) {
                 if(nextError)

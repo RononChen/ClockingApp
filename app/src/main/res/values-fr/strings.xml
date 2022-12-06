@@ -1,15 +1,14 @@
 <resources>
 
+    <string name="app_name" translatable="false">ClockingApp</string>
+
     <string name="form_title">Formulaire d\'enregistrement des employés</string>
     <string name="registration_title">Veillez saisir les informations de l\'employé</string>
     <string name="register_button">Enregistrer</string>
     <string name="register_name_hint">Nom</string>
-    <string name="work_days" >Jours de travail</string>
     <string name="register_lastname_text">Nom</string>
     <string name="login_username_hint">Username</string>
     <string name="login_password_hint">Mot de passe</string>
-
-
 
 
     <string-array name="months">
@@ -100,14 +99,6 @@
     <string name="confirm_new_password">Confirmer le nouveau mot de passe</string>
     <string name="new_password">Nouveau mot de passe</string>
     <string name="modify">Modifier</string>
-    <string name="general_menu_register">Enregisterer employé</string>
-    <string name="general_menu_employee_list">Liste des employés</string>
-    <string name="menu_presence_report">Etats de présence</string>
-    <string name="menu_statistics_by_employee">Statistiques par employé</string>
-    <string name="search_number">Matricule</string>
-    <string name="qr_code_scan">Scannage de Code QR</string>
-    <string name="fingerprint_scan">Scannage d\'empreintes digitales</string>
-    <string name="mail_as_username">Utiliser l\'email comme username</string>
 
     <string-array name="employee_types">
         <item>Simple</item>
@@ -116,13 +107,13 @@
     </string-array>
 
     <string-array name="days">
-        <item>Monday</item>
-        <item>Tuesday</item>
-        <item>Wednesday</item>
-        <item>Thursday</item>
-        <item>Friday</item>
-        <item>Saturday</item>
-        <item>Sunday</item>
+        <item>Lundi</item>
+        <item>Mardi</item>
+        <item>Mercredi</item>
+        <item>Jeudi</item>
+        <item>Vendredi</item>
+        <item>Samedi</item>
+        <item>Dimanche</item>
 
     </string-array>
     <string-array name="actions">
@@ -133,30 +124,40 @@
 
     </string-array>
     <string-array name="languages">
-        <item>English</item>
-        <item>French</item>
+        <item>Anglais</item>
+        <item>Français</item>
 
     </string-array>
     <string name="start">dr</string>
     <string name="add_employee">Ajouter employé</string>
     <string name="english">Anglais</string>
-    <string name="french" >Français</string>
-    <string name="reg_number" >Matricule</string>
-    <string name="monday" >Lundi</string>
+    <string name="french">Français</string>
+    <string name="date" translatable="false">date</string>
+    <string name="work_days">WorkDays</string>
+
+    <string name="monday">Lundi</string>
     <string name="tuesday">Mardi</string>
     <string name="thursday">Jeudi</string>
     <string name="friday">Vendredi</string>
     <string name="satursday">Samedi</string>
     <string name="sunday">Dimanche</string>
     <string name="wednesday">Mercredi</string>
+    <string name="general_menu_register">Enregisterer employé</string>
+    <string name="general_menu_employee_list">Liste des employés</string>
+    <string name="menu_presence_report">Etats de présence</string>
+    <string name="menu_statistics_by_employee">Statistiques par employé</string>
+    <string name="search_number">Matricule</string>
+    <string name="reg_number">Matricule</string>
     <string name="attendance_gesture">Geste de pointage</string>
+    <string name="qr_code_scan">Scannage de Code QR</string>
+    <string name="fingerprint_scan">Scannage d\'empreintes digitales</string>
     <string name="period">01 Janvier 1970</string>
     <string name="previous">Précédent</string>
     <string name="next">Suivant</string>
     <string name="dark">Mode sombre</string>
     <string name="languages">Langues</string>
     <string name="report_problem">Signaler un problème</string>
-    <string name="help">De l\'aide?</string>
+    <string name="help">De l\'aide\?</string>
     <string name="more_parameters">Autres</string>
     <string name="set">Paramètres de compte et de notification employé</string>
     <string name="description">Description</string>
@@ -172,11 +173,12 @@
     <string name="about_app">A propos de l\'application</string>
     <string name="manage_username">Gestion de nom d\'utilisateur</string>
     <string name="during_add">Lors d\'un ajout d\'employé</string>
+    <string name="mail_as_username">Utiliser l\'email comme username</string>
     <string name="generate_username">Générer le username</string>
     <string name="edit_username">Editer le username</string>
     <string name="manage_password">Gestion du mot de passe</string>
     <string name="during_emp_add">Lors d\'un ajout d\'employé</string>
-    <string name="generate_password">Générer le mot de passe</string>
+    <string name="generate_password">G\én\érer le mot de passe</string>
     <string name="show_password">Afficher le mot de passe</string>
     <string name="emp_not">Notifications employé</string>
     <string name="during_delete">Lors de la suppression</string>
@@ -192,59 +194,57 @@
     <string name="copy">Copier</string>
     <string name="desc">Pour partager l\'application, scannez ce code QR en utilisant un autre appareil</string>
     <string name="share">Partager</string>
-    <string name="fingerprint">Scan your fingerprint to mark your entrance or exit</string>
-    <string name="confirm_login">Voulez-vous vous connecter en tant qu\'administrateur?</string>
-<string name="confirm_login_title">Choix du type de connexion</string>
+    <string name="fingerprint">Scannez votre empreinte pour marquer votre entrée ou sortie</string>
+    <string name="confirm_login">Voulez-vous vous connecter en tant qu\'administrateur\?</string>
+    <string name="confirm_login_title">Choix du type de connexion</string>
     <string name="yes" >Oui</string>
     <string name="no" >Non</string>
-    <string name="required" >Requis !</string>
-    <string name="at_least" >Au moins 6 caractères requis !</string>
-    <string name="at_most" >Au plus 30 caractères requis !</string>
-    <string name="notify_admin_login" >Vous êtes connecté en tant qu\'administrateur !</string>
-    <string name="notify_simple_login" >Vous êtes connecté en tant que simple employé !</string>
-    <string name="all__fields_required">Tousles champs sont requis !</string>
-    <string name="invalid_password">Mot de passe invalide !</string>
-    <string name="incorrect_password">Mot de passe incorrect !</string>
-    <string name="chech_and_retry">Vérifiez le mot de passe précédent et reessayez !</string>
+    <string name="required" >Requis \!</string>
+    <string name="at_least" >Au moins 6 caractères requis  \!</string>
+    <string name="at_most" >Au plus 30 caractères requis \!</string>
+    <string name="notify_admin_login" >Vous \êtes connecté en tant qu\'administrateur \!</string>
+    <string name="notify_simple_login" >Vous \êtes connecté en tant que simple employé  \!</string>
+    <string name="all__fields_required">Tousles champs sont requis  \!</string>
+    <string name="invalid_password">Mot de passe invalide  \!</string>
+    <string name="incorrect_password">Mot de passe incorrect  \!</string>
+    <string name="chech_and_retry">Vérifiez le mot de passe précédent et reessayez  \!</string>
     <string name="password_changed_successfully">Mot de passe changé avec succès</string>
     <string name="employee_not_found">Employé non retrouvé</string>
-    <string name="should_not_work_today">Vous n\'êtes pas censé travailler aujourd'hui</string>
+    <string name="should_not_work_today">Vous n\'êtes pas censé travailler aujourd\'hui</string>
     <string name="enter_pointed">Entrée marquée avec succès</string>
     <string name="out_pointed">Sortie marquée avec succès</string>
     <string name="in_out_already_marked">Vous avez déjà marqué votre entrée-sortie de la journée</string>
     <string name="no_service_available">Aucun service n\'a été enregistré</string>
     <string name="delete_confirmation">Confirmation de suppression</string>
-    <string name="delete_confirmation_message">Voulez vous vraiment supprimer l\'employé ?</string>
+    <string name="delete_confirmation_message">Voulez vous vraiment supprimer l\'employé \?</string>
     <string name="notify_delete_sucessfull">Employé supprimé avec succès</string>
     <string name="exit_confirmation">Confirmation de sortie</string>
-    <string name="exit_confirmation_message">Voulez vous vraiment quitter l\'application?</string>
+    <string name="exit_confirmation_message">Voulez vous vraiment quitter l\'application\?</string>
     <string name="cancel">Annuler</string>
-    <string name="number_required" >Matricule requis !</string>
-    <string name="last_name_required" >Nom requis !</string>
-    <string name="firstname_required" >Prénom(s) requis !</string>
-    <string name="mail_required" >Adresse mail requise !</string>
-    <string name="username_required" >Username requis !</string>
-    <string name="password_required" >Mot de passe requis !</string>
+    <string name="number_required" >Matricule requis \!</string>
+    <string name="last_name_required" >Nom requis \!</string>
+    <string name="firstname_required" >Prénom(s) requis \!</string>
+    <string name="mail_required" >Adresse mail requise \!</string>
+    <string name="username_required" >Username requis \!</string>
+    <string name="password_required" >Mot de passe requis \!</string>
 
-    <string name="number_invalid" >Matricule invalide !</string>
-    <string name="last_name_invalid" >Nom invalide !</string>
-    <string name="firstname_invalid" >Prénom(s) invalide(s) !</string>
+
+    <string name="number_invalid" >Matricule invalide \!</string>
+    <string name="last_name_invalid" >Nom invalide \!</string>
+    <string name="firstname_invalid" >Prénom(s) invalide(s) \!</string>
     <string name="mail_invalid" >Adresse mail invalide !</string>
-    <string name="username_invalid" >Username invalide !</string>
-    <string name="password_invalid" >Mot de passe invalide !</string>
+    <string name="username_invalid" >Username invalide \!</string>
+    <string name="password_invalid" >Mot de passe invalide \!</string>
     <string name="no_workday_choosen" >Aucun jour de travail choisi</string>
-    <string name="number_already_assigned" >Ce matricule a été déjà attribué à un employé !</string>
+    <string name="number_already_assigned" >Ce matricule a été déjà attribué à un employé \!</string>
 
-    <string name="mail_already_assigned" >Cette adresse mail a été déjà attribué à un employé !</string>
-    <string name="username_already_assigned" >Ce nom d\'utilisateur a été déjà attribué à un employé !</string>
+    <string name="mail_already_assigned" >Cette adresse mail a été déjà attribué à un employé \!</string>
+    <string name="username_already_assigned" >Ce nom d\'utilisateur a été déjà attribué à un employé \!</string>
     <string name="account_informations" >Informations de compte employé</string>
     <string name="registration_successful" >Employé enregistré avec succès</string>
-    <string name="no_employee" >Aucun employé correspondant !</string>
+    <string name="no_employee" >Aucun employé \correspondant \!</string>
     <string name="select_option" >Séléctionnez une option</string>
     <string name="confirmation" >Confirmation</string>
-    <string name="confirmation_update" >Voulez vous vraiment appliquer ces modifications ?</string>
+    <string name="confirmation_update" >Voulez vous vraiment appliquer ces modifications \?</string>
     <string name="no_update" >Aucune information n\'a été modifiée</string>
-
-
-
 </resources>

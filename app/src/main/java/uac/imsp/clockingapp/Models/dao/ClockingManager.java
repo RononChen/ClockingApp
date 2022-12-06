@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 
+import androidx.annotation.NonNull;
+
 import uac.imsp.clockingapp.Models.dbAdapter.ClockingSQLite;
 import uac.imsp.clockingapp.Models.entity.Day;
 import uac.imsp.clockingapp.Models.entity.Employee;
@@ -49,15 +51,14 @@ public class ClockingManager {
 
 
          query = "UPDATE  pointage SET id_jour_ref=? AND heure_entree=?" +
-                 " WHERE matricule_ref=? AND date_jour=DATE(?,?) ";
-
+                 " WHERE matricule_ref=? AND date_jour=? ";
 
         statement = Database.compileStatement(query);
         statement.bindLong(1,id);
         statement.bindString(2,"NOW");
         statement.bindLong(3, employee.getRegistrationNumber());
-        statement.bindString(4, "NOW");
-        statement.bindString(5,"LOCALTIME");
+        statement.bindString(4, day.getDate());
+
         statement.executeUpdateDelete();
         //update the current state of the employee
        //we wanna get the attended entry time of the employee
@@ -79,7 +80,7 @@ public class ClockingManager {
         updateDailyAttendance(employee,employee.getCurrentStatus());
 
 
-        query="UPDATE employee SET status=? WHERE matricule=?";
+        query="UPDATE employe SET status=? WHERE matricule=?";
         statement=Database.compileStatement(query);
         statement.bindString(1,employee.getCurrentStatus());
         statement.bindLong(2,employee.getRegistrationNumber());
@@ -91,28 +92,30 @@ public class ClockingManager {
     }
 
 
-    public void clockIn(Employee employee, String date,String time) {
-        Day day=new Day(date);
+    public void clockIn(Employee employee, Day day,String time) {
         Cursor cursor;
         String attendedEntryTime;
-        String entryTime;
+        String currentEntryTime;
         String [] selectArgs;
         int id;
         SQLiteStatement statement;
         String query;
         id=day.getId();
-        entryTime =time;
+
+
+        currentEntryTime=time;
+
 
 
         query = "UPDATE  pointage SET id_jour_ref=? AND heure_entree=?" +
                 " WHERE matricule_ref=? AND date_jour=? ";
 
-
         statement = Database.compileStatement(query);
         statement.bindLong(1,id);
-        statement.bindString(2,"NOW");
+        statement.bindString(2,time);
         statement.bindLong(3, employee.getRegistrationNumber());
-        statement.bindString(4, date);
+        statement.bindString(4, day.getDate());
+
         statement.executeUpdateDelete();
         //update the current state of the employee
         //we wanna get the attended entry time of the employee
@@ -121,29 +124,37 @@ public class ClockingManager {
                 " WHERE matricule=?";
         selectArgs= new String[]{String.valueOf(employee.getRegistrationNumber())};
         cursor=Database.rawQuery(query,selectArgs);
-        //if(cursor.moveToFirst())
+        cursor.moveToFirst();
         attendedEntryTime=cursor.getString(0);
-        if(entryTime.compareTo(attendedEntryTime)<=0)
-
-            employee.setCurrentStatus("Présent");
-        else
-            employee.setCurrentStatus("Retard");
-
-
         cursor.close();
-        updateDailyAttendance(employee,employee.getCurrentStatus());
+        String status;
+        if(currentEntryTime.compareTo(attendedEntryTime)<=0)
+
+            status="Présent";
+        else
+          status="Retard";
 
 
-        query="UPDATE employee SET status=? WHERE matricule=?";
-        statement=Database.compileStatement(query);
-        statement.bindString(1,employee.getCurrentStatus());
+
+        updateAttendance(employee,status,day.getDate());
+
+
+
+    }
+//for android unit test
+    public void updateAttendance(Employee employee,String status,String date){
+        String query="UPDATE pointage SET statut=?" +
+                " WHERE matricule_ref=? AND date_jour=?";
+        SQLiteStatement statement=Database.compileStatement(query);
+        statement.bindString(1,status);
         statement.bindLong(2,employee.getRegistrationNumber());
-        statement.executeUpdateDelete();
-
-
+        statement.bindString(3,date);
         statement.executeUpdateDelete();
 
     }
+
+
+
 
     public void updateDailyAttendance(Employee employee,String status){
         String query="UPDATE pointage SET statut=?" +
@@ -152,7 +163,7 @@ public class ClockingManager {
         statement.bindString(1,status);
         statement.bindLong(2,employee.getRegistrationNumber());
         statement.bindString(3,"NOW");
-        statement.bindString(3,"LOCALTIME");
+        statement.bindString(4,"LOCALTIME");
         statement.executeUpdateDelete();
 
     }
@@ -178,17 +189,16 @@ public class ClockingManager {
         statement.executeUpdateDelete();
     }
 /**This method check if the given employee has(already) clocked in the given day**/
-    public boolean hasNotClockedIn(Employee employee,Day day) {
-        int id=day.getId();
-        int n;
-        //open();
-        String query = "SELECT * FROM pointage WHERE matricule_ref=? AND id_jour_ref=?" +
-                " AND statut!=? AND statut!=?";
-        String[] selectArgs = {
-                String.valueOf(employee.getRegistrationNumber()),String.valueOf(id),
-                "Présent",
-                "Retard"
+    public boolean hasNotClockedIn(@NonNull Employee employee, @NonNull Day day) {
 
+        int n;
+        String query = "SELECT heure_entree FROM pointage " +
+                "WHERE matricule_ref=? AND id_jour_ref=? " +
+                " AND heure_entree IS NOT NULL AND statut!=?" ;
+        String[] selectArgs = {
+                String.valueOf(employee.getRegistrationNumber()),
+                String.valueOf(day.getId()),
+                "Absent"
         };
         Cursor cursor = Database.rawQuery(query, selectArgs);
 

@@ -135,7 +135,7 @@
     <string name="dark">Dark mode</string>
     <string name="languages">Languages</string>
     <string name="report_problem">Report a problem</string>
-    <string name="help">Help?</string>
+    <string name="help">Help\?</string>
     <string name="more_parameters">More parameters</string>
     <string name="set">Employee account and notification settings</string>
     <string name="description">Description</string>
@@ -171,19 +171,19 @@
     <string name="desc">To share the app, scan this QR code using another device</string>
     <string name="share">Share</string>
     <string name="fingerprint">Scannez votre empreinte pour marquer votre entrée ou sortie</string>
-   <string name="confirm_login">Do you want to login as administrator?</string>
+   <string name="confirm_login">Do you want to login as administrator\?</string>
     <string name="confirm_login_title">Choice of connection type</string>
     <string name="yes" >Yes</string>
     <string name="no" >No</string>
-    <string name="required" >Required !</string>
-    <string name="at_least" >At least 6 characters required!</string>
-    <string name="at_most" >At most 30 characters required !</string>
-    <string name="notify_admin_login" >You are logged in as an administrator!</string>
-    <string name="notify_simple_login" >You are connected as a simple employee!</string>
-    <string name="all__fields_required" > All fields are required !</string>
-    <string name="invalid_password">Invalid password!</string>
-    <string name="incorrect_password">Incorrect password !</string>
-    <string name="chech_and_retry">Check the previous password and try again!</string>
+    <string name="required" >Required \!</string>
+    <string name="at_least" >At least 6 characters required\!</string>
+    <string name="at_most" >At most 30 characters required \!</string>
+    <string name="notify_admin_login" >You are logged in as an administrator\!</string>
+    <string name="notify_simple_login" >You are connected as a simple employee\!</string>
+    <string name="all__fields_required" > All fields are required \!</string>
+    <string name="invalid_password">Invalid password\!</string>
+    <string name="incorrect_password">Incorrect password \!</string>
+    <string name="chech_and_retry">Check the previous password and try again\!</string>
     <string name="password_changed_successfully">Password successfully changed</string>
     <string name="employee_not_found">Employee not found</string>
     <string name="should_not_work_today">You are not supposed to work today</string>
@@ -192,42 +192,32 @@
     <string name="in_out_already_marked">You have already marked your entry-exit for the day</string>
     <string name="no_service_available">No services have been registered</string>
     <string name="delete_confirmation">Delete confirmation</string>
-    <string name="delete_confirmation_message">Are you sure you want to delete the employee?</string>
+    <string name="delete_confirmation_message">Are you sure you want to delete the employee\?</string>
     <string name="notify_delete_sucessfull">Employee deleted successfully</string>
     <string name="exit_confirmation">Exit Confirmation</string>
-    <string name="exit_confirmation_message">Do you really want to quit the application?</string>
+    <string name="exit_confirmation_message">Do you really want to quit the application\?</string>
     <string name="cancel">Cancel</string>
-    <string name="number_required" >Registration number required !</string>
-    <string name="last_name_required" >Lastname required !</string>
-    <string name="firstname_required" >Firstname(s) required !</string>
-    <string name="mail_required" >Mail required !</string>
-    <string name="username_required" >Username required !</string>
-    <string name="password_required" >Password required !</string>
-    <string name="number_invalid" >Invalide registration number !</string>
-    <string name="last_name_invalid" >Invalide lastname !</string>
-    <string name="firstname_invalid" >Invalide firstname !</string>
-    <string name="mail_invalid" >Invalide mail !</string>
-    <string name="username_invalid" >Invalide username !</string>
-    <string name="password_invalid" >Invalide passwor !</string>
+    <string name="number_required" >Registration number required \!</string>
+    <string name="last_name_required" >Lastname required \!</string>
+    <string name="firstname_required" >Firstname(s) required \!</string>
+    <string name="mail_required" >Mail required \!</string>
+    <string name="username_required" >Username required \!</string>
+    <string name="password_required" >Password required \!</string>
+    <string name="number_invalid" >Invalide registration number \!</string>
+    <string name="last_name_invalid" >Invalide lastname \!</string>
+    <string name="firstname_invalid" >Invalide firstname \!</string>
+    <string name="mail_invalid" >Invalide mail \!</string>
+    <string name="username_invalid" >Invalide username \!</string>
+    <string name="password_invalid" >Invalide passwor \!</string>
     <string name="no_workday_choosen" >No working day chosen</string>
-    <string name="number_already_assigned" >This number has already been assigned to an employee!</string>
-    <string name="mail_already_assigned" >This email address has already been assigned to an employee!</string>
-    <string name="username_already_assigned" >This username has already been assigned to an employee!</string>
+    <string name="number_already_assigned" >This number has already been assigned to an employee\!</string>
+    <string name="mail_already_assigned" >This email address has already been assigned to an employee\!</string>
+    <string name="username_already_assigned" >This username has already been assigned to an employee\!</string>
     <string name="account_informations" >Employee account information</string>
     <string name="registration_successful" >Successfully registered employee</string>
-    <string name="no_employee" >No corresponding employee!</string>
+    <string name="no_employee" >No corresponding employee\!</string>
     <string name="select_option" >Select an option</string>
     <string name="confirmation" >Confirmation</string>
-    <string name="confirmation_update" >Are you sure you want to apply these changes?</string>
+    <string name="confirmation_update" >Are you sure you want to apply these changes\?</string>
     <string name="no_update" >No information has been changed</string>
-
-
-
-
-
-
-
-
-
-
 </resources>

@@ -1,10 +1,13 @@
 package uac.imsp.clockingapp;
 
+import static org.junit.Assert.assertNotNull;
+
 import android.content.Context;
 
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 
+import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import uac.imsp.clockingapp.Controller.control.ClockingInOutController;
@@ -14,14 +17,95 @@ import uac.imsp.clockingapp.View.util.IClockInOutView;
 @RunWith(AndroidJUnit4.class)
 public class ClockInTest implements IClockInOutView {
 	private final Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-	private ClockingInOutController clockingInOutPresenter;
+	private ClockingInOutController clockingInOutPresenter ;
+	Day day;String  time;
 	public ClockInTest() {
-		String time;
-		Day day=new Day(12,1);
-		clockingInOutPresenter=new ClockingInOutController(this,appContext);
-		time="07-00";
-		clockingInOutPresenter.clock(1,day.getDate(),time);
+
+		clockingInOutPresenter = new ClockingInOutController(this, appContext);
+		assertNotNull(clockingInOutPresenter);
+
+
 	}
+	@Test
+ 	public void test(){
+		new ClockInTest();
+		assertNotNull(clockingInOutPresenter);
+
+
+	}
+	public void testClocking(String date, String time){
+		assertNotNull(clockingInOutPresenter);
+		clockingInOutPresenter.clock(1,date,time);
+
+	}
+	@Test
+	public void testWith_12_5_2022(){
+
+		day=new Day(12,5);
+		time="07:00";
+		testClocking(day.getDate(),time);
+	}
+
+	@Test
+	public void testWith_12_7_2022(){
+
+		day=new Day(12,7);
+		time="07:00";
+		testClocking(day.getDate(),time);
+	}
+	@Test
+	public void testWith_12_8_2022(){
+
+		day=new Day(12,8);
+		time="07:48";
+		testClocking(day.getDate(),time);
+	}
+	@Test
+	public void testWith_12_9_2022(){
+
+		day=new Day(12,9);
+		time="08:45";
+		testClocking(day.getDate(),time);
+	}
+
+	@Test
+	public void testWith_12_13_2022(){
+
+		day=new Day(12,13);
+		time="08:00";
+		testClocking(day.getDate(),time);
+	}
+	@Test
+	public void testWith_12_14_2022(){
+
+		day=new Day(12,14);
+		time="09:00";
+		testClocking(day.getDate(),time);
+	}
+	@Test
+	public void testWith_12_12_2022(){
+
+		day=new Day(12,12);
+		time="09:16";
+		testClocking(day.getDate(),time);
+	}
+	@Test
+	public void testWith_12_15_2022(){
+
+		day=new Day(12,15);
+		time="10:00";
+		testClocking(day.getDate(),time);
+	}
+
+
+	@Test
+	public void testWith_12_16_2022(){
+		day=new Day(12,16);
+		time="06:00";
+		testClocking(day.getDate(),time);
+	}
+
+
 
 	@Override
 	public void onLoad() {
@@ -30,6 +114,7 @@ public class ClockInTest implements IClockInOutView {
 
 	@Override
 	public void onClockInSuccessful() {
+
 
 	}
 

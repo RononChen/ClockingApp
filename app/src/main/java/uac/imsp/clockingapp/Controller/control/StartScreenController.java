@@ -6,6 +6,7 @@ import java.util.Objects;
 
 import uac.imsp.clockingapp.Controller.util.IStartScreenController;
 import uac.imsp.clockingapp.Models.dao.ClockingManager;
+import uac.imsp.clockingapp.Models.dao.DayManager;
 import uac.imsp.clockingapp.Models.dao.EmployeeManager;
 import uac.imsp.clockingapp.Models.entity.Day;
 import uac.imsp.clockingapp.Models.entity.Employee;
@@ -60,7 +61,11 @@ public class StartScreenController  implements IStartScreenController {
     public void updateDailyAttendance(){
         String lastUpdate;
         Day day=new Day();
+
         String status;
+        DayManager dayManager=new DayManager((Context) startScreenView);
+        dayManager.open();
+        dayManager.create(day);
         EmployeeManager employeeManager=new EmployeeManager((Context) startScreenView);
         employeeManager.open();
 
@@ -79,7 +84,7 @@ public class StartScreenController  implements IStartScreenController {
                   status="Hors service";
                else
                   status="Absent";
-                employeeManager.setDayAttendance(employee,status);
+                employeeManager.setDayAttendance(employee,status,day);
 
         }
         employeeManager.updateVariable();

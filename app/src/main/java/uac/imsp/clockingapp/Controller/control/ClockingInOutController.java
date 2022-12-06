@@ -29,14 +29,13 @@ private final Context context;
             this.context=context;
     }
 
+    //used for android unit test
     public void clock(int number,String date,String time){
-        //Take  time into account later
         Employee employee;
         Day day;
         EmployeeManager employeeManager;
         ClockingManager clockingManager;
         DayManager dayManager;
-
         employee = new Employee(number);
         //connection to  database , employee table
         employeeManager = new EmployeeManager(context);
@@ -58,18 +57,19 @@ private final Context context;
 
             //check if the employee shouldWorkToday or not
             //case not
-            if (employeeManager.shouldNotWorkToday(employee))
+            if (employeeManager.shouldNotWorkThatDay(employee,day))
                 clockInOutView.onClockingError(2);
             else {
 
                 //Connection to clocking table
-                clockingManager = new ClockingManager((Context) clockInOutView);
+                clockingManager = new ClockingManager(context);
                 //open  clocking connection
                 clockingManager.open();
-                if (clockingManager.hasNotClockedIn(employee, day)) {
+                if (clockingManager.hasNotClockedIn(employee, day))
+                {
 
-
-                    clockingManager.clockIn(employee, day.getDate(),time);
+                    employeeManager.setAttendance(employee,"Abssent",date);
+                    clockingManager.clockIn(employee, day,time);
 
                     clockInOutView.onClockInSuccessful();
                 } else if (clockingManager.hasNotClockedOut(employee, day)) {

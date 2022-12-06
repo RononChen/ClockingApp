@@ -534,7 +534,21 @@ d=new Day(year,month,length-1);
         return null;
     }
 
-
+    public boolean shouldNotWorkThatDay(Employee employee,Day day) {
+        Cursor cursor;
+        byte[] workDays;
+        //byte
+        int dayOfWeek=day.getDayOfWeek();
+        String query = "SELECT jours_de_travail FROM planning " +
+                "JOIN employe ON id_planning=id_planning_ref" +
+                " WHERE matricule=?";
+        String[] selectArgs = {String.valueOf(employee.getRegistrationNumber())};
+        cursor = Database.rawQuery(query, selectArgs);
+        cursor.moveToFirst();
+        workDays=cursor.getBlob(0);
+        cursor.close();
+        return workDays[dayOfWeek - 1] != 'T';
+    }
 
     public boolean shouldNotWorkToday(Employee employee) {
         Cursor cursor;
@@ -562,18 +576,36 @@ d=new Day(year,month,length-1);
         statement.executeUpdateDelete();
 
     }
-    public void setDayAttendance(Employee employee,String status){
+    public void setDayAttendance(Employee employee,String status,Day day){
         SQLiteStatement statement;
         String query;
-        Day day=new Day();
+
         employee.setCurrentStatus(status);
         updateCurrentAttendance(employee,status);
-         query="INSERT INTO pointage (matricule_ref,date_jour,statut)" +
-                " VALUES(?,?,?)";
+         query="INSERT INTO pointage (matricule_ref,date_jour,statut,id_jour)" +
+                " VALUES(?,?,?,?)";
         statement=Database.compileStatement(query);
         statement.bindLong(1,employee.getRegistrationNumber());
         statement.bindString(2,day.getDate());
         statement.bindString(3,status);
+        statement.bindLong(4,day.getId());
+        statement.executeInsert();
+
+    }
+//for unit test
+    public void setAttendance(Employee employee,String status, String date){
+        SQLiteStatement statement;
+        String query;
+        Day day=new Day(date);
+        employee.setCurrentStatus(status);
+        updateCurrentAttendance(employee,status);
+        query="INSERT INTO pointage (matricule_ref,date_jour,statut,id_jour_ref)" +
+                " VALUES(?,?,?,?)";
+        statement=Database.compileStatement(query);
+        statement.bindLong(1,employee.getRegistrationNumber());
+        statement.bindString(2,day.getDate());
+        statement.bindString(3,status);
+        statement.bindLong(4,day.getId());
         statement.executeInsert();
 
     }

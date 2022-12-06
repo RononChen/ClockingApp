@@ -40,6 +40,8 @@ public class DayManager {
             day.setId(id);
 
         }
+        else
+            day.setId(id);
 
     }
     public int search(Day day){
@@ -54,9 +56,6 @@ public class DayManager {
         cursor.close();
         return id;
     }
-
-   // public serch(Day y)
-
 
 
 
