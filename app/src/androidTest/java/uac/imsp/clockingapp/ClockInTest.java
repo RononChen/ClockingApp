@@ -84,20 +84,16 @@ public class ClockInTest implements IClockInOutView {
 	}
 	@Test
 	public void testWith_12_12_2022(){
-
 		day=new Day(12,12);
 		time="09:16";
 		testClocking(day.getDate(),time);
 	}
 	@Test
 	public void testWith_12_15_2022(){
-
 		day=new Day(12,15);
 		time="10:00";
 		testClocking(day.getDate(),time);
 	}
-
-
 	@Test
 	public void testWith_12_16_2022(){
 		day=new Day(12,16);
