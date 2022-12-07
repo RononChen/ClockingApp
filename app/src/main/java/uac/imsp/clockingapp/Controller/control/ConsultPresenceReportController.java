@@ -36,12 +36,12 @@ public class ConsultPresenceReportController implements IConsultPresenceReportCo
         String [] state;
         EmployeeManager employeeManager;
         boolean accessible =true;
-        employee=new Employee(1);
+        employee=new Employee(number);
         employeeManager = new EmployeeManager(context);
         employeeManager.open();
         employeeManager.retrieveAddDate(employee);
         //the month following the current one
-        d=new Day(day.getFirstDayOfMonth(),day.getMonth(), day.getYear());
+        d=new Day();
 
         if (day.addMonth().getMonthPart().compareTo(currentDay.getMonthPart()) > 0) {
             consultPresenceReportView.onReportNotAccessible(true);
@@ -62,11 +62,11 @@ public class ConsultPresenceReportController implements IConsultPresenceReportCo
             consultPresenceReportView.onReportAccessible(false);
        if(accessible||cpt==0) {
     consultPresenceReportView.onStart(day.getDayOfWeek(),d.getDayOfWeek() ,
-            day.getLenthOfMonth(),day.getMonth(),day.getYear());
+            d.getDayOfMonth(),day.getMonth(),day.getYear());
 
 
-
-    state = employeeManager.getPresenceReportForEmployee(employee, day.getMonth(), day.getYear());
+    state = employeeManager.getPresenceReportForEmployee(employee,
+            day.getMonth(), day.getYear());
 
     consultPresenceReportView.onMonthSelected(state, day.getFirstDayOfMonth());
 

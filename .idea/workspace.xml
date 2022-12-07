@@ -21,20 +21,19 @@
     <option name="autoReloadType" value="NONE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7ddeb6ea-e00f-4cf2-88d3-89cbf60c105a" name="Changes" comment="&quot;report almost okay&quot;">
+    <list default="true" id="7ddeb6ea-e00f-4cf2-88d3-89cbf60c105a" name="Changes" comment="&quot;report is okay! Great&quot;">
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/ConsultPresenceReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/ConsultPresenceReportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/LoginController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/ConsultStatisticsByEmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/ConsultStatisticsByEmployeeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/dao/EmployeeManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/dao/EmployeeManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/dbAdapter/ClockingSQLite.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Models/dbAdapter/ClockingSQLite.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/ConsultPresenceReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/ConsultPresenceReport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/util/IConsultPresenceReportView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/util/IConsultPresenceReportView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-en/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-en/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-fr/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-fr/strings.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/ConsultStatisticsByEmployee.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/ConsultStatisticsByEmployee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/util/IConsultStatisticsByEmployeeView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/util/IConsultStatisticsByEmployeeView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_consult_presence_report2.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_consult_presence_report2.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_consult_statistics_by_employee.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_consult_statistics_by_employee.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -143,7 +142,7 @@
     <property name="android-custom-view/home/firminsh/Android/Sdk/sources/android-32/android/widget/RadioGroup.java_SELECTED" value="RadioGroup" />
     <property name="android-custom-view/home/firminsh/Android/Sdk/sources/android-32/android/widget/ScrollView.java_SELECTED" value="ScrollView" />
     <property name="cidr.known.project.marker" value="true" />
-    <property name="com.android.tools.idea.sqlite.queryhistory" value="SELECT * FROM POINTAGE&#10;SELECT TIME('NOW','LOCALTIME')&#10;SELECT heure_entree FROM pointage WHERE matricule_ref='1' AND id_jour_ref='1'  AND heure_entree IS NOT NULL AND statut!='Absent'&#10;SELECT jours_de_travail FROM planning JOIN employe ON id_planning=id_planning_ref WHERE matricule='1'&#10;SELECT date_jour,statut FROM pointage WHERE matricule_ref='1' AND date_jour BETWEEN '2022-11-01' AND '2022-11-31'  &#10;SELECT * FROM pointage&#10;SELECT * FROM variable" />
+    <property name="com.android.tools.idea.sqlite.queryhistory" value="SELECT date_jour,statut FROM pointage WHERE matricule_ref='1' AND date_jour BETWEEN '2022-12-01' AND '2022-12-31'  &#10;SELECT * FROM POINTAGE&#10;SELECT TIME('NOW','LOCALTIME')&#10;SELECT heure_entree FROM pointage WHERE matricule_ref='1' AND id_jour_ref='1'  AND heure_entree IS NOT NULL AND statut!='Absent'&#10;SELECT jours_de_travail FROM planning JOIN employe ON id_planning=id_planning_ref WHERE matricule='1'&#10;SELECT date_jour,statut FROM pointage WHERE matricule_ref='1' AND date_jour BETWEEN '2022-11-01' AND '2022-11-31'  &#10;SELECT * FROM pointage" />
     <property name="com.intellij.openapi.externalSystem.service.settings.ExternalSystemGroupConfigurable" value="ALL" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
@@ -672,8 +671,8 @@
       <list>
         <item itemvalue="Android Instrumented Tests.testWith_12_16_2022()" />
         <item itemvalue="Android Instrumented Tests.testWith_12_15_2022()" />
-        <item itemvalue="Android Instrumented Tests.testWith_12_12_2022()" />
         <item itemvalue="Android Instrumented Tests.testWith_12_13_2022()" />
+        <item itemvalue="Android Instrumented Tests.testWith_12_12_2022()" />
         <item itemvalue="Android Instrumented Tests.testWith_12_8_2022()" />
       </list>
     </recent_temporary>
@@ -686,13 +685,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1657575710173</updated>
-    </task>
-    <task id="LOCAL-00021" summary="&quot;Model updated&quot;">
-      <created>1659767026458</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1659767026459</updated>
     </task>
     <task id="LOCAL-00022" summary="&quot;Application is being improved&quot;">
       <created>1660110175626</created>
@@ -1030,7 +1022,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670364430166</updated>
     </task>
-    <option name="localTasksCounter" value="70" />
+    <task id="LOCAL-00070" summary="&quot;report is okay! Great&quot;">
+      <created>1670373934950</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1670373934950</updated>
+    </task>
+    <option name="localTasksCounter" value="71" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -1049,7 +1048,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="&quot;ChangePassword activity coded&quot;" />
     <MESSAGE value="&quot;GeneralMenu layout coded&quot;" />
     <MESSAGE value="&quot;Unit tests&quot;" />
     <MESSAGE value="&quot;Resume tasks&quot;" />
@@ -1074,7 +1072,8 @@
     <MESSAGE value="&quot;report feature in improvement&quot;" />
     <MESSAGE value="&quot;strings translation&quot;" />
     <MESSAGE value="&quot;report almost okay&quot;" />
-    <option name="LAST_COMMIT_MESSAGE" value="&quot;report almost okay&quot;" />
+    <MESSAGE value="&quot;report is okay! Great&quot;" />
+    <option name="LAST_COMMIT_MESSAGE" value="&quot;report is okay! Great&quot;" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -1147,6 +1146,16 @@
           <url>file://$PROJECT_DIR$/app/src/androidTest/java/uac/imsp/clockingapp/ClockInTest.java</url>
           <line>30</line>
           <option name="timeStamp" value="143" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/ConsultStatisticsByEmployeeController.java</url>
+          <line>48</line>
+          <option name="timeStamp" value="153" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/ConsultPresenceReportController.java</url>
+          <line>43</line>
+          <option name="timeStamp" value="154" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

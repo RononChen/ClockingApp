@@ -440,7 +440,7 @@ d=new Day(year,month,length-1);
         for (i = 0; i < table.length; i++) {
             //to browse the calendar especially the concerned month
             day = new Day(day.getYear(), month, i + 1);
-            table[i] = status.getOrDefault(day.getDate(), "");
+            table[i] = status.getOrDefault(day.getDate(), "Undefined");
 
         }
 

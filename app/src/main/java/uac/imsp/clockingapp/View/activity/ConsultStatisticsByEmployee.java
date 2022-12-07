@@ -1,6 +1,7 @@
 package uac.imsp.clockingapp.View.activity;
 
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -14,6 +15,7 @@ import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.github.mikephil.charting.utils.ColorTemplate;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
 import java.util.Hashtable;
 
@@ -26,8 +28,8 @@ public class ConsultStatisticsByEmployee extends AppCompatActivity
  implements IConsultStatisticsByEmployeeView,
         View.OnClickListener {
     private IConsultStatisticsByEmployeeController consultStatisticsByEmployeePresenter;
-    private TextView Date;
-    private Button previous,next;
+    private TextView reportPeriod;
+    Button next,previous;
 
     // variable for our bar chart
     BarChart barChart;
@@ -54,21 +56,29 @@ public class ConsultStatisticsByEmployee extends AppCompatActivity
         consultStatisticsByEmployeePresenter.onConsultStatisticsForEmployee(actionNumber);
     }
 
-    @Override
-    public void onStart(String date) {
-        Date.setText(date);
 
-
-    }
 public void initView(){
     barChart = findViewById(R.id.chart);
-    Date=findViewById(R.id.stat_date);
-    previous=findViewById(R.id.stat_previous);
-    next=findViewById(R.id.stat__next);
+    reportPeriod =findViewById(R.id.stat_date);
+     previous = findViewById(R.id.stat_previous);
+    next = findViewById(R.id.stat__next);
     previous.setOnClickListener(this);
     next.setOnClickListener(this);
 
 }
+
+    @Override
+    public void onStart(int firstDayNumber, int lastDayNameNumber, int mouthLength, int month, int year) {
+        String [] days=getResources().getStringArray(R.array.days);
+        String [] months=getResources().getStringArray(R.array.months);
+        //From Monday 20 November 2022 to Friday 23 December 2022
+        String from=getString(R.string.from);
+        String to=getString(R.string.to);
+        reportPeriod.setText(MessageFormat.format("{0} {1} 1 {2} {3} {4} {5} {6} {7} {3}",
+                from, days[firstDayNumber - 1], months[month - 1], year,to, days[lastDayNameNumber - 1], mouthLength, months[month - 1], year));
+
+    }
+
     @Override
     public void onMonthSelected(Hashtable<Character, Float> statistics) {
 
@@ -79,10 +89,13 @@ public void initView(){
         // if(statistics.containsKey('P'))
 
         barEntriesArrayList.add(new BarEntry(1f, statistics.get('P')));
-        barEntriesArrayList.add(new BarEntry(2f,  statistics.get('A')));
-        barEntriesArrayList.add(new BarEntry(3f, statistics.get('R')));
-        //barEntriesArrayList.add(new BarEntry(4f, statistics.get('W')));
-        //barEntriesArrayList.add(new BarEntry(5f, statistics.get('F')));
+        barEntriesArrayList.add(new BarEntry(2f,  statistics.get('R')));
+        barEntriesArrayList.add(new BarEntry(3f, statistics.get('A')));
+
+        /*barEntriesArrayList.add(new BarEntry(1f, 1));
+        barEntriesArrayList.add(new BarEntry(2f,  2));
+        barEntriesArrayList.add(new BarEntry(3f,3));
+        barEntriesArrayList.add(new BarEntry(4f, 4));*/
 
 
         // creating a new bar data set.
@@ -96,6 +109,24 @@ public void initView(){
         // below line is to set data
         // to our bar chart.
         barChart.setData(barData);
+        barChart.setClickable(false);
+        barChart.setEnabled(false);
+        barChart.setDrawBarShadow(false);
+        barChart.setDrawValueAboveBar(false);
+        barChart.setActivated(false);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            barChart.setAllowClickWhenDisabled(false);
+        }
+        barChart.setFocusable(false);
+        barChart.setFocusableInTouchMode(false);
+        barChart.setHorizontalFadingEdgeEnabled(false);
+        barChart.fitScreen();
+        barChart.setHovered(false);
+        barChart.setFitBars(true);
+        barChart.setScrollContainer(false);
+        barChart.setVerticalFadingEdgeEnabled(false);
+        barChart.setScaleYEnabled(false);
+        barChart.setScaleXEnabled(false);
 
         // adding color to our bar data set.
         barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
@@ -105,8 +136,27 @@ public void initView(){
 
         // setting text size
         barDataSet.setValueTextSize(16f);
-        barChart.getDescription().setEnabled(false);
+        barChart.getDescription().setEnabled(true);
 
+    }
+
+    @Override
+    public void onReportNotAccessible(boolean nextMonthReport) {
+        if(nextMonthReport)
+            this.next.setClickable(false);
+        else
+            previous.setClickable(false);
+
+
+
+    }
+
+    @Override
+    public void onReportAccessible(boolean nextMonthReport) {
+        if(nextMonthReport)
+            this.next.setClickable(true);
+        else
+            this.previous.setClickable(true);
     }
 
     @Override

@@ -62,7 +62,7 @@ public class ConsultPresenceReport extends AppCompatActivity
             String to=getString(R.string.to);
             reportPeriod.setText(MessageFormat.format("{0} {1} 1 {2} {3} {4} {5} {6} {7} {3}",
                     from, days[firstDayNumber - 1], months[month - 1], year,to, days[lastDayNameNumber - 1], mouthLength, months[month - 1], year));
-//reportPeriod.setText("OK");
+
 
     }
 
