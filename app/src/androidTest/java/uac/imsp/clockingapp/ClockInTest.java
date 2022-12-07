@@ -16,15 +16,12 @@ import uac.imsp.clockingapp.View.util.IClockInOutView;
 
 @RunWith(AndroidJUnit4.class)
 public class ClockInTest implements IClockInOutView {
-	private final Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-	private ClockingInOutController clockingInOutPresenter ;
+	private final ClockingInOutController clockingInOutPresenter ;
 	Day day;String  time;
 	public ClockInTest() {
-
+		Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
 		clockingInOutPresenter = new ClockingInOutController(this, appContext);
 		assertNotNull(clockingInOutPresenter);
-
-
 	}
 	@Test
  	public void test(){
@@ -81,6 +78,57 @@ public class ClockInTest implements IClockInOutView {
 		day=new Day(12,14);
 		time="09:00";
 		testClocking(day.getDate(),time);
+	}
+	@Test
+	public void testWith_01_12_2022(){
+
+		day=new Day(12,1);
+		time="08:00";
+		testClocking(day.getDate(),time);
+	}
+	@Test
+	public void testWith_02_12_2022(){
+
+		day=new Day(12,2);
+		time="08:01";
+		testClocking(day.getDate(),time);
+	}
+	@Test
+	public void testWith_03_12_2022(){
+
+		day=new Day(12,3);
+		time="08:00";
+		testClocking(day.getDate(),time);
+	}
+	@Test
+	public void testWith_04_12_2022(){
+
+		day=new Day(12,4);
+		time="07:00";
+		testClocking(day.getDate(),time);
+	}
+	@Test
+	public void testWith_05_12_2022(){
+
+		day=new Day(12,5);
+		time="05:00";
+		testClocking(day.getDate(),time);
+	}
+	@Test
+	public void testWith_06_12_2022(){
+
+		day=new Day(12,6);
+		time="08:06";
+		testClocking(day.getDate(),time);
+	}
+	@Test
+	public void testFrom_01_12_2022_To_06_12_2012(){
+		testWith_01_12_2022();
+		testWith_02_12_2022();
+		testWith_03_12_2022();
+		testWith_04_12_2022();
+		testWith_05_12_2022();
+		testWith_06_12_2022();
 	}
 	@Test
 	public void testWith_12_12_2022(){

@@ -115,7 +115,7 @@ public class ConsultPresenceReport extends AppCompatActivity
                                 textView.setText(String.valueOf(c+1));
                                 //mark the current date
                                 if(c+1==day.getDayOfMonth())
-                                        textView.setTextColor(Color.rgb(15,99,66));
+                                        textView.setTextColor(Color.rgb(15,99,200));
 
                                 if(Objects.equals(Report[c], "Présent"))
                                         tableRow.getChildAt(j-1).setBackgroundColor(Color.GREEN);
