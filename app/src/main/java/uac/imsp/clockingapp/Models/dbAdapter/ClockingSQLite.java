@@ -42,7 +42,7 @@ public class ClockingSQLite  extends SQLiteOpenHelper {
             TABLE_POINTAGE + " (" +
             COL_ID_POINTAGE + " INTEGER NOT NULL  PRIMARY KEY AUTOINCREMENT, " +
                    COL_ID_JOUR_REF + " TEXT    ," +
-                   COL_DATE_JOUR+" TEXT UNIQUE ,"+
+                   COL_DATE_JOUR+" TEXT,"+
             COL_HEURE_ENTREE + "   TEXT ," +
             COL_HEURE_SORTIE + " TEXT ," +
                    COL_STATUT+" TEXT DEFAULT NULL ,"+

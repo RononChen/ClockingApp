@@ -220,4 +220,6 @@
     <string name="confirmation" >Confirmation</string>
     <string name="confirmation_update" >Are you sure you want to apply these changes\?</string>
     <string name="no_update" >No information has been changed</string>
+    <string name="from" >From </string>
+    <string name="to" >To </string>
 </resources>

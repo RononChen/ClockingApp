@@ -227,8 +227,6 @@
     <string name="mail_required" >Adresse mail requise \!</string>
     <string name="username_required" >Username requis \!</string>
     <string name="password_required" >Mot de passe requis \!</string>
-
-
     <string name="number_invalid" >Matricule invalide \!</string>
     <string name="last_name_invalid" >Nom invalide \!</string>
     <string name="firstname_invalid" >Prénom(s) invalide(s) \!</string>
@@ -237,7 +235,6 @@
     <string name="password_invalid" >Mot de passe invalide \!</string>
     <string name="no_workday_choosen" >Aucun jour de travail choisi</string>
     <string name="number_already_assigned" >Ce matricule a été déjà attribué à un employé \!</string>
-
     <string name="mail_already_assigned" >Cette adresse mail a été déjà attribué à un employé \!</string>
     <string name="username_already_assigned" >Ce nom d\'utilisateur a été déjà attribué à un employé \!</string>
     <string name="account_informations" >Informations de compte employé</string>
@@ -247,4 +244,6 @@
     <string name="confirmation" >Confirmation</string>
     <string name="confirmation_update" >Voulez vous vraiment appliquer ces modifications \?</string>
     <string name="no_update" >Aucune information n\'a été modifiée</string>
+    <string name="from" >Du</string>
+    <string name="to" >au </string>
 </resources>

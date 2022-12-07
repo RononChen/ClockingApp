@@ -227,8 +227,6 @@
     <string name="mail_required" >Adresse mail requise \!</string>
     <string name="username_required" >Username requis \!</string>
     <string name="password_required" >Mot de passe requis \!</string>
-
-
     <string name="number_invalid" >Matricule invalide \!</string>
     <string name="last_name_invalid" >Nom invalide \!</string>
     <string name="firstname_invalid" >Prénom(s) invalide(s) \!</string>
@@ -247,4 +245,6 @@
     <string name="confirmation" >Confirmation</string>
     <string name="confirmation_update" >Voulez vous vraiment appliquer ces modifications \?</string>
     <string name="no_update" >Aucune information n\'a été modifiée</string>
+    <string name="from" >Du </string>
+    <string name="to" >au </string>
 </resources>

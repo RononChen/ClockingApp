@@ -1,28 +1,29 @@
         package uac.imsp.clockingapp.View.activity;
 
-import android.graphics.Color;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TableLayout;
-import android.widget.TableRow;
-import android.widget.TextView;
+        import android.graphics.Color;
+        import android.os.Bundle;
+        import android.view.View;
+        import android.widget.Button;
+        import android.widget.TableLayout;
+        import android.widget.TableRow;
+        import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
+        import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.Objects;
+        import java.text.MessageFormat;
+        import java.util.Objects;
 
-import uac.imsp.clockingapp.Controller.control.ConsultPresenceReportController;
-import uac.imsp.clockingapp.Controller.util.IConsultPresenceReportController;
-import uac.imsp.clockingapp.Models.entity.Day;
-import uac.imsp.clockingapp.R;
-import uac.imsp.clockingapp.View.util.IConsultPresenceReportView;
+        import uac.imsp.clockingapp.Controller.control.ConsultPresenceReportController;
+        import uac.imsp.clockingapp.Controller.util.IConsultPresenceReportController;
+        import uac.imsp.clockingapp.Models.entity.Day;
+        import uac.imsp.clockingapp.R;
+        import uac.imsp.clockingapp.View.util.IConsultPresenceReportView;
 
 public class ConsultPresenceReport extends AppCompatActivity
         implements IConsultPresenceReportView,
         View.OnClickListener {
         private TableLayout report;
-        private TextView Date;
+        private TextView reportPeriod;
         private  Button previous,next;
         private int firstDayNumberInWeek;
  private String[] Report;
@@ -41,25 +42,31 @@ public class ConsultPresenceReport extends AppCompatActivity
 
         }
         public void initView(){
-                previous = findViewById(R.id.report_previous);
+            int actionNumber = getIntent().getIntExtra("CURRENT_NUMBER", 1);
+
+            previous = findViewById(R.id.report_previous);
                 next = findViewById(R.id.report_next);
                 previous.setOnClickListener(this);
                 next.setOnClickListener(this);
                 next.setOnClickListener(this);
                 report =findViewById(R.id.report_table);
-                Date=findViewById(R.id.report_date);
-
-                int actionNumber = getIntent().getIntExtra("CURRENT_NUMBER", 1);
-
+                reportPeriod =findViewById(R.id.report_date);
                 consultPresenceReportPresenter.onConsultPresenceReport(actionNumber);
         }
+    @Override
+    public void onStart(int firstDayNumber, int lastDayNameNumber, int mouthLength, int month, int year) {
+            String [] days=getResources().getStringArray(R.array.days);
+        String [] months=getResources().getStringArray(R.array.months);
+    //From Monday 20 November 2022 to Friday 23 December 2022
+            String from=getString(R.string.from);
+            String to=getString(R.string.to);
+            reportPeriod.setText(MessageFormat.format("{0} {1} 1 {2} {3} {4} {5} {6} {7} {3}",
+                    from, days[firstDayNumber - 1], months[month - 1], year,to, days[lastDayNameNumber - 1], mouthLength, months[month - 1], year));
+//reportPeriod.setText("OK");
 
-        @Override
-        public void onStart(String date) {
+    }
 
-                Date.setText(date);
-        }
-  /**
+    /**
    This function takes as arguments :
    1-the report which is a table of strings that contains the presence state
    of employee during the concerned month
@@ -73,9 +80,6 @@ public class ConsultPresenceReport extends AppCompatActivity
                 this.firstDayNumberInWeek=firstDayNumberInWeek;
                 setReportVisible();
         }
-
-
-
         public void setReportVisible(){
                 TableRow tableRow;
                 boolean allBrowsed=false;
@@ -104,12 +108,6 @@ public class ConsultPresenceReport extends AppCompatActivity
                                 //all days are browsed
                                 if(c==Report.length) {
                                         allBrowsed=true;
-                                        /*for(c=j-1;c<7;c++)
-                                        {
-                                            textView= (TextView) tableRow.getChildAt(c);
-                                           textView.setVisibility(View.GONE);
-                                        }*/
-
                                         break;
                                 }
 
@@ -136,15 +134,24 @@ public class ConsultPresenceReport extends AppCompatActivity
 
 
         @Override
-        public void onReportError(boolean nextError) {
-                if(nextError)
-                        next.setClickable(false);
+        public void onReportNotAccessible(boolean nextMonthReport) {
+                if(nextMonthReport)
+                        this.next.setClickable(false);
                 else
-                        previous.setClickable(true);
+                        previous.setClickable(false);
 
         }
 
-        @Override
+    @Override
+    public void onReportAccessible(boolean nextMonthReport) {
+            if(nextMonthReport)
+                this.next.setClickable(true);
+            else
+                this.previous.setClickable(true);
+
+    }
+
+    @Override
         public void onClick(View v) {
                 if(v.getId()==R.id.report_previous)
                         consultPresenceReportPresenter.onPreviousMonth();

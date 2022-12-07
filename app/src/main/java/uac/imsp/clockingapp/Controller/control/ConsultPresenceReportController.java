@@ -11,7 +11,7 @@ import uac.imsp.clockingapp.Models.entity.Employee;
 import uac.imsp.clockingapp.View.util.IConsultPresenceReportView;
 
 public class ConsultPresenceReportController implements IConsultPresenceReportController {
-    private IConsultPresenceReportView consultPresenceReportView;
+    private final IConsultPresenceReportView consultPresenceReportView;
     private Employee employee;
     private final Context context;
     //private int Month,Year;
@@ -31,7 +31,8 @@ public class ConsultPresenceReportController implements IConsultPresenceReportCo
 
     @Override
     public void onConsultPresenceReport(int number) {
-        String period;
+        Day d;
+
         String [] state;
         EmployeeManager employeeManager;
         boolean accessible =true;
@@ -39,21 +40,29 @@ public class ConsultPresenceReportController implements IConsultPresenceReportCo
         employeeManager = new EmployeeManager(context);
         employeeManager.open();
         employeeManager.retrieveAddDate(employee);
+        //the month following the current one
+        d=new Day(day.getFirstDayOfMonth(),day.getMonth(), day.getYear());
 
         if (day.addMonth().getMonthPart().compareTo(currentDay.getMonthPart()) > 0) {
-            consultPresenceReportView.onReportError(true);
+            consultPresenceReportView.onReportNotAccessible(true);
             accessible =false;
         }
+        else
+            consultPresenceReportView.onReportAccessible(true);
+
+
+
+        //the month preceding the current one
         if (day.subtractMonth().getMonthPart().
                 compareTo(new Day(employee.getAddDate()).getMonthPart()) < 0) {
-            consultPresenceReportView.onReportError(false);
+            consultPresenceReportView.onReportNotAccessible(false);
             accessible =false;
         }
-        period = "Du 01 " + day.getFormatedMonth() + " " + day.getFormatedYear() +
-                " au " +
-                day.getLenthOfMonth() + " " + day.getFormatedMonth() + " " + day.getFormatedYear();
-if(accessible||cpt==0) {
-    consultPresenceReportView.onStart(period);
+        else
+            consultPresenceReportView.onReportAccessible(false);
+       if(accessible||cpt==0) {
+    consultPresenceReportView.onStart(day.getDayOfWeek(),d.getDayOfWeek() ,
+            day.getLenthOfMonth(),day.getMonth(),day.getYear());
 
 
 
@@ -67,7 +76,6 @@ if(accessible||cpt==0) {
 
     @Override
     public void onPreviousMonth() {
-        //Employee employee;
 
                    if (day.getDayOfMonth() == 1)//we should go to the previous year
                 ///moving to the december month of the previous year

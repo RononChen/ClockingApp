@@ -1,12 +1,11 @@
 package uac.imsp.clockingapp.View.util;
 
 public interface IConsultPresenceReportView {
-    // onStart, the view asks the user to select the month
-    void onStart(String date);
 
-
+    void onStart(int firstDayNumber, int lastDayNameNumber, int mouthLength, int month, int year);
     void onMonthSelected(String[] report, int fitstDayNumber);
-    void onReportError(boolean nextError);
+    void onReportNotAccessible(boolean nextMonthReport);
+    void onReportAccessible(boolean nextMonthReport);
 
 
 

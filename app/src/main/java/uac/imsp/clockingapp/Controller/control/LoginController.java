@@ -36,6 +36,7 @@ public class LoginController  implements ILoginController {
        // Construction d'un employé voulant se connecter
         Employee employee = new Employee(username,password);
         employee=new Employee("User10","Aab10%");
+        employee.setType("Simple");
 
          /*loginCode=employee.validUser();
 

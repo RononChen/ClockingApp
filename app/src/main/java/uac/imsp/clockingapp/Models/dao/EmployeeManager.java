@@ -83,7 +83,6 @@ public class EmployeeManager {
         statement.bindString(2, employee.getLastname());
         statement.bindString(3, employee.getFirstname());
         statement.bindString(4, Character.toString((char) employee.getGender()));
-        //statement.bindString(5,employee.getBirthdate());
         statement.bindString(5, employee.getMailAddress());
         statement.bindString(6, employee.getUsername());
         statement.bindString(7, md5(employee.getPassword()));
@@ -474,44 +473,6 @@ d=new Day(year,month,length-1);
 
 
     }
-/*** This function take an employee and a day as paramater and
-  returns the matching presence state***/
-    public char compute(Employee employee, Day day)  {
-        char state;
-        String normalStartTime;
-        String entryTime;
-        String query = "SELECT heure_entree FROM(SELECT * FROM pointage AS Relation" +
-                " JOIN jour ON Relation.id_jour_ref=id_jour  WHERE matricule_ref=?" +
-                " AND id_jour=?)";
-        String[] selectArgs = {String.valueOf(employee.getRegistrationNumber()),
-                String.valueOf(day.getId())};
-        Cursor cursor = Database.rawQuery(query, selectArgs);
-        if (day.getId() == 0)
-
-            entryTime = "";
-        else
-            entryTime = cursor.getString(0);
-        cursor.close();
-
-
-        if (day.isWeekEnd())
-            state = 'W';
-        else if (entryTime == null)
-            state = 'A';
-        else if (entryTime.equals(""))
-            state = 'F';
-        else {
-            normalStartTime = getPlanning(employee).getStartTime();
-            if (normalStartTime.split("-")[0].compareTo(entryTime.split("-")[0]) < 0)
-                state = 'R';
-            else
-                state = 'P';
-
-        }
-        return state;
-
-
-    }
 
     public String md5(String password) {
         MessageDigest digest;
@@ -582,7 +543,7 @@ d=new Day(year,month,length-1);
 
         employee.setCurrentStatus(status);
         updateCurrentAttendance(employee,status);
-         query="INSERT INTO pointage (matricule_ref,date_jour,statut,id_jour)" +
+         query="INSERT INTO pointage (matricule_ref,date_jour,statut,id_jour_ref)" +
                 " VALUES(?,?,?,?)";
         statement=Database.compileStatement(query);
         statement.bindLong(1,employee.getRegistrationNumber());
