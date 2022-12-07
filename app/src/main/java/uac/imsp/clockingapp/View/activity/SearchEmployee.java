@@ -74,7 +74,8 @@ public class SearchEmployee extends AppCompatActivity
     }
 
     @Override
-    public void onEmployeeSelected(String tilte) {
+    public void onEmployeeSelected() {
+        String tilte=getString(R.string.select_option);
 
         String  [] options=getResources().getStringArray(R.array.actions);
         builder=new AlertDialog.Builder(this);

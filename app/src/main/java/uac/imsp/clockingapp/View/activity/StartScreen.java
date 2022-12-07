@@ -45,7 +45,8 @@ implements View.OnClickListener  , IStartScreenView {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         preferences = getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
-        lang = preferences.getString("lang", "fr");
+        //lang = preferences.getString("lang", "fr");
+        lang="en";
         dark=preferences.getBoolean("dark",false);
         //if(dark)
            AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);

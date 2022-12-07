@@ -103,10 +103,11 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
         }
         catch (NullPointerException e){
             birthdate="";
-            informations.put("birthdate",birthdate);
+
             e.printStackTrace();
 
         }
+        informations.put("birthdate",birthdate);
 
         informations.put("type",employee.getType());
         informations.put("service",service.getName());

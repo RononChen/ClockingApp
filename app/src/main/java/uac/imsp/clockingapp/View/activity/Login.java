@@ -138,7 +138,11 @@ public class Login extends AppCompatActivity
     }
 
     @Override
-    public void askWish(String pos, String neg, String title, String message) {
+    public void askWish() {
+        String pos=getString(R.string.yes),neg=getString(R.string.no),
+        title=getString(R.string.confirm_login_title),
+        message=getString(R.string.confirm_login);
+
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(message)
                 .setCancelable(false)

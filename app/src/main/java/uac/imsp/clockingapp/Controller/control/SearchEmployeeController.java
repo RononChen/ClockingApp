@@ -68,7 +68,7 @@ public class SearchEmployeeController  implements
 
     @Override
     public void onEmployeeSelected(int number) {
-        searchEmployeeView.onEmployeeSelected("Séléctionnez une option");
+        searchEmployeeView.onEmployeeSelected();
 
     }
 

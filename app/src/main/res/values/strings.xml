@@ -247,4 +247,6 @@
     <string name="no_update" >Aucune information n\'a été modifiée</string>
     <string name="from" >Du </string>
     <string name="to" >au </string>
+    <string name="label" >Statistiques de présence pour employé</string>
+
 </resources>

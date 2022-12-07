@@ -125,7 +125,6 @@ public static final String CREATE_TEMP= "CREATE  TABLE IF NOT EXISTS variable" +
         statement.bindString(9,"AKOBA");
         statement.bindString(10,"Patrick");
         statement.bindString(11,"1970-01-01");
-        //statement.bindString(12,"DATE('NOW','LOCALTIME')");
         statement.execute();
         String service = "INSERT INTO service(nom)  VALUES (?)";
         statement= db.compileStatement(service);

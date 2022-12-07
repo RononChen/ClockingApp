@@ -75,19 +75,21 @@ public class EmployeeManager {
         // open();
         SQLiteStatement statement;
         String query = "INSERT INTO employe (matricule,nom,prenom,sexe," +
-                "couriel,username,password,type,date_ajout) VALUES(?,?,?,?,?,?,?,?,?) ";
+                "couriel,username,password,type,date_ajout) VALUES(?,?,?,?,?,?,?,?,?,DATE(?,?)) ";
         statement = Database.compileStatement(query);
 
         statement.bindLong(1, employee.getRegistrationNumber());
 
         statement.bindString(2, employee.getLastname());
         statement.bindString(3, employee.getFirstname());
-        statement.bindString(4, Character.toString((char) employee.getGender()));
+        statement.bindString(4, Character.toString(employee.getGender()));
         statement.bindString(5, employee.getMailAddress());
         statement.bindString(6, employee.getUsername());
         statement.bindString(7, md5(employee.getPassword()));
         statement.bindString(8, employee.getType());
-        statement.bindString(8, "DATE('NOW','LOCALTIME'");
+        statement.bindString(10, "NOW");
+        statement.bindString(11, "LOCALTIME");
+
         statement.executeInsert();
         //if the birthdate is given
         if (employee.getBirthdate()!=null) {

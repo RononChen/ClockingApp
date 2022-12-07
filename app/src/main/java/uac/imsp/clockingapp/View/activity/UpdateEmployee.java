@@ -49,7 +49,7 @@ public class UpdateEmployee extends AppCompatActivity
     private EditText Email;
     private TextView Programm;
     private String selectedService, selectedType, provisionalService,provisionalType;
-    private static Spinner spinnerTypes, spinnerServices;
+    private  Spinner spinnerTypes, spinnerServices;
     private CircleImageView image;
     private Bitmap picture;
     CheckBox monday, tuesday, wednesday, thursday, friday, satursday, sunday;
@@ -79,13 +79,8 @@ public class UpdateEmployee extends AppCompatActivity
         setContentView(R.layout.activity_update_employee);
         retrieveSharedPreferences();
         updateEmployeePresenter = new UpdateEmployeeController(this);
-        try {
 
-            initView();
-        } catch (ParseException e) {
-            e.printStackTrace();
-
-        }
+        initView();
 
 
     }
@@ -144,14 +139,19 @@ public class UpdateEmployee extends AppCompatActivity
 
     }
 
-    public void initView() throws ParseException {
+    public void initView()  {
 
         int position;
         int actionNumber = getIntent().getIntExtra("ACTION_NUMBER", 1);
 
         Hashtable<String, Object> informations = new Hashtable<>();
         String[] employeTypes = getResources().getStringArray(R.array.employee_types);
-        String[] services = updateEmployeePresenter.onLoad(actionNumber, informations);
+        String[] services = new String[0];
+        try {
+            services = updateEmployeePresenter.onLoad(actionNumber, informations);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
         selectedService = (String) informations.get("service");
         selectedType = (String) informations.get("type");
         provisionalService=selectedService;

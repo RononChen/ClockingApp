@@ -99,8 +99,7 @@ public void initView(){
 
 
         // creating a new bar data set.
-        barDataSet = new BarDataSet(barEntriesArrayList, "Statistiques" +
-                " de présence par employé");
+        barDataSet = new BarDataSet(barEntriesArrayList, "");
 
         // creating a new bar data and
         // passing our bar data set.

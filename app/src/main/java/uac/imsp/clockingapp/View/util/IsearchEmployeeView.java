@@ -12,7 +12,7 @@ public interface IsearchEmployeeView {
     void onEmployeeFound(ArrayList<Result> list);
 
 
-    void onEmployeeSelected(String tilte);
+    void onEmployeeSelected();
     void onUpdate();
     void onDelete();
     void onPresenceReport();

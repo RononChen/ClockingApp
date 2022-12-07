@@ -72,8 +72,8 @@ public class LoginController  implements ILoginController {
         loginView.onLoginSuccess(CurrentEmployee);
 
         if(!employee.getType().equals("Simple"))
-                       loginView.askWish("Oui","Non","Choix du type de connexion",
-                               "Voulez vous vous connecter en tant qu'administrateur?");
+                       loginView.askWish(
+                       );
 
             //}
 
@@ -81,8 +81,8 @@ public class LoginController  implements ILoginController {
 
 
         //}
-        loginView.askWish("Oui","Non","Choix du type de connexion",
-                "Voulez vous vous connecter en tant qu'administrateur?");
+        loginView.askWish(
+        );
 
 
     }

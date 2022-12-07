@@ -21,7 +21,7 @@ import uac.imsp.clockingapp.View.util.IsearchEmployeeView;
 public class SearchEmployeeTest implements IsearchEmployeeView {
 
     private final Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-    private SearchEmployeeController searchEmployeeController;
+    private final SearchEmployeeController searchEmployeeController;
 
     public  SearchEmployeeTest(){
         searchEmployeeController=new SearchEmployeeController(this,
@@ -52,7 +52,7 @@ public class SearchEmployeeTest implements IsearchEmployeeView {
     }
 
     @Override
-    public void onEmployeeSelected(String tilte) {
+    public void onEmployeeSelected() {
 
     }
 

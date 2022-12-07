@@ -8,7 +8,7 @@ public interface ILoginView {
     void onUsernameError(String username);
     void onShowHidePassword();
     void onMaxAttempsReached(String message);
-    void askWish(String pos, String neg, String title, String message);
+    void askWish();
     void onPositiveResponse();
     void onNegativeResponse();
 

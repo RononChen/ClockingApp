@@ -14,7 +14,7 @@ import uac.imsp.clockingapp.View.util.IMenuView;
 @RunWith(AndroidJUnit4.class)
 public class MenuTest implements IMenuView {
     //private final Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-    private MenuController menuPresenter;
+    private final MenuController menuPresenter;
     public MenuTest(){
         menuPresenter=new MenuController(this);
         assertNotNull(menuPresenter);
