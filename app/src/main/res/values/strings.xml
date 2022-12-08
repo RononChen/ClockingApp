@@ -139,7 +139,7 @@
     <string name="english">Anglais</string>
     <string name="french">Français</string>
     <string name="date" translatable="false">date</string>
-    <string name="work_days">WorkDays</string>
+    <string name="work_days">Jours de travail</string>
 
     <string name="monday">Lundi</string>
     <string name="tuesday">Mardi</string>
@@ -254,5 +254,22 @@
     <string name="from" >Du </string>
     <string name="to" >au </string>
     <string name="label" >Statistiques de présence pour employé</string>
+
+    <string-array name="current_status">
+        <item>Présent(e)</item>
+        <item>Absent(e)</item>
+        <item>Retard</item>
+        <item>Hors service</item>
+        <item>Sorti(e)</item>
+    </string-array>
+    <string name="subject_registration" >Informations de compte employé</string>
+    <string name="has_been" >, vous avez été enregistré en tant qu\'employé.\nConsultez ci-dessous
+     les informations de votre compte.\n Username: </string>
+    <string name="pass" >Mot de passe: </string>
+    <string name="qr" >Recevez également en pièce jointe votre code QR.\n
+        Il vous permettra d\'enregistrer vos entrées et sorties.</string>
+
+
+
 
 </resources>

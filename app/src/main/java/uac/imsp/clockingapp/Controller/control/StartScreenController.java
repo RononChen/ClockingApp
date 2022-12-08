@@ -86,6 +86,7 @@ public class StartScreenController  implements IStartScreenController {
                else
                   status="Absent";
                 employeeManager.setDayAttendance(employee,status,day);
+                //employee.setCurrentStatus(status);
 
         }
         employeeManager.updateVariable();

@@ -389,13 +389,13 @@
         </LinearLayout>
             <!--Button to open the image selector-->
             <Button
+                android:layout_marginStart="20dp"
                 android:id="@+id/register_picture_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
                 android:text="@string/register_picture"
-                android:background="@drawable/mybutton"
-                android:textSize="18sp" />
+                android:background="@drawable/mybutton" />
             <!-- android:backgroundTint="" -->
 
 
@@ -415,6 +415,7 @@
             <TextView
                 android:id="@+id/register_work_days"
                 android:textSize="18sp"
+                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="3dp"

@@ -558,6 +558,41 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
         statement.executeInsert();
 
     }
+
+    public int getStatus(Employee employee,Day day){
+        String status,exitTime = null;
+        int index = -1;
+
+        String query = "SELECT statut,heure_sortie FROM pointage " +
+                "WHERE matricule_ref=? AND date_jour=?" ;
+        String[] selectArgs = {
+                String.valueOf(employee.getRegistrationNumber()),
+                String.valueOf(day.getDate()),
+        };
+        Cursor cursor = Database.rawQuery(query, selectArgs);
+        if(!cursor.moveToFirst())
+            status="Sorti";
+        else {
+            status = cursor.getString(0);
+            exitTime=cursor.getString(1);
+        }
+        cursor.close();
+        if(Objects.equals(status, "Absent"))
+            index=1;
+        else if(Objects.equals(status, "Hors service"))
+            index=3;
+        else if(!Objects.equals(exitTime, ""))
+            //case "Sorti":
+            index=4;
+        else if(Objects.equals(status, "Présent"))
+            index=0;
+        
+      else   if(Objects.equals(status, "Retard"))
+            index=2;
+      
+        return index;
+
+    }
 //for unit test
     public void setAttendance(Employee employee,String status, String date){
         SQLiteStatement statement;

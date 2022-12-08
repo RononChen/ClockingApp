@@ -19,6 +19,7 @@ public class ListViewAdapter  extends ArrayAdapter {
 
 
     public ListViewAdapter(Context context,  ArrayList<Result> listData) {
+
         super(context,R.layout.result_item_layout,listData);
     }
     public static class ViewHolder {
@@ -29,6 +30,7 @@ public class ListViewAdapter  extends ArrayAdapter {
         TextView statusView;
     }
     public View getView(int position, View convertView, ViewGroup parent) {
+        String [] status=getContext().getResources().getStringArray(R.array.current_status);
         Bitmap pictureBipmap;
 
         ViewHolder holder;
@@ -56,7 +58,7 @@ public class ListViewAdapter  extends ArrayAdapter {
         holder.numberView.setText(String.valueOf(result.getNumber()));
         holder.nameView.setText(result.getName());
         holder.serviceView.setText(result.getService());
-        holder.statusView.setText(result.getStatus());
+        holder.statusView.setText(status[result.getStatus()]);
         if(result.getPicture()!=null) {
             pictureBipmap=getBitMapFromBytes(result.getPicture());
             holder.pictureView.setImageBitmap(pictureBipmap);

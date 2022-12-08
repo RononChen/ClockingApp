@@ -188,11 +188,12 @@ public class ClockingManager {
         statement.bindLong(3, id);
         statement.executeUpdateDelete();
      employee.setCurrentStatus("Sortie");
-        query="UPDATE employee SET status=? WHERE matricule=?";
+        query="UPDATE employee SET statut=? WHERE matricule=?";
         statement=Database.compileStatement(query);
         statement.bindString(1,employee.getCurrentStatus());
         statement.bindLong(2,employee.getRegistrationNumber());
         statement.executeUpdateDelete();
+
     }
 /**This method check if the given employee has(already) clocked in the given day**/
     public boolean hasNotClockedIn(@NonNull Employee employee, @NonNull Day day) {
@@ -212,6 +213,8 @@ public class ClockingManager {
           cursor.close();
         return n == 0;
     }
+
+
 
     public boolean hasNotClockedOut(Employee employee,Day day) {
 

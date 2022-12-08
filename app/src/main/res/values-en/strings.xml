@@ -228,4 +228,20 @@
         <item>>Number of absence(s) by service</item>
         <item>>Number of late(s) by service</item>
     </string-array>
+
+    <string-array name="current_status">
+        <item>Present</item>
+        <item>Absent</item>
+        <item>Late</item>
+        <item>Out service</item>
+        <item>Exited</item>
+    </string-array>
+
+    <string name="subject_registration" >Informations de compte employé</string>
+    <string name="has_been" >, you have been registered as employee.\nCheck below
+     your account information.\n Username: </string>
+    <string name="pass" >Password: </string>
+    <string name="qr" >Also receive your QR code as an attachment.\n
+        It will allow you to record your entries and exits.</string>
+
 </resources>

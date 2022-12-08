@@ -86,8 +86,7 @@ public class RegisterEmployeeController implements IRegisterEmployeeController
             if(elt=='T')
                 nb_workdays++;
         }
-String [] to;
-String subject, message;
+
 String gend;
         int registerCode;
         int n;
@@ -124,63 +123,53 @@ String gend;
 
        
    if( registerCode==EMPTY_NUMBER)
-       registerEmployeeView.onRegisterEmployeeError("Matricule requis !");
+       registerEmployeeView.onRegisterEmployeeError(0);
    else if(registerCode==INVALID_NUMBER)
-       registerEmployeeView.onRegisterEmployeeError("Matricule invalide !");
+       registerEmployeeView.onRegisterEmployeeError(1);
    else if(registerCode==EMPTY_LASTNAME)
-       registerEmployeeView.onRegisterEmployeeError("Nom requis !");
+       registerEmployeeView.onRegisterEmployeeError(2);
    else if(registerCode==INVALID_LASTNAME)
-       registerEmployeeView.onRegisterEmployeeError("Nom invalide !");
+       registerEmployeeView.onRegisterEmployeeError(3);
    else if(registerCode==EMPTY_FIRSTNAME)
-       registerEmployeeView.onRegisterEmployeeError("Prénom requis !");
+       registerEmployeeView.onRegisterEmployeeError(4);
    else if(registerCode==INVALID_FIRSTNAME)
-       registerEmployeeView.onRegisterEmployeeError("Prénom(s) invalide(s) !");
+       registerEmployeeView.onRegisterEmployeeError(5);
    else if(registerCode==EMPTY_MAIL)
-       registerEmployeeView.onRegisterEmployeeError("Email requis !");
+       registerEmployeeView.onRegisterEmployeeError(6);
    else if(registerCode==INVALID_MAIL)
-       registerEmployeeView.onRegisterEmployeeError("Email invalide !");
+       registerEmployeeView.onRegisterEmployeeError(7);
    else if(registerCode==EMPTY_USERNAME)
-       registerEmployeeView.onRegisterEmployeeError("Username requis !");
+       registerEmployeeView.onRegisterEmployeeError(8);
    else if (registerCode==INVALID_USERNAME)
-       registerEmployeeView.onRegisterEmployeeError("Username invalide !");
+       registerEmployeeView.onRegisterEmployeeError(9);
    else if(registerCode==EMPTY_PASSWORD)
-       registerEmployeeView.onRegisterEmployeeError("Mot de passe requis !");
+       registerEmployeeView.onRegisterEmployeeError(10);
    else if(registerCode==INVALID_PASSWORD)
-       registerEmployeeView.onRegisterEmployeeError("Mot de passe invalide !");
+       registerEmployeeView.onRegisterEmployeeError(11);
    else if(!Objects.equals(password, passwordConfirm))
 
-       registerEmployeeView.onRegisterEmployeeError("Vérifier le mot de passe " +
-               "et resssayer !");
+       registerEmployeeView.onRegisterEmployeeError(12);
 
    else if(nb_workdays==0)
-       registerEmployeeView.onRegisterEmployeeError("Aucun jour de travail choisi");
+       registerEmployeeView.onRegisterEmployeeError(13);
    else{
        employeeManager = new EmployeeManager(context);
        employeeManager.open();
 
        if(employeeManager.registrationNumberExists(employee))
 
-           registerEmployeeView.onRegisterEmployeeError("Ce matricule a été déjà été attribué à un employé !");
+           registerEmployeeView.onRegisterEmployeeError(14);
        else if(employeeManager.emailExists(employee))
-           registerEmployeeView.onRegisterEmployeeError("Ce couriel a été déjà" +
-                   " attribué à un employé !");
+           registerEmployeeView.onRegisterEmployeeError(15);
        else if(employeeManager.usernameExists(employee))
-       registerEmployeeView.onRegisterEmployeeError("Ce username a été déjà" +
-               " attribué à un employé !");
+       registerEmployeeView.onRegisterEmployeeError(16);
 
 
        else {
-           to = new String[]{employee.getMailAddress()};
-           subject = "Informations de compte employé";
+
 
            gend = employee.getGender() == 'M' ? "Monsieur" : "Madame";
-           message = gend + " " + employee.getFirstname() + " " + employee.getLastname() +
-                   ", vous avez été enregistré en tant qu'employé.\nConsultez ci-dessous" +
-                   " les informations de votre compte.\n" +
-                   "Username: " + employee.getUsername() + "\n" +
-                   "Mot de passe: " + employee.getPassword() + "\n" +
-                   "Recevez également en pièce jointe votre code QR.\n" +
-                   "Il vous permettra d'enregistrer vos entrées et sorties.";
+
            try {
 
                fileName = "qr_code_" + employee.getRegistrationNumber() + "_" +
@@ -188,7 +177,7 @@ String gend;
                        ".png";
                file = new File(context.getFilesDir(), fileName);
 
-               file.createNewFile();
+               assert (file.createNewFile());
 
            } catch (IOException e) {
                e.printStackTrace();
@@ -229,7 +218,11 @@ String gend;
                employeeManager.update(employee, employee.getPicture());
 
            registerEmployeeView.onRegisterEmployeeSuccess();
-           registerEmployeeView.sendEmail(to, subject, message, fileName);
+           registerEmployeeView.sendEmail( new String[]{employee.getMailAddress()},
+                   fileName,employee.getLastname(),employee.getFirstname()
+                   ,employee.getUsername() ,
+                   employee.getPassword(), gend
+                   );
        }
        employeeManager.close();
 

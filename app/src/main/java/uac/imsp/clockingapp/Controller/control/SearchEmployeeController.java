@@ -5,6 +5,7 @@ import android.content.Context;
 import java.util.ArrayList;
 
 import dao.EmployeeManager;
+import entity.Day;
 import entity.Employee;
 import uac.imsp.clockingapp.Controller.util.ISearchEmployeeController;
 import uac.imsp.clockingapp.Controller.util.Result;
@@ -29,6 +30,7 @@ public class SearchEmployeeController  implements
 
     @Override
     public  void onSearch(String data) {
+        int statusIndex;
         int number;
         String lastname,firstname,service;
         byte[] picture;
@@ -54,9 +56,11 @@ public class SearchEmployeeController  implements
                 lastname = employee.getLastname();
                 firstname = employee.getFirstname();
                 service = employeeManager.getService(employee).getName();
+                statusIndex=employeeManager.getStatus(employee,new Day());
                 picture=employee.getPicture();
 
-                result = new Result(number, lastname, firstname, service,"Absent",picture);
+                result = new Result(number, lastname, firstname, service,
+                        statusIndex,picture);
                 list.add(result);
             }
             searchEmployeeView.onEmployeeFound(list);

@@ -47,6 +47,7 @@ import uac.imsp.clockingapp.Controller.control.RegisterEmployeeController;
 import uac.imsp.clockingapp.Controller.util.IRegisterEmployeeController;
 import uac.imsp.clockingapp.R;
 import uac.imsp.clockingapp.View.util.IRegisterEmployeeView;
+import uac.imsp.clockingapp.View.util.ToastMessage;
 
 
 public class RegisterEmployee extends AppCompatActivity
@@ -300,8 +301,65 @@ public class RegisterEmployee extends AppCompatActivity
     }
 
     @Override
-    public void onRegisterEmployeeError(String message) {
-      Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+    public void onRegisterEmployeeError(int errorNumber) {
+        String message="";
+        switch (errorNumber){
+            case 0:
+                message=getString(R.string.number_required);
+                break;
+            case 1:
+                message=getString(R.string.number_invalid);
+                break;
+            case 2:
+                message=getString(R.string.last_name_required);
+                break;
+            case 3:
+                message=getString(R.string.last_name_invalid);
+                break;
+            case 4:
+                message=getString(R.string.firstname_required);
+                break;
+            case 5:
+                message=getString(R.string.firstname_invalid);
+                break;
+            case 6:
+                message=getString(R.string.mail_required);
+                break;
+            case 7:
+                message=getString(R.string.mail_invalid);
+                break;
+            case 8:
+                message=getString(R.string.username_required);
+                break;
+            case 9:
+                message=getString(R.string.username_invalid);
+                break;
+            case 10:
+                message=getString(R.string.password_required);
+                break;
+            case 11:
+                message=getString(R.string.password_invalid);
+                break;
+            case 12:
+                message=getString(R.string.chech_and_retry);
+                break;
+            case 13:
+                message=getString(R.string.no_workday_choosen);
+                break;
+            case 14:
+                message=getString(R.string.number_already_assigned);
+                break;
+            case 15:
+                message=getString(R.string.mail_already_assigned);
+                break;
+            case 16:
+                message=getString(R.string.username_already_assigned);
+                break;
+
+            default:
+                break;
+        }
+     new  ToastMessage(this,message);
     }
 
     @Override
@@ -331,7 +389,18 @@ public class RegisterEmployee extends AppCompatActivity
     }
 
     @Override
-    public void sendEmail(String[] to, String subject, String message, String qrCodeFileName) {
+    public void sendEmail(String[] to, String qrCodeFileName,
+                          String lastname, String firstname,
+                          String username, String password, String gender) {
+
+
+        String subject=getString(R.string.subject_registration);
+
+        String message = gender + " " + firstname + " " + lastname +
+                getString(R.string.has_been) + username + "\n" +
+                getString(R.string.pass) + password + "\n" +
+                getString(R.string.qr);
+
 
         File qrCodepicture =new File(getFilesDir(),qrCodeFileName);
 
@@ -345,7 +414,7 @@ public class RegisterEmployee extends AppCompatActivity
         Intent emailIntent=new Intent(Intent.ACTION_SEND);
         emailIntent.putExtra(Intent.EXTRA_EMAIL,to);
         emailIntent.putExtra(Intent.EXTRA_SUBJECT,subject);
-        emailIntent.putExtra(Intent.EXTRA_TEXT,message);
+        emailIntent.putExtra(Intent.EXTRA_TEXT, message);
         emailIntent.setType("image/png");
         emailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
         emailIntent.putExtra(Intent.EXTRA_STREAM,qrCodeUri);

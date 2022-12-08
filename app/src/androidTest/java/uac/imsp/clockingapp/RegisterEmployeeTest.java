@@ -173,7 +173,8 @@ public class RegisterEmployeeTest  implements IRegisterEmployeeView {
 
     }
     @Override
-    public void onRegisterEmployeeError(String message) {
+    public void onRegisterEmployeeError(int errorNumber) {
+        String message="";
         // assertEquals("Matricule requis !",message);
         // assertEquals("Nom requis !",message);
         //assertEquals("Nom invalide !",message);
@@ -221,7 +222,7 @@ public class RegisterEmployeeTest  implements IRegisterEmployeeView {
     }
 
     @Override
-    public void sendEmail(String[] to, String subject, String message, String qrCodeFileName) {
+    public void sendEmail(String[] to, String qrCodeFileName, String lastname, String firstname, String username, String password, String gender) {
 
     }
 

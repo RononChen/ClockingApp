@@ -6,8 +6,8 @@ public class Result {
     private String Name;
     private  String Service;
     private byte[] Picture;
-    private String Status;
-    public Result(int number,String lastName,String firstname,String service,String status,
+    private int Status;
+    public Result(int number,String lastName,String firstname,String service,int status,
                  byte[] picture){
         Number=number;
         Name = firstname+"  "+lastName;
@@ -15,12 +15,6 @@ public class Result {
         Status=status;
         Picture=picture;
     }
-    public Result(int number,String name,String service){
-        Number=number;
-        Name = name;
-        Service=service;
-    }
-
 
 
     //public Result(ArrayList)
@@ -50,12 +44,12 @@ public class Result {
         Service = service;
     }
 
-    public String getStatus() {
+    public int getStatus() {
         return Status;
 
     }
 
-    public void setStatus(String status) {
+    public void setStatus(int status) {
         Status = status;
 
     }
