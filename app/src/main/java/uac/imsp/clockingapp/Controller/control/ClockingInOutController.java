@@ -40,14 +40,15 @@ private final Context context;
         //connection to  database , employee table
         employeeManager = new EmployeeManager(context);
         //open employee connection
-        employeeManager.open();
+
         day=new Day(date);
         dayManager=new DayManager(context);
         dayManager.open();
         //A day is created and has an id
         dayManager.create(day);
+        dayManager.close();
 
-
+        employeeManager.open();
         if (!employeeManager.exists(employee))
             //employee does not exist
             clockInOutView.onClockingError(1);
@@ -81,8 +82,10 @@ private final Context context;
                 //close  clocking connection
                 clockingManager.close();
 
+
             }
         }
+        employeeManager.close();
 
 
     }
@@ -100,14 +103,15 @@ private final Context context;
             //connection to  database , employee table
             employeeManager = new EmployeeManager(context);
             //open employee connection
-            employeeManager.open();
+
             day=new Day();
             dayManager=new DayManager(context);
             dayManager.open();
             //A day is created and has an id
             dayManager.create(day);
+            dayManager.close();
 
-
+            employeeManager.open();
             if (!employeeManager.exists(employee))
                 //employee does not exist
                 clockInOutView.onClockingError(1);
@@ -143,7 +147,7 @@ private final Context context;
                 }
             }
             //close employee management connection
-            //employeeManager.close();
+            employeeManager.close();
 
         }
 

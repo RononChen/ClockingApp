@@ -73,13 +73,13 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
        employeeManager.setInformations(employee);
        planning=employeeManager.getPlanning(employee);
        service =employeeManager.getService(employee);
-       //employeeManager.close();
+       employeeManager.close();
 
         serviceManager=new ServiceManager(context);
        serviceManager.open();
         serviceList =serviceManager.getAllServices();
        serviceManager.searchService(service);//set id
-        //serviceManager.close();
+        serviceManager.close();
 
 
        informations.put("number",String.valueOf(employee.getRegistrationNumber()));
@@ -127,8 +127,7 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
 
         PlanningManager planningManager = new PlanningManager(context);
         serviceManager=new ServiceManager(context) ;
-        employeeManager=new EmployeeManager(context);
-        employeeManager.open();
+
         planningManager.open();
         serviceManager.open();
 
@@ -148,8 +147,10 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
         this.picture=picture;
         this.type=type;
 
-
+        employeeManager=new EmployeeManager(context);
+        employeeManager.open();
         employeeManager.setInformations(employee);
+
 
         updateEmployeeView.askConfirmUpdate(
 
@@ -214,7 +215,7 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
 
                 update = true;
             }
-            //employeeManager.close();
+            employeeManager.close();
 
             if (update)
                 updateEmployeeView.onSomethingchanged("Employé modifié avec succès");

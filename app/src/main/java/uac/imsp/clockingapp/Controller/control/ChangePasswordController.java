@@ -35,6 +35,7 @@ private Employee employee;
           employeeManager = new EmployeeManager(context);
           employeeManager.open();
            employeeManager.setAccount(employee);
+           employeeManager.close();
            //The view gets the username from the controller
            changePasswordView.onStart(employee.getUsername());
           // oldPassword=
@@ -85,7 +86,10 @@ public String md5(String password) {
 
                 changePasswordView.onWrongPassword();
             else {
+                employeeManager=new EmployeeManager(context);
+                employeeManager.open();
                 employeeManager.changePassword(employee, (newPassword));
+                employeeManager.close();
                 changePasswordView.onSuccess();
             }
         }

@@ -58,10 +58,11 @@ public class ConsultStatisticsByServiceController implements
         serviceManager = new ServiceManager((Context) consultStatisticsByServiceView);
         serviceManager.open();
         serviceSet = serviceManager.getAllService();
+        serviceManager.close();
         day=new Day(day.getYear(), day.getMonth(),1);
         d=new Day(day.getYear(), day.getMonth(), day.getLenthOfMonth());
         if(Objects.equals(day.getMonthPart(), CurrentDay.getMonthPart()))
-        //serviceManager.close();
+
 
 consultStatisticsByServiceView.onStart(day.getDayOfWeek(), CurrentDay.getDayOfWeek(),
         CurrentDay.getDayOfMonth(), CurrentDay.getMonth(), CurrentDay.getYear());
@@ -106,10 +107,7 @@ consultStatisticsByServiceView.onStart(day.getDayOfWeek(), CurrentDay.getDayOfWe
 
                             for (int i = 0; i < 4; i++) {
                                 repTable[i] += currentEmployeeReportTable[i];
-                            /* *if(i==3)
-                                continue;
-                                rep[i]+=100*(float) repTable[i]/repTable[3];
-                               */
+
                             }
                         }
 
@@ -117,12 +115,13 @@ consultStatisticsByServiceView.onStart(day.getDayOfWeek(), CurrentDay.getDayOfWe
                     reportByService.put(service.getName(), repTable);
                     repTable = new int[4];
                 }
+
             cpt++;
         }
 
                        // report.put(service.getName(),rep);
                         consultStatisticsByServiceView.onServiceFound(onReportStatusChanged(0));
-
+      employeeManager.close();
             }
 
             }

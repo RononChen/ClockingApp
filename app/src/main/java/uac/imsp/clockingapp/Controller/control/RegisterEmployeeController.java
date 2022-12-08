@@ -63,13 +63,15 @@ public class RegisterEmployeeController implements IRegisterEmployeeController
     @Override
     public String[] onLoad() {
 
+
        // String serviceLIst[]
         serviceManager = new ServiceManager(context);
 
         serviceManager.open();
-        //serviceManager.close();
+        String[] services = serviceManager.getAllServices();
+        serviceManager.close();
 
-        return serviceManager.getAllServices();
+        return services;
     }
 
     @Override
@@ -207,14 +209,15 @@ String gend;
            planningManager = new PlanningManager(context);
            planningManager.open();
            planningManager.create(planning);
-           //planningManager.close();
+           planningManager.close();
 
 
 
            service = new Service(selectedService);
+           serviceManager=new ServiceManager(context);
            serviceManager.open();
            serviceManager.searchService(service);
-           //serviceManager.close();
+           serviceManager.close();
 
            employee.setPassword(employee.getPassword());
            employeeManager.create(employee);
@@ -239,10 +242,6 @@ String gend;
 
     public ServiceManager getServiceManager() {
         return serviceManager;
-    }
-
-    public void setServiceManager(ServiceManager serviceManager) {
-        this.serviceManager = serviceManager;
     }
 
 

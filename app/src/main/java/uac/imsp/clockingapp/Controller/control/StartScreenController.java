@@ -4,7 +4,6 @@ import android.content.Context;
 
 import java.util.Objects;
 
-import dao.ClockingManager;
 import dao.DayManager;
 import dao.EmployeeManager;
 import entity.Day;
@@ -66,13 +65,15 @@ public class StartScreenController  implements IStartScreenController {
         DayManager dayManager=new DayManager((Context) startScreenView);
         dayManager.open();
         dayManager.create(day);
+        dayManager.close();
+
+
+
         EmployeeManager employeeManager=new EmployeeManager((Context) startScreenView);
         employeeManager.open();
-
-        ClockingManager clockingManager=new ClockingManager((Context) startScreenView);
         lastUpdate =employeeManager.selectVariable();
-        clockingManager.open();
         //We get the whole list of employees
+
         Employee[] employees=employeeManager.search("*");
         /*if the date of last update is not the date of the current day:in other ways
          if the employees daily attendence is not already updated the current day
@@ -88,5 +89,6 @@ public class StartScreenController  implements IStartScreenController {
 
         }
         employeeManager.updateVariable();
+        employeeManager.close();
     }
 }

@@ -40,8 +40,9 @@ public class ConsultStatisticsByEmployeeController implements
 
         EmployeeManager employeeManager;
         employeeManager=new EmployeeManager((Context) consultStatisticsByEmployeeView);
-        employeeManager.open();
+
         employee=new Employee(number);
+        employeeManager.open();
         employeeManager.retrieveAddDate(employee);
         //the month following the current one
         d=new Day();
@@ -68,6 +69,7 @@ public class ConsultStatisticsByEmployeeController implements
             consultStatisticsByEmployeeView.onStart(day.getDayOfWeek(), d.getDayOfWeek(),
                     d.getFirstDayOfMonth(), day.getMonth(), day.getYear());
             int [] attendanceReportForEmployee = employeeManager.getAttendanceReportForEmployee(employee,day.getMonth(),day.getYear());
+
             p= attendanceReportForEmployee[0];
             a= attendanceReportForEmployee[1];
             r= attendanceReportForEmployee[2];
@@ -82,6 +84,7 @@ public class ConsultStatisticsByEmployeeController implements
             consultStatisticsByEmployeeView.onMonthSelected(stat);
 
         }
+        employeeManager.close();
 
     }
 

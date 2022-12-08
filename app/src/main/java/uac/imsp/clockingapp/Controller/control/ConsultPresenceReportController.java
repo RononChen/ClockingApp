@@ -68,10 +68,12 @@ public class ConsultPresenceReportController implements IConsultPresenceReportCo
     state = employeeManager.getPresenceReportForEmployee(employee,
             day.getMonth(), day.getYear());
 
+
     consultPresenceReportView.onMonthSelected(state, day.getFirstDayOfMonth());
     cpt++;
 
 }
+        employeeManager.close();
         
     }
 

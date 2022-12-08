@@ -55,7 +55,7 @@ public class LoginController  implements ILoginController {
 
             loginCode =employeeManager.connectUser(employee);
 
-          //  employeeManager.close();
+            employeeManager.close();
 
 
            /* if(loginCode==CAN_NOT_LOGIN) {
@@ -161,7 +161,7 @@ public class LoginController  implements ILoginController {
         else
             statut="Absent";
         employeeManager.updateCurrentAttendance(employee,statut);
-        //employeeManager.close();
+        employeeManager.close();
 
 
     }

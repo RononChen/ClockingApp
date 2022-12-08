@@ -9,7 +9,6 @@ import java.util.Objects;
 
 import dao.EmployeeManager;
 import dao.PlanningManager;
-import dao.ServiceManager;
 import entity.Day;
 import entity.Employee;
 import entity.Planning;
@@ -49,16 +48,21 @@ String birthdate;
         Service service;
 
         Planning planning;
-        PlanningManager planningManager = new PlanningManager(context);
-        ServiceManager serviceManager = new ServiceManager(context);
+        PlanningManager planningManager ;
+
+
+        employee=new Employee(number);
         employeeManager=new EmployeeManager(context);
         employeeManager.open();
-        planningManager.open();
-        serviceManager.open();
-        employee=new Employee(number);
         employeeManager.setInformations(employee);
-        planning=employeeManager.getPlanning(employee);
         service =employeeManager.getService(employee);
+        employeeManager.close();
+
+        planningManager = new PlanningManager(context);
+        planningManager.open();
+        planning=employeeManager.getPlanning(employee);
+        planningManager.close();
+
 
         informations.put("number",String.valueOf(employee.getRegistrationNumber()));
         informations.put("lastname",employee.getLastname());
@@ -115,12 +119,11 @@ String birthdate;
             return;
         employeeManager=new EmployeeManager(context);
         employeeManager.open();
-        //employeeManager.setInformations(employee);
         employeeManager.delete(employee);
 
 
 
-        //employeeManager.close();
+        employeeManager.close();
 
             deleteEmployeeView.onDeleteSuccessfull();
 
