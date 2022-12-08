@@ -1,4 +1,4 @@
-package uac.imsp.clockingapp.Models.dao;
+package dao;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -7,9 +7,8 @@ import android.database.sqlite.SQLiteStatement;
 
 import java.util.Arrays;
 
-import uac.imsp.clockingapp.Models.dbAdapter.PlanningSQLite;
-import uac.imsp.clockingapp.Models.entity.Planning;
-//import javax.sql.rowset.serial.*;
+import dbAdapter.PlanningSQLite;
+import entity.Planning;
 
 public class PlanningManager {
     private SQLiteDatabase Database = null;

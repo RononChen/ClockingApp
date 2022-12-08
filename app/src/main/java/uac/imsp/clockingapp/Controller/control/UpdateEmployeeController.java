@@ -10,14 +10,14 @@ import java.io.ByteArrayOutputStream;
 import java.util.Hashtable;
 import java.util.Objects;
 
+import dao.EmployeeManager;
+import dao.PlanningManager;
+import dao.ServiceManager;
+import entity.Day;
+import entity.Employee;
+import entity.Planning;
+import entity.Service;
 import uac.imsp.clockingapp.Controller.util.IUpdateEmployeeController;
-import uac.imsp.clockingapp.Models.dao.EmployeeManager;
-import uac.imsp.clockingapp.Models.dao.PlanningManager;
-import uac.imsp.clockingapp.Models.dao.ServiceManager;
-import uac.imsp.clockingapp.Models.entity.Day;
-import uac.imsp.clockingapp.Models.entity.Employee;
-import uac.imsp.clockingapp.Models.entity.Planning;
-import uac.imsp.clockingapp.Models.entity.Service;
 import uac.imsp.clockingapp.View.util.IUpdateEmployeeView;
 
 public class UpdateEmployeeController implements IUpdateEmployeeController {
@@ -25,7 +25,7 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
     IUpdateEmployeeView  updateEmployeeView;
     private Employee employee;
     private EmployeeManager employeeManager;
-    private  ServiceManager serviceManager;
+    private ServiceManager serviceManager;
    private final Context context;
     Service service;
     Planning planning;

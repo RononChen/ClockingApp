@@ -1,4 +1,4 @@
-package uac.imsp.clockingapp.Models.dao;
+package dao;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -13,11 +13,12 @@ import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.Objects;
 
-import uac.imsp.clockingapp.Models.dbAdapter.EmployeeSQLite;
-import uac.imsp.clockingapp.Models.entity.Day;
-import uac.imsp.clockingapp.Models.entity.Employee;
-import uac.imsp.clockingapp.Models.entity.Planning;
-import uac.imsp.clockingapp.Models.entity.Service;
+import dbAdapter.EmployeeSQLite;
+import entity.Day;
+import entity.Employee;
+import entity.Planning;
+import entity.Service;
+
 
 public class EmployeeManager {
     public final static int CAN_NOT_LOGIN = 15;

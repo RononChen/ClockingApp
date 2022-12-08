@@ -14,12 +14,12 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import dao.EmployeeManager;
+import dao.PlanningManager;
+import dao.ServiceManager;
+import entity.Employee;
+import entity.Planning;
 import uac.imsp.clockingapp.Controller.control.RegisterEmployeeController;
-import uac.imsp.clockingapp.Models.dao.EmployeeManager;
-import uac.imsp.clockingapp.Models.dao.PlanningManager;
-import uac.imsp.clockingapp.Models.dao.ServiceManager;
-import uac.imsp.clockingapp.Models.entity.Employee;
-import uac.imsp.clockingapp.Models.entity.Planning;
 import uac.imsp.clockingapp.View.util.IRegisterEmployeeView;
 
 @RunWith(AndroidJUnit4.class)

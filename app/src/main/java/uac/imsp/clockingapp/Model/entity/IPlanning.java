@@ -1,4 +1,4 @@
-package uac.imsp.clockingapp.Models.entity;
+package entity;
 
 public interface IPlanning {
      int getId();

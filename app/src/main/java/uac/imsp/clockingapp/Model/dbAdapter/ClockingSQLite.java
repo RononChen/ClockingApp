@@ -1,53 +1,78 @@
-package uac.imsp.clockingapp.Models.dbAdapter;
+package dbAdapter;
 
-import static uac.imsp.clockingapp.Models.dbAdapter.ClockingSQLite.CREATE_CLOCKING;
-import static uac.imsp.clockingapp.Models.dbAdapter.ClockingSQLite.DROP_CLOCKING;
-import static uac.imsp.clockingapp.Models.dbAdapter.DaySQLite.CREATE_DAY;
-import static uac.imsp.clockingapp.Models.dbAdapter.DaySQLite.DROP_DAY;
-import static uac.imsp.clockingapp.Models.dbAdapter.EmployeeSQLite.CREATE_EMPLOYEE;
-import static uac.imsp.clockingapp.Models.dbAdapter.EmployeeSQLite.CREATE_TEMP;
-import static uac.imsp.clockingapp.Models.dbAdapter.EmployeeSQLite.DROP_EMPLOYEE;
-import static uac.imsp.clockingapp.Models.dbAdapter.EmployeeSQLite.DROP_TEMP;
-import static uac.imsp.clockingapp.Models.dbAdapter.EmployeeSQLite.super_user;
-import static uac.imsp.clockingapp.Models.dbAdapter.PlanningSQLite.CREATE_PLANNING;
-import static uac.imsp.clockingapp.Models.dbAdapter.PlanningSQLite.DROP_PLANNING;
-import static uac.imsp.clockingapp.Models.dbAdapter.PlanningSQLite.planning;
+import static dbAdapter.DaySQLite.CREATE_DAY;
+import static dbAdapter.DaySQLite.DROP_DAY;
+import static dbAdapter.EmployeeSQLite.CREATE_EMPLOYEE;
+import static dbAdapter.EmployeeSQLite.CREATE_TEMP;
+import static dbAdapter.EmployeeSQLite.DROP_EMPLOYEE;
+import static dbAdapter.EmployeeSQLite.DROP_TEMP;
+import static dbAdapter.EmployeeSQLite.super_user;
+import static dbAdapter.PlanningSQLite.CREATE_PLANNING;
+import static dbAdapter.PlanningSQLite.DROP_PLANNING;
+import static dbAdapter.PlanningSQLite.planning;
+import static dbAdapter.ServiceSQLite.CREATE_SERVICE;
+import static dbAdapter.ServiceSQLite.DROP_SERVICE;
+
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 
-public class ServiceSQLite  extends SQLiteOpenHelper {
+public class ClockingSQLite  extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "Clocking_database.db";
-    private static final int DATABASE_VERSION = 1;
-        private static final String TABLE_SERVICE = "service";
-    private static final String COL_ID_SERVICE = "id_service";
-    private static final String COL_NOM_SERVICE="nom";
 
 
-    public static final String CREATE_SERVICE = "CREATE TABLE IF NOT EXISTS  " +
-            TABLE_SERVICE + " (" +
-            COL_ID_SERVICE + " INTEGER NOT NULL  PRIMARY KEY AUTOINCREMENT, " +
-            COL_NOM_SERVICE + " TEXT UNIQUE NOT NULL  "+")" ;
-    public static final  String DROP_SERVICE="DROP TABLE IF EXISTS "+TABLE_SERVICE;
+        private static final int DATABASE_VERSION = 1;
 
 
-    @Override
-    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.setVersion(oldVersion);
-    }
+    private static final String TABLE_POINTAGE = "pointage";
+    private static final String COL_ID_POINTAGE = "id_pointage";
+    private static final String COL_DATE_JOUR= "date_jour";
+    private static final String COL_ID_JOUR_REF = "id_jour_ref";
+    private static final String COL_ID_JOUR = "id_jour";
+    private static final String COL_HEURE_ENTREE = "heure_entree";
+    private static final String COL_HEURE_SORTIE= "heure_sortie";
+    private static final String COL_MATRICULE="matricule";
+    private static  final String COL_MATRICULE_REF="matricule_ref";
+    private static final String COL_STATUT="statut";
+           public static final String CREATE_CLOCKING = "CREATE TABLE IF NOT EXISTS " +
 
-    public ServiceSQLite(Context context) {
+            TABLE_POINTAGE + " (" +
+            COL_ID_POINTAGE + " INTEGER NOT NULL  PRIMARY KEY AUTOINCREMENT, " +
+                   COL_ID_JOUR_REF + " TEXT    ," +
+                   COL_DATE_JOUR+" TEXT,"+
+            COL_HEURE_ENTREE + "   TEXT ," +
+            COL_HEURE_SORTIE + " TEXT ," +
+                   COL_STATUT+" TEXT DEFAULT NULL ,"+
+            COL_MATRICULE_REF+ " INTEGER NOT NULL ," +
+
+               " FOREIGN KEY(" + COL_MATRICULE_REF +
+               " ) REFERENCES employe(" + COL_MATRICULE+" ),"+
+        "  FOREIGN KEY(" + COL_ID_JOUR_REF +
+            " ) REFERENCES jour(" + COL_ID_JOUR+" ))" ;
+           public static final String DROP_CLOCKING="DROP TABLE  IF EXISTS "+TABLE_POINTAGE;
+
+
+
+
+    public ClockingSQLite(Context context) {
 
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 
 
+
+
     @Override
     public void onCreate(SQLiteDatabase db) {
-            createDatabase(db);
+        createDatabase(db);
+    }
+
+    @Override
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        upgradeDatabase(db);
 
     }
     public void createDatabase(SQLiteDatabase db){
@@ -56,7 +81,7 @@ public class ServiceSQLite  extends SQLiteOpenHelper {
         db.execSQL(CREATE_DAY);
         db.execSQL(CREATE_EMPLOYEE);
         db.execSQL(CREATE_CLOCKING);
-        db.execSQL(CREATE_TEMP);
+        db.execSQL( CREATE_TEMP);
         SQLiteStatement statement= db.compileStatement(super_user);
         statement.bindLong(1,1);
         statement.bindString(2,"User10");
@@ -100,9 +125,9 @@ public class ServiceSQLite  extends SQLiteOpenHelper {
         //08-17
         statement.bindString(1,"08:00");
         statement.bindString(2,"17:00");
-        statement.executeInsert();
         statement.bindBlob(3,workDays);
 
+        statement.executeInsert();
 
         //08-18
 
@@ -110,17 +135,8 @@ public class ServiceSQLite  extends SQLiteOpenHelper {
         statement.bindString(2,"18:00");
         statement.bindBlob(3,workDays);
 
+
         statement.executeInsert();
-
-
-    }
-
-
-    @Override
-
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-       upgradeDatabase(db);
-
 
 
     }

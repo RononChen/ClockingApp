@@ -10,7 +10,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import uac.imsp.clockingapp.Models.entity.Day;
+import entity.Day;
+
 
 public class DayTest {
     @Test

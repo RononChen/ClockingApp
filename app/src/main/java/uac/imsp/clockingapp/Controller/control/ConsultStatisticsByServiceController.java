@@ -5,12 +5,12 @@ import android.content.Context;
 import java.util.Hashtable;
 import java.util.Objects;
 
+import dao.EmployeeManager;
+import dao.ServiceManager;
+import entity.Day;
+import entity.Employee;
+import entity.Service;
 import uac.imsp.clockingapp.Controller.util.IConsultStatisticsByServiceController;
-import uac.imsp.clockingapp.Models.dao.EmployeeManager;
-import uac.imsp.clockingapp.Models.dao.ServiceManager;
-import uac.imsp.clockingapp.Models.entity.Day;
-import uac.imsp.clockingapp.Models.entity.Employee;
-import uac.imsp.clockingapp.Models.entity.Service;
 import uac.imsp.clockingapp.View.util.IConsultStatisticsByServiceView;
 
 public class ConsultStatisticsByServiceController implements
@@ -21,7 +21,7 @@ public class ConsultStatisticsByServiceController implements
     private final IConsultStatisticsByServiceView consultStatisticsByServiceView;
     Hashtable<String, int[]> reportByService =new Hashtable<>();
    // private String startDate;
-    private  Day day;
+    private Day day;
     Service[] serviceSet;
     private final Day CurrentDay;
     int cpt=0;

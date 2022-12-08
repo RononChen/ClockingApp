@@ -1,49 +1,57 @@
-package uac.imsp.clockingapp.Models.dbAdapter;
+package dbAdapter;
 
-import static uac.imsp.clockingapp.Models.dbAdapter.ClockingSQLite.CREATE_CLOCKING;
-import static uac.imsp.clockingapp.Models.dbAdapter.ClockingSQLite.DROP_CLOCKING;
-import static uac.imsp.clockingapp.Models.dbAdapter.EmployeeSQLite.CREATE_EMPLOYEE;
-import static uac.imsp.clockingapp.Models.dbAdapter.EmployeeSQLite.CREATE_TEMP;
-import static uac.imsp.clockingapp.Models.dbAdapter.EmployeeSQLite.DROP_EMPLOYEE;
-import static uac.imsp.clockingapp.Models.dbAdapter.EmployeeSQLite.DROP_TEMP;
-import static uac.imsp.clockingapp.Models.dbAdapter.EmployeeSQLite.super_user;
-import static uac.imsp.clockingapp.Models.dbAdapter.PlanningSQLite.CREATE_PLANNING;
-import static uac.imsp.clockingapp.Models.dbAdapter.PlanningSQLite.DROP_PLANNING;
-import static uac.imsp.clockingapp.Models.dbAdapter.PlanningSQLite.planning;
-import static uac.imsp.clockingapp.Models.dbAdapter.ServiceSQLite.CREATE_SERVICE;
-import static uac.imsp.clockingapp.Models.dbAdapter.ServiceSQLite.DROP_SERVICE;
 
+
+
+import static dbAdapter.ClockingSQLite.CREATE_CLOCKING;
+import static dbAdapter.ClockingSQLite.DROP_CLOCKING;
+import static dbAdapter.DaySQLite.CREATE_DAY;
+import static dbAdapter.DaySQLite.DROP_DAY;
+import static dbAdapter.EmployeeSQLite.CREATE_EMPLOYEE;
+import static dbAdapter.EmployeeSQLite.CREATE_TEMP;
+import static dbAdapter.EmployeeSQLite.DROP_EMPLOYEE;
+import static dbAdapter.EmployeeSQLite.DROP_TEMP;
+import static dbAdapter.EmployeeSQLite.super_user;
+import static dbAdapter.PlanningSQLite.CREATE_PLANNING;
+import static dbAdapter.PlanningSQLite.DROP_PLANNING;
+import static dbAdapter.PlanningSQLite.planning;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 
-public class DaySQLite extends SQLiteOpenHelper {
+public class ServiceSQLite  extends SQLiteOpenHelper {
 
-    public static final String DATABASE_NAME = "Clocking_database.db";
-    public static final int DATABASE_VERSION = 1;
-
-    public static final String TABLE_JOUR = "jour";
-    public static final String COL_DATE_JOUR= "date_jour";
-    public static final String COL_ID_JOUR="id_jour";
-
+    private static final String DATABASE_NAME = "Clocking_database.db";
+    private static final int DATABASE_VERSION = 1;
+        private static final String TABLE_SERVICE = "service";
+    private static final String COL_ID_SERVICE = "id_service";
+    private static final String COL_NOM_SERVICE="nom";
 
 
-
-    public static final String CREATE_DAY = "CREATE TABLE IF NOT EXISTS " + TABLE_JOUR + " (" +
-
-            COL_ID_JOUR + " INTEGER  NOT NULL PRIMARY KEY AUTOINCREMENT , " +
-            COL_DATE_JOUR+" TEXT )" ;
-    public static final String DROP_DAY="DROP TABLE IF EXISTS "+TABLE_JOUR;
-
+    public static final String CREATE_SERVICE = "CREATE TABLE IF NOT EXISTS  " +
+            TABLE_SERVICE + " (" +
+            COL_ID_SERVICE + " INTEGER NOT NULL  PRIMARY KEY AUTOINCREMENT, " +
+            COL_NOM_SERVICE + " TEXT UNIQUE NOT NULL  "+")" ;
+    public static final  String DROP_SERVICE="DROP TABLE IF EXISTS "+TABLE_SERVICE;
 
 
+    @Override
+    public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+        db.setVersion(oldVersion);
+    }
 
-    public DaySQLite(Context context) {
-
+    public ServiceSQLite(Context context) {
 
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+    }
+
+
+    @Override
+    public void onCreate(SQLiteDatabase db) {
+            createDatabase(db);
+
     }
     public void createDatabase(SQLiteDatabase db){
         db.execSQL(CREATE_SERVICE);
@@ -64,7 +72,7 @@ public class DaySQLite extends SQLiteOpenHelper {
         statement.bindString(9,"AKOBA");
         statement.bindString(10,"Patrick");
         statement.bindString(11,"1970-01-01");
-      //  statement.bindString(12,"DATE('NOW','LOCALTIME'))");
+       // statement.bindString(12,"DATE('NOW','LOCALTIME'))");
         statement.execute();
         String service = "INSERT INTO service(nom)  VALUES (?)";
         statement= db.compileStatement(service);
@@ -95,10 +103,9 @@ public class DaySQLite extends SQLiteOpenHelper {
         //08-17
         statement.bindString(1,"08:00");
         statement.bindString(2,"17:00");
+        statement.executeInsert();
         statement.bindBlob(3,workDays);
 
-
-        statement.executeInsert();
 
         //08-18
 
@@ -110,31 +117,24 @@ public class DaySQLite extends SQLiteOpenHelper {
 
 
     }
+
+
+    @Override
+
+    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
+       upgradeDatabase(db);
+
+
+
+    }
     public void upgradeDatabase(SQLiteDatabase db){
         db.execSQL(DROP_EMPLOYEE);
         db.execSQL(DROP_SERVICE);
         db.execSQL(DROP_PLANNING);
         db.execSQL(DROP_DAY);
         db.execSQL(DROP_CLOCKING);
-        db.execSQL( DROP_TEMP);
+        db.execSQL(DROP_TEMP);
         onCreate(db);
 
     }
-
-    @Override
-    public void onCreate(SQLiteDatabase db) {
-
-        //db.execSQL(CREATE_DAY);
-        createDatabase(db);
-    }
-
-
-    @Override
-    public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-       // db.execSQL(DROP_DAY);
-       // onCreate(db);
-        upgradeDatabase(db);
-
-    }
 }
-

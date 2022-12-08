@@ -5,7 +5,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import uac.imsp.clockingapp.Models.entity.Employee;
+import entity.Employee;
+
 
 public class ValidPasswordTest {
     @Test

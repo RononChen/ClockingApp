@@ -13,9 +13,9 @@
         import java.text.MessageFormat;
         import java.util.Objects;
 
+        import entity.Day;
         import uac.imsp.clockingapp.Controller.control.ConsultPresenceReportController;
         import uac.imsp.clockingapp.Controller.util.IConsultPresenceReportController;
-        import uac.imsp.clockingapp.Models.entity.Day;
         import uac.imsp.clockingapp.R;
         import uac.imsp.clockingapp.View.util.IConsultPresenceReportView;
 

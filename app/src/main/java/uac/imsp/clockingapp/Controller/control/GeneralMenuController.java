@@ -2,10 +2,10 @@ package uac.imsp.clockingapp.Controller.control;
 
 import android.content.Context;
 
+import dao.EmployeeManager;
+import dao.ServiceManager;
+import entity.Employee;
 import uac.imsp.clockingapp.Controller.util.IGeneralMenuController;
-import uac.imsp.clockingapp.Models.dao.EmployeeManager;
-import uac.imsp.clockingapp.Models.dao.ServiceManager;
-import uac.imsp.clockingapp.Models.entity.Employee;
 import uac.imsp.clockingapp.View.util.IGeneralMenuView;
 
 public class GeneralMenuController  implements IGeneralMenuController {

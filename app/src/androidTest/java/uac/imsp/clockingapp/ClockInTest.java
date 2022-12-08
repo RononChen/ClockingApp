@@ -10,8 +10,8 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import entity.Day;
 import uac.imsp.clockingapp.Controller.control.ClockingInOutController;
-import uac.imsp.clockingapp.Models.entity.Day;
 import uac.imsp.clockingapp.View.util.IClockInOutView;
 
 @RunWith(AndroidJUnit4.class)

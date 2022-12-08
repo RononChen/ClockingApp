@@ -6,16 +6,16 @@ import android.text.TextUtils;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
+import dao.EmployeeManager;
+import entity.Employee;
 import uac.imsp.clockingapp.Controller.util.IChangePasswordController;
-import uac.imsp.clockingapp.Models.dao.EmployeeManager;
-import uac.imsp.clockingapp.Models.entity.Employee;
 import uac.imsp.clockingapp.View.util.IChangePasswordView;
 
 public class ChangePasswordController implements IChangePasswordController {
 
 private final IChangePasswordView changePasswordView;
 private Employee employee;
-  private   EmployeeManager employeeManager;
+  private EmployeeManager employeeManager;
   private Context context;
   private String oldPasssword;
     public ChangePasswordController(IChangePasswordView changePasswordView){

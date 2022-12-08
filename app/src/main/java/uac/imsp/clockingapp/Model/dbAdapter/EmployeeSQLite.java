@@ -1,14 +1,16 @@
-package uac.imsp.clockingapp.Models.dbAdapter;
+package dbAdapter;
 
-import static uac.imsp.clockingapp.Models.dbAdapter.ClockingSQLite.CREATE_CLOCKING;
-import static uac.imsp.clockingapp.Models.dbAdapter.ClockingSQLite.DROP_CLOCKING;
-import static uac.imsp.clockingapp.Models.dbAdapter.DaySQLite.CREATE_DAY;
-import static uac.imsp.clockingapp.Models.dbAdapter.DaySQLite.DROP_DAY;
-import static uac.imsp.clockingapp.Models.dbAdapter.PlanningSQLite.CREATE_PLANNING;
-import static uac.imsp.clockingapp.Models.dbAdapter.PlanningSQLite.DROP_PLANNING;
-import static uac.imsp.clockingapp.Models.dbAdapter.PlanningSQLite.planning;
-import static uac.imsp.clockingapp.Models.dbAdapter.ServiceSQLite.CREATE_SERVICE;
-import static uac.imsp.clockingapp.Models.dbAdapter.ServiceSQLite.DROP_SERVICE;
+
+
+import static dbAdapter.ClockingSQLite.CREATE_CLOCKING;
+import static dbAdapter.ClockingSQLite.DROP_CLOCKING;
+import static dbAdapter.DaySQLite.CREATE_DAY;
+import static dbAdapter.DaySQLite.DROP_DAY;
+import static dbAdapter.PlanningSQLite.CREATE_PLANNING;
+import static dbAdapter.PlanningSQLite.DROP_PLANNING;
+import static dbAdapter.PlanningSQLite.planning;
+import static dbAdapter.ServiceSQLite.CREATE_SERVICE;
+import static dbAdapter.ServiceSQLite.DROP_SERVICE;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

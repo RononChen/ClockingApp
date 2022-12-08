@@ -4,10 +4,10 @@ import android.content.Context;
 
 import java.util.ArrayList;
 
+import dao.EmployeeManager;
+import entity.Employee;
 import uac.imsp.clockingapp.Controller.util.ISearchEmployeeController;
 import uac.imsp.clockingapp.Controller.util.Result;
-import uac.imsp.clockingapp.Models.dao.EmployeeManager;
-import uac.imsp.clockingapp.Models.entity.Employee;
 import uac.imsp.clockingapp.View.util.IsearchEmployeeView;
 
 public class SearchEmployeeController  implements

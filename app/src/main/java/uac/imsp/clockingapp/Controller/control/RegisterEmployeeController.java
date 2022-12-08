@@ -1,17 +1,17 @@
 package uac.imsp.clockingapp.Controller.control;
 
-import static uac.imsp.clockingapp.Models.entity.Employee.EMPTY_FIRSTNAME;
-import static uac.imsp.clockingapp.Models.entity.Employee.EMPTY_LASTNAME;
-import static uac.imsp.clockingapp.Models.entity.Employee.EMPTY_MAIL;
-import static uac.imsp.clockingapp.Models.entity.Employee.EMPTY_NUMBER;
-import static uac.imsp.clockingapp.Models.entity.Employee.EMPTY_PASSWORD;
-import static uac.imsp.clockingapp.Models.entity.Employee.EMPTY_USERNAME;
-import static uac.imsp.clockingapp.Models.entity.Employee.INVALID_FIRSTNAME;
-import static uac.imsp.clockingapp.Models.entity.Employee.INVALID_LASTNAME;
-import static uac.imsp.clockingapp.Models.entity.Employee.INVALID_MAIL;
-import static uac.imsp.clockingapp.Models.entity.Employee.INVALID_NUMBER;
-import static uac.imsp.clockingapp.Models.entity.Employee.INVALID_PASSWORD;
-import static uac.imsp.clockingapp.Models.entity.Employee.INVALID_USERNAME;
+import static entity.Employee.EMPTY_FIRSTNAME;
+import static entity.Employee.EMPTY_LASTNAME;
+import static entity.Employee.EMPTY_MAIL;
+import static entity.Employee.EMPTY_NUMBER;
+import static entity.Employee.EMPTY_PASSWORD;
+import static entity.Employee.EMPTY_USERNAME;
+import static entity.Employee.INVALID_FIRSTNAME;
+import static entity.Employee.INVALID_LASTNAME;
+import static entity.Employee.INVALID_MAIL;
+import static entity.Employee.INVALID_NUMBER;
+import static entity.Employee.INVALID_PASSWORD;
+import static entity.Employee.INVALID_USERNAME;
 
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -28,13 +28,13 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Objects;
 
+import dao.EmployeeManager;
+import dao.PlanningManager;
+import dao.ServiceManager;
+import entity.Employee;
+import entity.Planning;
+import entity.Service;
 import uac.imsp.clockingapp.Controller.util.IRegisterEmployeeController;
-import uac.imsp.clockingapp.Models.dao.EmployeeManager;
-import uac.imsp.clockingapp.Models.dao.PlanningManager;
-import uac.imsp.clockingapp.Models.dao.ServiceManager;
-import uac.imsp.clockingapp.Models.entity.Employee;
-import uac.imsp.clockingapp.Models.entity.Planning;
-import uac.imsp.clockingapp.Models.entity.Service;
 import uac.imsp.clockingapp.View.util.IRegisterEmployeeView;
 
 public class RegisterEmployeeController implements IRegisterEmployeeController

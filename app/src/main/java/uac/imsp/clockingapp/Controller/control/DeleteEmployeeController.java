@@ -7,14 +7,14 @@ import android.graphics.BitmapFactory;
 import java.util.Hashtable;
 import java.util.Objects;
 
+import dao.EmployeeManager;
+import dao.PlanningManager;
+import dao.ServiceManager;
+import entity.Day;
+import entity.Employee;
+import entity.Planning;
+import entity.Service;
 import uac.imsp.clockingapp.Controller.util.IDeleteEmployeeController;
-import uac.imsp.clockingapp.Models.dao.EmployeeManager;
-import uac.imsp.clockingapp.Models.dao.PlanningManager;
-import uac.imsp.clockingapp.Models.dao.ServiceManager;
-import uac.imsp.clockingapp.Models.entity.Day;
-import uac.imsp.clockingapp.Models.entity.Employee;
-import uac.imsp.clockingapp.Models.entity.Planning;
-import uac.imsp.clockingapp.Models.entity.Service;
 import uac.imsp.clockingapp.View.util.IDeleteEmployeeView;
 
 public class DeleteEmployeeController implements IDeleteEmployeeController {

@@ -15,9 +15,9 @@ import org.junit.runner.RunWith;
 
 import java.util.Hashtable;
 
+import dao.EmployeeManager;
+import entity.Employee;
 import uac.imsp.clockingapp.Controller.control.DeleteEmployeeController;
-import uac.imsp.clockingapp.Models.dao.EmployeeManager;
-import uac.imsp.clockingapp.Models.entity.Employee;
 import uac.imsp.clockingapp.View.util.IDeleteEmployeeView;
 
 @RunWith(AndroidJUnit4.class)

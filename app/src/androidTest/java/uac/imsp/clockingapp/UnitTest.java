@@ -10,7 +10,8 @@ import androidx.test.platform.app.InstrumentationRegistry;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import uac.imsp.clockingapp.Models.dao.EmployeeManager;
+import dao.EmployeeManager;
+
 
 @RunWith(AndroidJUnit4.class)
 public class UnitTest {

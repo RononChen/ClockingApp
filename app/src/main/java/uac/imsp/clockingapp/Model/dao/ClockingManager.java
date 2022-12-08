@@ -1,4 +1,4 @@
-package uac.imsp.clockingapp.Models.dao;
+package dao;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -7,9 +7,10 @@ import android.database.sqlite.SQLiteStatement;
 
 import androidx.annotation.NonNull;
 
-import uac.imsp.clockingapp.Models.dbAdapter.ClockingSQLite;
-import uac.imsp.clockingapp.Models.entity.Day;
-import uac.imsp.clockingapp.Models.entity.Employee;
+import dbAdapter.ClockingSQLite;
+import entity.Day;
+import entity.Employee;
+
 
 public class ClockingManager {
 

@@ -4,16 +4,16 @@ import android.content.Context;
 
 import java.util.Hashtable;
 
+import dao.EmployeeManager;
+import entity.Day;
+import entity.Employee;
 import uac.imsp.clockingapp.Controller.util.IConsultStatisticsByEmployeeController;
-import uac.imsp.clockingapp.Models.dao.EmployeeManager;
-import uac.imsp.clockingapp.Models.entity.Day;
-import uac.imsp.clockingapp.Models.entity.Employee;
 import uac.imsp.clockingapp.View.util.IConsultStatisticsByEmployeeView;
 
 public class ConsultStatisticsByEmployeeController implements
         IConsultStatisticsByEmployeeController {
     private Employee employee;
-    private  Day day;
+    private Day day;
     private final Day currentDay;
     int cpt=0;
     private final IConsultStatisticsByEmployeeView consultStatisticsByEmployeeView;

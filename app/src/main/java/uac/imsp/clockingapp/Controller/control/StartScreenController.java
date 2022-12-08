@@ -4,12 +4,12 @@ import android.content.Context;
 
 import java.util.Objects;
 
+import dao.ClockingManager;
+import dao.DayManager;
+import dao.EmployeeManager;
+import entity.Day;
+import entity.Employee;
 import uac.imsp.clockingapp.Controller.util.IStartScreenController;
-import uac.imsp.clockingapp.Models.dao.ClockingManager;
-import uac.imsp.clockingapp.Models.dao.DayManager;
-import uac.imsp.clockingapp.Models.dao.EmployeeManager;
-import uac.imsp.clockingapp.Models.entity.Day;
-import uac.imsp.clockingapp.Models.entity.Employee;
 import uac.imsp.clockingapp.View.util.IStartScreenView;
 
 public class StartScreenController  implements IStartScreenController {

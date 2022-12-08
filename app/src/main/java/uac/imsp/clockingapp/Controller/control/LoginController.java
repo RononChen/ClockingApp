@@ -3,10 +3,10 @@ package uac.imsp.clockingapp.Controller.control;
 import android.content.Context;
 import android.text.TextUtils;
 
+import dao.EmployeeManager;
+import entity.Day;
+import entity.Employee;
 import uac.imsp.clockingapp.Controller.util.ILoginController;
-import uac.imsp.clockingapp.Models.dao.EmployeeManager;
-import uac.imsp.clockingapp.Models.entity.Day;
-import uac.imsp.clockingapp.Models.entity.Employee;
 import uac.imsp.clockingapp.View.util.ILoginView;
 
 public class LoginController  implements ILoginController {
@@ -14,7 +14,7 @@ public class LoginController  implements ILoginController {
     public static  int CurrentEmployee;
     private  int attempNumber=0;
     //shouldn't be final
-    private  EmployeeManager employeeManager;
+    private EmployeeManager employeeManager;
 
     ILoginView loginView;
     public LoginController(ILoginView loginView) {

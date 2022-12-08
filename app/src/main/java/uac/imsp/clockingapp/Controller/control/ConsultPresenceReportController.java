@@ -4,10 +4,10 @@ import static uac.imsp.clockingapp.Controller.control.LoginController.CurrentEmp
 
 import android.content.Context;
 
+import dao.EmployeeManager;
+import entity.Day;
+import entity.Employee;
 import uac.imsp.clockingapp.Controller.util.IConsultPresenceReportController;
-import uac.imsp.clockingapp.Models.dao.EmployeeManager;
-import uac.imsp.clockingapp.Models.entity.Day;
-import uac.imsp.clockingapp.Models.entity.Employee;
 import uac.imsp.clockingapp.View.util.IConsultPresenceReportView;
 
 public class ConsultPresenceReportController implements IConsultPresenceReportController {

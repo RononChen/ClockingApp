@@ -1,4 +1,4 @@
-package uac.imsp.clockingapp.Models.dao;
+package dao;
 
 import android.content.Context;
 import android.database.Cursor;
@@ -7,8 +7,8 @@ import android.database.sqlite.SQLiteStatement;
 
 import java.util.ArrayList;
 
-import uac.imsp.clockingapp.Models.dbAdapter.ServiceSQLite;
-import uac.imsp.clockingapp.Models.entity.Service;
+import dbAdapter.ServiceSQLite;
+import entity.Service;
 
 public class ServiceManager {
 

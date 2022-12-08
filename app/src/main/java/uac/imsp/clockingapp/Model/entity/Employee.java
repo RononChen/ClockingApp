@@ -1,4 +1,4 @@
-package uac.imsp.clockingapp.Models.entity;
+package entity;
 
 import android.text.TextUtils;
 import android.util.Patterns;
