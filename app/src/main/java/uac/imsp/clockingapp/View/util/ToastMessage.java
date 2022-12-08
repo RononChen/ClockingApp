@@ -18,12 +18,8 @@ public class ToastMessage  extends Toast {
     public ToastMessage(Context context,String message) {
         super(context);
         setGravity(Gravity.CENTER_VERTICAL,0,0);
-       // setDuration(LENGTH_LONG);
 
-        //setText(message);
+        makeText(context,message,LENGTH_SHORT).show();
 
-        makeText(context,message,LENGTH_LONG).show();
-        //show();
-        //setView();
     }
 }

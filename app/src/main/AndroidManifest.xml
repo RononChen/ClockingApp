@@ -94,11 +94,6 @@ activity
                 android:value="" />
         </activity>
 
-        <receiver
-            android:name=".Models.UpdateReceiver"
-            android:enabled="true"
-            android:exported="false" />
-
         <activity
             android:name=".View.activity.NoServiceAvailable"
             android:exported="false">
@@ -129,9 +124,7 @@ activity
         <activity
             android:name=".View.activity.ConsultStatisticsByEmployee"
             android:exported="false" />
-        <activity
-            android:name=".View.activity.ConsultReport"
-            android:exported="true" />
+
         <activity
             android:name=".View.activity.Login"
             android:exported="false" />

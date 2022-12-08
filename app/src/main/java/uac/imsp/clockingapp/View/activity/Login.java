@@ -1,9 +1,7 @@
 package uac.imsp.clockingapp.View.activity;
 
 
-import android.app.AlarmManager;
 import android.app.AlertDialog;
-import android.app.PendingIntent;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
@@ -19,7 +17,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import uac.imsp.clockingapp.Controller.control.LoginController;
 import uac.imsp.clockingapp.Controller.util.ILoginController;
-//import uac.imsp.clockingapp.Models.UpdateReceiver;
 import uac.imsp.clockingapp.R;
 import uac.imsp.clockingapp.View.util.ILoginView;
 import uac.imsp.clockingapp.View.util.ToastMessage;
@@ -32,9 +29,9 @@ public class Login extends AppCompatActivity
 
     private  EditText Username,Password;
 
-    private AlarmManager manager;
+    /*private AlarmManager manager;
     private PendingIntent pendingIntent;
-    private static final int REQ_CODE = 0;
+    private static final int REQ_CODE = 0;*/
 
 
 

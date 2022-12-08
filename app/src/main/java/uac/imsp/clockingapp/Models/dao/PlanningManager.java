@@ -13,7 +13,7 @@ import uac.imsp.clockingapp.Models.entity.Planning;
 
 public class PlanningManager {
     private SQLiteDatabase Database = null;
-    private PlanningSQLite planningSQLite;
+    private final PlanningSQLite planningSQLite;
 
     public PlanningManager(Context context) {
         planningSQLite = new PlanningSQLite(context);
@@ -23,6 +23,11 @@ public class PlanningManager {
 
         if (Database == null)
             Database = planningSQLite.getWritableDatabase();
+        else if (!Database.isOpen())
+        {
+            Database=null;
+            Database = planningSQLite.getWritableDatabase();
+        }
         return  Database;
     }
 
@@ -61,8 +66,7 @@ public class PlanningManager {
     }
     //setl'id du planning  puis retourne true s'il existe et false sinon
     public boolean searchPlanning(Planning planning){
-        byte[] retrievedData=new byte[7];
-        boolean test;
+        byte[] retrievedData;
         byte[] workdays=planning.getWorkDays();
 
         String query="SELECT id_planning,jours_de_travail FROM planning" +

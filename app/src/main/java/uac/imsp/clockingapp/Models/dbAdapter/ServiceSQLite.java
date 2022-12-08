@@ -12,7 +12,6 @@ import static uac.imsp.clockingapp.Models.dbAdapter.EmployeeSQLite.super_user;
 import static uac.imsp.clockingapp.Models.dbAdapter.PlanningSQLite.CREATE_PLANNING;
 import static uac.imsp.clockingapp.Models.dbAdapter.PlanningSQLite.DROP_PLANNING;
 import static uac.imsp.clockingapp.Models.dbAdapter.PlanningSQLite.planning;
-import static uac.imsp.clockingapp.Models.entity.Employee.HEAD;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -37,8 +36,6 @@ public class ServiceSQLite  extends SQLiteOpenHelper {
 
     @Override
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        //super.onDowngrade(db, oldVersion, newVersion);
-        //onUpgrade(db);
         db.setVersion(oldVersion);
     }
 
@@ -50,29 +47,8 @@ public class ServiceSQLite  extends SQLiteOpenHelper {
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-       /* String service = "INSERT INTO service(nom)  VALUES (?)";
-      SQLiteStatement statement= db.compileStatement(service);
-        //Direction
-        statement.bindString(1,"Direction");
-        statement.executeInsert();
+            createDatabase(db);
 
-        //Service scolarité
-        statement.bindString(1,"Service scolarité");
-        statement.executeInsert();
-
-        //Secrétariat administratif
-        statement.bindString(1,"Secrétariat administratif");
-        statement.executeInsert();
-        //Comptabilité
-        statement.bindString(1,"Comptabilité");
-        statement.executeInsert();
-        //Service de coopération
-        statement.bindString(1,"Service de coopération");
-        statement.executeInsert();*/
-        createDatabase(db);
-
-
-        //createDatabase(db);
     }
     public void createDatabase(SQLiteDatabase db){
         db.execSQL(CREATE_SERVICE);
@@ -85,7 +61,7 @@ public class ServiceSQLite  extends SQLiteOpenHelper {
         statement.bindLong(1,1);
         statement.bindString(2,"User10");
         statement.bindString(3,"password");
-        statement.bindString(4,HEAD);
+        statement.bindString(4,"Directeur");
         statement.bindString(5,"M");
         statement.bindString(6,"super@gmail.com");
         statement.bindLong(7,1);
@@ -143,11 +119,6 @@ public class ServiceSQLite  extends SQLiteOpenHelper {
     @Override
 
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
-        //db.setVersion(newVersion);
-        //db.execSQL(DROP_SERVICE);
-       // onCreate(db);
-
        upgradeDatabase(db);
 
 

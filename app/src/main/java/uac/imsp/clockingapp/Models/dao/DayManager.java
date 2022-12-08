@@ -20,6 +20,11 @@ public class DayManager {
 
         if (Database == null)
             Database = daySQLite.getWritableDatabase();
+        else if (!Database.isOpen())
+        {
+            Database=null;
+            Database = daySQLite.getWritableDatabase();
+        }
         return Database;
     }
 

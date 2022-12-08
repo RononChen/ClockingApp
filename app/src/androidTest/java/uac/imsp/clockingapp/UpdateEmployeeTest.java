@@ -21,7 +21,7 @@ import uac.imsp.clockingapp.View.util.IUpdateEmployeeView;
 @RunWith(AndroidJUnit4.class)
 public class UpdateEmployeeTest  implements IUpdateEmployeeView {
     private final Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-    private UpdateEmployeeController updateEmployeePresenter;
+    private final UpdateEmployeeController updateEmployeePresenter;
     public UpdateEmployeeTest(){
         Hashtable<String,Object> informations=new Hashtable<>();
 

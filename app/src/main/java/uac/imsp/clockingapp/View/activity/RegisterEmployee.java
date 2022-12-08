@@ -65,15 +65,11 @@ public class RegisterEmployee extends AppCompatActivity
             Password, PasswordConfirm,Number, Birthdate;
     private TextView Programm;
     private String Birth;
-    private ImageView EyePwd,EyePwdConfirm;
     DatePickerDialog picker;
-    private ImageView PreviewImage;
     private CircleImageView circlePicture;
     private byte[] Picture;
     private String gend;
     private String SelectedService,SelectedType;
-    private String [] services,employeTypes;
-    private  Spinner spinnerServices , spinnerTypes;
     private int Start=8,End=17;
     final  String PREFS_NAME="MyPrefsFile";
     boolean editUsername,useMailAsUsername,generatePassword,notice;
@@ -92,10 +88,7 @@ public class RegisterEmployee extends AppCompatActivity
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_employee);
-       // Objects.requireNonNull(getSupportActionBar()).setDisplayShowTitleEnabled(false);
 
-//workManager=findViewById(R.id.work_manager);
-//workManager.setOnClickListener(this);
         initView();
         retrieveSharedPreferences();
         if(useMailAsUsername) {
@@ -193,13 +186,8 @@ public class RegisterEmployee extends AppCompatActivity
     @SuppressLint("DefaultLocale")
         @Override
     public void onClick(View v) {
-        String username,password;
-       /* if(v.getId()==R.id.work_manager)
-        {
-            new ToastMessage(this,"kfgkl");
-            Intent intent=new Intent(RegisterEmployee.this,MainActivity.class);
-            startActivity(intent);
-        }*/
+        String username;
+
 
   if(v.getId()==R.id.register_show_password)
       registerEmployeePresenter.onShowHidePassword(Password.getId(),v.getId());
@@ -211,8 +199,7 @@ public class RegisterEmployee extends AppCompatActivity
         else if (v.getId() == R.id.register_button ) {
           days= workdays();
           username=toString(Username);
-          /*if(useMailAsUsername)
-                username=toString(Email);*/
+
             registerEmployeePresenter.onRegisterEmployee(toString(Number), toString(Lastname),
                     toString(Firstname),gend,Birth,toString(Email),username,
                     toString(Password),toString(PasswordConfirm),SelectedService,
@@ -283,39 +270,19 @@ public class RegisterEmployee extends AppCompatActivity
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-int pos;
         if(parent.getId()==R.id.register_service) {
             //SelectedService = String.valueOf(spinnerServices.getSelectedItem());
             SelectedService = parent.getItemAtPosition(position).toString();
-            /*pos=position;
-            SelectedService=services[pos];*/
+
 
         }
         else if(parent.getId()==R.id.register_type) {
             //SelectedType=String.valueOf(spinnerTypes.getSelectedItem());
             SelectedType = parent.getItemAtPosition(position).toString();
-            /*pos=position;
-            SelectedType=employeTypes[pos];*/
 
         }
 
     }
-    public void selectSpinnerItemByValue(Spinner spinner, String value, int resID) {
-        int i;
-        ArrayAdapter<CharSequence> adapter =
-                ArrayAdapter.createFromResource(this, resID,
-                        android.R.layout.simple_spinner_item);
-
-        spinner.setAdapter(adapter);
-
-        if (value != null) {
-            i = adapter.getPosition(value);
-            spinner.setSelection(i);
-        }
-
-
-    }
-
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
@@ -394,21 +361,21 @@ int pos;
     }
     public void initView(){
 
-        EyePwd=findViewById(R.id.register_show_password);
-        EyePwdConfirm=findViewById(R.id.register_show_password_confirm);
-        EyePwdConfirm.setOnClickListener(this);
-        EyePwd.setOnClickListener(this);
+        ImageView eyePwd = findViewById(R.id.register_show_password);
+        ImageView eyePwdConfirm = findViewById(R.id.register_show_password_confirm);
+        eyePwdConfirm.setOnClickListener(this);
+        eyePwd.setOnClickListener(this);
 
 
         //new controller instance created
         registerEmployeePresenter = new RegisterEmployeeController(this);
         // The view gets service list from the controller
-         services = registerEmployeePresenter.onLoad();
-          employeTypes=getResources().getStringArray(R.array.employee_types);
-        SelectedType=employeTypes[0];
-        SelectedService=services[0];
-        spinnerServices = findViewById(R.id.register_service);
-         spinnerTypes = findViewById(R.id.register_type);
+        String[] services = registerEmployeePresenter.onLoad();
+        String[] employeTypes = getResources().getStringArray(R.array.employee_types);
+        SelectedType= employeTypes[0];
+        SelectedService= services[0];
+        Spinner spinnerServices = findViewById(R.id.register_service);
+        Spinner spinnerTypes = findViewById(R.id.register_type);
 
         ArrayAdapter<String> dataAdapterR = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, services);
         dataAdapterR.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -529,10 +496,7 @@ int pos;
         int i;
        for(i=0;i<7;i++)
         {
-            /*if(myTable[i].isChecked())
-                tab[i]='T'; //for true
-            else
-                tab[i]='F';*/
+
             tab[i]= (byte) (myTable[i].isChecked()?'T':'F');
 
 

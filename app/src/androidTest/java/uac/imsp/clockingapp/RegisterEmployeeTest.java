@@ -25,7 +25,7 @@ import uac.imsp.clockingapp.View.util.IRegisterEmployeeView;
 @RunWith(AndroidJUnit4.class)
 public class RegisterEmployeeTest  implements IRegisterEmployeeView {
     private final Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-    private  RegisterEmployeeController registerEmployeePresenter;
+    private final RegisterEmployeeController registerEmployeePresenter;
     public RegisterEmployeeTest(){
         registerEmployeePresenter=new RegisterEmployeeController(this,appContext);
         assertNotNull(registerEmployeePresenter);

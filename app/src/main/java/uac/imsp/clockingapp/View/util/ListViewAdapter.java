@@ -17,10 +17,6 @@ import uac.imsp.clockingapp.R;
 
 public class ListViewAdapter  extends ArrayAdapter {
 
-    private  LayoutInflater layoutInflater;
-
-
-
 
     public ListViewAdapter(Context context,  ArrayList<Result> listData) {
         super(context,R.layout.result_item_layout,listData);
@@ -39,7 +35,7 @@ public class ListViewAdapter  extends ArrayAdapter {
         Result result = (Result) getItem(position);
         if (convertView == null) {
             holder = new ViewHolder();
-            layoutInflater = LayoutInflater.from(getContext());
+            LayoutInflater layoutInflater = LayoutInflater.from(getContext());
             convertView = layoutInflater.inflate(R.layout.result_item_layout, null);
 
 

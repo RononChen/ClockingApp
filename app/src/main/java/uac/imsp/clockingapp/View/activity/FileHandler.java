@@ -14,13 +14,7 @@ public class FileHandler extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_file_handler);
-        /*FileOutputStream textFile = null;
-        try {
-            textFile = openFileOutput ("file.txt", Context.MODE_PRIVATE);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-        checkFileExists(new File("file.txt"));*/
+
         boolean b;
         File directory=new File(getFilesDir(),"ClockingApp");
         if(!directory.exists())
@@ -48,27 +42,6 @@ public class FileHandler extends AppCompatActivity {
 
         
     }
-    public void checkFileExists(File file)
-    {
-boolean test;
-        if(file.exists())
-            new ToastMessage(this,"Le fichier existe") ;
-        else
 
-            new ToastMessage(this,"Le fichier n'existe pas\n" +
-                    "Création :");
-        //try {
-            //test=file.createNewFile();
-           // if(test)
 
-               // new ToastMessage(this,"Fichier créé avec succès");
-            //else
-               // new ToastMessage(this,"Echec de création");
-
-        //} catch (IOException e) {
-           // e.printStackTrace();
-        //}
-    }
-
-        
 }

@@ -27,7 +27,6 @@ public class Languages extends AppCompatActivity implements ILanguagesView,
 	SharedPreferences.Editor editor;
 	ILanguagesController languagesPresenter;
 	final  String PREFS_NAME="MyPrefsFile";
-	private static final String SELECTED_LANGUAGE="Locale.Helper.Selected.Language";
 	int cpt=0;
 
 
@@ -63,9 +62,6 @@ public class Languages extends AppCompatActivity implements ILanguagesView,
 
 
 		LocalHelper.setLocale(Languages.this,lang);
-		//persistance
-		/*editor.putString("", lang);
-		editor.apply();*/
 		editor.putString("lang",lang);
 		editor.apply();
 		if(cpt!=0)

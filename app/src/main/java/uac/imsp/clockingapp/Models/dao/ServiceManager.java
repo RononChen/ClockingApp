@@ -16,7 +16,7 @@ public class ServiceManager {
     public static SQLiteDatabase Database;
 
 
-    private ServiceSQLite serviceSQLite;
+    private final ServiceSQLite serviceSQLite;
 
     public ServiceManager(Context context) {
         serviceSQLite = new ServiceSQLite(context);
@@ -25,6 +25,11 @@ public class ServiceManager {
 
         if (Database==null)
             Database=serviceSQLite.getWritableDatabase();
+        else if (!Database.isOpen())
+        {
+            Database=null;
+            Database = serviceSQLite.getWritableDatabase();
+        }
         return Database;
 
     }
@@ -37,7 +42,7 @@ public class ServiceManager {
 
     public void create (Service service){
 
-        SQLiteStatement statement = null;
+        SQLiteStatement statement ;
 
         String query = "INSERT INTO service (nom) VALUES(?) ";
 
@@ -57,19 +62,19 @@ public class ServiceManager {
 
         public static void delete(Service service){
         String query = "DELETE FROM service WHERE id_service=?";
-        SQLiteStatement statement=null ;
+        SQLiteStatement statement ;
 
         statement = Database.compileStatement(query);
         statement.bindLong(1,service.getId());
         statement.executeUpdateDelete();
 
     }
-    public void update(Service service,String name){
+    public void update(Service service,String newName){
         String query = "UPDATE service SET nom=? WHERE id_service=?";
         SQLiteStatement statement;
 
         statement = Database.compileStatement(query);
-        statement.bindString(1,service.getName());
+        statement.bindString(1, newName);
         statement.bindLong(2,service.getId());
         statement.executeUpdateDelete();
 
@@ -105,22 +110,10 @@ public class ServiceManager {
             service.setName(cursor.getString(1));
             serviceSet.add(service);
         }
+        cursor.close();
         return serviceSet.toArray(new Service[serviceSet.size()]);
 
     }
-
-
-
-
-
-    /*public int  searchService(String name){
-        String query="SELECT id_service FROM service WHERE nom=? ";
-        String selectArg[]={name};
-        Cursor cursor=Database.rawQuery(query,selectArg);
-        cursor.moveToFirst();
-        return Integer.parseInt(cursor.getString(0));
-
-    }*/
     public boolean searchService(Service service){
         boolean test;
         String query="SELECT id_service FROM service WHERE nom=? ";
@@ -143,26 +136,7 @@ public class ServiceManager {
         return false;
 
     }
-    /*public boolean searchService(Service service){
-        boolean test;
 
-        String query="SELECT id_service FROM service WHERE nom=? ";
-        String [] selectArgs={
-                service.getName()
-        };
-        Cursor cursor=Database.rawQuery(query,selectArgs);
-        cursor.moveToFirst();
-        test=cursor.getCount()==1;
-        if(test) {
-            service.setId(Integer.parseInt(cursor.getString(0)));
-            cursor.close();
-            return true;
-
-        }
-        cursor.close();
-        return false;
-
-    }*/
 
 
 

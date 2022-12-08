@@ -30,8 +30,13 @@ public class EmployeeManager {
     }
 
     public SQLiteDatabase open() {
-        if (Database == null)
+        if (Database == null )
             Database = employeeSQLite.getWritableDatabase();
+        else if (!Database.isOpen())
+        {
+            Database=null;
+            Database = employeeSQLite.getWritableDatabase();
+        }
         return Database;
     }
 
@@ -414,38 +419,6 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
 
     }
 
-
-
-    public Hashtable<String, Integer> getStatisticsByService(int month,int year,String status) {
-Day day=new Day(year,month,1);
-Day d;
-int length=day.getLenthOfMonth();
-d=new Day(year,month,length-1);
-        String service;
-        int count;
-        String start,end;
-        start=day.getDate();
-        end=d.getDate();
-
-
-        Hashtable<String, Integer> row = new Hashtable<>();
-        String query = "SELECT id_service_ref, COUNT(*) FROM" +
-                "( SELECT id_service_ref FROM employe JOIN   service AS Relation " +
-                "  ON id_service=id_service_ref " +
-                " JOIN pointage AS Final  ON matricule =Final.matricule_ref " +
-                "WHERE Final.statut=? AND date_jour BETWEEN ? AND ?) GROUP BY id_service_ref " ;
-        String[] selectArgs = {status,start, end};
-        Cursor cursor = Database.rawQuery(query, selectArgs);
-
-        while (cursor.moveToNext()) {
-            service = cursor.getString(0);
-            count = cursor.getInt(1);
-            row.put(service, count);
-        }
-        cursor.close();
-        return row;
-    }
-
     // presence report in a month for an employee
     public String[] getPresenceReportForEmployee(
             Employee employee, int month, int year)  {
@@ -491,19 +464,6 @@ d=new Day(year,month,length-1);
 
 
         return table;
-    }
-
-    public int getDayNumberInWeek(String date) {
-        String str;
-        String query = "SELECT STRF('%w',?)";
-        Cursor cursor = Database.rawQuery(query,
-                new String[]{date}
-        );
-        cursor.moveToFirst();
-        str = cursor.getString(0);
-        cursor.close();
-        return Integer.parseInt(str);
-
     }
 
     public boolean isNotSuperUser(Employee employee) {

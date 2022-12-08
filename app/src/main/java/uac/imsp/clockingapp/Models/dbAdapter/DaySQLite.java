@@ -12,7 +12,7 @@ import static uac.imsp.clockingapp.Models.dbAdapter.PlanningSQLite.DROP_PLANNING
 import static uac.imsp.clockingapp.Models.dbAdapter.PlanningSQLite.planning;
 import static uac.imsp.clockingapp.Models.dbAdapter.ServiceSQLite.CREATE_SERVICE;
 import static uac.imsp.clockingapp.Models.dbAdapter.ServiceSQLite.DROP_SERVICE;
-import static uac.imsp.clockingapp.Models.entity.Employee.HEAD;
+
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -56,7 +56,7 @@ public class DaySQLite extends SQLiteOpenHelper {
         statement.bindLong(1,1);
         statement.bindString(2,"User10");
         statement.bindString(3,"password");
-        statement.bindString(4,HEAD);
+        statement.bindString(4,"Directeur");
         statement.bindString(5,"M");
         statement.bindString(6,"super@gmail.com");
         statement.bindLong(7,1);

@@ -1,19 +1,9 @@
 package uac.imsp.clockingapp.View.activity;
 
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.work.Constraints;
-import androidx.work.NetworkType;
-import androidx.work.OneTimeWorkRequest;
-import androidx.work.PeriodicWorkRequest;
-import androidx.work.WorkManager;
 
-import java.util.concurrent.TimeUnit;
-
-import uac.imsp.clockingapp.NotiWorker;
 import uac.imsp.clockingapp.R;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,7 +12,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        WorkManager workManager;
+       /* WorkManager workManager;
         Button btnStartOneTimeRequest, btnStartPeriodicRequest;
         workManager = WorkManager.getInstance();
         btnStartOneTimeRequest = findViewById(R.id.btn_one_time);
@@ -60,6 +50,6 @@ public class MainActivity extends AppCompatActivity {
                         .build();
                 workManager.enqueue(periodicWorkRequest);
             }
-        });
+        });*/
     }
 }

@@ -438,21 +438,7 @@ if(informations.get("picture")!=null)
 
     }
 
-    public void selectSpinnerItemByValue(Spinner spinner, String value, int resID) {
-        int i;
-        ArrayAdapter<CharSequence> adapter =
-                ArrayAdapter.createFromResource(this, resID,
-                        android.R.layout.simple_spinner_item);
 
-        spinner.setAdapter(adapter);
-
-        if (value != null) {
-            i = adapter.getPosition(value);
-            spinner.setSelection(i);
-        }
-
-
-    }
     public String programm(){
         String str="";
         if(Start<10)

@@ -108,8 +108,7 @@ public class GeneralMenu extends AppCompatActivity implements View.OnClickListen
             menuPresenter.onConsultPresenceReport();*/
         else if(v.getId()==R.id.menu_password)
             startActivity(new Intent(this,ChangePassword.class));
-       /* else if(v.getId()==R.id.menu_statistics_by_employee)
-             startActivity(new Intent(this,ConsultStatisticsByEmployee.class));*/
+
 
 
     }
@@ -190,11 +189,9 @@ public class GeneralMenu extends AppCompatActivity implements View.OnClickListen
         Button register = findViewById(R.id.menu_register);
         Button clock = findViewById(R.id.menu_clock);
         Button search = findViewById(R.id.menu_search);
-       // Button update = findViewById(R.id.menu_update);
-       // Button delete = findViewById(R.id.menu_delete);
+
         Button statisticsByService = findViewById(R.id.menu_statistics_by_servie);
-       /* Button presenceReport =findViewById(R.id.menu_presence_report);
-        Button statisticsByEmployee=findViewById(R.id.menu_statistics_by_employee);*/
+
 
 
 Button password=findViewById(R.id.menu_password);
@@ -202,11 +199,9 @@ Button password=findViewById(R.id.menu_password);
         clock.setOnClickListener(this);
         search.setOnClickListener(this);
         search.setOnClickListener(this);
-        //update.setOnClickListener(this);
-       // delete.setOnClickListener(this);
+
         statisticsByService.setOnClickListener(this);
-        //presenceReport.setOnClickListener(this);
-        //statisticsByEmployee.setOnClickListener(this);
+
         password.setOnClickListener(this);
     }
 }

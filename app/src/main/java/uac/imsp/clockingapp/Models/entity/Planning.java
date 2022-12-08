@@ -5,8 +5,8 @@ import java.util.Hashtable;
 public class Planning implements IPlanning {
 
     private int Id;
-    private String StartTime;
-    private String EndTime;
+    private final String StartTime;
+    private final String EndTime;
     private byte[] WorkDays;
 
 
@@ -15,9 +15,6 @@ public class Planning implements IPlanning {
         StartTime=startTime;
         EndTime=endTime;
         WorkDays=workDays;
-    }
-    public Planning(int id){
-        Id=id;
     }
 
     public  int getId(){
@@ -38,12 +35,6 @@ public class Planning implements IPlanning {
             WorkDays = workDays;
     }
 
-    public void setStartTime(String startTime){
-        StartTime = startTime;
-    }
-    public void setEndTime(String endTime){
-        EndTime = endTime;
-    }
     public void setId(int id){
         Id=id;
     }

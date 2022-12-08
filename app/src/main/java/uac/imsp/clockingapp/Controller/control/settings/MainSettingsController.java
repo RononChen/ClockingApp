@@ -10,7 +10,7 @@ import uac.imsp.clockingapp.View.util.settings.IMainSettingsView;
 
 public class MainSettingsController implements IMainSettingsController {
 	IMainSettingsView mainSettingsView;
-	private Context context;
+	private final Context context;
 	public MainSettingsController(IMainSettingsView mainSettingsView){
 		this.mainSettingsView=mainSettingsView;
 		this.context= (Context) this.mainSettingsView;

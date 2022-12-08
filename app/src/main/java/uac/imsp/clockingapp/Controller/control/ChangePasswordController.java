@@ -13,7 +13,7 @@ import uac.imsp.clockingapp.View.util.IChangePasswordView;
 
 public class ChangePasswordController implements IChangePasswordController {
 
-private IChangePasswordView changePasswordView;
+private final IChangePasswordView changePasswordView;
 private Employee employee;
   private   EmployeeManager employeeManager;
   private Context context;
@@ -43,11 +43,11 @@ private Employee employee;
 public String md5(String password) {
         MessageDigest digest;
         byte[] messageDigest;
-        StringBuffer hexString;
+        StringBuilder hexString;
         try{
             digest=java.security.MessageDigest.getInstance("MD5");
             messageDigest=digest.digest();
-            hexString=new StringBuffer();
+            hexString=new StringBuilder();
             for (byte element:messageDigest) {
                 hexString.append(Integer.toHexString(0xFF & element));
                 return hexString.toString();
@@ -63,10 +63,6 @@ public String md5(String password) {
 
     public String getOldPasssword() {
         return oldPasssword;
-    }
-
-    public void setOldPasssword(String oldPasssword) {
-        this.oldPasssword = oldPasssword;
     }
 
     @Override

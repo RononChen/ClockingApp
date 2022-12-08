@@ -19,7 +19,7 @@ public class Clocking extends AppCompatActivity
 	SharedPreferences.Editor editor;
 	RadioGroup radioGroup;
 	RadioButton useQRCode,useFingerprint;
-	boolean UseQRCode,UseFingerPrint;
+	boolean UseQRCode;
 	IClockingController clockingPresenter;
 	final  String PREFS_NAME="MyPrefsFile";
 

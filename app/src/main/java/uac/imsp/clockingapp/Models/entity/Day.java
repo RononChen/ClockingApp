@@ -6,7 +6,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.YearMonth;
 import java.util.Calendar;
-import java.util.Locale;
 
 public class Day  implements IDay {
 
@@ -126,7 +125,7 @@ return Integer.parseInt(FormatedYear);
 
     }
 
-    public int getWeekOfMonth() {
+   /* public int getWeekOfMonth() {
         SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy",Locale.FRENCH);
         String dateInString = this.Date;
         java.util.Date date = null;
@@ -141,7 +140,7 @@ return Integer.parseInt(FormatedYear);
         calendar.setTime(date);
         return calendar.get(Calendar.WEEK_OF_MONTH) ;
 
-    }
+    }*/
     public int  getFirstDayOfMonth()  {
         //wether it is monday, tuesday , etc
 
@@ -177,23 +176,12 @@ return Integer.parseInt(FormatedYear);
         return FormatedYear;
     }
 
-    public void setFormatedYear(String formatedYear) {
-        FormatedYear = formatedYear;
-    }
-
     public String getFormatedMonth() {
         return FormatedMonth;
-    }
-
-    public void setFormatedMonth(String formatedMonth) {
-        FormatedMonth = formatedMonth;
     }
 
     public String getFormatedDay() {
         return FormatedDay;
     }
 
-    public void setFormatedDay(String formatedDay) {
-        FormatedDay = formatedDay;
-    }
 }

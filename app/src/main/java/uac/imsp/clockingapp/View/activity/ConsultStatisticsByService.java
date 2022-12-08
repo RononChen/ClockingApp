@@ -167,10 +167,6 @@ implements IConsultStatisticsByServiceView, AdapterView.OnItemSelectedListener,
 
     }
 
-    @Override
-    public void onMonthSelected(String[] report, int fitstDayNumber) {
-
-    }
 
     @Override
     public void onReportNotAccessible(boolean nextMonthReport) {
@@ -212,8 +208,6 @@ implements IConsultStatisticsByServiceView, AdapterView.OnItemSelectedListener,
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-        //selectedStatus = parent.getItemAtPosition(position).toString();
-        //consultStatisticsByServicePresenter.onReportStatusChanged(position);
         if(Status!=position) {
             onReportStatusChanged(position);
             Status=position;

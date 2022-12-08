@@ -5,7 +5,7 @@
         android:id="@+id/language_eng"
         android:title="@string/english"
         android:icon="@drawable/ic_baseline_delete_24"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         />
     <item
         android:id="@+id/language_fr"

@@ -26,6 +26,11 @@ public class ClockingManager {
     public SQLiteDatabase    open() {
         if (Database == null)
             Database = clockingSQLite.getWritableDatabase();
+        else if (!Database.isOpen())
+        {
+            Database=null;
+            Database = clockingSQLite.getWritableDatabase();
+        }
         return Database;
     }
 

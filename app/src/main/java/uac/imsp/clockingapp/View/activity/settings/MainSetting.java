@@ -31,8 +31,10 @@ TextView share,shareViaQR,overview,appVersion,clearCache,cacheSize,name,clock,da
 		email,desc,accountSettings;
 	EditText input;
 Intent intent;
-LinearLayout nameLayout,emailLayout,descLayout,otherSLayout;
-long cacheSizeValue;
+LinearLayout nameLayout;
+	LinearLayout emailLayout;
+	LinearLayout descLayout;
+	long cacheSizeValue;
 String dialogInput;
 
 SharedPreferences preferences;
@@ -59,8 +61,6 @@ IMainSettingsController mainSettingsPresenter;
 		clearCache=findViewById(R.id.setting_clear_cache);
 		cacheSize=findViewById(R.id.setting_cache_size);
 		nameLayout=findViewById(R.id.setting_name_layout);
-		/*otherSLayout=findViewById(R.id.setting_others_layout);
-		otherSLayout.setOnClickListener(this);*/
 		nameLayout.setOnClickListener(this);
 		name=findViewById(R.id.setting_name);
 		email=findViewById(R.id.setting_mail);

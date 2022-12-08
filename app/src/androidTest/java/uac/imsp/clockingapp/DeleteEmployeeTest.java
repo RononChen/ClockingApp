@@ -23,7 +23,7 @@ import uac.imsp.clockingapp.View.util.IDeleteEmployeeView;
 @RunWith(AndroidJUnit4.class)
 public class DeleteEmployeeTest  implements IDeleteEmployeeView {
     private final Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
-   private DeleteEmployeeController deleteEmployeePresenter;
+   private final DeleteEmployeeController deleteEmployeePresenter;
     public DeleteEmployeeTest(){
         deleteEmployeePresenter=new DeleteEmployeeController(this,appContext);
         assertNotNull(deleteEmployeePresenter);

@@ -8,23 +8,25 @@ import java.util.regex.Pattern;
 
 
 public class Employee implements IEmployee {
-    public final static int EMPTY_NUMBER=13,
-                    INVALID_NUMBER=1,
-                    EMPTY_LASTNAME=2,
-                    INVALID_LASTNAME=3,
-                    EMPTY_FIRSTNAME=4,
-                    INVALID_FIRSTNAME=5,
+    public final static int EMPTY_NUMBER=13;
+    public final static int INVALID_NUMBER=1;
+    public final static int EMPTY_LASTNAME=2;
+    public final static int INVALID_LASTNAME=3;
+    public final static int EMPTY_FIRSTNAME=4;
+    public final static int INVALID_FIRSTNAME=5;
 
-                    EMPTY_USERNAME=6,
-                  INVALID_USERNAME=11,
+    public final static int EMPTY_USERNAME=6;
+    public final static int INVALID_USERNAME=11;
 
-                    EMPTY_PICTURE=7, EMPTY_PASSWORD=9,
-                            INVALID_PASSWORD=10,EMPTY_MAIL=14,INVALID_MAIL=12,
-                            EMPTY_BIRTHDATE=15
+    public final static int EMPTY_PASSWORD=9;
+    public final static int INVALID_PASSWORD=10;
+    public final static int EMPTY_MAIL=14;
+    public final static int INVALID_MAIL=12;
+    public final static int EMPTY_BIRTHDATE=15
 
                     ;
 
-public  final static String SIMPLE="Simple", HEAD="Directeur",CHIEF="Chef personnel";
+//public  final static String SIMPLE="Simple", HEAD="Directeur",CHIEF="Chef personnel";
 
 
     //Les infos personnelles sur l'employé
@@ -197,18 +199,6 @@ public  final static String SIMPLE="Simple", HEAD="Directeur",CHIEF="Chef person
 
     public void setFirstname(String firstname) {
         Firstname = firstname;
-
-    }
-    public int validUser(){
-        if(TextUtils.isEmpty(Username))
-            return EMPTY_USERNAME;
-        else if (hasInvalidUsername())
-            return INVALID_USERNAME;
-        else if (TextUtils.isEmpty(Password))
-            return EMPTY_PASSWORD;
-        else if(hasInvalidPassword())
-            return  INVALID_PASSWORD;
-        return 0;
 
     }
 

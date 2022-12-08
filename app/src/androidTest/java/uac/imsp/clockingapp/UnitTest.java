@@ -26,7 +26,6 @@ public class UnitTest {
 		new UnitTest();
 		EmployeeManager employeeManager=new EmployeeManager(appContext);
 		employeeManager.open();
-		int i=0;
 
 	}
 }
