@@ -22,24 +22,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7ddeb6ea-e00f-4cf2-88d3-89cbf60c105a" name="Changes" comment="&quot;statistics for employee is Okay! Great&quot;">
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/checksums/checksums.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/checksums/checksums.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/ChangePasswordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/ChangePasswordController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/ClockingInOutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/ClockingInOutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/ConsultPresenceReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/ConsultPresenceReportController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/ConsultStatisticsByEmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/ConsultStatisticsByEmployeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/ConsultStatisticsByServiceController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/ConsultStatisticsByServiceController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/DeleteEmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/DeleteEmployeeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/GeneralMenuController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/GeneralMenuController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/RegisterEmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/RegisterEmployeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/SearchEmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/SearchEmployeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/StartScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/StartScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/UpdateEmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/UpdateEmployeeController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,7 +32,7 @@
   <component name="CodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[042451198T006553]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/home/firminsh/.android/avd/New_Device_2_API_31.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -693,13 +676,6 @@
       <option name="presentableId" value="Default" />
       <updated>1657575710173</updated>
     </task>
-    <task id="LOCAL-00028" summary="&quot;Application is being improved&quot;">
-      <created>1661500475700</created>
-      <option name="number" value="00028" />
-      <option name="presentableId" value="LOCAL-00028" />
-      <option name="project" value="LOCAL" />
-      <updated>1661500475707</updated>
-    </task>
     <task id="LOCAL-00029" summary="&quot;Password changing module added&quot;">
       <created>1661532687889</created>
       <option name="number" value="00029" />
@@ -1036,7 +1012,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670500215230</updated>
     </task>
-    <option name="localTasksCounter" value="77" />
+    <task id="LOCAL-00077" summary="&quot;statistics for employee is Okay! Great&quot;">
+      <created>1670507486126</created>
+      <option name="number" value="00077" />
+      <option name="presentableId" value="LOCAL-00077" />
+      <option name="project" value="LOCAL" />
+      <updated>1670507486126</updated>
+    </task>
+    <option name="localTasksCounter" value="78" />
     <servers />
   </component>
   <component name="UnknownFeatures">

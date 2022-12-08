@@ -68,14 +68,12 @@ public class GeneralMenuController  implements IGeneralMenuController {
         if(services.length==0)//the list is empty
 
              return false;
-       /* employeeManager=new EmployeeManager((Context) menuView);
-        employeeManager.open();
 
-        employee=new Employee(currentUser);*/
+
 
 
         menuView.onRegisterEmployeeMenuSuccessful();
-     // employeeManager.close();
+
       return true;
     }
 
