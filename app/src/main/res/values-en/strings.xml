@@ -223,4 +223,9 @@
     <string name="from" >From </string>
     <string name="to" >To </string>
     <string name="label" >Presence statistics for employé</string>
+    <string-array name="status">
+        <item>Number of presence(s) by service</item>
+        <item>>Number of absence(s) by service</item>
+        <item>>Number of late(s) by service</item>
+    </string-array>
 </resources>

@@ -3,7 +3,11 @@ package uac.imsp.clockingapp.View.activity;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,8 +17,8 @@ import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 
+import java.text.MessageFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Hashtable;
 import java.util.Objects;
@@ -26,18 +30,18 @@ import uac.imsp.clockingapp.View.util.IConsultStatisticsByServiceView;
 import uac.imsp.clockingapp.View.util.ToastMessage;
 
 public class ConsultStatisticsByService extends AppCompatActivity
-implements IConsultStatisticsByServiceView,
+implements IConsultStatisticsByServiceView, AdapterView.OnItemSelectedListener,
         View.OnClickListener {
     private IConsultStatisticsByServiceController consultStatisticsByServicePresenter;
     PieChart pieChart;
+    private TextView reportPeriod;
     private Hashtable<String,Integer> statistics;
     private Button previous,next;
-    private int cpt=0;
+    private int Status=0;
+    //private String selectedStatus;
+    Spinner spinnerStatus;
 
-    final Calendar cldr = Calendar.getInstance();
-    int day = cldr.get(Calendar.DAY_OF_MONTH);
-    int month = cldr.get(Calendar.MONTH);
-    int year = cldr.get(Calendar.YEAR);
+
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
@@ -57,19 +61,27 @@ implements IConsultStatisticsByServiceView,
             next=findViewById(R.id.stat__next);
             previous.setOnClickListener(this);
             next.setOnClickListener(this);
+             spinnerStatus = findViewById(R.id.stat__status);
+            reportPeriod=findViewById(R.id.report_date);
+
+
+       String[]     status=getResources().getStringArray(R.array.status);
+            ArrayAdapter<String> dataAdapterR = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, status);
+            dataAdapterR.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+            spinnerStatus.setAdapter(dataAdapterR);
+            spinnerStatus.setOnItemSelectedListener(this);
+            pieChart.setPaddingRelative(1,1,1,1);
 
         }
 
     private void showPieChart(){
-            HashMap<String,Integer> resultMap =new HashMap<>();
-
 
 
         ArrayList<PieEntry> pieEntries = new ArrayList<>();
         String label = "Statistiques";
 
         //initializing data
-        resultMap.putAll(statistics);
+        HashMap<String, Integer> resultMap = new HashMap<>(statistics);
         //initializing colors for the entries
         ArrayList<Integer> colors = new ArrayList<>();
         colors.add(Color.parseColor("#304567"));
@@ -82,7 +94,10 @@ implements IConsultStatisticsByServiceView,
 
         //input data and fit data into pie chart entry
         for(String service: resultMap.keySet()){
-            pieEntries.add(new PieEntry(Objects.requireNonNull(resultMap.get(service)).floatValue(), service));
+            pieEntries.add(new PieEntry(Objects.requireNonNull
+                    (resultMap.get(service)), service));
+           /// pieEntries.add(new PieEntry(Objects.requireNonNull
+                    //(resultMap.get(service).floatValue()), service));
         }
 
         //collecting the entries with label name
@@ -102,10 +117,10 @@ implements IConsultStatisticsByServiceView,
     }
     private void initPieChart(){
         //using percentage as values instead of amount
-        pieChart.setUsePercentValues(true);
+        pieChart.setUsePercentValues(false);
 
         //remove the description label on the lower left corner, default true if not set
-        //pieChart.getDescription().setEnabled(false);
+        pieChart.getDescription().setEnabled(true);
 
         //enabling the user to rotate the chart, default true
         pieChart.setRotationEnabled(true);
@@ -123,37 +138,14 @@ implements IConsultStatisticsByServiceView,
 
     }
 
-    /*@Override
-    public void onConsultStatistics(String title, String message) {
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(message)
-                .setCancelable(false)
-                .setPositiveButton("Continuer", (dialog, which) -> {
-
-
-
-
-                    consultStatisticsByServicePresenter.onConfirmResult(true);
-                })
-                .setNegativeButton("Annuler", (dialog, which) -> {
-
-                    Toast = new ToastMessage(ConsultStatisticsByService.this,"Annulé");
-                    ConsultStatisticsByService.this.finish();
-                    startActivity(getIntent());
-                });
-        AlertDialog alert = builder.create();
-        alert.setTitle(title);
-        alert.show();
-
-
-    }*/
 
     @Override
     public void onNoServiceFound() {
         String message=getString(R.string.no_service_available);
             new ToastMessage(this,message);
-
+            next.setVisibility(View.GONE);
+            previous.setVisibility(View.GONE);
+            spinnerStatus.setVisibility(View.GONE);
     }
 
     @Override
@@ -162,6 +154,51 @@ implements IConsultStatisticsByServiceView,
         showPieChart();
 
     }
+
+    @Override
+    public void onStart(int firstDayNumber, int lastDayNumber, int mouthLength, int month, int year) {
+        String [] days=getResources().getStringArray(R.array.days);
+        String [] months=getResources().getStringArray(R.array.months);
+        //From Monday 20 November 2022 to Friday 23 December 2022
+        String from=getString(R.string.from);
+        String to=getString(R.string.to);
+        reportPeriod.setText(MessageFormat.format("{0} {1} 1 {2} {3} {4} {5} {6} {7} {3}",
+                from, days[firstDayNumber - 1], months[month - 1], year,to, days[lastDayNumber - 1], mouthLength, months[month - 1], year));
+
+    }
+
+    @Override
+    public void onMonthSelected(String[] report, int fitstDayNumber) {
+
+    }
+
+    @Override
+    public void onReportNotAccessible(boolean nextMonthReport) {
+        if(nextMonthReport)
+            this.next.setClickable(false);
+        else
+            previous.setClickable(false);
+
+    }
+
+    @Override
+    public void onReportAccessible(boolean nextMonthReport) {
+        if(nextMonthReport)
+            this.next.setClickable(true);
+        else
+            this.previous.setClickable(true);
+
+    }
+
+    @Override
+    public void onReportStatusChanged(int status) {
+
+        Hashtable<String, Integer> rowSet=consultStatisticsByServicePresenter.
+                onReportStatusChanged(status);
+            onServiceFound(rowSet);
+
+    }
+
     @Override
     public void onClick(View v) {
         if (v.getId()==R.id.stat_previous)
@@ -170,6 +207,23 @@ implements IConsultStatisticsByServiceView,
 
         else if (v.getId() == R.id.report_next)
             consultStatisticsByServicePresenter.onNextMonth();
+
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        //selectedStatus = parent.getItemAtPosition(position).toString();
+        //consultStatisticsByServicePresenter.onReportStatusChanged(position);
+        if(Status!=position) {
+            onReportStatusChanged(position);
+            Status=position;
+        }
+
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
 
     }
 }

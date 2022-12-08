@@ -75,7 +75,7 @@ public class EmployeeManager {
         // open();
         SQLiteStatement statement;
         String query = "INSERT INTO employe (matricule,nom,prenom,sexe," +
-                "couriel,username,password,type,date_ajout) VALUES(?,?,?,?,?,?,?,?,?,DATE(?,?)) ";
+                "couriel,username,password,type,date_ajout) VALUES(?,?,?,?,?,?,?,?,DATE(?,?)) ";
         statement = Database.compileStatement(query);
 
         statement.bindLong(1, employee.getRegistrationNumber());
@@ -87,8 +87,8 @@ public class EmployeeManager {
         statement.bindString(6, employee.getUsername());
         statement.bindString(7, md5(employee.getPassword()));
         statement.bindString(8, employee.getType());
-        statement.bindString(10, "NOW");
-        statement.bindString(11, "LOCALTIME");
+        statement.bindString(9, "NOW");
+        statement.bindString(10, "LOCALTIME");
 
         statement.executeInsert();
         //if the birthdate is given
@@ -375,7 +375,48 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
         statement.executeUpdateDelete();
 
     }
-    public Hashtable<String, Integer> getStatisticsByService(int month,int year) {
+
+    public int getNumberOfWorkDays(Employee employee, int month, int year){
+        Day day=new Day();
+        int total=0;
+        String[] state = getPresenceReportForEmployee(employee,month,year);
+
+        for(int i=0;i< state.length;i++) {
+            if (i == day.getDayOfMonth())
+                break;
+            if(!Objects.equals(state[i], "Hors service") && !Objects.equals(state[i],"Undefined"))
+                total++;
+        }
+        return total;
+
+    }
+
+    public int[] getAttendanceReportForEmployee(Employee employee, int month, int year){
+        int p=0,a=0,r=0;
+        int [] report=new int[4];
+        String []state=getPresenceReportForEmployee(employee,month,year);
+        int total=getNumberOfWorkDays(employee,month,year);
+        for (String str : state) {
+            if (Objects.equals(str, "Présent"))
+                p++;
+            else if (str.equals("Absent"))
+                a++;
+            else if (str.equals("Retard"))
+                r++;
+
+        }
+            report[0]=p;
+            report[1]=a;
+            report[2]=r;
+            report[3]=total;
+            return report;
+
+
+    }
+
+
+
+    public Hashtable<String, Integer> getStatisticsByService(int month,int year,String status) {
 Day day=new Day(year,month,1);
 Day d;
 int length=day.getLenthOfMonth();
@@ -389,10 +430,11 @@ d=new Day(year,month,length-1);
 
         Hashtable<String, Integer> row = new Hashtable<>();
         String query = "SELECT id_service_ref, COUNT(*) FROM" +
-                "( SELECT id_service_ref FROM employe JOIN   service AS Relation   ON id_service=id_service_ref " +
+                "( SELECT id_service_ref FROM employe JOIN   service AS Relation " +
+                "  ON id_service=id_service_ref " +
                 " JOIN pointage AS Final  ON matricule =Final.matricule_ref " +
                 "WHERE Final.statut=? AND date_jour BETWEEN ? AND ?) GROUP BY id_service_ref " ;
-        String[] selectArgs = {start, end};
+        String[] selectArgs = {status,start, end};
         Cursor cursor = Database.rawQuery(query, selectArgs);
 
         while (cursor.moveToNext()) {
@@ -404,7 +446,7 @@ d=new Day(year,month,length-1);
         return row;
     }
 
-    // presence report in a month for an employee (satursday and sunday aren't concerned)
+    // presence report in a month for an employee
     public String[] getPresenceReportForEmployee(
             Employee employee, int month, int year)  {
         //int nb;

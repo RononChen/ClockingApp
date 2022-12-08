@@ -3,7 +3,6 @@ package uac.imsp.clockingapp.Controller.control;
 import android.content.Context;
 
 import java.util.Hashtable;
-import java.util.Objects;
 
 import uac.imsp.clockingapp.Controller.util.IConsultStatisticsByEmployeeController;
 import uac.imsp.clockingapp.Models.dao.EmployeeManager;
@@ -30,15 +29,14 @@ public class ConsultStatisticsByEmployeeController implements
     @Override
     public void onConsultStatisticsForEmployee(int number) {
 
-        int total=0;
+        int total;
         boolean accessible =true;
 
-        int p=0,a=0,r=0;
+        int p,a,r;
         Day d;
         Hashtable <Character,Float> stat;
 
         stat=new Hashtable<>();
-        String[] state;
 
         EmployeeManager employeeManager;
         employeeManager=new EmployeeManager((Context) consultStatisticsByEmployeeView);
@@ -69,27 +67,12 @@ public class ConsultStatisticsByEmployeeController implements
         if(accessible|| this.cpt ==0) {
             consultStatisticsByEmployeeView.onStart(day.getDayOfWeek(), d.getDayOfWeek(),
                     d.getFirstDayOfMonth(), day.getMonth(), day.getYear());
-            state = employeeManager.getPresenceReportForEmployee(employee, day.getMonth(), day.getYear());
-            //n = state.length;
-           for(int i=0;i< state.length;i++) {
-               if (i == day.getDayOfMonth())
-                   break;
-               if(!Objects.equals(state[i], "Hors service") && !Objects.equals(state[i],"Undefined"))
-                  total++;
-           }
+            int [] attendanceReportForEmployee = employeeManager.getAttendanceReportForEmployee(employee,day.getMonth(),day.getYear());
+            p= attendanceReportForEmployee[0];
+            a= attendanceReportForEmployee[1];
+            r= attendanceReportForEmployee[2];
+            total= attendanceReportForEmployee[3];
 
-
-
-
-            for (String str : state) {
-                if (Objects.equals(str, "Présent"))
-                    p++;
-                else if (str.equals("Absent"))
-                    a++;
-                else if (str.equals("Retard"))
-                    r++;
-
-            }
             stat.put('P', 100*(float)p/ total);
             stat.put('A', 100*(float)a/ total);
             stat.put('R',100*(float) r/ total);

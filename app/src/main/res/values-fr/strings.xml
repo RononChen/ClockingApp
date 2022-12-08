@@ -247,4 +247,9 @@
     <string name="from" >Du</string>
     <string name="to" >au </string>
     <string name="label" >Statistiques de présence pour employé</string>
+    <string-array name="status">
+    <item>Nombre de présences par service</item>
+    <item>Nombre d\'absences par service</item>
+        <item>Nombre de retards par service</item>
+    </string-array>
 </resources>

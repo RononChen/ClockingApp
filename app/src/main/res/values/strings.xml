@@ -25,6 +25,12 @@
         <item>Novembre</item>
         <item>Décembre</item>
     </string-array>
+
+    <string-array name="status">
+        <item>Nombre de présence(s) par service</item>
+        <item>Nombre d\'absence(s) par service</item>
+        <item>Nombre de retard(s) par service</item>
+    </string-array>
     <string name="male">Masculin</string>
 
     <string name="female">Féminin</string>

@@ -69,6 +69,7 @@ public class ConsultPresenceReportController implements IConsultPresenceReportCo
             day.getMonth(), day.getYear());
 
     consultPresenceReportView.onMonthSelected(state, day.getFirstDayOfMonth());
+    cpt++;
 
 }
         

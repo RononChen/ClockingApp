@@ -3,11 +3,13 @@ package uac.imsp.clockingapp.Controller.control;
 import android.content.Context;
 
 import java.util.Hashtable;
+import java.util.Objects;
 
 import uac.imsp.clockingapp.Controller.util.IConsultStatisticsByServiceController;
 import uac.imsp.clockingapp.Models.dao.EmployeeManager;
 import uac.imsp.clockingapp.Models.dao.ServiceManager;
 import uac.imsp.clockingapp.Models.entity.Day;
+import uac.imsp.clockingapp.Models.entity.Employee;
 import uac.imsp.clockingapp.Models.entity.Service;
 import uac.imsp.clockingapp.View.util.IConsultStatisticsByServiceView;
 
@@ -17,14 +19,20 @@ public class ConsultStatisticsByServiceController implements
 
 
     private final IConsultStatisticsByServiceView consultStatisticsByServiceView;
+    Hashtable<String, int[]> reportByService =new Hashtable<>();
    // private String startDate;
     private  Day day;
+    Service[] serviceSet;
+    private final Day CurrentDay;
+    int cpt=0;
 
     public ConsultStatisticsByServiceController(IConsultStatisticsByServiceView
                                                         consultStatisticsByServiceView)
     {
         this.consultStatisticsByServiceView=consultStatisticsByServiceView;
         day=new Day();
+        CurrentDay=day;
+
 
 
 
@@ -33,26 +41,110 @@ public class ConsultStatisticsByServiceController implements
 
     @Override
     public void onConsultStatisticsByService() {
-        Hashtable<String,Integer> rowSet;
-        EmployeeManager employeeManager;
-        employeeManager =new EmployeeManager((Context) consultStatisticsByServiceView);
-        employeeManager.open();
-       // employeeManager.close();
-        Service [] serviceSet;
-        ServiceManager serviceManager;
-        serviceManager=new ServiceManager((Context) consultStatisticsByServiceView);
-        serviceManager.open();
-        serviceSet=serviceManager.getAllService();
-        //serviceManager.close();
-        if(serviceSet.length==0)
-            consultStatisticsByServiceView.onNoServiceFound();
-       else {
-            employeeManager.open();
-            rowSet= employeeManager.getStatisticsByService(day.getMonth(),day.getYear());
-            consultStatisticsByServiceView.onServiceFound(rowSet);
 
+        Day d;
+        boolean accessible=true;
+        int [] repTable = new int[4];
+      //  float [] rep = new float[3];
+        int [] currentEmployeeReportTable;
+
+        // Hashtable<String, float[]> report =new Hashtable<>();
+        EmployeeManager employeeManager;
+        employeeManager = new EmployeeManager((Context) consultStatisticsByServiceView);
+
+        // employeeManager.close();
+
+        ServiceManager serviceManager;
+        serviceManager = new ServiceManager((Context) consultStatisticsByServiceView);
+        serviceManager.open();
+        serviceSet = serviceManager.getAllService();
+        day=new Day(day.getYear(), day.getMonth(),1);
+        d=new Day(day.getYear(), day.getMonth(), day.getLenthOfMonth());
+        if(Objects.equals(day.getMonthPart(), CurrentDay.getMonthPart()))
+        //serviceManager.close();
+
+consultStatisticsByServiceView.onStart(day.getDayOfWeek(), CurrentDay.getDayOfWeek(),
+        CurrentDay.getDayOfMonth(), CurrentDay.getMonth(), CurrentDay.getYear());
+        else
+            consultStatisticsByServiceView.onStart(day.getDayOfWeek(),d.getDayOfWeek(),
+                    day.getLenthOfMonth(), day.getMonth(), day.getYear());
+
+
+        if (serviceSet.length == 0)
+            consultStatisticsByServiceView.onNoServiceFound();
+        else {
+
+            employeeManager.open();
+            Employee[] employees = employeeManager.search("*");
+
+
+            if (day.addMonth().getMonthPart().compareTo(CurrentDay.getMonthPart()) > 0) {
+                consultStatisticsByServiceView.onReportNotAccessible(true);
+                accessible = false;
+            } else
+                consultStatisticsByServiceView.onReportAccessible(true);
+
+
+            //the month preceding the current one
+            if (day.subtractMonth().getMonthPart().
+                    compareTo(new Day("2022-12-01").getMonthPart()) < 0) {
+                consultStatisticsByServiceView.onReportNotAccessible(false);
+                accessible = false;
+            } else
+                consultStatisticsByServiceView.onReportAccessible(false);
+            if (accessible || cpt == 0)
+            {
+
+                for (Service service : serviceSet) {
+                    for (Employee employee : employees) {
+
+                        if (Objects.equals(employeeManager.getService(employee).getName(),
+                                service.getName())) {
+                            currentEmployeeReportTable =
+                                    employeeManager.getAttendanceReportForEmployee
+                                            (employee, day.getMonth(), day.getYear());
+
+                            for (int i = 0; i < 4; i++) {
+                                repTable[i] += currentEmployeeReportTable[i];
+                            /* *if(i==3)
+                                continue;
+                                rep[i]+=100*(float) repTable[i]/repTable[3];
+                               */
+                            }
+                        }
+
+                    }
+                    reportByService.put(service.getName(), repTable);
+                    repTable = new int[4];
+                }
+            cpt++;
         }
+
+                       // report.put(service.getName(),rep);
+                        consultStatisticsByServiceView.onServiceFound(onReportStatusChanged(0));
+
+            }
+
+            }
+
+
+
+    @Override
+    public Hashtable<String, Integer> onReportStatusChanged(int status) {
+        Hashtable<String, Integer> r=new Hashtable<>();
+        for(Service service:serviceSet)
+            r.put(service.getName(),
+                    Objects.
+                            requireNonNull(reportByService.
+                                    get(service.
+                                            getName()))[status]);
+
+
+        return r ;
     }
+
+
+
 
     @Override
     public void onPreviousMonth() {
