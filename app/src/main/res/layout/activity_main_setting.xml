@@ -66,6 +66,12 @@
             android:id="@+id/setting_docs"
             android:layout_height="wrap_content"
             app:drawableStartCompat="@drawable/ic_baseline_menu_book_25" />
+
+        <TextView
+            android:id="@+id/setting_services"
+            android:text="Gestion des Services"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
         <LinearLayout
             android:id="@+id/setting_cache_label"
             android:orientation="vertical"

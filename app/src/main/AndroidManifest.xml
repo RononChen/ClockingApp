@@ -63,15 +63,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-        <!--
-activity
-            android:name=".View.activity.settings.others.Others"
-            android:exported="false">
-            <meta-data
-                android:name="android.app.lib_name"
-                android:value="" />
-        </activity
-        -->
         <activity
             android:name=".View.activity.settings.Overview"
             android:exported="false">
@@ -178,7 +169,7 @@ activity
             </intent-filter>
         </activity>
 
-        
+
 
     </application>
 

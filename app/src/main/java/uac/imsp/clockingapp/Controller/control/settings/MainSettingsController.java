@@ -73,6 +73,11 @@ mainSettingsView.onAccount();
 	}
 
 	@Override
+	public void onService() {
+mainSettingsView.onService();
+	}
+
+	@Override
 	public void onEmail() {
 		mainSettingsView.onEmail("Adresse mail de l'entreprise",
 				"Editer l'adresse email de l'entreprise",

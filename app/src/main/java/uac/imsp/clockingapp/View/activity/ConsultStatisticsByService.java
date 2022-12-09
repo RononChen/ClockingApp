@@ -96,8 +96,7 @@ implements IConsultStatisticsByServiceView, AdapterView.OnItemSelectedListener,
         for(String service: resultMap.keySet()){
             pieEntries.add(new PieEntry(Objects.requireNonNull
                     (resultMap.get(service)), service));
-           /// pieEntries.add(new PieEntry(Objects.requireNonNull
-                    //(resultMap.get(service).floatValue()), service));
+
         }
 
         //collecting the entries with label name

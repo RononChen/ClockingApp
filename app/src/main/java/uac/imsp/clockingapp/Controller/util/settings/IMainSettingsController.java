@@ -12,6 +12,7 @@ public interface IMainSettingsController {
 	//About the establishment
 	void onName();
 	void onPicture();
+	void onService();
 	void onEmail();
 	void onClocking();
 	void onDescription();

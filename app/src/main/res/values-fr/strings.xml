@@ -272,6 +272,9 @@
     <string name="confirm_delete_service">Supprimer le service</string>
     <string name="delete_not_possible">Ce service ne peut pas etre supprimé
     car un ou plusieurs employés sont y enregistrés</string>
+    <string name="confirm_update_service_title">Confirmation de modification</string>
+    <string name="confirm_update_service">Vouler-vous apporter ces modifcations?</string>
+
 
 
 </resources>

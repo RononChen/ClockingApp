@@ -421,6 +421,7 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
     }
 
     // presence report in a month for an employee
+    /**Test**/
     public String[] getPresenceReportForEmployee(
             Employee employee, int month, int year)  {
         //int nb;

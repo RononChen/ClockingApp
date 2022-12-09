@@ -33,6 +33,7 @@ public class Services extends AppCompatActivity implements IServicesView,
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_services);
 		initView();
+		servicesPresenter=new ServicesController(this);
 		servicesPresenter.onStart();
 
 	}
@@ -75,7 +76,7 @@ public class Services extends AppCompatActivity implements IServicesView,
 
 	@Override
 	public void askConfirmDelete() {
-		String message="",title="",
+		String message=getString(R.string.confirm_update_service),title="",
 				pos=getString(R.string.yes),
 				neg=getString(R.string.no);
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);

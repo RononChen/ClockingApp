@@ -10,6 +10,7 @@ public interface IMainSettingsView {
 
 	void onOverview();
 	void onAccount();
+	void onService();
 
 	void onClock();
 	void onDark();

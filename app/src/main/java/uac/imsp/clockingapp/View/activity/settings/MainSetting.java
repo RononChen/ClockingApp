@@ -19,6 +19,7 @@ import uac.imsp.clockingapp.BuildConfig;
 import uac.imsp.clockingapp.Controller.control.settings.MainSettingsController;
 import uac.imsp.clockingapp.Controller.util.settings.IMainSettingsController;
 import uac.imsp.clockingapp.R;
+import uac.imsp.clockingapp.View.activity.Services;
 import uac.imsp.clockingapp.View.activity.settings.others.Clocking;
 import uac.imsp.clockingapp.View.activity.settings.others.DarkMode;
 import uac.imsp.clockingapp.View.activity.settings.others.Help;
@@ -28,7 +29,7 @@ import uac.imsp.clockingapp.View.util.settings.IMainSettingsView;
 
 public class MainSetting extends AppCompatActivity implements View.OnClickListener, IMainSettingsView {
 TextView share,shareViaQR,overview,appVersion,clearCache,cacheSize,name,clock,dark,lang,problem,help,
-		email,desc,accountSettings;
+		email,desc,accountSettings,service;
 	EditText input;
 Intent intent;
 LinearLayout nameLayout;
@@ -53,7 +54,8 @@ IMainSettingsController mainSettingsPresenter;
 		retrieveSharedPreferences();
 	}
 	public void initView(){
-
+		service=findViewById(R.id.setting_services);
+		service.setOnClickListener(this);
 		share=findViewById(R.id.setting_share);
 		shareViaQR=findViewById(R.id.setting_share_with_qr);
 		overview=findViewById(R.id.setting_overview);
@@ -97,7 +99,10 @@ IMainSettingsController mainSettingsPresenter;
 
 	@Override
 	public void onClick(View v) {
-if(v.getId()==R.id.setting_share)
+
+		if(v.getId()==R.id.setting_services)
+			mainSettingsPresenter.onService();
+else if(v.getId()==R.id.setting_share)
 	mainSettingsPresenter.onShareApp();
 else if(v.getId()==R.id.setting_share_with_qr)
 	mainSettingsPresenter.onShareAppViaQRCode();
@@ -190,6 +195,12 @@ cacheSize.setText(String.valueOf(cacheSizeValue));
 	@Override
 	public void onAccount() {
 intent=new Intent(MainSetting.this,ManageUsername.class);
+startActivity(intent);
+	}
+
+	@Override
+	public void onService() {
+intent=new Intent(this, Services.class);
 startActivity(intent);
 	}
 
