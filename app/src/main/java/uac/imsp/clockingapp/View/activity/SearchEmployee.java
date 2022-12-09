@@ -17,7 +17,7 @@ import uac.imsp.clockingapp.Controller.control.SearchEmployeeController;
 import uac.imsp.clockingapp.Controller.util.Result;
 import uac.imsp.clockingapp.R;
 import uac.imsp.clockingapp.View.util.IsearchEmployeeView;
-import uac.imsp.clockingapp.View.util.ListViewAdapter;
+import uac.imsp.clockingapp.View.util.EmployeeListViewAdapter;
 import uac.imsp.clockingapp.View.util.ToastMessage;
 
 public class SearchEmployee extends AppCompatActivity
@@ -27,7 +27,7 @@ public class SearchEmployee extends AppCompatActivity
         View.OnFocusChangeListener,
         DialogInterface.OnClickListener {
     private  ListView list;
-    ListViewAdapter adapter;
+    EmployeeListViewAdapter adapter;
     AlertDialog.Builder builder;
     AlertDialog dialog;
     SearchEmployeeController searchEmployeePresenter;
@@ -54,7 +54,7 @@ public class SearchEmployee extends AppCompatActivity
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-        Result result = (Result) adapter.getItem(position);
+        Result result =  adapter.getItem(position);
         Number= result.getNumber();
         searchEmployeePresenter.onEmployeeSelected(Number);
     }
@@ -68,7 +68,7 @@ public class SearchEmployee extends AppCompatActivity
 
     @Override
     public void onEmployeeFound(ArrayList<Result> employeeList) {
-        adapter = new ListViewAdapter(this, employeeList);
+        adapter = new EmployeeListViewAdapter(this, employeeList);
         this.list.setAdapter(adapter);
         this.list.setVisibility(View.VISIBLE);
     }

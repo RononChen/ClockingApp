@@ -15,10 +15,10 @@ import de.hdodenhof.circleimageview.CircleImageView;
 import uac.imsp.clockingapp.Controller.util.Result;
 import uac.imsp.clockingapp.R;
 
-public class ListViewAdapter  extends ArrayAdapter {
+public class EmployeeListViewAdapter extends ArrayAdapter<Result> {
 
 
-    public ListViewAdapter(Context context,  ArrayList<Result> listData) {
+    public EmployeeListViewAdapter(Context context, ArrayList<Result> listData) {
 
         super(context,R.layout.result_item_layout,listData);
     }
@@ -34,7 +34,7 @@ public class ListViewAdapter  extends ArrayAdapter {
         Bitmap pictureBipmap;
 
         ViewHolder holder;
-        Result result = (Result) getItem(position);
+        Result result = getItem(position);
         if (convertView == null) {
             holder = new ViewHolder();
             LayoutInflater layoutInflater = LayoutInflater.from(getContext());

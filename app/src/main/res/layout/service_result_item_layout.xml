@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <LinearLayout
+        android:layout_marginStart="70dp"
+        android:layout_width="230dp"
+        android:layout_height="40dp"
+        android:orientation="horizontal"
+        >
+        <TextView
+            android:id="@+id/service_id"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:textColor="@color/black"
+            android:fontFamily="@font/latoregular"
+            android:text="@string/id"
+            android:textSize="20sp" />
+        <EditText
+            android:id="@+id/service_name"
+            android:textColor="@color/black"
+            android:fontFamily="@font/latoregular"
+            android:layout_width="160dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="30dp"
+            android:text="@string/nom"
+            android:textSize="20sp"
+            android:autofillHints=""
+            android:inputType="text"
+            tools:ignore="LabelFor" />
+    </LinearLayout>
+
+
+</RelativeLayout>

@@ -203,14 +203,14 @@
     <string name="fingerprint">Scannez votre empreinte pour marquer votre entrée ou sortie</string>
     <string name="confirm_login">Voulez-vous connecter en tant qu\'administrateur?</string>
     <string name="confirm_login_title">Choix du type de connexion</string>
-    <string name="yes" >Oui</string>
-    <string name="no" >Non</string>
-    <string name="required" >Requis \!</string>
-    <string name="at_least" >Au moins 6 caractères requis  \!</string>
-    <string name="at_most" >Au plus 30 caractères requis \!</string>
-    <string name="notify_admin_login" >Vous êtes connecté en tant qu\'administrateur \!</string>
-    <string name="notify_simple_login" >Vous êtes connecté en tant que simple employé  \!</string>
-<string name="all__fields_required">Tousles champs sont requis  \!</string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+    <string name="required">Requis \!</string>
+    <string name="at_least">Au moins 6 caractères requis  \!</string>
+    <string name="at_most">Au plus 30 caractères requis \!</string>
+    <string name="notify_admin_login">Vous êtes connecté en tant qu\'administrateur \!</string>
+    <string name="notify_simple_login">Vous êtes connecté en tant que simple employé  \!</string>
+    <string name="all__fields_required">Tousles champs sont requis  \!</string>
     <string name="invalid_password">Mot de passe invalide  \!</string>
     <string name="incorrect_password">Mot de passe incorrect  \!</string>
     <string name="chech_and_retry">Vérifiez le mot de passe précédent et reessayez  \!</string>
@@ -227,33 +227,33 @@
     <string name="exit_confirmation">Confirmation de sortie</string>
     <string name="exit_confirmation_message">Voulez vous vraiment quitter l\'application\?</string>
     <string name="cancel">Annuler</string>
-    <string name="number_required" >Matricule requis \!</string>
-    <string name="last_name_required" >Nom requis \!</string>
-    <string name="firstname_required" >Prénom(s) requis \!</string>
-    <string name="mail_required" >Adresse mail requise \!</string>
-    <string name="username_required" >Username requis \!</string>
-    <string name="password_required" >Mot de passe requis \!</string>
-    <string name="number_invalid" >Matricule invalide \!</string>
-    <string name="last_name_invalid" >Nom invalide \!</string>
-    <string name="firstname_invalid" >Prénom(s) invalide(s) \!</string>
-    <string name="mail_invalid" >Adresse mail invalide !</string>
-    <string name="username_invalid" >Username invalide \!</string>
-    <string name="password_invalid" >Mot de passe invalide \!</string>
-    <string name="no_workday_choosen" >Aucun jour de travail choisi</string>
-    <string name="number_already_assigned" >Ce matricule a été déjà attribué à un employé \!</string>
+    <string name="number_required">Matricule requis \!</string>
+    <string name="last_name_required">Nom requis \!</string>
+    <string name="firstname_required">Prénom(s) requis \!</string>
+    <string name="mail_required">Adresse mail requise \!</string>
+    <string name="username_required">Username requis \!</string>
+    <string name="password_required">Mot de passe requis \!</string>
+    <string name="number_invalid">Matricule invalide \!</string>
+    <string name="last_name_invalid">Nom invalide \!</string>
+    <string name="firstname_invalid">Prénom(s) invalide(s) \!</string>
+    <string name="mail_invalid">Adresse mail invalide !</string>
+    <string name="username_invalid">Username invalide \!</string>
+    <string name="password_invalid">Mot de passe invalide \!</string>
+    <string name="no_workday_choosen">Aucun jour de travail choisi</string>
+    <string name="number_already_assigned">Ce matricule a été déjà attribué à un employé \!</string>
 
-    <string name="mail_already_assigned" >Cette adresse mail a été déjà attribué à un employé \!</string>
-    <string name="username_already_assigned" >Ce nom d\'utilisateur a été déjà attribué à un employé \!</string>
-    <string name="account_informations" >Informations de compte employé</string>
-    <string name="registration_successful" >Employé enregistré avec succès</string>
-    <string name="no_employee" >Aucun employé \correspondant \!</string>
-    <string name="select_option" >Séléctionnez une option</string>
-    <string name="confirmation" >Confirmation</string>
-    <string name="confirmation_update" >Voulez vous vraiment appliquer ces modifications \?</string>
-    <string name="no_update" >Aucune information n\'a été modifiée</string>
-    <string name="from" >Du </string>
-    <string name="to" >au </string>
-    <string name="label" >Statistiques de présence pour employé</string>
+    <string name="mail_already_assigned">Cette adresse mail a été déjà attribué à un employé \!</string>
+    <string name="username_already_assigned">Ce nom d\'utilisateur a été déjà attribué à un employé \!</string>
+    <string name="account_informations">Informations de compte employé</string>
+    <string name="registration_successful">Employé enregistré avec succès</string>
+    <string name="no_employee">Aucun employé \correspondant \!</string>
+    <string name="select_option">Séléctionnez une option</string>
+    <string name="confirmation">Confirmation</string>
+    <string name="confirmation_update">Voulez vous vraiment appliquer ces modifications \?</string>
+    <string name="no_update">Aucune information n\'a été modifiée</string>
+    <string name="from">Du </string>
+    <string name="to">au </string>
+    <string name="label">Statistiques de présence pour employé</string>
 
     <string-array name="current_status">
         <item>Présent(e)</item>
@@ -262,12 +262,20 @@
         <item>Hors service</item>
         <item>Sorti(e)</item>
     </string-array>
-    <string name="subject_registration" >Informations de compte employé</string>
-    <string name="has_been" >, vous avez été enregistré en tant qu\'employé.\nConsultez ci-dessous
+    <string name="subject_registration">Informations de compte employé</string>
+    <string name="has_been">, vous avez été enregistré en tant qu\'employé.\nConsultez ci-dessous
      les informations de votre compte.\n Username: </string>
-    <string name="pass" >Mot de passe: </string>
-    <string name="qr" >Recevez également en pièce jointe votre code QR.\n
+    <string name="pass">Mot de passe: </string>
+    <string name="qr">Recevez également en pièce jointe votre code QR.\n
         Il vous permettra d\'enregistrer vos entrées et sorties.</string>
+    <string name="id" translatable="false">Id</string>
+    <string name="apply">Appliquer</string>
+
+    <string name="service_deleted">Service supprimé avec succès</string>
+    <string name="no_such_service">Ce  service n\'existe pas</string>
+    <string name="confirm_delete_service">Supprimer le service</string>
+    <string name="delete_not_possible">Ce service ne peut pas etre supprimé
+    car un ou plusieurs employés sont y enregistrés</string>
 
 
 

@@ -3,8 +3,8 @@ package entity;
 public class Service implements IService {
 
     //attributs
-    private int Id;
-    private String Name;
+    protected int Id;
+    protected String Name;
 
 
 

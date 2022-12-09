@@ -265,7 +265,13 @@
      les informations de votre compte.\n Username: </string>
     <string name="pass" >Mot de passe: </string>
     <string name="qr" >Recevez également en pièce jointe votre code QR.\n
-        Il vous permettra d\'enregistrer vos entrées et sorties.</string>>
+        Il vous permettra d\'enregistrer vos entrées et sorties.</string>
+    <string name="apply">Appliquer</string>>
+    <string name="service_deleted">Service supprimé avec succès</string>
+    <string name="no_such_service">Ce  service n\'existe pas</string>
+    <string name="confirm_delete_service">Supprimer le service</string>
+    <string name="delete_not_possible">Ce service ne peut pas etre supprimé
+    car un ou plusieurs employés sont y enregistrés</string>
 
 
 </resources>

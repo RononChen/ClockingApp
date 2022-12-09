@@ -5,7 +5,10 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
+import java.util.Objects;
 
 import dbAdapter.ServiceSQLite;
 import entity.Service;
@@ -37,6 +40,57 @@ public class ServiceManager {
         if (Database!=null && Database.isOpen())
             Database.close();
     }
+    public boolean exists(@NonNull Service service){
+        String query="SELECT id FROM service WHERE nom=?";
+        String[] selectArgs= new String[]{service.getName()};
+        Cursor cursor=Database.rawQuery(query,selectArgs);
+
+        if(cursor.moveToNext())
+        {
+            cursor.close();
+         service.setId(cursor.getInt(0));
+         return true;
+        }
+        else {
+            cursor.close();
+            return false;
+        }
+
+
+
+
+
+    }
+
+
+    public boolean check(@NonNull Service service) {
+        String query = "SELECT nom FROM service WHERE id=?";
+        String[] selectArgs = new String[]{String.valueOf(service.getId())};
+        Cursor cursor = Database.rawQuery(query, selectArgs);
+boolean b;
+        cursor.moveToNext();
+        b= Objects.equals(cursor.getString(0), service.getName());
+            cursor.close();
+            return b;
+
+    }
+        public boolean hasEmployee(Service service){
+
+        String query="SELECT * FROM employee WHERE id_service_ref=? ";
+        String[] selectArgs= new String[]{String.valueOf(service.getId())};
+        Cursor cursor=Database.rawQuery(query,selectArgs);
+
+        if (cursor.moveToNext())
+
+        {
+            cursor.close();
+            return true;
+        }
+        else {
+            cursor.close();
+            return false;
+        }
+    }
 
 
 
@@ -60,13 +114,13 @@ public class ServiceManager {
 
     }
 
-        public static void delete(Service service){
-        String query = "DELETE FROM service WHERE id_service=?";
+        public  boolean delete(Service service){
+        String query = "DELETE FROM service WHERE nom=?";
         SQLiteStatement statement ;
 
         statement = Database.compileStatement(query);
-        statement.bindLong(1,service.getId());
-        statement.executeUpdateDelete();
+        statement.bindString(1,service.getName());
+       return statement.executeUpdateDelete()==1;
 
     }
     public void update(Service service,String newName){
@@ -81,7 +135,7 @@ public class ServiceManager {
     }
     public String[] getAllServices(){
         ArrayList <String> service= new ArrayList<>();
-        String query="SELECT nom FROM service";
+        String query="SELECT nom FROM service ORDER BY id_service";
         Cursor cursor=Database.rawQuery(query,null);
 
         while (cursor.moveToNext())
@@ -102,7 +156,6 @@ public class ServiceManager {
 
         String query="SELECT * FROM service";
         Cursor cursor=Database.rawQuery(query,null);
-        //cursor.moveToFirst();
         while (cursor.moveToNext())
 
         {

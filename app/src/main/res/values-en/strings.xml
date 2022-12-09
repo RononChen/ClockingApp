@@ -243,5 +243,11 @@
     <string name="pass" >Password: </string>
     <string name="qr" >Also receive your QR code as an attachment.\n
         It will allow you to record your entries and exits.</string>
+    <string name="apply">Appliquer</string>
+    <string name="service_deleted">Service deleted successfully</string>
+    <string name="no_such_service">No such service</string>
+    <string name="confirm_delete_service">Delete service</string>
+    <string name="delete_not_possible">This service cannot be deleted
+    because one or more employees have been registered there</string>
 
 </resources>

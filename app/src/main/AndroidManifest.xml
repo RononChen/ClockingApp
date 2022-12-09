@@ -15,6 +15,13 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
+            android:name=".View.activity.Services"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".View.activity.Savefingerprint"
             android:exported="false">
             <meta-data
@@ -86,7 +93,6 @@ activity
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".View.activity.NoServiceAvailable"
             android:exported="false">
@@ -117,7 +123,6 @@ activity
         <activity
             android:name=".View.activity.ConsultStatisticsByEmployee"
             android:exported="false" />
-
         <activity
             android:name=".View.activity.Login"
             android:exported="false" />
@@ -172,6 +177,9 @@ activity
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        
+
     </application>
 
 </manifest>
