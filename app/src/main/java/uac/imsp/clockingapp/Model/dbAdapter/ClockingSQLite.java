@@ -19,6 +19,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 
+import androidx.annotation.NonNull;
+
 public class ClockingSQLite  extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "Clocking_database.db";
@@ -75,7 +77,7 @@ public class ClockingSQLite  extends SQLiteOpenHelper {
         upgradeDatabase(db);
 
     }
-    public void createDatabase(SQLiteDatabase db){
+    public void createDatabase(@NonNull SQLiteDatabase db){
         db.execSQL(CREATE_SERVICE);
         db.execSQL(CREATE_PLANNING);
         db.execSQL(CREATE_DAY);

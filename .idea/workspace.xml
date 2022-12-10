@@ -22,9 +22,29 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7ddeb6ea-e00f-4cf2-88d3-89cbf60c105a" name="Changes" comment="&quot;Services management okay&quot;">
+      <change afterPath="$PROJECT_DIR$/app/src/debug/ic_launcher-playstore.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/debug/res/drawable/ic_launcher_foreground.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/debug/res/mipmap-anydpi-v26/ic_launcher.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/debug/res/mipmap-anydpi-v26/ic_launcher_round.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/debug/res/mipmap-hdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/debug/res/mipmap-hdpi/ic_launcher_background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/debug/res/mipmap-hdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/debug/res/mipmap-mdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/debug/res/mipmap-mdpi/ic_launcher_background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/debug/res/mipmap-mdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/debug/res/mipmap-xhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/debug/res/mipmap-xhdpi/ic_launcher_background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/debug/res/mipmap-xhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/debug/res/mipmap-xxhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/debug/res/mipmap-xxhdpi/ic_launcher_background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/debug/res/mipmap-xxhdpi/ic_launcher_round.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/debug/res/mipmap-xxxhdpi/ic_launcher.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/debug/res/mipmap-xxxhdpi/ic_launcher_background.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/debug/res/mipmap-xxxhdpi/ic_launcher_round.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/util/ServiceListViewAdapter.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/util/ServiceListViewAdapter.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/service_result_item_layout.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/service_result_item_layout.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Model/dbAdapter/ClockingSQLite.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Model/dbAdapter/ClockingSQLite.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -136,7 +156,7 @@
     <property name="android-custom-view/home/firminsh/Android/Sdk/sources/android-32/android/widget/RadioGroup.java_SELECTED" value="RadioGroup" />
     <property name="android-custom-view/home/firminsh/Android/Sdk/sources/android-32/android/widget/ScrollView.java_SELECTED" value="ScrollView" />
     <property name="cidr.known.project.marker" value="true" />
-    <property name="com.android.tools.idea.sqlite.queryhistory" value="SELECT statut FROM pointage WHERE matricule_ref='1' AND date_jour='2022-12-08'&#10;SELECT statut FROM pointage WHERE matricule_ref='1' AND date_jour='2022-12-08'  &#10;SELECT statut FROM pointage WHERE matricule_ref='1' AND date_jour='2022-12-08' AND heure_sortie==NULL &#10;SELECT statut FROM pointage WHERE matricule_ref='1' AND date_jour='2022-12-08' AND heure_sortie=NULL &#10;SELECT  * FROM  pointage&#10;SELECT statut FROM pointage WHERE matricule_ref='' AND date_jour='' AND heure_sortie=NULL &#10;SELECT  * FROM employe" />
+    <property name="com.android.tools.idea.sqlite.queryhistory" value="CREATE TABLE IF NOT EXISTS pointage (id_pointage INTEGER NOT NULL  PRIMARY KEY AUTOINCREMENT, id_jour_ref TEXT    ,date_jour TEXT,heure_entree   TEXT ,heure_sortie TEXT ,statut TEXT DEFAULT NULL ,matricule_ref INTEGER NOT NULL , FOREIGN KEY(matricule_ref ) REFERENCES employe(matricule ),  FOREIGN KEY(id_jour_ref ) REFERENCES jour(id_jour ))&#10;SELECT statut FROM pointage WHERE matricule_ref='1' AND date_jour='2022-12-08'&#10;SELECT statut FROM pointage WHERE matricule_ref='1' AND date_jour='2022-12-08'  &#10;SELECT statut FROM pointage WHERE matricule_ref='1' AND date_jour='2022-12-08' AND heure_sortie==NULL &#10;SELECT statut FROM pointage WHERE matricule_ref='1' AND date_jour='2022-12-08' AND heure_sortie=NULL &#10;SELECT  * FROM  pointage&#10;SELECT statut FROM pointage WHERE matricule_ref='' AND date_jour='' AND heure_sortie=NULL " />
     <property name="com.intellij.openapi.externalSystem.service.settings.ExternalSystemGroupConfigurable" value="ALL" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
@@ -684,13 +704,6 @@
       <option name="presentableId" value="Default" />
       <updated>1657575710173</updated>
     </task>
-    <task id="LOCAL-00034" summary="&quot;Unit tests&quot;">
-      <created>1662123982035</created>
-      <option name="number" value="00034" />
-      <option name="presentableId" value="LOCAL-00034" />
-      <option name="project" value="LOCAL" />
-      <updated>1662123982035</updated>
-    </task>
     <task id="LOCAL-00035" summary="&quot;Unit tests&quot;">
       <created>1662676230226</created>
       <option name="number" value="00035" />
@@ -1027,7 +1040,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670632421721</updated>
     </task>
-    <option name="localTasksCounter" value="83" />
+    <task id="LOCAL-00083" summary="&quot;Services management okay&quot;">
+      <created>1670633548896</created>
+      <option name="number" value="00083" />
+      <option name="presentableId" value="LOCAL-00083" />
+      <option name="project" value="LOCAL" />
+      <updated>1670633548896</updated>
+    </task>
+    <option name="localTasksCounter" value="84" />
     <servers />
   </component>
   <component name="UnknownFeatures">
