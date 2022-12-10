@@ -42,7 +42,7 @@ public class ServiceListViewAdapter extends ArrayAdapter<ServiceResuslt> {
 		if (convertView == null) {
 			holder = new ViewHolder();
 			LayoutInflater layoutInflater = LayoutInflater.from(getContext());
-			convertView = layoutInflater.inflate(R.layout.service_result_item_layout, null);
+			convertView = layoutInflater.inflate(R.layout.service_result_item_layout,null);
 
 
 			holder.idView = convertView.findViewById(R.id.service_id);
