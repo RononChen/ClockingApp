@@ -26,11 +26,13 @@ public class ServicesController  implements IServicesController {
 
 	@Override
 	public void onUpdate(Hashtable<Integer, String> hashtable) {
+		servicesView.askConfirmUpdate();
 		Enumeration<Integer> ids=hashtable.keys();
 		int id;
 
 		Service service;
 		String s;
+
 		ServiceManager serviceManager=new ServiceManager(context);
 		serviceManager.open();
 		while (ids.hasMoreElements())
@@ -59,6 +61,7 @@ public class ServicesController  implements IServicesController {
 
 	@Override
 	public void onCancell() {
+		servicesView.askConfirmCancel();
 
 	}
 
@@ -132,14 +135,27 @@ public class ServicesController  implements IServicesController {
 	}
 
 	@Override
-	public void check(int id, String newService) {
+	public void check(String oldService, String newService) {
+
+		if(!Objects.equals(oldService, newService))
+			servicesView.onServiceEdited();
+			}
+
+	@Override
+	public void onAddService(String service) {
+		Service service1=new Service(service);
 		ServiceManager serviceManager=new ServiceManager(context);
 		serviceManager.open();
-		Service service=new Service(newService);
-		service.setId(id);
-		if(serviceManager.check(service))
-			servicesView.onServiceChanged(id);
-
+		if(service.equals(""))
+			servicesView.onAddServiceError(0);
+		else if(serviceManager.exists(service1))
+			servicesView.onAddServiceError(1);
+		else
+		{
+			serviceManager.create(service1);
+			servicesView.onServiceAdded();
+		}
+		serviceManager.close();
 
 
 	}

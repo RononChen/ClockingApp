@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <LinearLayout
-        android:layout_marginStart="70dp"
-        android:layout_width="230dp"
+        android:layout_marginStart="10dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         >
@@ -18,17 +18,19 @@
             android:fontFamily="@font/latoregular"
             android:text="@string/id"
             android:textSize="20sp" />
+
         <EditText
             android:id="@+id/service_name"
-            android:textColor="@color/black"
-            android:fontFamily="@font/latoregular"
-            android:layout_width="160dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="30dp"
-            android:text="@string/nom"
-            android:textSize="20sp"
+            android:layout_marginStart="20dp"
             android:autofillHints=""
+            android:fontFamily="@font/chonburi"
             android:inputType="text"
+            android:text="@string/nom"
+            android:textColor="@color/black"
+
+            android:textSize="20sp"
             tools:ignore="LabelFor" />
     </LinearLayout>
 

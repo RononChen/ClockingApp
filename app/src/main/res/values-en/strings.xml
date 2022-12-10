@@ -186,9 +186,14 @@
     <string name="chech_and_retry">Check the previous password and try again\!</string>
     <string name="password_changed_successfully">Password successfully changed</string>
     <string name="employee_not_found">Employee not found</string>
+    <string name="service_invalid">Invalid service name</string>
+    <string name="service_already_exists">This service already exists</string>
+    <string name="notify_service_added">Service added successfully</string>
     <string name="should_not_work_today">You are not supposed to work today</string>
     <string name="enter_pointed">Entry marked successfully</string>
     <string name="out_pointed">Exit marked successfully</string>
+    <string name="cancel_confirmation_title">Confirmation of cancellation of changes</string>
+    <string name="cancel_confirmation_message">Do you want to undo these changes?</string>
     <string name="in_out_already_marked">You have already marked your entry-exit for the day</string>
     <string name="no_service_available">No services have been registered</string>
     <string name="delete_confirmation">Delete confirmation</string>
@@ -251,6 +256,8 @@
     because one or more employees have been registered there</string>
     <string name="confirm_update_service_title">Change Confirmation</string>
     <string name="confirm_update_service">Do you want to make these changes?</string>
+    <string name="add_service">Ajouter un service</string>
+    <string name="cliquer_longuement_pour_supprimer_ncliquer_pour_diter">Cliquer longuement pour supprimer\nCliquer pour éditer</string>
 
 
 </resources>

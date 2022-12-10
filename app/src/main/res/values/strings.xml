@@ -225,6 +225,8 @@
     <string name="delete_confirmation_message">Voulez vous vraiment supprimer l\'employé \?</string>
     <string name="notify_delete_sucessfull">Employé supprimé avec succès</string>
     <string name="exit_confirmation">Confirmation de sortie</string>
+    <string name="cancel_confirmation_title">Confirmation d\'annulation des modifications</string>
+    <string name="cancel_confirmation_message">Voulez-vous annuler ces modifications?</string>
     <string name="exit_confirmation_message">Voulez vous vraiment quitter l\'application\?</string>
     <string name="cancel">Annuler</string>
     <string name="number_required">Matricule requis \!</string>
@@ -271,6 +273,10 @@
     <string name="id" translatable="false">Id</string>
     <string name="apply">Appliquer</string>
 
+    <string name="service_invalid">Nom de service invalide</string>
+    <string name="service_already_exists">Ce service existe déjà</string>
+    <string name="notify_service_added">Service ajouté avec succès</string>
+
     <string name="service_deleted">Service supprimé avec succès</string>
     <string name="no_such_service">Ce  service n\'existe pas</string>
     <string name="confirm_delete_service">Supprimer le service</string>
@@ -278,8 +284,8 @@
     car un ou plusieurs employés sont y enregistrés</string>
     <string name="confirm_update_service_title">Confirmation de modification</string>
     <string name="confirm_update_service">Vouler-vous apporter ces modifcations?</string>
-
-
+    <string name="add_service">Ajouter un service</string>
+    <string name="cliquer_longuement_pour_supprimer_ncliquer_pour_diter">Cliquer longuement pour supprimer\nCliquer pour éditer</string>
 
 
 </resources>

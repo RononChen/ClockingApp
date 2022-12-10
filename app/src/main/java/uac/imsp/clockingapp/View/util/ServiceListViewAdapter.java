@@ -26,9 +26,10 @@ public class ServiceListViewAdapter extends ArrayAdapter<ServiceResuslt> {
 
 	}
 	public EditText name;
-	public EditText getServiceNameEditText(int position){
-		View view = null;
-		getView(position,view,null);
+	public EditText getServiceNameEditText(int position, View convertView,
+										   ViewGroup parent){
+
+		getView(position,convertView,parent);
 		return name;
 	}
 

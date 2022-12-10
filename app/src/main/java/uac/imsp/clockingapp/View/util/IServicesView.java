@@ -7,13 +7,13 @@ import uac.imsp.clockingapp.Controller.util.ServiceResuslt;
 public interface IServicesView {
 	void onNoServiceFound();
 	void onServiceFound(ArrayList<ServiceResuslt> list);
-
-
-	void onUpdate();
 	void askConfirmDelete();
 	void onUpdateError(int errorNumber,int serviceIndex);
 	void onDeleteSucessful();
 	void onDeleteError(int errorNumber);
-	void onServiceEdit();
-	void onServiceChanged(int id);
+	void onServiceEdited();
+	void onAddServiceError(int errorNumber);
+	void onServiceAdded();
+	void askConfirmCancel();
+	void askConfirmUpdate();
 }

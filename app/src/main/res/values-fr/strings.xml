@@ -274,7 +274,13 @@
     car un ou plusieurs employés sont y enregistrés</string>
     <string name="confirm_update_service_title">Confirmation de modification</string>
     <string name="confirm_update_service">Vouler-vous apporter ces modifcations?</string>
-
+    <string name="add_service">Ajouter un service</string>
+    <string name="cliquer_longuement_pour_supprimer_ncliquer_pour_diter">Cliquer longuement pour supprimer\nCliquer pour éditer</string>
+    <string name="service_invalid">Nom de service invalide</string>
+    <string name="service_already_exists">Ce service existe déjà</string>
+    <string name="notify_service_added">Service ajouté avec succès</string>
+    <string name="cancel_confirmation_title">Confirmation d\'annulation des modifications</string>
+    <string name="cancel_confirmation_message">Voulez-vous annuler ces modifications?</string>
 
 
 </resources>
