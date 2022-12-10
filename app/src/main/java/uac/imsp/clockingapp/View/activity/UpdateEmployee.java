@@ -22,6 +22,7 @@ import android.widget.TextView;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.IOException;
@@ -86,7 +87,7 @@ public class UpdateEmployee extends AppCompatActivity
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(@NonNull View v) {
 
         //bouton modifier
         if (v.getId() == R.id.update_button)
@@ -433,7 +434,7 @@ if(informations.get("picture")!=null)
         }
     }
 
-    public String toString(EditText e) {
+    public String toString(@NonNull EditText e) {
         return e.getText().toString();
 
     }

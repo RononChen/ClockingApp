@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import uac.imsp.clockingapp.Controller.control.LoginController;
@@ -56,7 +57,7 @@ public class Login extends AppCompatActivity
 
 
     @Override
-    public void onClick(View v) {
+    public void onClick(@NonNull View v) {
         if(v.getId()==R.id.login_button)
             loginPresenter.onLogin(Username.getText().toString(),
                 Password.getText().toString());
@@ -210,7 +211,7 @@ public class Login extends AppCompatActivity
     }
 
     @Override
-    public void afterTextChanged(Editable s) {
+    public void afterTextChanged(@NonNull Editable s) {
         if(Username.getText().toString().equals(s.toString()))
             loginPresenter.onUsernameEdit(s.toString());
         else if(Password.getText().toString().equals(s.toString()))

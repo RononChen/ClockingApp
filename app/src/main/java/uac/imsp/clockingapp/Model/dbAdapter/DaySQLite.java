@@ -19,6 +19,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 
+import androidx.annotation.NonNull;
+
 public class DaySQLite extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "Clocking_database.db";
@@ -45,7 +47,7 @@ public class DaySQLite extends SQLiteOpenHelper {
 
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
-    public void createDatabase(SQLiteDatabase db){
+    public void createDatabase(@NonNull SQLiteDatabase db){
         db.execSQL(CREATE_SERVICE);
         db.execSQL(CREATE_PLANNING);
         db.execSQL(CREATE_DAY);
@@ -55,6 +57,7 @@ public class DaySQLite extends SQLiteOpenHelper {
         SQLiteStatement statement= db.compileStatement(super_user);
         statement.bindLong(1,1);
         statement.bindString(2,"User10");
+
         statement.bindString(3,"password");
         statement.bindString(4,"Directeur");
         statement.bindString(5,"M");
@@ -64,8 +67,9 @@ public class DaySQLite extends SQLiteOpenHelper {
         statement.bindString(9,"AKOBA");
         statement.bindString(10,"Patrick");
         statement.bindString(11,"1970-01-01");
-      //  statement.bindString(12,"DATE('NOW','LOCALTIME'))");
-        statement.execute();
+        statement.bindString(12,"true");
+
+        statement.executeInsert();
         String service = "INSERT INTO service(nom)  VALUES (?)";
         statement= db.compileStatement(service);
         //Direction
@@ -110,7 +114,7 @@ public class DaySQLite extends SQLiteOpenHelper {
 
 
     }
-    public void upgradeDatabase(SQLiteDatabase db){
+    public void upgradeDatabase(@NonNull SQLiteDatabase db){
         db.execSQL(DROP_EMPLOYEE);
         db.execSQL(DROP_SERVICE);
         db.execSQL(DROP_PLANNING);

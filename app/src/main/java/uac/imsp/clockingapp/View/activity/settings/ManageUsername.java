@@ -8,6 +8,7 @@ import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
@@ -69,7 +70,7 @@ CompoundButton.OnCheckedChangeListener{
     }
 
     @Override
-    public void onCheckedChanged(RadioGroup group, int checkedId) {
+    public void onCheckedChanged(@NonNull RadioGroup group, int checkedId) {
         if (group.getId() == R.id.username_group)
         {
 
@@ -88,7 +89,7 @@ CompoundButton.OnCheckedChangeListener{
     }
 
     @Override
-    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+    public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
         if (buttonView.getId()==R.id.switch_show_password)
             editor.putBoolean("showPasswordDuringAdd",isChecked);
 

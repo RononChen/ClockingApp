@@ -1,6 +1,7 @@
 package uac.imsp.clockingapp.Controller.control;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import java.util.Objects;
 
@@ -13,11 +14,17 @@ import uac.imsp.clockingapp.View.util.IStartScreenView;
 
 public class StartScreenController  implements IStartScreenController {
     private final IStartScreenView startScreenView;
+    private final Context context;
+
     public StartScreenController(IStartScreenView startScreenView){
         this.startScreenView=startScreenView;
+        context=(Context) this.startScreenView;
+
         updateDailyAttendance();
 
+
     }
+
 
 
     @Override
@@ -35,19 +42,57 @@ public class StartScreenController  implements IStartScreenController {
 
     @Override
     public void onLoad(int savedVersionCode, int currentVersionCode) {
+        final String PREFS_NAME="MyPrefsFile";
         final int DOESNT_EXIST=-1;
+        SharedPreferences preferences= context.getSharedPreferences(PREFS_NAME,0);
 
         if(savedVersionCode==currentVersionCode)
+        {
+
+            if(preferences.getString("nextStep","").equals("none"))
             startScreenView.onNormalRun();
+            else if(preferences.getString("nextStep","").equals("account"))
+                startScreenView.onAccount();
+            else if(preferences.getString("nextStep","").equals("service"))
+                startScreenView.onService();
+            else if(preferences.getString("nextStep","").equals("setup"))
+             startScreenView.onSetUp();
+        }
+
+
 
         else if (savedVersionCode==DOESNT_EXIST)
         {
 
+            SharedPreferences.Editor editor=preferences.edit();
+            editor.putString("entrepriseName","");
+            editor.putString("entrepriseEmail","");
+            editor.putString("entrepriseDescription","");
+            //For userDoc
+            editor.putString("userDoc","");
 
+            editor.putBoolean("emailAsUsername",false);
+            editor.putBoolean("editUsername",true);
+            editor.putBoolean("generatePassword",false);
+            editor.putBoolean("showPasswordDuringAdd",false);
+            //For others settings
+            editor.putBoolean("darkMode",false);
+            editor.putString("language","Français");
+            editor.putBoolean("notifyAdd",true);
+            editor.putBoolean("notifyDelete",false);
+            editor.putBoolean("notifyUpdate",false);
+            editor.putBoolean("useQRCode",true);
+            editor.putString("lang","fr");
+            editor.putBoolean("dark",false);
+            editor.putString("nextStep","setup");
+            editor.apply();
             startScreenView.onFirstRun();
         }
         else if (savedVersionCode < currentVersionCode )
             startScreenView.onUpgrade();
+        else
+            startScreenView.onDowngrade();
+
 
 
 

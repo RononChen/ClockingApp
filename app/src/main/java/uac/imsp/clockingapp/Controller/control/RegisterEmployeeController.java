@@ -16,6 +16,8 @@ import static entity.Employee.INVALID_USERNAME;
 import android.content.Context;
 import android.graphics.Bitmap;
 
+import androidx.annotation.NonNull;
+
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
@@ -76,10 +78,10 @@ public class RegisterEmployeeController implements IRegisterEmployeeController
 
     @Override
     public void onRegisterEmployee(String number, String lastname,
-                                   String firstname,  String gender, String birthdate, String mail,
+                                   String firstname, String gender, String birthdate, String mail,
                                    String username, String password, String passwordConfirm,
                                    String selectedService, int startTime, int endTime,
-                                   byte[] picture, String type,byte[] workdays) {
+                                   byte[] picture, String type, @NonNull byte[] workdays) {
         int nb_workdays=0;
         for(byte elt:workdays)
         {

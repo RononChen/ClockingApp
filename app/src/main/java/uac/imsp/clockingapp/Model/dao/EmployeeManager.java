@@ -46,7 +46,7 @@ public class EmployeeManager {
             Database.close();
     }
 
-    public int connectUser(Employee employee) {
+    public int connectUser(@NonNull Employee employee) {
 
         int nb_employee;
         String correctPassword , givenPassword = employee.getPassword();
@@ -72,11 +72,24 @@ public class EmployeeManager {
         return CAN_NOT_LOGIN;
 
     }
+    public String[] retrieveAccount(@NonNull Employee employee){
+        String query = "SELECT username,password FROM employe WHERE matricule=?";
+        String[] selectArgs = {String.valueOf(employee.getRegistrationNumber())};
+
+        Cursor cursor = Database.rawQuery(query, selectArgs);
+        cursor.moveToFirst();
+
+       String username = cursor.getString(0);
+        String password = cursor.getString(1);//get  encrypted password
+        cursor.close();
+        return new String[]{username,password};
+
+    }
 
 
     //create,delete,update
 
-    public void create(Employee employee) {
+    public void create(@NonNull Employee employee) {
 
         // open();
         SQLiteStatement statement;
@@ -107,7 +120,7 @@ public class EmployeeManager {
         }
 
     }
-    public void retrieveAddDate(Employee employee){
+    public void retrieveAddDate(@NonNull Employee employee){
         String querry="SELECT date_ajout FROM employe WHERE matricule=?";
         String[] selectArgs={String.valueOf(employee.getRegistrationNumber())};
         Cursor cursor=Database.rawQuery(querry,selectArgs);
@@ -117,7 +130,7 @@ public class EmployeeManager {
         cursor.close();
     }
 
-    public void setAccount(Employee employee) {
+    public void setAccount(@NonNull Employee employee) {
 
         String query = "SELECT username, password FROM employe WHERE matricule=?";
         String[] selectArgs = {String.valueOf(employee.getRegistrationNumber())};
@@ -131,7 +144,7 @@ public class EmployeeManager {
 
     }
 
-    public void changePassword(Employee employee, String newPassword) {
+    public void changePassword(@NonNull Employee employee, String newPassword) {
 
         String query = "UPDATE employe SET password=? WHERE matricule=?";
 
@@ -148,7 +161,7 @@ public class EmployeeManager {
 
 
     //update the email of employee
-    public void update(Employee employee, String mailAddress) {
+    public void update(@NonNull Employee employee, String mailAddress) {
 
         String query = "UPDATE employe SET couriel =? WHERE matricule=?";
         SQLiteStatement statement;
@@ -159,7 +172,7 @@ public class EmployeeManager {
     }
 
 
-    public void changeGrade(Employee employee, String type) {
+    public void changeGrade(@NonNull Employee employee, String type) {
 
         String query = "UPDATE employe SET type =? WHERE matricule=?";
         SQLiteStatement statement;
@@ -170,7 +183,7 @@ public class EmployeeManager {
     }
 
     //To update the picture of the employee
-    public void update(Employee employee, byte[] picture) {
+    public void update(@NonNull Employee employee, byte[] picture) {
         String query = "UPDATE employe SET photo =? WHERE matricule=?";
         SQLiteStatement statement;
         statement = Database.compileStatement(query);
@@ -179,7 +192,7 @@ public class EmployeeManager {
         statement.executeUpdateDelete();
     }
 
-    public Planning getPlanning(Employee employee) {
+    public Planning getPlanning(@NonNull Employee employee) {
         Planning planning = null;
         String query = "SELECT heure_debut_officielle,heure_fin_officielle," +
                 "jours_de_travail FROM planning  JOIN employe ON " +
@@ -198,7 +211,7 @@ public class EmployeeManager {
         return planning;
     }
 
-    public Service getService(Employee employee) {
+    public Service getService(@NonNull Employee employee) {
         Service service;
         String query = "SELECT service.nom  " +
                 "FROM employe JOIN service ON id_service=id_service_ref " +
@@ -212,7 +225,7 @@ public class EmployeeManager {
         return service;
     }
 
-    public void delete(Employee employee) {
+    public void delete(@NonNull Employee employee) {
         String query = "DELETE FROM employe WHERE matricule=?";
         SQLiteStatement statement;
 
@@ -303,7 +316,7 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
     }
 
 
-    public void setInformations(Employee employee) {
+    public void setInformations(@NonNull Employee employee) {
         String query;
         String[] selectArgs;
         Cursor cursor;
@@ -334,7 +347,7 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
     }
 
 
-    public void setInformationsWithoutPiture(Employee employee) {
+    public void setInformationsWithoutPiture(@NonNull Employee employee) {
 
         String query;
         String[] selectArgs;
@@ -373,7 +386,7 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
 
     }
 
-    public void update(@NonNull Employee employee, Planning planning) {
+    public void update(@NonNull Employee employee, @NonNull Planning planning) {
         String query = "UPDATE employe SET id_planning_ref=? WHERE matricule=?";
         SQLiteStatement statement = Database.compileStatement(query);
         statement.bindLong(1, planning.getId());
@@ -423,7 +436,7 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
     // presence report in a month for an employee
     /**Test**/
     public String[] getPresenceReportForEmployee(
-            Employee employee, int month, int year)  {
+            @NonNull Employee employee, int month, int year)  {
         //int nb;
         Hashtable<String,String> status=new Hashtable<>();
 
@@ -468,7 +481,7 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
         return table;
     }
 
-    public boolean isNotSuperUser(Employee employee) {
+    public boolean isNotSuperUser(@NonNull Employee employee) {
         boolean test;
         String query = "SELECT type FROM employe WHERE matricule=?";
         String[] selectArgs = new String[]{String.valueOf(employee.getRegistrationNumber())};
@@ -480,7 +493,7 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
 
     }
 
-    public String md5(String password) {
+    public String md5(@NonNull String password) {
         MessageDigest digest;
         byte[] messageDigest;
         StringBuilder hexString;
@@ -501,7 +514,7 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
         return null;
     }
 
-    public boolean shouldNotWorkThatDay(Employee employee,Day day) {
+    public boolean shouldNotWorkThatDay(@NonNull Employee employee, @NonNull Day day) {
         Cursor cursor;
         byte[] workDays;
         //byte
@@ -517,7 +530,7 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
         return workDays[dayOfWeek - 1] != 'T';
     }
 
-    public boolean shouldNotWorkToday(Employee employee) {
+    public boolean shouldNotWorkToday(@NonNull Employee employee) {
         Cursor cursor;
         byte[] workDays;
         //byte
@@ -533,7 +546,7 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
         cursor.close();
         return workDays[dayOfWeek - 1] != 'T';
     }
-    public void updateCurrentAttendance(Employee employee, String status){
+    public void updateCurrentAttendance(@NonNull Employee employee, String status){
         SQLiteStatement statement;
         employee.setCurrentStatus(status);
         String query="UPDATE employe SET statut=? WHERE matricule=?";
@@ -543,7 +556,7 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
         statement.executeUpdateDelete();
 
     }
-    public void setDayAttendance(Employee employee,String status,Day day){
+    public void setDayAttendance(@NonNull Employee employee, String status, @NonNull Day day){
         SQLiteStatement statement;
         String query;
 
@@ -560,7 +573,7 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
 
     }
 
-    public int getStatus(Employee employee,Day day){
+    public int getStatus(@NonNull Employee employee, @NonNull Day day){
         String status,exitTime = null;
         int index = -1;
 
@@ -595,7 +608,7 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
 
     }
 //for unit test
-    public void setAttendance(Employee employee,String status, String date){
+    public void setAttendance(@NonNull Employee employee, String status, String date){
         SQLiteStatement statement;
         String query;
         Day day=new Day(date);
@@ -631,7 +644,7 @@ public String selectVariable(){
     cursor.close();
         return date;
 }
-    public void setStatus(Employee employee){
+    public void setStatus(@NonNull Employee employee){
         Cursor cursor;
         String status;
         String query = "SELECT statut FROM employe WHERE matricule=?";

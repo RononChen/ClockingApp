@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.mikephil.charting.animation.Easing;
@@ -195,7 +196,7 @@ implements IConsultStatisticsByServiceView, AdapterView.OnItemSelectedListener,
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(@NonNull View v) {
         if (v.getId()==R.id.stat_previous)
 
             consultStatisticsByServicePresenter.onPreviousMonth();

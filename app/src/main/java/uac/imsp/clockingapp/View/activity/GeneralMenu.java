@@ -80,7 +80,7 @@ public class GeneralMenu extends AppCompatActivity implements View.OnClickListen
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(@NonNull View v) {
         boolean presenter;
         Intent intent;
          if(v.getId()==R.id.menu_register)

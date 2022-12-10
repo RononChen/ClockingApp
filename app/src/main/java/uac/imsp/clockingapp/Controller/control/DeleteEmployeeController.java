@@ -4,6 +4,8 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 
+import androidx.annotation.NonNull;
+
 import java.util.Hashtable;
 import java.util.Objects;
 
@@ -40,7 +42,7 @@ public class DeleteEmployeeController implements IDeleteEmployeeController {
     @Override
     //get informations on load
 
-    public  void onLoad(int number, Hashtable <String,Object> informations) {
+    public  void onLoad(int number, @NonNull Hashtable <String,Object> informations) {
 
 
         Day day;

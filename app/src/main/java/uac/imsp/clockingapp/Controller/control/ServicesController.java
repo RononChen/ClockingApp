@@ -2,6 +2,8 @@ package uac.imsp.clockingapp.Controller.control;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import java.util.ArrayList;
 import java.util.Enumeration;
 import java.util.Hashtable;
@@ -17,6 +19,7 @@ public class ServicesController  implements IServicesController {
 	private final IServicesView servicesView;
 	private final Context context;
 	private  Service currentService;
+	Hashtable<Integer,String> stringHashtable=new Hashtable<>();
 
 	public ServicesController(IServicesView servicesView){
 		this.servicesView=servicesView;
@@ -25,45 +28,29 @@ public class ServicesController  implements IServicesController {
 
 
 	@Override
-	public void onUpdate(Hashtable<Integer, String> hashtable) {
-		servicesView.askConfirmUpdate();
-		Enumeration<Integer> ids=hashtable.keys();
-		int id;
+	public void onUpdate(@NonNull Hashtable<Integer, String> hashtable) {
 
-		Service service;
-		String s;
+		if(hashtable.size()==0)
+			servicesView.onNothingUpdated();
+		else {
+			servicesView.askConfirmUpdate();
+			stringHashtable=hashtable;
 
-		ServiceManager serviceManager=new ServiceManager(context);
-		serviceManager.open();
-		while (ids.hasMoreElements())
-		{
-			id=ids.nextElement();
-			s=hashtable.get(id);
-			if(Objects.equals(s, "")) {
-				servicesView.onUpdateError(0,id );
-				break;
-			}
-			service=new Service(s);
-			if(serviceManager.exists(service))
-			{
-				servicesView.onUpdateError(1,id);
-
-				break;
-			}
-			service=new Service(id);
-			serviceManager.update(service,s);
 		}
-		serviceManager.close();
 
 
 
 	}
 
 	@Override
-	public void onCancell() {
-		servicesView.askConfirmCancel();
+	public void onCancel(@NonNull Hashtable<Integer, String> hashtable) {
+		if(hashtable.size()==0)
+			servicesView.onNothingUpdated();
+        else
+		    servicesView.askConfirmCancel();
 
 	}
+
 
 	@Override
 	public void onDelete(String serviceName) {
@@ -157,6 +144,36 @@ public class ServicesController  implements IServicesController {
 		}
 		serviceManager.close();
 
+
+	}
+
+	@Override
+	public void onUpdateConfirmed() {
+		Enumeration<Integer> ids = stringHashtable.keys();
+		int id;
+
+		Service service;
+		String s;
+
+		ServiceManager serviceManager = new ServiceManager(context);
+		serviceManager.open();
+		while (ids.hasMoreElements()) {
+			id = ids.nextElement();
+			s = stringHashtable.get(id);
+			if (Objects.equals(s, "")) {
+				servicesView.onUpdateError(0, id);
+				break;
+			}
+			service = new Service(s);
+			if (serviceManager.exists(service)) {
+				servicesView.onUpdateError(1, id);
+
+				break;
+			}
+			service = new Service(id);
+			serviceManager.update(service, s);
+		}
+		serviceManager.close();
 
 	}
 }

@@ -11,6 +11,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.File;
@@ -98,7 +99,7 @@ IMainSettingsController mainSettingsPresenter;
 
 
 	@Override
-	public void onClick(View v) {
+	public void onClick(@NonNull View v) {
 
 		if(v.getId()==R.id.setting_services)
 			mainSettingsPresenter.onService();

@@ -8,6 +8,7 @@
         import android.widget.TableRow;
         import android.widget.TextView;
 
+        import androidx.annotation.NonNull;
         import androidx.appcompat.app.AppCompatActivity;
 
         import java.text.MessageFormat;
@@ -152,7 +153,7 @@ public class ConsultPresenceReport extends AppCompatActivity
     }
 
     @Override
-        public void onClick(View v) {
+        public void onClick(@NonNull View v) {
                 if(v.getId()==R.id.report_previous)
                         consultPresenceReportPresenter.onPreviousMonth();
                 else if (v.getId()==R.id.report_next)

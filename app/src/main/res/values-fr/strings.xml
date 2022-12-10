@@ -271,7 +271,8 @@
     <string name="no_such_service">Ce  service n\'existe pas</string>
     <string name="confirm_delete_service">Supprimer le service</string>
     <string name="delete_not_possible">Ce service ne peut pas etre supprimé
-    car un ou plusieurs employés sont y enregistrés</string>
+    car au moins un employé y est enregistré</string>
+    <string name="no_service_updated">Aucun service n\'a été modifié</string>
     <string name="confirm_update_service_title">Confirmation de modification</string>
     <string name="confirm_update_service">Vouler-vous apporter ces modifcations?</string>
     <string name="add_service">Ajouter un service</string>
@@ -281,6 +282,8 @@
     <string name="notify_service_added">Service ajouté avec succès</string>
     <string name="cancel_confirmation_title">Confirmation d\'annulation des modifications</string>
     <string name="cancel_confirmation_message">Voulez-vous annuler ces modifications?</string>
+    <string name="thanks">Merci d\'avoir installé l\'application</string>
+    <string name="contin">Continuer</string>
 
 
 </resources>

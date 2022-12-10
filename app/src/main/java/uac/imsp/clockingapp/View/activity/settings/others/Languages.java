@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Objects;
@@ -77,7 +78,7 @@ restartApp();
 	}
 
 	@Override
-	public void onCheckedChanged(RadioGroup group, int checkedId) {
+	public void onCheckedChanged(@NonNull RadioGroup group, int checkedId) {
 		String lang = null;
 
 		if(group.getId()==R.id.languages)

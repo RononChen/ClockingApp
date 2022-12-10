@@ -1,6 +1,9 @@
 package uac.imsp.clockingapp.View.activity;
 
 import android.app.AlertDialog;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
@@ -27,13 +30,14 @@ import uac.imsp.clockingapp.View.util.ToastMessage;
 
 public class Services extends AppCompatActivity implements IServicesView,
 		View.OnClickListener, AdapterView.OnItemLongClickListener,
-		AdapterView.OnItemClickListener, TextWatcher {
+		AdapterView.OnItemClickListener, TextWatcher ,
+		View.OnFocusChangeListener {
 	private ListView list;
 	ServiceListViewAdapter adapter;
 	ServicesController servicesPresenter;
 	ArrayList<ServiceResuslt> arrayList;
-	final  Button addService=findViewById(R.id.add_service);
-	final EditText editService=findViewById(R.id.edit_service);
+	 Button addService;
+	 EditText editService;
 	EditText serviceListViewItemEditText;
 	int position;
 	View view;
@@ -41,9 +45,13 @@ public class Services extends AppCompatActivity implements IServicesView,
 	String oldService,newService;
 	Hashtable<Integer, String> hashtable=new Hashtable<>();
 
-
+	SharedPreferences.Editor editor;
+	SharedPreferences preferences;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		final String PREFS_NAME="MyPrefsFile";
+		preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+		editor=preferences.edit();
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_services);
 		initView();
@@ -72,8 +80,18 @@ public class Services extends AppCompatActivity implements IServicesView,
 	}
 
 	public void initView(){
+		final Button next=findViewById(R.id.next);
+
 		final Button cancel = findViewById(R.id.cancel);
 	final 	Button apply = findViewById(R.id.apply);
+	if(!preferences.getString("nextStep","none").equals("service"))
+	{
+		next.setVisibility(View.VISIBLE);
+		next.setOnClickListener(this);
+	}
+
+		addService=findViewById(R.id.add_service);
+		editService=findViewById(R.id.edit_service);
 
 	addService.setOnClickListener(this);
 	addService.setSelectAllOnFocus(true);
@@ -85,6 +103,8 @@ public class Services extends AppCompatActivity implements IServicesView,
 		list.setOnItemClickListener(this);
 		editService.setOnClickListener(this);
 
+
+
 	}
 
 
@@ -92,13 +112,15 @@ public class Services extends AppCompatActivity implements IServicesView,
 	public void askConfirmDelete() {
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage(getString(R.string.delete_confirmation_message))
+		builder.setMessage(getString(R.string.confirm_delete_service))
 				.setCancelable(false)
 				.setPositiveButton(getString(R.string.yes), (dialog, which) ->
 						servicesPresenter.onDeleteConfirm(true))
-				.setNegativeButton(getString(R.string.no), (dialog, which) ->
+				.setNegativeButton(getString(R.string.no), (dialog, which) ->{
 
-					servicesPresenter.onDeleteConfirm(false));
+						});
+
+
 		AlertDialog alert = builder.create();
 		alert.setTitle(getString(R.string.delete_confirmation));
 		alert.show();
@@ -114,6 +136,7 @@ public class Services extends AppCompatActivity implements IServicesView,
 			case 0:
 				new ToastMessage(this,
 						getString(R.string.service_invalid));
+
 
 			adapter.getServiceNameEditText(position,view,parent).
 					setBackgroundColor(Color.RED);
@@ -166,14 +189,21 @@ public class Services extends AppCompatActivity implements IServicesView,
 
 	@Override
 	public void onAddServiceError(int errorNumber) {
+
 switch (errorNumber){
 	case 0:
 		new ToastMessage(this,getString(R.string.service_invalid));
-		addService.setBackgroundColor(Color.RED);
+		editService.setOnFocusChangeListener(this);
+		editService.setBackgroundColor(Color.RED);
+
+
+
 		break;
 	case 1:
 		new ToastMessage(this,getString(R.string.service_already_exists));
-		addService.setBackgroundColor(Color.YELLOW);
+		editService.setOnFocusChangeListener(this);
+		editService.setBackgroundColor(Color.YELLOW);
+
 		break;
 	default:
 		break;
@@ -190,14 +220,14 @@ switch (errorNumber){
 	@Override
 	public void askConfirmCancel() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setMessage(getString(R.string.confirm_update_service))
+		builder.setMessage(getString(R.string.cancel_confirmation_message))
 				.setCancelable(false)
 				.setPositiveButton(getString(R.string.yes), (dialog, which) ->
 						servicesPresenter.onStart())
 				.setNegativeButton(getString(R.string.no), (dialog, which) -> {
 				});
 		AlertDialog alert = builder.create();
-		alert.setTitle(getString(R.string.confirm_update_service_title));
+		alert.setTitle(getString(R.string.cancel_confirmation_title));
 		alert.show();
 
 	}
@@ -209,9 +239,13 @@ switch (errorNumber){
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setMessage(R.string.confirm_update_service)
 				.setCancelable(false)
-				.setPositiveButton(getString(R.string.yes), (dialog, which) ->
-						servicesPresenter.onStart())
+				.setPositiveButton(getString(R.string.yes), (dialog, which) ->{
+						servicesPresenter.onUpdateConfirmed();
+						hashtable=new Hashtable<>();
+				})
 				.setNegativeButton(getString(R.string.no), (dialog, which) -> {
+					servicesPresenter.onStart();
+					hashtable=new Hashtable<>();
 				});
 		AlertDialog alert = builder.create();
 		alert.setTitle(R.string.confirm_update_service_title);
@@ -221,14 +255,27 @@ switch (errorNumber){
 	}
 
 	@Override
+	public void onNothingUpdated() {
+new ToastMessage(this,getString(R.string.no_service_updated));
+
+	}
+
+	@Override
 	public void onClick(@NonNull View v) {
 
 		if(v.getId()==R.id.add_service)
-			servicesPresenter.onAddService(addService.getText().toString().trim());
+			servicesPresenter.onAddService(editService.getText().toString().trim());
 		else if(v.getId()==R.id.cancel)
-			servicesPresenter.onCancell();
+			servicesPresenter.onCancel(hashtable);
 		else if(v.getId()==R.id.apply)
 			servicesPresenter.onUpdate(hashtable);
+		else if(v.getId()==R.id.next)
+		{
+			startActivity(new Intent(this,ShowAdminAccount.class));
+			editor.putString("nextStep","account");
+			editor.apply();
+		}
+
 
 	}
 
@@ -241,6 +288,7 @@ switch (errorNumber){
 	@Override
 	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+		new ToastMessage(this,"");
 	serviceListViewItemEditText=adapter.getServiceNameEditText(position,
 			view,parent);
 	serviceListViewItemEditText.setSelectAllOnFocus(true);
@@ -261,7 +309,7 @@ switch (errorNumber){
 	}
 
 	@Override
-	public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+	public void beforeTextChanged(@NonNull CharSequence s, int start, int count, int after) {
 oldService=s.toString();
 	}
 
@@ -275,5 +323,11 @@ oldService=s.toString();
 		newService=s.toString();
 		servicesPresenter.check(oldService,newService);
 		
+	}
+
+	@Override
+	public void onFocusChange(@NonNull View v, boolean hasFocus) {
+//if(v.hasFocus())
+	v.setBackgroundColor(Color.WHITE);
 	}
 }

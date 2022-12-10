@@ -2,6 +2,8 @@ package uac.imsp.clockingapp.Controller.control;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
+
 import dao.ClockingManager;
 import dao.DayManager;
 import dao.EmployeeManager;
@@ -15,7 +17,7 @@ public class ClockingInOutController
 
 private final IClockInOutView clockInOutView;
 private final Context context;
-    public ClockingInOutController(IClockInOutView clockInOutView) {
+    public ClockingInOutController(@NonNull IClockInOutView clockInOutView) {
 
         this.clockInOutView=clockInOutView;
         clockInOutView.onLoad();
@@ -23,7 +25,7 @@ private final Context context;
 
     }
 
-    public ClockingInOutController(IClockInOutView clockInOutView,Context context) {
+    public ClockingInOutController(@NonNull IClockInOutView clockInOutView, Context context) {
         this.clockInOutView=clockInOutView;
         clockInOutView.onLoad();
             this.context=context;

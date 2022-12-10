@@ -17,6 +17,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 
+import androidx.annotation.NonNull;
+
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -43,15 +45,17 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
    private static final String COL_ID_SERVICE_REF = "id_service_ref";
     private static final String COL_ID_SERVICE = "id_service";
     private static final String COL_STATUS = "statut";
+    private static final  String COL_IS_ADMIN="est_admin";
     private static final  String TABLE_TEMP="variable";
+
 
     public static final String super_user="INSERT INTO employe(matricule," +
             "username,password,type,sexe,couriel,id_service_ref," +
-            "id_planning_ref,nom,prenom,birthdate,date_ajout)" +
+            "id_planning_ref,nom,prenom,birthdate,date_ajout,est_admin)" +
 
 
 
-            " VALUES (?,?,?,?,?,?,?,?,?,?,?,DATE('NOW','LOCALTIME'))";
+            " VALUES (?,?,?,?,?,?,?,?,?,?,?,DATE('NOW','LOCALTIME'),?)";
 
 
 public static final String CREATE_TEMP= "CREATE  TABLE IF NOT EXISTS variable" +
@@ -66,10 +70,12 @@ public static final String CREATE_TEMP= "CREATE  TABLE IF NOT EXISTS variable" +
             COL_PHOTO + "  BLOB ," +
             COL_USERNAME + " TEXT UNIQUE NOT NULL ," +
             COL_PASSWORD + " TEXT NOT NULL , " +
+            COL_IS_ADMIN+" TEXT DEFAULT 'false',"+
             COL_TYPE+" TEXT DEFAULT 'Simple', "+
             COL_ID_PLANNING_REF + " INTEGER  , " +
             COL_ID_SERVICE_REF + " INTEGER   ," +
-            COL_STATUS+" TEXT DEFAULT 'Hors Service',"+
+
+            COL_STATUS+" TEXT DEFAULT 'Hors Service', "+
             COL_ADD_DATE+" TEXT ,"+
             " FOREIGN KEY(" + COL_ID_SERVICE_REF +
             " ) REFERENCES service(" + COL_ID_SERVICE+" )," +
@@ -95,7 +101,7 @@ public static final String CREATE_TEMP= "CREATE  TABLE IF NOT EXISTS variable" +
      createDatabase(db);
 
     }
-    public void upgradeDatabase(SQLiteDatabase db){
+    public void upgradeDatabase(@NonNull SQLiteDatabase db){
         db.execSQL(DROP_EMPLOYEE);
         db.execSQL(DROP_SERVICE);
         db.execSQL(DROP_PLANNING);
@@ -106,7 +112,7 @@ public static final String CREATE_TEMP= "CREATE  TABLE IF NOT EXISTS variable" +
 
     }
 
-    public void createDatabase(SQLiteDatabase db){
+    public void createDatabase(@NonNull SQLiteDatabase db){
         db.execSQL(CREATE_SERVICE);
         db.execSQL(CREATE_PLANNING);
         db.execSQL(CREATE_DAY);
@@ -126,7 +132,8 @@ public static final String CREATE_TEMP= "CREATE  TABLE IF NOT EXISTS variable" +
         statement.bindString(9,"AKOBA");
         statement.bindString(10,"Patrick");
         statement.bindString(11,"1970-01-01");
-        statement.execute();
+        statement.bindString(12,"true");
+        statement.executeInsert();
         String service = "INSERT INTO service(nom)  VALUES (?)";
         statement= db.compileStatement(service);
         //Direction
@@ -176,7 +183,7 @@ public static final String CREATE_TEMP= "CREATE  TABLE IF NOT EXISTS variable" +
 
 
     }
-    public String md5(String password) {
+    public String md5(@NonNull String password) {
         MessageDigest digest ;
         byte[] messageDigest;
 

@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 
+import androidx.annotation.NonNull;
+
 import dbAdapter.DaySQLite;
 import entity.Day;
 
@@ -50,7 +52,7 @@ public class DayManager {
             day.setId(id);
 
     }
-    public int search(Day day){
+    public int search(@NonNull Day day){
         int id=0;
         String query="SELECT id_jour FROM jour WHERE date_jour=? ";
         String [] sel={day.getDate()};

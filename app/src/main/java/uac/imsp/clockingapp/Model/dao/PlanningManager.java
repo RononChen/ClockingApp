@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteStatement;
 
+import androidx.annotation.NonNull;
+
 import java.util.Arrays;
 
 import dbAdapter.PlanningSQLite;
@@ -35,7 +37,7 @@ public class PlanningManager {
             Database.close();
     }
 
-    public boolean delete(Planning planning) {
+    public boolean delete(@NonNull Planning planning) {
   String query="DELETE FROM planning WHERE id_planning=?";
         SQLiteStatement statement=Database.compileStatement(query);
         statement.bindLong(1,planning.getId());
@@ -64,7 +66,7 @@ public class PlanningManager {
         }
     }
     //setl'id du planning  puis retourne true s'il existe et false sinon
-    public boolean searchPlanning(Planning planning){
+    public boolean searchPlanning(@NonNull Planning planning){
         byte[] retrievedData;
         byte[] workdays=planning.getWorkDays();
 

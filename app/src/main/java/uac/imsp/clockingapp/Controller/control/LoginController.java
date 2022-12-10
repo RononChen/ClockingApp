@@ -3,6 +3,8 @@ package uac.imsp.clockingapp.Controller.control;
 import android.content.Context;
 import android.text.TextUtils;
 
+import androidx.annotation.NonNull;
+
 import dao.EmployeeManager;
 import entity.Day;
 import entity.Employee;
@@ -116,7 +118,7 @@ public class LoginController  implements ILoginController {
     }
 
     @Override
-    public void onUsernameEdit(String username) {
+    public void onUsernameEdit(@NonNull String username) {
 
         String uname=username.trim();
         if(TextUtils.isEmpty(uname))
@@ -128,7 +130,7 @@ public class LoginController  implements ILoginController {
     }
 
     @Override
-    public void onPasswordEdit(String password) {
+    public void onPasswordEdit(@NonNull String password) {
         String pwd=password.trim();
 
         if(TextUtils.isEmpty(pwd))

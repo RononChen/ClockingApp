@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import uac.imsp.clockingapp.BuildConfig;
@@ -46,7 +47,7 @@ public class Overview extends AppCompatActivity implements View.OnClickListener 
 	}
 
 	@Override
-	public void onClick(View v) {
+	public void onClick(@NonNull View v) {
 		String overview;
 		overview ="Version de l'application:\n" +
 				"-"+appVersionName.getText().toString()+"\n"+

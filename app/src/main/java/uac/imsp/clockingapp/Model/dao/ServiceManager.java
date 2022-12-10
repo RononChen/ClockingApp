@@ -41,14 +41,15 @@ public class ServiceManager {
             Database.close();
     }
     public boolean exists(@NonNull Service service){
-        String query="SELECT id FROM service WHERE nom=?";
+        String query="SELECT id_service FROM service WHERE nom=?";
         String[] selectArgs= new String[]{service.getName()};
         Cursor cursor=Database.rawQuery(query,selectArgs);
 
         if(cursor.moveToNext())
         {
-            cursor.close();
+
          service.setId(cursor.getInt(0));
+            cursor.close();
          return true;
         }
         else {
@@ -74,9 +75,9 @@ boolean b;
             return b;
 
     }
-        public boolean hasEmployee(Service service){
+        public boolean hasEmployee(@NonNull Service service){
 
-        String query="SELECT * FROM employee WHERE id_service_ref=? ";
+        String query="SELECT * FROM EMPLOYE WHERE ID_SERVICE_REF=? ";
         String[] selectArgs= new String[]{String.valueOf(service.getId())};
         Cursor cursor=Database.rawQuery(query,selectArgs);
 
@@ -114,7 +115,7 @@ boolean b;
 
     }
 
-        public  boolean delete(Service service){
+        public  boolean delete(@NonNull Service service){
         String query = "DELETE FROM service WHERE nom=?";
         SQLiteStatement statement ;
 
@@ -123,7 +124,7 @@ boolean b;
        return statement.executeUpdateDelete()==1;
 
     }
-    public void update(Service service,String newName){
+    public void update(@NonNull Service service, String newName){
         String query = "UPDATE service SET nom=? WHERE id_service=?";
         SQLiteStatement statement;
 
@@ -167,7 +168,7 @@ boolean b;
         return serviceSet.toArray(new Service[serviceSet.size()]);
 
     }
-    public boolean searchService(Service service){
+    public boolean searchService(@NonNull Service service){
         boolean test;
         String query="SELECT id_service FROM service WHERE nom=? ";
 

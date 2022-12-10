@@ -1,0 +1,80 @@
+package uac.imsp.clockingapp.View.activity;
+
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+
+import uac.imsp.clockingapp.Controller.control.ShowAdminAcountController;
+import uac.imsp.clockingapp.Controller.util.IShowAdminAcountController;
+import uac.imsp.clockingapp.R;
+import uac.imsp.clockingapp.View.util.IShowAdminAcountView;
+
+public class ShowAdminAccount extends AppCompatActivity
+		implements IShowAdminAcountView , View.OnClickListener {
+	 TextView username, password;
+	IShowAdminAcountController showAdminAcountPresenter;
+	SharedPreferences preferences;
+			SharedPreferences.Editor editor;
+	final String PREFS_NAME="MyPrefsFile";
+
+	@Override
+	protected void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		preferences = getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
+		setContentView(R.layout.activity_show_admin_account);
+		initView();
+		showAdminAcountPresenter=new ShowAdminAcountController(this);
+		showAdminAcountPresenter.onLoad();
+	}
+
+	@Override
+	public void onStart(String username, String password) {
+		this.username.setText(username);
+		this.password.setText(password);
+	}
+
+	@Override
+	public void onCopyAccount() {
+		String account="admin";
+		ClipboardManager clipboard;
+		ClipData clip;
+			clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+			clip = ClipData.newPlainText("admin", account);
+			clipboard.setPrimaryClip(clip);
+
+	}
+
+	@Override
+	public void onNext() {
+		editor=preferences.edit();
+		editor.putString("nextStep","none");
+		startActivity(new Intent(this,StartScreen.class));
+
+	}
+	public void initView(){
+		final Button copy=findViewById(R.id.copy),
+		next=findViewById(R.id.next);
+		copy.setOnClickListener(this);
+		 username=findViewById(R.id.username);
+		password=findViewById(R.id.password);
+		next.setOnClickListener(this);
+	}
+
+	@Override
+	public void onClick(@NonNull View v) {
+if(v.getId()==R.id.next)
+	showAdminAcountPresenter.onNext();
+else if(v.getId()==R.id.copy)
+	showAdminAcountPresenter.onCopyAccount();
+
+	}
+}

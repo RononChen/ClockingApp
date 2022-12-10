@@ -6,6 +6,8 @@ import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.os.Build;
 
+import androidx.annotation.NonNull;
+
 import java.util.Locale;
 
 public class LocalHelper {
@@ -23,7 +25,7 @@ public class LocalHelper {
     }
 
     @SuppressLint("ObsoleteSdkInt")
-    private static void updateResourceLegacy(Context context, String language) {
+    private static void updateResourceLegacy(@NonNull Context context, String language) {
         Locale locale=new Locale(language);
         Locale.setDefault(locale);
         Resources resources=context.getResources();
@@ -34,7 +36,7 @@ public class LocalHelper {
         resources.updateConfiguration(configuration,resources.getDisplayMetrics());
     }
 
-    private static void updateResources(Context context, String language) {
+    private static void updateResources(@NonNull Context context, String language) {
         Locale locale=new Locale(language);
         Locale.setDefault(locale);
         Configuration configuration=context.getResources().getConfiguration();

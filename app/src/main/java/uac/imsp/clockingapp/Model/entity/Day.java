@@ -124,23 +124,6 @@ return Integer.parseInt(FormatedYear);
 
 
     }
-
-   /* public int getWeekOfMonth() {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy",Locale.FRENCH);
-        String dateInString = this.Date;
-        java.util.Date date = null;
-        try {
-            date = sdf.parse(dateInString);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-        Calendar calendar = Calendar.getInstance();
-        assert date != null;
-        calendar.setTime(date);
-        return calendar.get(Calendar.WEEK_OF_MONTH) ;
-
-    }*/
     public int  getFirstDayOfMonth()  {
         //wether it is monday, tuesday , etc
 

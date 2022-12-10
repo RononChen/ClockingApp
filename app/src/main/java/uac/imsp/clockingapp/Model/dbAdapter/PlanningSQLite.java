@@ -17,6 +17,8 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.database.sqlite.SQLiteStatement;
 
+import androidx.annotation.NonNull;
+
 import uac.imsp.clockingapp.BuildConfig;
 
 
@@ -65,7 +67,7 @@ public class PlanningSQLite extends SQLiteOpenHelper {
 
 
     }
-    public void createDatabase(SQLiteDatabase db){
+    public void createDatabase(@NonNull SQLiteDatabase db){
         db.execSQL(CREATE_SERVICE);
         db.execSQL(CREATE_PLANNING);
         db.execSQL(CREATE_DAY);
@@ -84,8 +86,9 @@ public class PlanningSQLite extends SQLiteOpenHelper {
         statement.bindString(9,"AKOBA");
         statement.bindString(10,"Patrick");
         statement.bindString(11,"1970-01-01");
+        statement.bindString(12,"true");
         //statement.bindString(12,"DATE('NOW','LOCALTIME'))");
-        statement.execute();
+        statement.executeInsert();
         String service = "INSERT INTO service(nom)  VALUES (?)";
         statement= db.compileStatement(service);
         //Direction
@@ -129,7 +132,7 @@ public class PlanningSQLite extends SQLiteOpenHelper {
 
 
     }
-    public void upgradeDatabase(SQLiteDatabase db){
+    public void upgradeDatabase(@NonNull SQLiteDatabase db){
         db.execSQL(DROP_EMPLOYEE);
         db.execSQL(DROP_SERVICE);
         db.execSQL(DROP_PLANNING);

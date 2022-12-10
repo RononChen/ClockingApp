@@ -40,7 +40,7 @@ public class ClockingManager {
             Database.close();
     }
 /**This method allows us to clock the given employee in it requires the employee wotks the given day**/
-    public void clockIn(Employee employee, Day day) {
+    public void clockIn(@NonNull Employee employee, @NonNull Day day) {
         Cursor cursor;
         String attendedEntryTime;
         String currentEntryTime;
@@ -98,7 +98,7 @@ public class ClockingManager {
     }
 
 
-    public void clockIn(Employee employee, Day day,String time) {
+    public void clockIn(@NonNull Employee employee, @NonNull Day day, String time) {
         Cursor cursor;
         String attendedEntryTime;
         String currentEntryTime;
@@ -148,7 +148,7 @@ public class ClockingManager {
 
     }
 //for android unit test
-    public void updateAttendance(Employee employee,String status,String date){
+    public void updateAttendance(@NonNull Employee employee, String status, String date){
         String query="UPDATE pointage SET statut=?" +
                 " WHERE matricule_ref=? AND date_jour=?";
         SQLiteStatement statement=Database.compileStatement(query);
@@ -162,7 +162,7 @@ public class ClockingManager {
 
 
 
-    public void updateDailyAttendance(Employee employee,String status){
+    public void updateDailyAttendance(@NonNull Employee employee, String status){
         String query="UPDATE pointage SET statut=?" +
                 " WHERE matricule_ref=? AND date_jour=DATE(?,?)";
         SQLiteStatement statement=Database.compileStatement(query);
@@ -175,7 +175,7 @@ public class ClockingManager {
     }
 
     //for clocking out
-    public void clockOut(Employee employee, Day day) {
+    public void clockOut(@NonNull Employee employee, @NonNull Day day) {
         int id;
         id=day.getId();
 
@@ -216,7 +216,7 @@ public class ClockingManager {
 
 
 
-    public boolean hasNotClockedOut(Employee employee,Day day) {
+    public boolean hasNotClockedOut(@NonNull Employee employee, @NonNull Day day) {
 
        // open();
         String out;

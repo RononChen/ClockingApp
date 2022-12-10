@@ -9,4 +9,12 @@ public interface IStartScreenView {
     void onUpgrade();
 
     void onNormalRun();
+
+	void onSetUp();
+
+    void onService();
+
+    void onAccount();
+
+    void onDowngrade();
 }

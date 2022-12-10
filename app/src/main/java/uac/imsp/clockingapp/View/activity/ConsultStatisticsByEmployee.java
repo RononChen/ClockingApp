@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -80,7 +81,7 @@ public void initView(){
     }
 
     @Override
-    public void onMonthSelected(Hashtable<Character, Float> statistics) {
+    public void onMonthSelected(@NonNull Hashtable<Character, Float> statistics) {
 
 
         // calling method to get bar entries.
@@ -159,7 +160,7 @@ public void initView(){
     }
 
     @Override
-    public void onClick(View v) {
+    public void onClick(@NonNull View v) {
 if (v.getId()==R.id.stat_previous)
 
     consultStatisticsByEmployeePresenter.onPreviousMonth();

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import uac.imsp.clockingapp.Controller.control.settings.others.ClockingController;
@@ -46,7 +47,7 @@ public class Clocking extends AppCompatActivity
 	}
 
 	@Override
-	public void onCheckedChanged(RadioGroup group, int checkedId) {
+	public void onCheckedChanged(@NonNull RadioGroup group, int checkedId) {
 if(group.getId()==R.id.group)
 {
 	if(checkedId==R.id.use_qr_code)

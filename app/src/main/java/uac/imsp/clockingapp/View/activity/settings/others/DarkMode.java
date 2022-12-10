@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.widget.CompoundButton;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
@@ -50,7 +51,7 @@ DarkMode=preferences.getBoolean("darkMode",false);
 	}
 
 	@Override
-	public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+	public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
 if(buttonView.getId()==R.id.dark_mode)
 {
 	this.isChecked=isChecked;

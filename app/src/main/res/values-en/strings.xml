@@ -253,11 +253,16 @@
     <string name="no_such_service">No such service</string>
     <string name="confirm_delete_service">Delete service</string>
     <string name="delete_not_possible">This service cannot be deleted
-    because one or more employees have been registered there</string>
+    because at least one employee is registered there</string>
     <string name="confirm_update_service_title">Change Confirmation</string>
     <string name="confirm_update_service">Do you want to make these changes?</string>
     <string name="add_service">Ajouter un service</string>
+    <string name="no_service_updated">No services have been changed
+
+</string>
     <string name="cliquer_longuement_pour_supprimer_ncliquer_pour_diter">Cliquer longuement pour supprimer\nCliquer pour éditer</string>
+    <string name="thanks">Merci d\'avoir installé l\'application</string>
+    <string name="contin">Continuer</string>
 
 
 </resources>

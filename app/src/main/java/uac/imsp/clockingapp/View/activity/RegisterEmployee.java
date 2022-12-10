@@ -186,7 +186,7 @@ public class RegisterEmployee extends AppCompatActivity
 
     @SuppressLint("DefaultLocale")
         @Override
-    public void onClick(View v) {
+    public void onClick(@NonNull View v) {
         String username;
 
 
@@ -270,7 +270,7 @@ public class RegisterEmployee extends AppCompatActivity
 
 
     @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+    public void onItemSelected(@NonNull AdapterView<?> parent, View view, int position, long id) {
         if(parent.getId()==R.id.register_service) {
             //SelectedService = String.valueOf(spinnerServices.getSelectedItem());
             SelectedService = parent.getItemAtPosition(position).toString();
@@ -424,7 +424,7 @@ public class RegisterEmployee extends AppCompatActivity
 
     }
 
-    public String toString(EditText e){
+    public String toString(@NonNull EditText e){
         return  e.getText().toString();
 
     }
@@ -527,7 +527,7 @@ public class RegisterEmployee extends AppCompatActivity
     }
 
     @Override
-    public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+    public void onValueChange(@NonNull NumberPicker picker, int oldVal, int newVal) {
 
         if(picker.getId()==R.id.register_planning_start_choose
                 && 5<newVal && 10>newVal) {
@@ -587,7 +587,7 @@ return tab;
     }
 
     @Override
-    public void afterTextChanged(Editable s) {
+    public void afterTextChanged(@NonNull Editable s) {
         Username.setText(s.toString());
 
     }
