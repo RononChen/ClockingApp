@@ -27,7 +27,6 @@ public class Login extends AppCompatActivity
         ILoginView {
     private ImageView eye;
     private int Number;
-
     private  EditText Username,Password;
 
 
