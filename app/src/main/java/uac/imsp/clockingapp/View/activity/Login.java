@@ -28,8 +28,6 @@ public class Login extends AppCompatActivity
     private ImageView eye;
     private int Number;
     private  EditText Username,Password;
-
-
     ILoginController loginPresenter;
 
 
@@ -138,7 +136,7 @@ new ToastMessage(this,getString(R.string.simple_login));
         builder.setMessage(message)
                 .setCancelable(false)
                 .setPositiveButton(pos, (dialog, which)
-                        -> loginPresenter.onConfirmResult(true))
+                        -> loginPresenter.onConfirmResult(false))
 
                 .setNegativeButton(neg, (dialog, which)
                         -> loginPresenter.onConfirmResult(false));
@@ -165,8 +163,10 @@ new ToastMessage(this,getString(R.string.simple_login));
 
     @Override
     public void onNegativeResponse() {
+        Intent intent=new Intent(this,SimpleEmployeeMenu.class);
+        intent.putExtra("CURRENT_USER",Number);
         new ToastMessage(this,getString(R.string.notify_simple_login));
-        startActivity(new Intent(this,SimpleEmployeeMenu.class));
+        startActivity(intent);
 
 
     }

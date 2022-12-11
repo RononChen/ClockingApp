@@ -34,29 +34,11 @@ public class GeneralMenuController  implements IGeneralMenuController {
    employeeManager.close();
     }
 
-    @Override
-    public void onUpdateEmployeeMenu(int currentUser) {
 
 
-        employee=new Employee(currentUser);
-        employeeManager=new EmployeeManager((Context) menuView);
-
-        //employeeManager.open();
-            menuView.onUpdateEmployeeMenuSuccessfull();
-        //employeeManager.close();
-
-    }
-
-    @Override
-    public void onDeleteEmployeeMenu(int currentUser) {
-        //employeeManager=new EmployeeManager((Context) menuView);
-       // employeeManager.open();
-        //employee=new Employee(currentUser);
-
-       // employeeManager.close();
 
 
-    }
+
     @Override
     public boolean onRegisterEmployeeMenu(int currentUser) {
         ServiceManager serviceManager=new ServiceManager((Context) menuView);
@@ -96,12 +78,7 @@ public class GeneralMenuController  implements IGeneralMenuController {
     }
 
 
-    @Override
-    public void onConsultPresenceReport() {
-        menuView.onConsultPresenceReport();
 
-      //All employees can cansult threir presence report
-    }
 
 
     @Override

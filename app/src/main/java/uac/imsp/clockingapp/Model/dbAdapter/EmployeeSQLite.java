@@ -1,16 +1,23 @@
 package dbAdapter;
 
 
-
+import static dbAdapter.ClockingSQLite.ALTER_POINTAGE_TO_POINTAGE_TEMP;
+import static dbAdapter.ClockingSQLite.COPY_CLOCKING_TEMP_TO_CLOCKING;
 import static dbAdapter.ClockingSQLite.CREATE_CLOCKING;
-import static dbAdapter.ClockingSQLite.DROP_CLOCKING;
+import static dbAdapter.ClockingSQLite.DROP_CLOCKING_TEMP;
+import static dbAdapter.DaySQLite.ALTER_DAY_TO_DAY_TEMP;
+import static dbAdapter.DaySQLite.COPY_DAY_TEMP_TO_DAY;
 import static dbAdapter.DaySQLite.CREATE_DAY;
-import static dbAdapter.DaySQLite.DROP_DAY;
+import static dbAdapter.DaySQLite.DROP_DAY_TEMP;
+import static dbAdapter.PlanningSQLite.ALTER_PLANNING_TO_PLANNING_TEMP;
+import static dbAdapter.PlanningSQLite.COPY_PLANNING_TEMP_TO_PLANNING;
 import static dbAdapter.PlanningSQLite.CREATE_PLANNING;
-import static dbAdapter.PlanningSQLite.DROP_PLANNING;
+import static dbAdapter.PlanningSQLite.DROP_PLANNING_TEMP;
 import static dbAdapter.PlanningSQLite.planning;
+import static dbAdapter.ServiceSQLite.ALTER_SERVICE_TO_PLANNING_TEMP;
+import static dbAdapter.ServiceSQLite.COPY_SERVICE_TEMP_TO_SERVICE;
 import static dbAdapter.ServiceSQLite.CREATE_SERVICE;
-import static dbAdapter.ServiceSQLite.DROP_SERVICE;
+import static dbAdapter.ServiceSQLite.DROP_SERVICE_TEMP;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
@@ -28,6 +35,7 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
         public static final int DATABASE_VERSION = 1;
 
     public static final String TABLE_EMPLOYE = "employe";
+    public  static final String EMPLOYEE_TEMP="employe_temp";
 
     public static final String COL_MATRICULE = "matricule";
     public static final String COL_NOM = "nom";
@@ -46,7 +54,7 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
     private static final String COL_ID_SERVICE = "id_service";
     private static final String COL_STATUS = "statut";
     private static final  String COL_IS_ADMIN="est_admin";
-    private static final  String TABLE_TEMP="variable";
+    private static final  String TABLE_VARIABLE ="variable";
 
 
     public static final String super_user="INSERT INTO employe(matricule," +
@@ -58,8 +66,10 @@ public class EmployeeSQLite extends SQLiteOpenHelper {
             " VALUES (?,?,?,?,?,?,?,?,?,?,?,DATE('NOW','LOCALTIME'),?)";
 
 
-public static final String CREATE_TEMP= "CREATE  TABLE IF NOT EXISTS variable" +
+public static final String CREATE_VARIABLE = "CREATE  TABLE IF NOT EXISTS variable" +
         " AS SELECT '1970-01-01' AS last_update ";
+    public static final String ALTER_EMPLOYEE_TO_EMPLOYEE_TEMP = "ALTER TABLE EMPLOYE" +
+            " RENAME TO "+EMPLOYEE_TEMP;
     public static final String CREATE_EMPLOYEE = "CREATE TABLE  IF NOT EXISTS " + TABLE_EMPLOYE + " (" +
             COL_MATRICULE + " INTEGER NOT NULL  PRIMARY KEY, " +
             COL_NOM + " TEXT NOT NULL ," +
@@ -82,8 +92,21 @@ public static final String CREATE_TEMP= "CREATE  TABLE IF NOT EXISTS variable" +
             " FOREIGN KEY(" + COL_ID_PLANNING_REF +
             " ) REFERENCES planning(" + COL_ID_PLANNING+" )" +
             ")" ;
-    public static final String DROP_EMPLOYEE="DROP TABLE IF EXISTS "+TABLE_EMPLOYE;
-    public  static final String DROP_TEMP="DROP TABLE IF EXISTS "+TABLE_TEMP;
+
+
+    public static final String COPY_EMPLOYE_TEMP_TO_EMPLOYE ="INSERT INTO "+TABLE_EMPLOYE+" SELECT * FROM  "+EMPLOYEE_TEMP;
+
+    //public static final String DROP_EMPLOYEE="DROP TABLE IF EXISTS "+TABLE_EMPLOYE;
+    public static final String DROP_EMPLOYEE_TEMP="DROP TABLE IF EXISTS "+EMPLOYEE_TEMP;
+    //public  static final String DROP_TEMP="DROP TABLE IF EXISTS "+ TABLE_VARIABLE;
+
+
+    private static final String TABLE_VARIABLE_TEMP = TABLE_VARIABLE +"TEMP";
+    //public static final String DROP_VARIABLE_TEMP="DROP TABLE  IF EXISTS "+TABLE_VARIABLE_TEMP;
+    public static final String ALTER_VARIABLE_TO_VARIABLE_TEMP="ALTER TABLE "+TABLE_VARIABLE+
+            " RENAME TO "+TABLE_VARIABLE_TEMP;
+    public static final String COPY_VARIABLE_TEMP_TO_VARIABLE ="INSERT INTO "+TABLE_VARIABLE+" SELECT * FROM  "+TABLE_VARIABLE_TEMP;
+
 
 
 
@@ -91,6 +114,7 @@ public static final String CREATE_TEMP= "CREATE  TABLE IF NOT EXISTS variable" +
 
 
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
+
     }
 
 
@@ -102,16 +126,39 @@ public static final String CREATE_TEMP= "CREATE  TABLE IF NOT EXISTS variable" +
 
     }
     public void upgradeDatabase(@NonNull SQLiteDatabase db){
-        db.execSQL(DROP_EMPLOYEE);
-        db.execSQL(DROP_SERVICE);
-        db.execSQL(DROP_PLANNING);
-        db.execSQL(DROP_DAY);
-        db.execSQL(DROP_CLOCKING);
-        db.execSQL(DROP_TEMP);
-        onCreate(db);
+
+        db.execSQL(ALTER_EMPLOYEE_TO_EMPLOYEE_TEMP);
+        db.execSQL(CREATE_EMPLOYEE);
+        db.execSQL(COPY_EMPLOYE_TEMP_TO_EMPLOYE);
+        db.execSQL(DROP_EMPLOYEE_TEMP);
+        db.execSQL(ALTER_VARIABLE_TO_VARIABLE_TEMP);
+        db.execSQL(CREATE_VARIABLE);
+        db.execSQL(COPY_VARIABLE_TEMP_TO_VARIABLE);
+        db.execSQL(DROP_EMPLOYEE_TEMP);
+
+        db.execSQL(ALTER_PLANNING_TO_PLANNING_TEMP);
+        db.execSQL(CREATE_PLANNING);
+        db.execSQL(COPY_PLANNING_TEMP_TO_PLANNING);
+        db.execSQL(DROP_PLANNING_TEMP);
+
+        db.execSQL(ALTER_SERVICE_TO_PLANNING_TEMP);
+        db.execSQL(CREATE_SERVICE);
+        db.execSQL(COPY_SERVICE_TEMP_TO_SERVICE);
+        db.execSQL(DROP_SERVICE_TEMP);
+
+        db.execSQL(ALTER_POINTAGE_TO_POINTAGE_TEMP);
+        db.execSQL(CREATE_CLOCKING);
+        db.execSQL(COPY_CLOCKING_TEMP_TO_CLOCKING);
+        db.execSQL(DROP_CLOCKING_TEMP);
+
+        db.execSQL(ALTER_DAY_TO_DAY_TEMP);
+        db.execSQL(CREATE_DAY);
+        db.execSQL(COPY_DAY_TEMP_TO_DAY);
+        db.execSQL(DROP_DAY_TEMP);
+
+
 
     }
-
 
 
     public void createDatabase(@NonNull SQLiteDatabase db){
@@ -120,7 +167,7 @@ public static final String CREATE_TEMP= "CREATE  TABLE IF NOT EXISTS variable" +
         db.execSQL(CREATE_DAY);
         db.execSQL(CREATE_EMPLOYEE);
         db.execSQL(CREATE_CLOCKING);
-      db.execSQL(CREATE_TEMP);
+      db.execSQL(CREATE_VARIABLE);
 
         SQLiteStatement statement= db.compileStatement(super_user);
         statement.bindLong(1,1);
