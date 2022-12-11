@@ -6,4 +6,5 @@ public interface ISimpleEmployeeMenuController {
 	void onConsultPresentReport();
 	void onExit();
 
+	void onSettings();
 }

@@ -83,7 +83,7 @@ public class GeneralMenuController  implements IGeneralMenuController {
 
     @Override
     public void onExit() {
-        menuView.onExit("Oui","Annuler","Confirmation de sortie","Voulez vous vraiment quitter l'application");
+        menuView.onExit();
 
     }
 }

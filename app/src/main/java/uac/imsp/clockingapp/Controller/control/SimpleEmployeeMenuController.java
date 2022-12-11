@@ -7,12 +7,13 @@ import uac.imsp.clockingapp.View.util.ISimpleEmployeeMenuView;
 
 public class SimpleEmployeeMenuController  implements ISimpleEmployeeMenuController {
 	ISimpleEmployeeMenuView simpleEmployeeMenuView;
-	private Context context;
+	private final Context context;
 
 
 	public SimpleEmployeeMenuController(ISimpleEmployeeMenuView simpleEmployeeMenuView){
 this.simpleEmployeeMenuView=simpleEmployeeMenuView;
 context= (Context) this.simpleEmployeeMenuView;
+
 	}
 
 	@Override
@@ -32,6 +33,11 @@ context= (Context) this.simpleEmployeeMenuView;
 
 	@Override
 	public void onExit() {
+
+	}
+
+	@Override
+	public void onSettings() {
 
 	}
 }

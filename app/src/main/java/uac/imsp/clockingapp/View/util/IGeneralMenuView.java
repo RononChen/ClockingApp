@@ -10,7 +10,7 @@ public interface IGeneralMenuView {
     void onConsultatisticsMenuSuccessful();
     void onClocking();
     void onConsultPresenceReport();
-    void onExit(String pos, String neg,String title, String confirmationMessage);
+    void onExit();
 
 
 

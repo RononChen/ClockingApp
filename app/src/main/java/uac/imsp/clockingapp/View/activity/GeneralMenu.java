@@ -23,7 +23,7 @@ public class GeneralMenu extends AppCompatActivity implements View.OnClickListen
 
     IGeneralMenuController menuPresenter;
     private int currentUser;
-    Intent intent ;
+
 
 
 
@@ -129,40 +129,41 @@ public class GeneralMenu extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onConsultatisticsMenuSuccessful() {
-        Intent intent ;
-        intent = new Intent(this, ConsultStatisticsByService.class);
-        startActivity(intent);
+        startActivity(new Intent(this, ConsultStatisticsByService.class));
 
     }
 
     @Override
     public void onClocking() {
 
-        intent = new Intent(this, ClockInOut.class);
-        startActivity(intent);
+
+        startActivity(new Intent(this, ClockInOut.class));
 
     }
 
     @Override
     public void onConsultPresenceReport() {
-        intent=new Intent(this,ConsultPresenceReport.class);
-        startActivity(intent);
+
+        startActivity(new Intent(this,ConsultPresenceReport.class));
 
     }
 
     @Override
-    public void onExit(String pos, String neg, String title,String confirmationMessage) {
+    public void onExit() {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(confirmationMessage)
+        builder.setMessage(getString(R.string.exit_confirmation_message))
                 .setCancelable(false)
-                .setPositiveButton(pos, (dialog, which) -> System.exit(0))
-                .setNegativeButton(neg, (dialog, which) -> dialog.cancel());
+                .setNegativeButton(getString(R.string.no), (dialog, which) -> dialog.cancel())
+                .setPositiveButton(getString(R.string.yes), (dialog, which) -> {
+                    moveTaskToBack(true);
+                    android.os.Process.killProcess(android.os.Process.myPid());
+                    System.exit(0);
+                    AlertDialog alert = builder.create();
+                    alert.setTitle(getString(R.string.exit_confirmation));
+                    alert.show();
 
-        AlertDialog alert = builder.create();
-        alert.setTitle(title);
-        alert.show();
-
+                });
     }
 
     public void  initView(){
