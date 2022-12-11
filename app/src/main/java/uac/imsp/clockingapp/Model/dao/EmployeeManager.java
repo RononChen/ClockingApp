@@ -322,7 +322,8 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
         Cursor cursor;
 
 
-        query = "SELECT nom,prenom,sexe,photo,type,couriel,username,birthdate,jours_de_travail" +
+        query = "SELECT nom,prenom,sexe,photo,type,couriel,username,birthdate,jours_de_travail," +
+                "est_admin" +
                 " FROM employe JOIN planning ON id_planning=id_planning_ref WHERE matricule=?";
         selectArgs = new String[]{
                 Integer.valueOf(employee.getRegistrationNumber()).toString()
@@ -339,6 +340,8 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
             employee.setUsername(cursor.getString(6));
             employee.setBirthdate(cursor.getString(7));
             employee.setWorkdays(cursor.getBlob(8));
+            employee.setAdmin(Objects.equals(cursor.getString(9), "true"));
+
 
         }
         cursor.close();
@@ -355,7 +358,7 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
 
 
         query = "SELECT nom,prenom,sexe,type,couriel," +
-                "username,birthdate FROM employe WHERE matricule=?";
+                "username,birthdate,est_admin FROM employe WHERE matricule=?";
         selectArgs = new String[]{
                 Integer.valueOf(employee.getRegistrationNumber()).toString()
         };
@@ -370,6 +373,8 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
             employee.setMailAddress(cursor.getString(4));
             employee.setUsername(cursor.getString(5));
             employee.setBirthdate(cursor.getString(6));
+            employee.setAdmin(Objects.equals(cursor.getString(7), "true"));
+
 
         }
         cursor.close();

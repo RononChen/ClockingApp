@@ -128,9 +128,6 @@ implements View.OnClickListener  , IStartScreenView {
         //stop StartScreen activity
 
         //For entreprise informations settings
-        preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        editor=preferences.edit();
-
 
         // start SetUp activity
         startActivity(intent);
@@ -150,18 +147,24 @@ implements View.OnClickListener  , IStartScreenView {
 
     @Override
     public void onSetUp() {
-startActivity(new Intent(this,SetUp.class));
+        Intent intent=new Intent(StartScreen.this, SetUp.class);
+        finish();
+        startActivity(intent);
     }
 
     @Override
     public void onService() {
-        startActivity(new Intent(this,Services.class));
+        Intent intent=new Intent(StartScreen.this, Services.class);
+        finish();
+        startActivity(intent);
 
     }
 
     @Override
     public void onAccount() {
-        startActivity(new Intent(this,ShowAdminAccount.class));
+        Intent intent=new Intent(StartScreen.this, ShowAdminAccount.class);
+        finish();
+        startActivity(intent);
 
     }
 

@@ -51,29 +51,13 @@ public class GeneralMenu extends AppCompatActivity implements View.OnClickListen
         {
 
             case R.id.settings :
-            {
-                startActivity(new Intent(this, MainSetting.class));
-                //menuPresenter.onRegisterEmployeeMenu(currentUser);
-            }
-                break;
-            /*case R.id.update:
-                menuPresenter.onUpdateEmployeeMenu(currentUser);
-                break;
-            case R.id.delete:
-                menuPresenter.onDeleteEmployeeMenu(currentUser);
-                break;
-            case R.id.clock:
-                menuPresenter.onClocking();
-                break;
-            case R.id.presence_report:
-                menuPresenter.onConsultPresenceReport();
-                break;
-            case R.id.stat_by_service:
-                menuPresenter.onConsultatisticsMenu(currentUser);
-                break;
-            case R.id.quit:
 
-                menuPresenter.onExit();*/
+                startActivity(new Intent(this, MainSetting.class));
+
+                break;
+            case R.id.logout:
+
+                menuPresenter.onExit();
 
         }
         return super.onOptionsItemSelected(item);
@@ -96,16 +80,12 @@ public class GeneralMenu extends AppCompatActivity implements View.OnClickListen
          }
         else if(v.getId()==R.id.menu_clock)
             menuPresenter.onClocking();
-       /* else if(v.getId()==R.id.menu_delete)
-            menuPresenter.onDeleteEmployeeMenu(currentUser);*/
         else if (v.getId()==R.id.menu_search)
             menuPresenter.onSearchEmployeeMenu(currentUser);
-        /*else if(v.getId()==R.id.menu_update)
-            menuPresenter.onUpdateEmployeeMenu(currentUser);*/
+
         else if(v.getId()==R.id.menu_statistics_by_servie)
             menuPresenter.onConsultatisticsMenu(currentUser);
-       /* else if (v.getId()==R.id.menu_presence_report)
-            menuPresenter.onConsultPresenceReport();*/
+
         else if(v.getId()==R.id.menu_password)
             startActivity(new Intent(this,ChangePassword.class));
 

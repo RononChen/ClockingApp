@@ -38,7 +38,7 @@ public class LoginController  implements ILoginController {
        // Construction d'un employé voulant se connecter
         Employee employee = new Employee(username,password);
         employee=new Employee("User10","Aab10%");
-        employee.setType("Simple");
+        //employee.setType("Simple");
 
          /*loginCode=employee.validUser();
 
@@ -73,9 +73,11 @@ public class LoginController  implements ILoginController {
                 CurrentEmployee=employee.getRegistrationNumber();
         loginView.onLoginSuccess(CurrentEmployee);
 
-        if(!employee.getType().equals("Simple"))
+        if(employee.isAdmin())
                        loginView.askWish(
                        );
+        else
+            loginView.onSimpleEmployeeLogin();
 
             //}
 
@@ -83,34 +85,10 @@ public class LoginController  implements ILoginController {
 
 
         //}
-        loginView.askWish(
-        );
+        loginView.askWish();
 
 
     }
-
-   /* @Override
-    public void onLoad(int savedVersionCode,int currentVersionCode) {
-        final int DOESNT_EXIST=-1;
-
-  if(savedVersionCode==currentVersionCode)
-      loginView.onNormalRun();
-
-  else if (savedVersionCode==DOESNT_EXIST)
-        {
-
-
-            loginView.onFirstRun();
-        }
-  else if (savedVersionCode < currentVersionCode )
-      loginView.onUpgrade();
-
-
-
-
-
-    }*/
-
     @Override
     public void onClocking() {
         loginView.onClocking();

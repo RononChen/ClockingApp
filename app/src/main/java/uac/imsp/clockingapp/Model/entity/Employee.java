@@ -47,8 +47,11 @@ public class Employee implements IEmployee {
     private String Type;
     private byte[] Workdays;
     private  String AddDate;
+    private  boolean isAdmin;
 
-
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
+    }
 
     //Constructeurs
 
@@ -283,4 +286,7 @@ return  !Patterns.EMAIL_ADDRESS.matcher(MailAddress).matches();
 
     }
 
+    public boolean isAdmin() {
+        return isAdmin;
+    }
 }

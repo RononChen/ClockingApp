@@ -17,6 +17,7 @@ import uac.imsp.clockingapp.Controller.control.ShowAdminAcountController;
 import uac.imsp.clockingapp.Controller.util.IShowAdminAcountController;
 import uac.imsp.clockingapp.R;
 import uac.imsp.clockingapp.View.util.IShowAdminAcountView;
+import uac.imsp.clockingapp.View.util.ToastMessage;
 
 public class ShowAdminAccount extends AppCompatActivity
 		implements IShowAdminAcountView , View.OnClickListener {
@@ -44,19 +45,20 @@ public class ShowAdminAccount extends AppCompatActivity
 
 	@Override
 	public void onCopyAccount() {
-		String account="admin";
+		String account="Username: "+username.getText().toString()+"\nPassword: " +
+				password.getText().toString();
 		ClipboardManager clipboard;
 		ClipData clip;
 			clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
 			clip = ClipData.newPlainText("admin", account);
 			clipboard.setPrimaryClip(clip);
+			new ToastMessage(this,getString(R.string.copied));
 
 	}
 
 	@Override
 	public void onNext() {
-		editor=preferences.edit();
-		editor.putString("nextStep","none");
+
 		startActivity(new Intent(this,StartScreen.class));
 
 	}

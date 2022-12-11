@@ -21,6 +21,9 @@ import android.database.sqlite.SQLiteStatement;
 
 import androidx.annotation.NonNull;
 
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+
 public class ClockingSQLite  extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "Clocking_database.db";
@@ -87,7 +90,7 @@ public class ClockingSQLite  extends SQLiteOpenHelper {
         SQLiteStatement statement= db.compileStatement(super_user);
         statement.bindLong(1,1);
         statement.bindString(2,"User10");
-        statement.bindString(3,"password");
+        statement.bindString(3,md5("Aab10%"));
         statement.bindString(4,"Directeur");
         statement.bindString(5,"M");
         statement.bindString(6,"super@gmail.com");
@@ -142,6 +145,26 @@ public class ClockingSQLite  extends SQLiteOpenHelper {
         statement.executeInsert();
 
 
+    }
+    public String md5(@NonNull String password) {
+        MessageDigest digest;
+        byte[] messageDigest;
+        StringBuilder hexString;
+        try {
+
+            digest = java.security.MessageDigest.getInstance("MD5");
+            digest.update(password.getBytes());
+            messageDigest = digest.digest();
+            hexString = new StringBuilder();
+            for (byte element : messageDigest) {
+                hexString.append(Integer.toHexString(0xFF & element));
+                return hexString.toString();
+
+            }
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
     public void upgradeDatabase(@NonNull SQLiteDatabase db){
         db.execSQL(DROP_EMPLOYEE);

@@ -1,6 +1,7 @@
 package uac.imsp.clockingapp.Controller.control;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 
 import dao.EmployeeManager;
 import entity.Employee;
@@ -33,6 +34,11 @@ showAdminAcountViev.onCopyAccount();
 
 	@Override
 	public void onNext() {
+		final String PREFS_NAME="MyPrefsFile";
+		SharedPreferences preferences= context.getSharedPreferences(PREFS_NAME,0);
+	SharedPreferences.Editor editor=preferences.edit();
+		editor.putString("nextStep","none");
+		editor.apply();
 		showAdminAcountViev.onNext();
 
 	}

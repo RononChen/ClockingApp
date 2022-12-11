@@ -12,9 +12,9 @@
     >
     <item
         android:orderInCategory="1"
-        app:showAsAction="ifRoom"
+        app:showAsAction="always"
         android:id="@+id/settings"
-        android:title="Paramètres"
+        android:title="@string/settings"
         android:icon="@drawable/ic_baseline_settings_20"
         android:gravity="start"
         android:layout_gravity="start"
@@ -22,14 +22,14 @@
 
     <item
         android:orderInCategory="1"
-        app:showAsAction="always"
+        app:showAsAction="ifRoom"
         android:id="@+id/logout"
-        android:title="Quitter"
+        android:title="@string/exit"
         android:icon="@drawable/log_out"
         android:gravity="end"
         android:layout_gravity="end"
         />
-    <item
+    <!--item
         android:orderInCategory="1"
         app:showAsAction="always"
         android:id="@+id/dash"
@@ -38,11 +38,9 @@
         android:icon="@drawable/ic_baseline_dashboard_20"
         android:gravity="start"
         android:layout_gravity="start"
-
-        >
-
+ >
 
 
-    </item>
+    </item-->
 
 </menu>

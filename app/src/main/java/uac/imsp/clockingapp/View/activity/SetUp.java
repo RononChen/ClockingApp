@@ -32,7 +32,10 @@ public class SetUp extends AppCompatActivity implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
-startActivity(new Intent(this,Services.class));
+        Intent intent=new Intent(this,Services.class);
+        finish();
+startActivity(intent);
 editor.putString("nextStep","service");
+editor.apply();
     }
 }

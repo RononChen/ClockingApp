@@ -30,11 +30,6 @@ public class Login extends AppCompatActivity
 
     private  EditText Username,Password;
 
-    /*private AlarmManager manager;
-    private PendingIntent pendingIntent;
-    private static final int REQ_CODE = 0;*/
-
-
 
     ILoginController loginPresenter;
 
@@ -45,13 +40,6 @@ public class Login extends AppCompatActivity
         setContentView(R.layout.activity_login);
         initView();
         loginPresenter = new LoginController(this);
-        /*Intent alarmIntent = new Intent(this, UpdateReceiver.class);
-         pendingIntent = PendingIntent.getBroadcast(getApplicationContext(), REQ_CODE, alarmIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-        manager = (AlarmManager)getSystemService(ALARM_SERVICE);
-        manager.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 1000, pendingIntent);
-        //manager.set(AlarmManager.ELAPSED_REALTIME_WAKEUP, SystemClock.elapsedRealtime() + 84600 * 1000, pendingIntent);
-*/
-
 
     }
 
@@ -71,6 +59,12 @@ public class Login extends AppCompatActivity
 
 
 
+    }
+
+    @Override
+    public void onSimpleEmployeeLogin() {
+simpleLogin();
+new ToastMessage(this,getString(R.string.simple_login));
     }
 
     @Override
@@ -161,6 +155,7 @@ public class Login extends AppCompatActivity
     public void onPositiveResponse() {
        String message=getString(R.string.notify_admin_login);
         Intent intent = new Intent(this, GeneralMenu.class);
+        //finish();
         intent.putExtra("CURRENT_USER",Number);
         new ToastMessage(this,message);
 
@@ -171,12 +166,13 @@ public class Login extends AppCompatActivity
 
     @Override
     public void onNegativeResponse() {
-        String message=getString(R.string.notify_simple_login);
-        Intent intent=new Intent(this,SimpleEmployeeMenu.class);
-        //intent.putExtra("CURRENT_")
-        new ToastMessage(this,message);
-        startActivity(intent);
+        new ToastMessage(this,getString(R.string.notify_simple_login));
+        startActivity(new Intent(this,SimpleEmployeeMenu.class));
 
+
+    }
+    public void simpleLogin(){
+        startActivity(new Intent(this,SimpleEmployeeMenu.class));
 
     }
 

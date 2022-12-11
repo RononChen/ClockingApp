@@ -84,7 +84,7 @@ public class Services extends AppCompatActivity implements IServicesView,
 
 		final Button cancel = findViewById(R.id.cancel);
 	final 	Button apply = findViewById(R.id.apply);
-	if(!preferences.getString("nextStep","none").equals("service"))
+	if(preferences.getString("nextStep","none").equals("service"))
 	{
 		next.setVisibility(View.VISIBLE);
 		next.setOnClickListener(this);
@@ -271,7 +271,9 @@ new ToastMessage(this,getString(R.string.no_service_updated));
 			servicesPresenter.onUpdate(hashtable);
 		else if(v.getId()==R.id.next)
 		{
-			startActivity(new Intent(this,ShowAdminAccount.class));
+			Intent intent=new Intent(this,ShowAdminAccount.class);
+			finish();
+			startActivity(intent);
 			editor.putString("nextStep","account");
 			editor.apply();
 		}

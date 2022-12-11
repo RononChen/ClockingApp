@@ -7,26 +7,45 @@
     android:orientation="vertical"
     tools:context=".View.activity.ShowAdminAccount">
     <TextView
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_horizontal"
+        android:textColor="@color/black"
+        android:fontFamily="@font/latoregular"
+        android:textSize="22sp"
         android:id="@+id/username"
         android:text="@string/login_username_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <TextView
-
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp"
+        android:gravity="center_horizontal"
+        android:textColor="@color/black"
+        android:fontFamily="@font/latoregular"
+        android:textSize="22sp"
         android:id="@+id/password"
         android:text="@string/login_password_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
     <Button
         android:id="@+id/copy"
-        android:text="Copier"
+        android:text="@string/copy"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        style="?android:attr/buttonBarButtonStyle" />
 
     <Button
+        android:layout_marginStart="100dp"
         android:id="@+id/next"
         android:text="@string/contin"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        style="?android:attr/buttonBarButtonStyle" />
+    </LinearLayout>
 
 </LinearLayout>

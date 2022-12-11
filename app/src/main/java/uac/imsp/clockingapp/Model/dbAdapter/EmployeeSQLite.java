@@ -112,6 +112,8 @@ public static final String CREATE_TEMP= "CREATE  TABLE IF NOT EXISTS variable" +
 
     }
 
+
+
     public void createDatabase(@NonNull SQLiteDatabase db){
         db.execSQL(CREATE_SERVICE);
         db.execSQL(CREATE_PLANNING);

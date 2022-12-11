@@ -41,37 +41,6 @@
 
         </LinearLayout>
 
-        <!--LinearLayout
-            android:id="@+id/LinearLayout"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
-
-            <Button
-                android:id="@+id/menu_update"
-                android:layout_width="120dp"
-                android:layout_height="150dp"
-                android:layout_marginStart="25dp"
-                android:layout_marginTop="20dp"
-                android:drawableTop="@drawable/ic_baseline_edit_50"
-                android:background="@color/colorPrimary"
-                android:paddingTop="20dp"
-                android:text="@string/menu_update_button"
-                style="?android:attr/buttonBarButtonStyle" />
-
-    <Button
-        android:id="@+id/menu_delete"
-        android:layout_width="120dp"
-        android:layout_height="150dp"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp"
-        android:layout_marginTop="20dp"
-        android:drawableTop="@drawable/ic_baseline_person_remove_alt_50"
-        android:background="@color/colorPrimary"
-        android:paddingTop="20dp"
-        android:text="@string/menu_delete_button" />
-        </LinearLayout-->
-
 
         <LinearLayout
             android:id="@+id/LinearLayout2"

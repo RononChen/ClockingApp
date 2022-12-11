@@ -22,59 +22,34 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7ddeb6ea-e00f-4cf2-88d3-89cbf60c105a" name="Changes" comment="&quot;manifest modified&quot;">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/ShowAdminAcountController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/util/IShowAdminAcountController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/ShowAdminAccount.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/Upgrage.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/util/IShowAdminAcountView.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_show_admin_account.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_upgrage.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/res/drawable/ic_baseline_app_settings_alt_50.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/ClockingInOutController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/ClockingInOutController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/DeleteEmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/DeleteEmployeeController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/LoginController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/LoginController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/RegisterEmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/RegisterEmployeeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/ServicesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/ServicesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/StartScreenController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/StartScreenController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/util/IServicesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/util/IServicesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/LocalHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/LocalHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Model/dao/ClockingManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Model/dao/ClockingManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Model/dao/DayManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Model/dao/DayManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/ShowAdminAcountController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/ShowAdminAcountController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Model/dao/EmployeeManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Model/dao/EmployeeManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Model/dao/PlanningManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Model/dao/PlanningManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Model/dao/ServiceManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Model/dao/ServiceManager.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Model/dbAdapter/ClockingSQLite.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Model/dbAdapter/ClockingSQLite.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Model/dbAdapter/DaySQLite.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Model/dbAdapter/DaySQLite.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Model/dbAdapter/EmployeeSQLite.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Model/dbAdapter/EmployeeSQLite.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Model/dbAdapter/PlanningSQLite.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Model/dbAdapter/PlanningSQLite.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Model/dbAdapter/ServiceSQLite.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Model/dbAdapter/ServiceSQLite.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Model/entity/Day.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Model/entity/Day.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/ConsultPresenceReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/ConsultPresenceReport.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/ConsultStatisticsByEmployee.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/ConsultStatisticsByEmployee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/ConsultStatisticsByService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/ConsultStatisticsByService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/DeleteEmployee.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/DeleteEmployee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Model/entity/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Model/entity/Employee.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/GeneralMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/GeneralMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/Login.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/RegisterEmployee.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/RegisterEmployee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/SearchEmployee.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/SearchEmployee.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/Services.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/Services.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/SetUp.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/SetUp.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/ShowAdminAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/ShowAdminAccount.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/StartScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/StartScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/UpdateEmployee.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/UpdateEmployee.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/MainSetting.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/MainSetting.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/ManageUsername.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/ManageUsername.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/Overview.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/Overview.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/others/Clocking.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/others/Clocking.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/others/DarkMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/others/DarkMode.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/others/Languages.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/others/Languages.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/util/IServicesView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/util/IServicesView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/util/IStartScreenView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/util/IStartScreenView.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_services.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_services.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_set_up.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_set_up.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/util/ILoginView.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/util/ILoginView.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_general_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_general_menu.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_show_admin_account.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_show_admin_account.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/layout/activity_simple_employee_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/layout/activity_simple_employee_menu.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/general_menu.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/menu/general_menu.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/language_menu.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/menu/options_menu.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values-en/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-en/strings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values-fr/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-fr/strings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
@@ -87,7 +62,7 @@
   <component name="CodeInsightWorkspaceSettings">
     <option name="optimizeImportsOnTheFly" value="true" />
   </component>
-  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[042451198T006553]" />
+  <component name="ExecutionTargetManager" SELECTED_TARGET="device_and_snapshot_combo_box_target[/home/firminsh/.android/avd/New_Device_2_API_31.avd]" />
   <component name="ExternalProjectsData">
     <projectState path="$PROJECT_DIR$">
       <ProjectState />
@@ -741,13 +716,6 @@
       <option name="presentableId" value="Default" />
       <updated>1657575710173</updated>
     </task>
-    <task id="LOCAL-00037" summary="&quot;Password encryption feature added&quot;">
-      <created>1667912584201</created>
-      <option name="number" value="00037" />
-      <option name="presentableId" value="LOCAL-00037" />
-      <option name="project" value="LOCAL" />
-      <updated>1667912584201</updated>
-    </task>
     <task id="LOCAL-00038" summary="&quot;Ready to continue&quot;">
       <created>1668088105881</created>
       <option name="number" value="00038" />
@@ -1084,7 +1052,14 @@
       <option name="project" value="LOCAL" />
       <updated>1670654660653</updated>
     </task>
-    <option name="localTasksCounter" value="86" />
+    <task id="LOCAL-00086" summary="&quot;manifest modified&quot;">
+      <created>1670687447683</created>
+      <option name="number" value="00086" />
+      <option name="presentableId" value="LOCAL-00086" />
+      <option name="project" value="LOCAL" />
+      <updated>1670687447683</updated>
+    </task>
+    <option name="localTasksCounter" value="87" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -1199,7 +1174,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/Services.java</url>
-          <line>323</line>
+          <line>325</line>
           <option name="timeStamp" value="251" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
@@ -1209,17 +1184,17 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/Services.java</url>
-          <line>312</line>
+          <line>314</line>
           <option name="timeStamp" value="253" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/Services.java</url>
-          <line>294</line>
+          <line>296</line>
           <option name="timeStamp" value="254" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/Services.java</url>
-          <line>291</line>
+          <line>293</line>
           <option name="timeStamp" value="255" />
         </line-breakpoint>
       </breakpoints>

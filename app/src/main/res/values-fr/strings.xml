@@ -9,6 +9,8 @@
     <string name="register_lastname_text">Nom</string>
     <string name="login_username_hint">Username</string>
     <string name="login_password_hint">Mot de passe</string>
+    <string name="copied">Copié</string>
+    <string name="simple_login">Connection effectuée</string>
 
 
     <string-array name="months">
@@ -284,6 +286,10 @@
     <string name="cancel_confirmation_message">Voulez-vous annuler ces modifications?</string>
     <string name="thanks">Merci d\'avoir installé l\'application</string>
     <string name="contin">Continuer</string>
+    <string name="settings">Paramètres</string>
+    <string name="exit">Quitter</string>
+    <string name="presence_stat">Mes statistiques de présence</string>
+    <string name="my_presence_report">Mes rapports de présence</string>
 
 
 </resources>
