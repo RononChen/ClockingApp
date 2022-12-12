@@ -16,29 +16,34 @@
         android:layout_height="wrap_content"
         android:id="@+id/setting_about_app"
         android:orientation="vertical"
+        android:layout_marginBottom="10dp"
         >
         <TextView
+            android:layout_marginTop="15dp"
             android:textSize="20sp"
             android:layout_width="wrap_content"
             android:text="@string/about_app"
             android:id="@+id/setting_about_title"
             android:layout_height="wrap_content"/>
         <TextView
-            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:textSize="16sp"
             android:layout_width="wrap_content"
             android:text="@string/share_app"
             android:id="@+id/setting_share"
             android:layout_height="wrap_content"
             app:drawableStartCompat="@drawable/ic_baseline_share_25" />
         <TextView
-            android:textSize="15sp"
+            android:layout_marginTop="15dp"
+            android:textSize="16sp"
             android:layout_width="wrap_content"
             android:text="@string/share_via_qr"
             android:id="@+id/setting_share_with_qr"
             android:layout_height="wrap_content"
             app:drawableLeftCompat="@drawable/ic_baseline_qr_code_scanner_25" />
         <TextView
-            android:textSize="15sp"
+            android:layout_marginTop="15dp"
+            android:textSize="16sp"
             android:layout_width="wrap_content"
             android:text="@string/details"
              android:id="@+id/setting_overview"
@@ -50,25 +55,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
         <TextView
-            android:textSize="15sp"
+            android:layout_marginTop="15dp"
+            android:textSize="16sp"
             android:layout_width="wrap_content"
             android:text="@string/app_version"
             android:id="@+id/setting_version_label"
             android:layout_height="wrap_content"
             app:drawableStartCompat="@drawable/ic_baseline_phone_android_25" />
             <TextView
-                android:textSize="15sp"
+                android:layout_marginTop="5dp"
+                android:textSize="16sp"
+                android:text="@string/x_y"
                 android:id="@+id/setting_version"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-            <TextView
-                android:textSize="15sp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"/>
+
         </LinearLayout>
 
         <TextView
-            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:textSize="16sp"
             android:layout_width="wrap_content"
             android:text="@string/user_guide"
             android:id="@+id/setting_docs"
@@ -76,19 +82,22 @@
 
 
         <LinearLayout
+            android:layout_marginTop="10dp"
             android:id="@+id/setting_cache_label"
             android:orientation="vertical"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
         <TextView
-            android:textSize="15sp"
+            android:layout_marginTop="5dp"
+            android:textSize="16sp"
             android:layout_width="wrap_content"
             android:text="@string/clear_cache"
             android:id="@+id/setting_clear_cache"
             android:layout_height="wrap_content"
             app:drawableStartCompat="@drawable/ic_baseline_delete_sweep_25" />
             <TextView
-                android:textSize="15sp"
+                android:layout_marginTop="5dp"
+                android:textSize="16sp"
                 android:layout_width="wrap_content"
                 android:text="@string/size"
                 android:id="@+id/setting_cache_size"
@@ -103,6 +112,7 @@
         android:orientation="vertical"
         >
         <TextView
+            android:layout_marginTop="15dp"
             android:textSize="20sp"
             android:layout_width="wrap_content"
             android:text="@string/about_est"
@@ -114,13 +124,15 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
         <TextView
-            android:textSize="15sp"
+            android:layout_marginTop="15dp"
+            android:textSize="16sp"
             android:layout_width="wrap_content"
-            android:text="@string/name"
+            android:text="@string/nom"
             android:id="@+id/setting_name_label"
             android:layout_height="wrap_content"
             app:drawableStartCompat="@drawable/ic_baseline_mode_edit_25" />
             <TextView
+                android:layout_marginTop="10dp"
                 android:layout_width="wrap_content"
                 android:id="@+id/setting_name"
                 android:layout_height="wrap_content" />
@@ -132,7 +144,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
         <TextView
-            android:textSize="15sp"
+            android:layout_marginTop="15dp"
+            android:textSize="16sp"
             android:layout_width="wrap_content"
             android:text="@string/register_mail_address_text"
             android:id="@+id/setting_mail_label"
@@ -140,14 +153,16 @@
             app:drawableStartCompat="@drawable/ic_baseline_alternate_email_25" />
 
             <TextView
-                android:textSize="15sp"
+                android:layout_marginTop="10dp"
+                android:textSize="16sp"
                 android:layout_width="wrap_content"
                 android:text=""
                 android:id="@+id/setting_mail"
                 android:layout_height="wrap_content" />
         </LinearLayout>
         <TextView
-            android:textSize="15sp"
+            android:layout_marginTop="15dp"
+            android:textSize="16sp"
             android:layout_width="wrap_content"
             android:text="@string/picture"
             android:id="@+id/setting_picture"
@@ -159,14 +174,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
         <TextView
-            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:textSize="16sp"
             android:layout_width="wrap_content"
             android:text="@string/description"
             android:id="@+id/setting_description_label"
             android:layout_height="wrap_content"
             app:drawableStartCompat="@drawable/ic_baseline_description_25" />
             <TextView
-                android:textSize="15sp"
+                android:layout_marginTop="5dp"
+                android:textSize="16sp"
                 android:layout_width="wrap_content"
                 android:text=""
                 android:id="@+id/setting_description"
@@ -176,7 +193,7 @@
     </LinearLayout>
 
         <TextView
-
+            android:layout_marginTop="15dp"
              android:textSize="20sp"
             android:layout_width="wrap_content"
             android:text="@string/set"
@@ -184,6 +201,7 @@
             android:layout_height="wrap_content"/>
 
         <TextView
+            android:layout_marginTop="15dp"
             android:textSize="20sp"
             android:id="@+id/setting_services"
             android:text="@string/service_management"
@@ -196,6 +214,7 @@
         android:orientation="vertical"
         >
         <TextView
+            android:layout_marginTop="15dp"
             android:textSize="20sp"
             android:layout_width="wrap_content"
             android:text="@string/more_parameters"
@@ -203,35 +222,40 @@
             android:layout_height="wrap_content"/>
 
         <TextView
-            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:textSize="16sp"
             android:layout_width="wrap_content"
             android:text="@string/attendance_gesture"
             android:id="@+id/setting_attendance"
             android:layout_height="wrap_content"
             app:drawableStartCompat="@drawable/ic_baseline_timer_25" />
         <TextView
-            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:textSize="16sp"
             android:layout_width="wrap_content"
             android:text="@string/dark"
             android:id="@+id/setting_dark"
             android:layout_height="wrap_content"
             app:drawableStartCompat="@drawable/ic_baseline_dark_mode_25" />
         <TextView
-            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:textSize="16sp"
             android:layout_width="wrap_content"
             android:text="@string/languages"
             android:id="@+id/setting_languages"
             android:layout_height="wrap_content"
             app:drawableStartCompat="@drawable/ic_baseline_language_25" />
         <TextView
-            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:textSize="16sp"
             android:layout_width="wrap_content"
             android:text="@string/report_problem"
             android:id="@+id/setting_problem"
             android:layout_height="wrap_content"
             app:drawableStartCompat="@drawable/ic_baseline_report_problem_25" />
         <TextView
-            android:textSize="15sp"
+            android:layout_marginTop="10dp"
+            android:textSize="16sp"
             android:layout_width="wrap_content"
             android:text="@string/help"
             android:id="@+id/setting_help"

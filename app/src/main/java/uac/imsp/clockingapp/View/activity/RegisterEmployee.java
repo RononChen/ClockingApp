@@ -29,7 +29,6 @@ import android.widget.NumberPicker;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
@@ -294,72 +293,75 @@ public class RegisterEmployee extends AppCompatActivity
 
     @Override
     public void onRegisterEmployeeSuccess() {
-        String message=getString(R.string.registration_successful);
-
-        Toast.makeText(this,message,Toast.LENGTH_SHORT).show();
+        new ToastMessage(this,getString(R.string.registration_successful));
         resetInput();
     }
 
     @Override
     public void onRegisterEmployeeError(int errorNumber) {
-        String message="";
+
         switch (errorNumber){
             case 0:
-                message=getString(R.string.number_required);
+                new  ToastMessage(this,getString(R.string.number_required));
                 break;
             case 1:
-                message=getString(R.string.number_invalid);
+
+                new  ToastMessage(this,getString(R.string.number_invalid));
                 break;
             case 2:
-                message=getString(R.string.last_name_required);
+                new  ToastMessage(this,getString(R.string.last_name_required));
                 break;
             case 3:
-                message=getString(R.string.last_name_invalid);
+                new  ToastMessage(this,getString(R.string.last_name_invalid));
                 break;
             case 4:
-                message=getString(R.string.firstname_required);
+
+                new  ToastMessage(this,getString(R.string.firstname_required));
                 break;
             case 5:
-                message=getString(R.string.firstname_invalid);
+
+                new  ToastMessage(this,getString(R.string.firstname_invalid));
                 break;
             case 6:
-                message=getString(R.string.mail_required);
+
+                new  ToastMessage(this,getString(R.string.mail_required));
                 break;
             case 7:
-                message=getString(R.string.mail_invalid);
+
+                new  ToastMessage(this,getString(R.string.mail_invalid));
                 break;
             case 8:
-                message=getString(R.string.username_required);
+                new  ToastMessage(this,getString(R.string.username_required));
                 break;
             case 9:
-                message=getString(R.string.username_invalid);
+                new  ToastMessage(this,getString(R.string.username_invalid));
                 break;
             case 10:
-                message=getString(R.string.password_required);
+                new  ToastMessage(this,getString(R.string.password_required));
                 break;
             case 11:
-                message=getString(R.string.password_invalid);
+                new  ToastMessage(this,getString(R.string.password_invalid));
                 break;
             case 12:
-                message=getString(R.string.chech_and_retry);
+                new  ToastMessage(this,getString(R.string.chech_and_retry));
                 break;
             case 13:
-                message=getString(R.string.no_workday_choosen);
+                new  ToastMessage(this,getString(R.string.no_workday_choosen));
                 break;
             case 14:
-                message=getString(R.string.number_already_assigned);
+                new  ToastMessage(this,getString(R.string.number_already_assigned));
                 break;
             case 15:
-                message=getString(R.string.mail_already_assigned);
+                new  ToastMessage(this,getString(R.string.mail_already_assigned));
                 break;
             case 16:
-                message=getString(R.string.username_already_assigned);
+                new  ToastMessage(this,getString(R.string.username_already_assigned));
                 break;
 
             default:
                 break;
         }
-     new  ToastMessage(this,message);
+
     }
 
     @Override

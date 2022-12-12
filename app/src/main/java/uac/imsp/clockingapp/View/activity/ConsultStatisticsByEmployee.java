@@ -42,7 +42,7 @@ public class ConsultStatisticsByEmployee extends AppCompatActivity
     BarDataSet barDataSet;
 
     // array list for storing entries.
-    ArrayList barEntriesArrayList;
+    ArrayList<BarEntry> barEntriesArrayList;
 
 
     @Override
@@ -92,11 +92,6 @@ public void initView(){
         barEntriesArrayList.add(new BarEntry(1f, statistics.get('P')));
         barEntriesArrayList.add(new BarEntry(2f,  statistics.get('R')));
         barEntriesArrayList.add(new BarEntry(3f, statistics.get('A')));
-
-        /*barEntriesArrayList.add(new BarEntry(1f, 1));
-        barEntriesArrayList.add(new BarEntry(2f,  2));
-        barEntriesArrayList.add(new BarEntry(3f,3));
-        barEntriesArrayList.add(new BarEntry(4f, 4));*/
 
 
         // creating a new bar data set.

@@ -297,6 +297,7 @@
     <string name="presence_stat">Mes statistiques de présence</string>
     <string name="my_presence_report">Mes rapports de présence</string>
     <string name="service_management">Gestion des Services</string>
+    <string name="x_y" translatable="false">x.y</string>
 
 
 </resources>
