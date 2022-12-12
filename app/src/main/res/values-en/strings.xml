@@ -269,6 +269,7 @@
     <string name="exit">Quitter</string>
     <string name="presence_stat">Mes statistiques de présence</string>
     <string name="my_presence_report">Mes rapports de présence</string>
+    <string name="service_management">Gestion des Services</string>
 
 
 </resources>

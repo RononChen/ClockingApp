@@ -192,6 +192,7 @@ public class EmployeeManager {
         statement.executeUpdateDelete();
     }
 
+
     public Planning getPlanning(@NonNull Employee employee) {
         Planning planning = null;
         String query = "SELECT heure_debut_officielle,heure_fin_officielle," +

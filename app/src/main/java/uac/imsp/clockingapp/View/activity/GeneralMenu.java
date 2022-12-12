@@ -166,6 +166,7 @@ public class GeneralMenu extends AppCompatActivity implements View.OnClickListen
                 });
     }
 
+
     public void  initView(){
         Button register = findViewById(R.id.menu_register);
         Button clock = findViewById(R.id.menu_clock);

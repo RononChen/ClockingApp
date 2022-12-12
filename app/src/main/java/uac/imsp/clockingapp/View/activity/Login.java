@@ -136,7 +136,7 @@ new ToastMessage(this,getString(R.string.simple_login));
         builder.setMessage(message)
                 .setCancelable(false)
                 .setPositiveButton(pos, (dialog, which)
-                        -> loginPresenter.onConfirmResult(false))
+                        -> loginPresenter.onConfirmResult(true))
 
                 .setNegativeButton(neg, (dialog, which)
                         -> loginPresenter.onConfirmResult(false));

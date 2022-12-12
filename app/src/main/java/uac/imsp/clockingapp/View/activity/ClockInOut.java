@@ -31,6 +31,7 @@ import uac.imsp.clockingapp.Controller.control.ClockingInOutController;
 import uac.imsp.clockingapp.Controller.util.IClockInOutController;
 import uac.imsp.clockingapp.R;
 import uac.imsp.clockingapp.View.util.IClockInOutView;
+import uac.imsp.clockingapp.View.util.ToastMessage;
 
 public class ClockInOut extends AppCompatActivity
         implements View.OnClickListener, IClockInOutView {
@@ -85,19 +86,15 @@ public void retrieveSharedPreferences(){
 
     @Override
     public void onClick(View v) {
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(intentData));
         if (intentData.length() > 0) {
-            startActivity(intent);
+            startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(intentData)));
         }
     }
 
 
     @Override
     public void onLoad() {
-        String welcome=getString(R.string.clocking_text);
-
-
-        Toast.makeText(getApplicationContext(), welcome, Toast.LENGTH_LONG).show();
+       new ToastMessage(this, getString(R.string.clocking_text));
         // initialise detectors and sources
 
         BarcodeDetector barcodeDetector = new BarcodeDetector.Builder(this)
@@ -178,36 +175,32 @@ public void retrieveSharedPreferences(){
 
 
     public void onClockInSuccessful() {
-        String message=getString(R.string.enter_pointed);
-        //Intent intent=new Intent(this,GeneralMenu.cl)
-      Toast.makeText(this,message,Toast.LENGTH_LONG).show();
-      //startActivity(intent);
+      new ToastMessage(this,getString(R.string.enter_pointed));
+
     }
 
     @Override
     public void onClockOutSuccessful() {
-        String message=getString(R.string.out_pointed);
-        Toast.makeText(this,message,Toast.LENGTH_LONG).show();
+        new ToastMessage(this,getString(R.string.out_pointed));
     }
 
 
     public void onClockingError(int errorNumber) {
-        String message;
         switch (errorNumber){
             case 1:
-                message=getString(R.string.employee_not_found);
+               new ToastMessage(this,getString(R.string.employee_not_found));
                 break;
             case 2:
-                message=getString(R.string.should_not_work_today);
+                new ToastMessage(this,getString(R.string.should_not_work_today));
                 break;
             case 3:
-                message=getString(R.string.in_out_already_marked);
+
+                new ToastMessage(this,getString(R.string.in_out_already_marked));
                 break;
             default:
-                message="message";
                 break;
         }
-        Toast.makeText(this,message,Toast.LENGTH_LONG).show();
+
 
     }
 }

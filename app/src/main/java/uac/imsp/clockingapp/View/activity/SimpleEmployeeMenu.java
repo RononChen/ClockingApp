@@ -41,7 +41,7 @@ public class SimpleEmployeeMenu extends AppCompatActivity
 
     @Override
     public void onConsultatisticsMenuSuccessful() {
-        startActivity(new Intent(this, ConsultStatisticsByService.class));
+        startActivity(new Intent(this, ConsultStatisticsByEmployee.class));
 
 
     }
