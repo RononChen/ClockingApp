@@ -14,7 +14,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import uac.imsp.clockingapp.Controller.control.ChangePasswordController;
-import uac.imsp.clockingapp.View.util.IChangePasswordView;
+import uac.imsp.clockingapp.View.util.IAccountView;
 
 /**
  * Instrumented test, which will execute on an Android device.
@@ -23,7 +23,7 @@ import uac.imsp.clockingapp.View.util.IChangePasswordView;
  */
 @RunWith(AndroidJUnit4.class)
 
-public class ExampleInstrumentedTest  implements IChangePasswordView{
+public class ExampleInstrumentedTest  implements IAccountView {
     private final Context appContext = InstrumentationRegistry.getInstrumentation().getTargetContext();
    private final ChangePasswordController changePasswordPresenter;
 

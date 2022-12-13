@@ -11,11 +11,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import uac.imsp.clockingapp.Controller.control.ChangePasswordController;
 import uac.imsp.clockingapp.Controller.util.IChangePasswordController;
 import uac.imsp.clockingapp.R;
-import uac.imsp.clockingapp.View.util.IChangePasswordView;
+import uac.imsp.clockingapp.View.util.IAccountView;
 import uac.imsp.clockingapp.View.util.ToastMessage;
 
 public class ChangePassword extends AppCompatActivity
-        implements IChangePasswordView, View.OnClickListener {
+        implements IAccountView, View.OnClickListener {
     private TextView username;
     private EditText oldPassword,newPassword,newPasswordConfirm;
     private IChangePasswordController changePasswordPresenter;

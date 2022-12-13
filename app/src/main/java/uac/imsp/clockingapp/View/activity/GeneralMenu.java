@@ -86,8 +86,6 @@ public class GeneralMenu extends AppCompatActivity implements View.OnClickListen
         else if(v.getId()==R.id.menu_statistics_by_servie)
             menuPresenter.onConsultatisticsMenu(currentUser);
 
-        else if(v.getId()==R.id.menu_password)
-            startActivity(new Intent(this,ChangePassword.class));
 
 
 
@@ -176,7 +174,6 @@ public class GeneralMenu extends AppCompatActivity implements View.OnClickListen
 
 
 
-Button password=findViewById(R.id.menu_password);
         register.setOnClickListener(this);
         clock.setOnClickListener(this);
         search.setOnClickListener(this);
@@ -184,6 +181,5 @@ Button password=findViewById(R.id.menu_password);
 
         statisticsByService.setOnClickListener(this);
 
-        password.setOnClickListener(this);
     }
 }

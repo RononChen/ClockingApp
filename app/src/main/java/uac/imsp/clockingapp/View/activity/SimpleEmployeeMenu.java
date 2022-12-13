@@ -11,11 +11,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import uac.imsp.clockingapp.Controller.control.SimpleEmployeeMenuController;
 import uac.imsp.clockingapp.Controller.util.ISimpleEmployeeMenuController;
 import uac.imsp.clockingapp.R;
+import uac.imsp.clockingapp.View.activity.settings.SimpleEmployeeSettings;
 import uac.imsp.clockingapp.View.util.ISimpleEmployeeMenuView;
 
 public class SimpleEmployeeMenu extends AppCompatActivity
         implements ISimpleEmployeeMenuView , View.OnClickListener {
     ISimpleEmployeeMenuController simpleEmployeeMenuPresenter;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +32,8 @@ public class SimpleEmployeeMenu extends AppCompatActivity
 
     }
     public void initView(){
+       final Button password=findViewById(R.id.menu_password);
+        password.setOnClickListener(this);
         final Button clock=findViewById(R.id.menu_clock),
                 report=findViewById(R.id.menu_presence_report),
                 statistics=findViewById(R.id.menu_my_presence_statistics),
@@ -56,6 +62,7 @@ public class SimpleEmployeeMenu extends AppCompatActivity
 
     @Override
     public void onSettings() {
+        startActivity(new Intent(this, SimpleEmployeeSettings.class));
 
     }
 
@@ -82,5 +89,10 @@ else if(v.getId()==R.id.menu_my_presence_statistics)
     simpleEmployeeMenuPresenter.onConsultatisticsMenu();
 else if(v.getId()==R.id.menu_settings)
     simpleEmployeeMenuPresenter.onSettings();
+
+else if(v.getId()==R.id.menu_password)
+
+    startActivity(new Intent(this,ChangePassword.class));
+
     }
 }

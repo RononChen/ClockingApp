@@ -9,18 +9,6 @@
     android:background="@color/appOrange"
     tools:context=".View.activity.StartScreen"
     android:orientation="vertical">
-    <TextView
-        android:id="@+id/start_screen_date"
-        android:layout_width="match_parent"
-
-        android:fontFamily="@font/latoregular"
-        android:textSize="20sp"
-        android:textColor="@color/black"
-        android:layout_marginStart="25dp"
-        android:layout_height="30dp"
-        android:layout_marginTop="20dp"
-        android:layout_gravity="center"
-        android:text="@string/date" />
 
 
     <ImageView

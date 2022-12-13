@@ -298,23 +298,21 @@
     <string name="my_presence_report">Mes rapports de présence</string>
     <string name="service_management">Gestion des Services</string>
     <string name="x_y" translatable="false">x.y</string>
-    <string name="share_via" >Partager via</string>
+    <string name="share_via">Partager via</string>
     <string name="download_link">Suivez facilement la présence de vos
  employés avec l\'application ClockinApp
      qui vous propose de nombreuses fonctionalités interessantes.\n
     Pour télécharger l\'application pour Android, suivez ce lien\n
 
     </string>
+    <string name="my_account">Mon compte</string>
+    <string name="personal_informations">Informations personnelles</string>
 
 
     "Version du système d'exploitation:\n"+
     "-"+osVersion.getText().toString()+"\n"+
     "Version du SDK:\n"+
     "-"+sdkVersion.getText().toString();
-
-
-
-
 
 
 </resources>

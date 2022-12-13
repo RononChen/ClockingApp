@@ -9,21 +9,21 @@ import java.security.NoSuchAlgorithmException;
 import dao.EmployeeManager;
 import entity.Employee;
 import uac.imsp.clockingapp.Controller.util.IChangePasswordController;
-import uac.imsp.clockingapp.View.util.IChangePasswordView;
+import uac.imsp.clockingapp.View.util.IAccountView;
 
 public class ChangePasswordController implements IChangePasswordController {
 
-private final IChangePasswordView changePasswordView;
+private final IAccountView changePasswordView;
 private Employee employee;
   private EmployeeManager employeeManager;
   private Context context;
   private String oldPasssword;
-    public ChangePasswordController(IChangePasswordView changePasswordView){
+    public ChangePasswordController(IAccountView changePasswordView){
     this.changePasswordView=changePasswordView;
 
     this.context= (Context) this.changePasswordView;
     }
-    public ChangePasswordController(IChangePasswordView changePasswordView,Context context){
+    public ChangePasswordController(IAccountView changePasswordView, Context context){
         this.changePasswordView=changePasswordView;
         this.context=context;
     }
