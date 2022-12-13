@@ -136,11 +136,13 @@ else if(v.getId()==R.id.setting_problem)
 
 
 	@Override
-	public void onShareApp(String msg) {
+	public void onShareApp() {
 		intent=new Intent(Intent.ACTION_SEND);
-		intent.putExtra(Intent.EXTRA_TEXT,msg);
 		intent.setType("text/plain");
-		startActivity(Intent.createChooser(intent, "Partager avec avec"));
+		intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.download_link)+
+				"https://drive.google.com/file/d/1t_F2tkCxMHNlNZuiseF6ozprgqdUvCTd/view");
+
+		startActivity(Intent.createChooser(intent, getString(R.string.share_via)));
 
 	}
 

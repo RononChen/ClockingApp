@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import uac.imsp.clockingapp.BuildConfig;
 import uac.imsp.clockingapp.R;
+import uac.imsp.clockingapp.View.util.ToastMessage;
 
 public class Overview extends AppCompatActivity implements View.OnClickListener {
 	Button cpyOverview;
@@ -33,15 +34,15 @@ public class Overview extends AppCompatActivity implements View.OnClickListener 
 		appVersionName.setText(BuildConfig.VERSION_NAME);
 
 		deviceName=findViewById(R.id.overview_device_name);
-		deviceName.setText(Build.MODEL);
+		deviceName.setText(String.valueOf(Build.MODEL));
 		deviceManufacturer=findViewById(R.id.overview_device_manufacturer);
-		deviceManufacturer.setText(Build.MANUFACTURER);
+		deviceManufacturer.setText(String.valueOf(Build.MANUFACTURER));
 
 		sdkVersion=findViewById(R.id.overview_sdk_version);
-		sdkVersion.setText(Build.VERSION.SDK_INT);
+		sdkVersion.setText(String.valueOf(Build.VERSION.SDK_INT));
 
 		osVersion=findViewById(R.id.overview_version_name);
-		osVersion.setText(Build.VERSION.RELEASE);
+		osVersion.setText(String.valueOf(Build.VERSION.RELEASE));
 
 
 	}
@@ -49,15 +50,15 @@ public class Overview extends AppCompatActivity implements View.OnClickListener 
 	@Override
 	public void onClick(@NonNull View v) {
 		String overview;
-		overview ="Version de l'application:\n" +
+		overview =getString(R.string.app_version) +":\n-"+
+				appVersionName.getText().toString()+":\n"+
+		getString(R.string.device_name)+":\n" +
 				"-"+appVersionName.getText().toString()+"\n"+
-		"Nom de lappareil:\n" +
-				"-"+appVersionName.getText().toString()+"\n"+
-				"Nom du fabriquant:\n" +
+				getString(R.string.device_manufacturer)+"\n" +
 				"-"+deviceManufacturer.getText().toString()+"\n"+
-		"Version du système d'exploitation:\n"+
+		getString(R.string.version_name)+":\n"+
 		"-"+osVersion.getText().toString()+"\n"+
-		"Version du SDK:\n"+
+		getString(R.string.sdk_version)+":\n"+
 		"-"+sdkVersion.getText().toString();
 
 		ClipboardManager clipboard;
@@ -67,6 +68,7 @@ if(v.getId()==R.id.overview_copy)
 	clipboard = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
 	 clip = ClipData.newPlainText("overview", overview);
 	clipboard.setPrimaryClip(clip);
+	new ToastMessage(this,getString(R.string.copied));
 }
 
 	}

@@ -6,6 +6,15 @@
     <string name="login_password_hint">Password</string>
     <string name="copied">Copied</string>
     <string name="simple_login">Connected</string>
+    <string name="download_link">Easily track the presence of your
+ employees with ClockinApp
+     which offers many interesting features.\n
+    To download the application for Android, follow this link \n
+
+n
+
+    </string>
+    <string name="share_via" >Partager via</string>
     <string-array name="months">
         <item>January</item>
         <item>February</item>

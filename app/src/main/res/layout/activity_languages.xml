@@ -12,11 +12,13 @@
         android:layout_height="wrap_content"
         tools:ignore="UselessParent">
         <RadioButton
+            android:textSize="14sp"
             android:text="@string/english"
             android:id="@+id/languages_eng"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <RadioButton
+            android:textSize="14sp"
             android:text="@string/french"
             android:id="@+id/languages_fr"
             android:layout_width="wrap_content"

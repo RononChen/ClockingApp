@@ -8,21 +8,25 @@
     android:orientation="vertical"
     tools:context=".View.activity.settings.others.Clocking">
     <TextView
+        android:textSize="16sp"
         android:text="@string/attendance_gesture"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <RadioGroup
+        android:layout_marginTop="10dp"
         android:id="@+id/group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         >
         <RadioButton
+            android:textSize="14sp"
             android:text="@string/qr_code_scan"
             android:id="@+id/use_qr_code"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             />
         <RadioButton
+            android:textSize="14sp"
             android:text="@string/fingerprint_scan"
             android:id="@+id/use_fingerprint"
             android:layout_width="wrap_content"

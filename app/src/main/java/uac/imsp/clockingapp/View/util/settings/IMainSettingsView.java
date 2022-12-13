@@ -1,7 +1,7 @@
 package uac.imsp.clockingapp.View.util.settings;
 
 public interface IMainSettingsView {
-	void onShareApp(String msg);
+	void onShareApp();
 	void onShareAppViaQRCode();
 	void onAppcacheCleared();
 	void onName(String title,String msg,String pos,String neg);

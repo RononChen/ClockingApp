@@ -19,11 +19,8 @@ public class MainSettingsController implements IMainSettingsController {
 
 	@Override
 	public void onShareApp() {
-		String url="";
-		String msg="Suivez facilement la présence de vos employés avec l'application ClockinApp" +
-				" qui vous propose de nombreuses fonctionalités interessantes.\n" +
-				"Pour télécharger l'application pour Android, suivez ce lien\n"+url;
-		mainSettingsView.onShareApp(msg+url);
+		;
+		mainSettingsView.onShareApp();
 
 	}
 

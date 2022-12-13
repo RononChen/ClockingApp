@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
-            android:name=".View.activity.SimpleEmployeeSettings"
+            android:name=".View.activity.settings.SimpleEmployeeSettings"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

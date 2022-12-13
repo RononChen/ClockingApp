@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -7,17 +8,21 @@
     tools:context=".View.activity.settings.ManageUsername">
 
     <LinearLayout
+        android:layout_marginTop="10dp"
         android:id="@+id/username_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
 >
         <TextView
+            android:textSize="16sp"
             android:id="@+id/username_label"
             android:text="@string/manage_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
+            android:layout_marginTop="10dp"
+            android:textSize="15sp"
             android:id="@+id/text"
             android:text="@string/during_add"
             android:layout_width="wrap_content"
@@ -27,11 +32,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
         <RadioButton
+            android:textSize="14sp"
             android:id="@+id/use_email"
             android:text="@string/mail_as_username"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
             <RadioButton
+                android:textSize="14sp"
                 android:id="@+id/edit_username"
                 android:text="@string/edit_username"
                 android:layout_width="wrap_content"
@@ -42,57 +49,71 @@
     </LinearLayout>
 
     <LinearLayout
+        android:layout_marginTop="10dp"
         android:id="@+id/password_layout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
         >
         <TextView
+            android:textSize="16sp"
             android:id="@+id/password_label"
             android:text="@string/manage_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <TextView
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="10dp"
+            android:textSize="15sp"
             android:text="@string/during_emp_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <RadioGroup
+            android:layout_marginTop="10dp"
             android:id="@+id/password_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content">
             <RadioButton
+                android:textSize="14sp"
                 android:text="@string/generate_password"
                 android:id="@+id/generate_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
         </RadioGroup>
         <com.google.android.material.switchmaterial.SwitchMaterial
+            android:textSize="14sp"
             android:id="@+id/switch_show_password"
             android:text="@string/show_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
         <LinearLayout
+            android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/setting_employee_notifications_title"
             android:orientation="vertical"
             >
             <TextView
+                android:layout_marginBottom="10dp"
+                android:textSize="16sp"
                 android:layout_width="wrap_content"
                 android:text="@string/emp_not"
                 android:id="@+id/setting_employee"
                 android:layout_height="wrap_content"/>
             <CheckBox
+                android:textSize="14sp"
                 android:layout_width="wrap_content"
                 android:text="@string/during_add"
                 android:id="@+id/setting_add"
                 android:layout_height="wrap_content" />
             <CheckBox
+                android:textSize="14sp"
                 android:layout_width="wrap_content"
                 android:text="@string/during_delete"
                 android:id="@+id/setting_delete"
                 android:layout_height="wrap_content"/>
             <CheckBox
+                android:textSize="14sp"
                 android:layout_width="wrap_content"
                 android:text="@string/during_update"
                 android:id="@+id/setting_update"

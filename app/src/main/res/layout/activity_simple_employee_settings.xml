@@ -4,6 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.activity.SimpleEmployeeSettings">
+    tools:context=".View.activity.settings.SimpleEmployeeSettings">
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,4 +1,4 @@
-package uac.imsp.clockingapp.View.activity;
+package uac.imsp.clockingapp.View.activity.settings;
 
 import android.os.Bundle;
 

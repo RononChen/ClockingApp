@@ -7,6 +7,7 @@ android:orientation="vertical"
     android:layout_height="match_parent"
     tools:context=".View.activity.settings.others.DarkMode">
     <com.google.android.material.switchmaterial.SwitchMaterial
+        android:textSize="14sp"
         android:id="@+id/dark_mode"
         android:text="@string/dark"
         android:layout_width="wrap_content"
