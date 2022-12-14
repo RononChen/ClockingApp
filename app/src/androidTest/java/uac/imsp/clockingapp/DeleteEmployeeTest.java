@@ -60,7 +60,7 @@ public class DeleteEmployeeTest  implements IDeleteEmployeeView {
     public void testDeleteEmployee(){
         new DeleteEmployeeTest();
         assertNotNull(deleteEmployeePresenter);
-        deleteEmployeePresenter.onDeleteEmployee();
+        deleteEmployeePresenter.onDeleteEmployee(0);
         deleteEmployeePresenter.onConfirmResult(false);
         Employee employee=new Employee(1);
         EmployeeManager employeeManager=new EmployeeManager(appContext);
@@ -81,11 +81,16 @@ public class DeleteEmployeeTest  implements IDeleteEmployeeView {
     }
 
     @Override
-    public void askConfirmDelete(String pos, String neg, String title, String message) {
-        assertEquals("Oui",pos);
+    public void askConfirmDelete() {
+       /* assertEquals("Oui",pos);
         assertEquals("Non",neg);
         assertEquals("Confirmation",title);
-        assertEquals("Voulez vous vraiment supprimer l'employé ?",message);
+        assertEquals("Voulez vous vraiment supprimer l'employé ?",message);*/
+
+    }
+
+    @Override
+    public void onError(int errorNumber) {
 
     }
 }

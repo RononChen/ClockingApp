@@ -139,7 +139,8 @@ new ToastMessage(this,getString(R.string.simple_login));
                         -> loginPresenter.onConfirmResult(true))
 
                 .setNegativeButton(neg, (dialog, which)
-                        -> loginPresenter.onConfirmResult(false));
+                        ->
+                        loginPresenter.onConfirmResult(false));
 
         AlertDialog alert = builder.create();
         alert.setTitle(title);
@@ -157,8 +158,8 @@ new ToastMessage(this,getString(R.string.simple_login));
         new ToastMessage(this,message);
 
         startActivity(intent);
-        Username.setText("");
-        Password.setText("");
+        Username.getText().clear();
+        Password.getText().clear();
           }
 
     @Override

@@ -6,15 +6,14 @@
     <string name="login_password_hint">Password</string>
     <string name="copied">Copied</string>
     <string name="simple_login">Connected</string>
+    <string name="admin_delete_error">At least one admin required!</string>
     <string name="download_link">Easily track the presence of your
  employees with ClockinApp
      which offers many interesting features.\n
     To download the application for Android, follow this link \n
-
-n
-
     </string>
-    <string name="share_via" >Partager via</string>
+
+    <string name="share_via" >Share via</string>
     <string-array name="months">
         <item>January</item>
         <item>February</item>
@@ -106,7 +105,7 @@ n
     <string name="matricule">Registration number</string>
     <string name="form_title">Employees registration form</string>
     <string name="presence">Presence report</string>
-    <string name="welcomes">Welcome to ClockingApp, an app to track attendance of IMSP employees</string>
+    <string name="welcomes">Welcome to ClockingApp, an app to track attendance of employees</string>
     <string name="registration_title">Enter employee informations please</string>
     <string name="menu_delete_button">Delete employee</string>
     <string name="delete_button">Delete</string>
@@ -141,6 +140,7 @@ n
     <string name="qr_code_scan">QR Code scan</string>
     <string name="fingerprint_scan">Fingerprint scan</string>
     <string name="period">Janvier 01 1970</string>
+    <string name="cannnot_delete_yourself">You can\'t delete yourself</string>
     <string name="previous">Previous</string>
     <string name="next">Next</string>
     <string name="dark">Dark mode</string>

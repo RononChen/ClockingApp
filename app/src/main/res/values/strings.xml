@@ -97,7 +97,8 @@
 
     <string name="clocking_text">Pointer</string>
     <string name="search_status">Statut</string>
-    <string name="welcomes">Bienvenue sur ClockingApp, une application permettant de suivre la présence des employés de l\'IMSP</string>
+    <string name="welcomes">Bienvenue sur ClockingApp, une application permettant
+        de suivre la présence des employés</string>
     <string name="todo">TODO</string>
     <string name="tod">TODO</string>
     <string name="more">Plus</string>
@@ -293,6 +294,8 @@
     <string name="thanks">Merci d\'avoir installé l\'application</string>
     <string name="contin">Continuer</string>
     <string name="settings">Paramètres</string>
+    <string name="cannnot_delete_yourself">Vous ne pouvez pas vous supprimer</string>
+    <string name="admin_delete_error">Au moins un administrateur requis!</string>
     <string name="exit">Quitter</string>
     <string name="presence_stat">Mes statistiques de présence</string>
     <string name="my_presence_report">Mes rapports de présence</string>

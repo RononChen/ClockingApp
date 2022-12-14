@@ -100,6 +100,8 @@ public class SearchEmployee extends AppCompatActivity
     @Override
     public void onDelete() {
         intent=new Intent(SearchEmployee.this,DeleteEmployee.class);
+        intent.putExtra("CURRENT_USER",getIntent().getIntExtra("CURRENT_USER",0)
+        );
         intent.putExtra("ACTION_NUMBER",Number);
         startActivity(intent);
 

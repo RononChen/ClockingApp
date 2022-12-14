@@ -24,15 +24,16 @@ public class Account extends AppCompatActivity implements View.OnClickListener, 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_account);
+		initView();
 		changePasswordPresenter=new ChangePasswordController(this) ;
 
 		changePasswordPresenter.onStart(getIntent().getIntExtra("CURRENT_USER",1));
-		initView();
+
 	}
 
 	public void initView(){
 		final Button changePassword=findViewById(R.id.change_password);
-		 username=findViewById(R.id.username);
+		 username=findViewById(R.id.change_password_username);
 		  password=findViewById(R.id.password);
 		changePassword.setOnClickListener(this);
 	}

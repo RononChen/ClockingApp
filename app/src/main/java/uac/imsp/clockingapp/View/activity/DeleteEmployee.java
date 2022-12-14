@@ -74,7 +74,9 @@ public class DeleteEmployee extends AppCompatActivity
         //delete button
         if (v.getId() == R.id.delete_button)
 
-            deleteEmployeePresenter.onDeleteEmployee();
+            deleteEmployeePresenter.onDeleteEmployee(
+                    getIntent().getIntExtra("CURRENT_USER", 0));
+
 
 
 
@@ -83,12 +85,9 @@ public class DeleteEmployee extends AppCompatActivity
 
     public void initView()  {
 
-
-        int actionNumber = getIntent().getIntExtra("ACTION_NUMBER", 1);
-
         Hashtable<String, Object> informations = new Hashtable<>();
         try {
-            deleteEmployeePresenter.onLoad(actionNumber, informations);
+            deleteEmployeePresenter.onLoad(getIntent().getIntExtra("ACTION_NUMBER", 0), informations);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -137,18 +136,32 @@ public class DeleteEmployee extends AppCompatActivity
 
 
         //Not updatable
-        number.setEnabled(false);
-        firstname.setEnabled(false);
-        lastname.setEnabled(false);
-        birthdate.setEnabled(false);
-        username.setEnabled(false);
-        gender.setEnabled(false);
-        programm.setEnabled(false);
-        gender.getChildAt(0).setEnabled(false);
-        gender.getChildAt(1).setEnabled(false);
-        type.setEnabled(false);
-        email.setEnabled(false);
-        service.setEnabled(false);
+        number.setFocusable(false);
+        number.setLongClickable(false);
+        firstname.setFocusable(false);
+        firstname.setLongClickable(false);
+        lastname.setFocusable(false);
+        lastname.setLongClickable(false);
+
+        birthdate.setFocusable(false);
+        username.setFocusable(false);
+        username.setLongClickable(false);
+        gender.setFocusable(false);
+        gender.setClickable(false);
+        programm.setFocusable(false);
+        programm.setLongClickable(false);
+        gender.getChildAt(0).setFocusable(false);
+        gender.getChildAt(0).setClickable(false);
+        gender.getChildAt(1).setFocusable(false);
+        gender.getChildAt(1).setClickable(false);
+
+        type.setFocusable(false);
+        type.setLongClickable(false);
+        email.setFocusable(false);
+        email.setLongClickable(false);
+        service.setFocusable(false);
+        service.setLongClickable(false);
+
 
 
         // Listeners
@@ -168,22 +181,22 @@ public class DeleteEmployee extends AppCompatActivity
     }
 
     @Override
-    public void askConfirmDelete(String pos, String neg, String title, String message) {
+    public void askConfirmDelete() {
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(message)
+        builder.setMessage(getString(R.string.delete_confirmation_message))
                 .setCancelable(false)
-                .setPositiveButton(pos, (dialog, which) -> {
+                .setPositiveButton(getString(R.string.yes), (dialog, which) -> {
 
-                     new ToastMessage(DeleteEmployee.this,"Confirmé");
+
                     deleteEmployeePresenter.onConfirmResult(true);
                     DeleteEmployee.this.finish();
                     //startActivity(getIntent());
                 })
-                .setNegativeButton(neg, (dialog, which) -> {
+                .setNegativeButton(getString(R.string.no), (dialog, which) -> {
 
-                    new ToastMessage(DeleteEmployee.this,"Annulé");
+
 
                     deleteEmployeePresenter.onConfirmResult(false);
                     DeleteEmployee.this.finish();
@@ -191,9 +204,26 @@ public class DeleteEmployee extends AppCompatActivity
                 });
 
         AlertDialog alert = builder.create();
-        alert.setTitle(title);
+        alert.setTitle(getString(R.string.delete_confirmation));
         alert.show();
     }
+
+    @Override
+    public void onError(int errorNumber) {
+        switch (errorNumber){
+            case 0:
+                new ToastMessage(this,getString(R.string.cannnot_delete_yourself));
+                break;
+            case 1:
+                new ToastMessage(this,getString(R.string.admin_delete_error));
+                break;
+            default:
+                break;
+        }
+
+
+    }
+
     public String programm(){
         String str="";
         if(Start<10)

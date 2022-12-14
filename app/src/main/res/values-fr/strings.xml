@@ -98,7 +98,8 @@
 
     <string name="clocking_text">Pointer</string>
     <string name="search_status">Statut</string>
-    <string name="welcomes">Bienvenue sur ClockingApp, une application permettant de suivre la présence des employés de l\'IMSP</string>
+    <string name="welcomes">Bienvenue sur ClockingApp, une application permettant
+        de suivre la présence des employés</string>
     <string name="todo">TODO</string>
     <string name="tod">TODO</string>
     <string name="more">Plus</string>
@@ -202,6 +203,8 @@
     <string name="version_name">Nom de version du système d\'exploitation:</string>
     <string name="sdk_version">Version de SDK du système d\'exploitation</string>
     <string name="copy">Copier</string>
+    <string name="cannnot_delete_yourself">Vous ne pouvez pas vous supprimer</string>
+   <string name="admin_delete_error">Au moins un administrateur requis!</string>
     <string name="desc">Pour partager l\'application, scannez ce code QR en utilisant un autre appareil</string>
     <string name="share">Partager</string>
     <string name="fingerprint">Scannez votre empreinte pour marquer votre entrée ou sortie</string>

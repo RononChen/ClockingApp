@@ -187,8 +187,10 @@ public class UpdateEmployee extends AppCompatActivity
         Button selectPicture = findViewById(R.id.register_picture_button);
         RadioGroup gender = findViewById(R.id.register_gender);
 
-        gender.getChildAt(0).setEnabled(false);
-        gender.getChildAt(1).setEnabled(false);
+        gender.getChildAt(0).setFocusable(false);
+        gender.getChildAt(1).setFocusable(false);
+        gender.getChildAt(0).setClickable(false);
+        gender.getChildAt(1).setClickable(false);
 
         spinnerServices = findViewById(R.id.register_service);
         spinnerTypes = findViewById(R.id.register_type);
@@ -235,10 +237,18 @@ if(informations.get("picture")!=null)
         checkWorkdays(); //check workdays boxes
 
         //Not updatable
-        number.setEnabled(false);
-        firstname.setEnabled(false);
-        lastname.setEnabled(false);
-        birthdate.setEnabled(false);
+        number.setFocusable(false);
+        number.setLongClickable(false);
+        firstname.setFocusable(false);
+        firstname.setLongClickable(false);
+        lastname.setFocusable(false);
+        lastname.setLongClickable(false);
+       /* Email.setFocusable(false);
+        Email.setLongClickable(false);*/
+
+        birthdate.setFocusable(false);
+        birthdate.setLongClickable(false);
+
         if (Objects.requireNonNull(informations.get("birthdate")).toString().equals(""))
         {
             findViewById(R.id.tv).setVisibility(View.GONE);
@@ -246,8 +256,10 @@ if(informations.get("picture")!=null)
 
         }
 
-        username.setEnabled(false);
-        gender.setEnabled(false);
+        username.setFocusable(false);
+        username.setLongClickable(false);
+        gender.setFocusable(false);
+        gender.setClickable(false);
 
         // Listeners
         update.setOnClickListener(this);

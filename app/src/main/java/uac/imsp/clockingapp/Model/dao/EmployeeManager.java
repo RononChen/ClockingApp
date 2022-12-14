@@ -192,6 +192,20 @@ public class EmployeeManager {
         statement.executeUpdateDelete();
     }
 
+    public  int getAdminCount(){
+int adminsCount;
+            String query = "SELECT COUNT(*) FROM employe WHERE est_admin='true'";
+
+            Cursor cursor = Database.rawQuery(query, null);
+      cursor.moveToFirst();
+                adminsCount =cursor.getInt(0);
+
+            cursor.close();
+
+
+return adminsCount;
+        }
+
 
     public Planning getPlanning(@NonNull Employee employee) {
         Planning planning = null;

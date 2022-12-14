@@ -293,14 +293,28 @@
 
             </LinearLayout>
             <!--Button to open the image selector-->
-            <Button
+            <!--Button
                 android:id="@+id/register_picture_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:text="@string/update_picture"
                 android:background="@drawable/mybutton"
-                android:textSize="18sp" />
+                android:textSize="18sp" /-->
+
+            <Button
+                android:id="@+id/register_picture_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/shapelogin"
+                android:padding="15dp"
+                android:shadowColor="@android:color/transparent"
+                android:backgroundTint="@color/appOrange"
+                android:text="@string/update_picture"/>
             <TextView
                 android:id="@+id/register_work_days"
                 android:textSize="18sp"
@@ -359,12 +373,20 @@
 
             <Button
                 android:id="@+id/update_button"
+                android:text="@string/update_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="40dp"
-                android:background="@drawable/mybutton"
-                android:text="@string/update_button" />
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="50dp"
+                android:background="@drawable/shapelogin"
+                android:padding="15dp"
+                android:shadowColor="@android:color/transparent"
+                android:backgroundTint="@color/appOrange"
+                />
+
         </LinearLayout>
     </ScrollView>
 

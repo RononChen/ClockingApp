@@ -10,7 +10,6 @@ import java.util.Hashtable;
 import java.util.Objects;
 
 import dao.EmployeeManager;
-import dao.PlanningManager;
 import entity.Day;
 import entity.Employee;
 import entity.Planning;
@@ -50,7 +49,6 @@ String birthdate;
         Service service;
 
         Planning planning;
-        PlanningManager planningManager ;
 
 
         employee=new Employee(number);
@@ -58,12 +56,10 @@ String birthdate;
         employeeManager.open();
         employeeManager.setInformations(employee);
         service =employeeManager.getService(employee);
+        planning=employeeManager.getPlanning(employee);
         employeeManager.close();
 
-        planningManager = new PlanningManager(context);
-        planningManager.open();
-        planning=employeeManager.getPlanning(employee);
-        planningManager.close();
+
 
 
         informations.put("number",String.valueOf(employee.getRegistrationNumber()));
@@ -103,12 +99,21 @@ String birthdate;
 
 
     @Override
-    public void onDeleteEmployee() {
+    public void onDeleteEmployee(int adminNumber) {
 
-        deleteEmployeeView.askConfirmDelete("Oui","Non", "Confirmation",
-                "Voulez vous vraiment supprimer l'employé ?");
+if(employee.getRegistrationNumber()==adminNumber)
+    deleteEmployeeView.onError(0);
+else {
+    employeeManager = new EmployeeManager(context);
+    employeeManager.open();
 
-
+    if (employeeManager.getAdminCount() == 1)
+        deleteEmployeeView.onError(1);
+    else
+        deleteEmployeeView.askConfirmDelete(
+    );
+    employeeManager.close();
+}
 
 
     }
@@ -121,13 +126,12 @@ String birthdate;
             return;
         employeeManager=new EmployeeManager(context);
         employeeManager.open();
+
         employeeManager.delete(employee);
-
-
-
+        deleteEmployeeView.onDeleteSuccessfull();
         employeeManager.close();
 
-            deleteEmployeeView.onDeleteSuccessfull();
+
 
     }
     public static Bitmap getBitMapFromBytes(byte[] array){

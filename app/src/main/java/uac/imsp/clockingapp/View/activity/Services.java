@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -88,6 +89,20 @@ public class Services extends AppCompatActivity implements IServicesView,
 	{
 		next.setVisibility(View.VISIBLE);
 		next.setOnClickListener(this);
+	}
+	else {
+		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+				LinearLayout.LayoutParams.WRAP_CONTENT,
+				LinearLayout.LayoutParams.WRAP_CONTENT
+		);
+		params.setMarginStart(20);
+		cancel.setLayoutParams(params);
+
+		params.setMarginStart(70);
+		apply.setLayoutParams(params);
+
+
+
 	}
 
 		addService=findViewById(R.id.add_service);

@@ -96,6 +96,7 @@ public class GeneralMenu extends AppCompatActivity implements View.OnClickListen
     public void onSearchEmployeeMenuSuccessfull() {
         Intent intent ;
         intent = new Intent(this, SearchEmployee.class);
+        intent.putExtra("CURRENT_USER",currentUser);
         startActivity(intent);
 
     }
@@ -157,11 +158,12 @@ public class GeneralMenu extends AppCompatActivity implements View.OnClickListen
                     moveTaskToBack(true);
                     android.os.Process.killProcess(android.os.Process.myPid());
                     System.exit(0);
-                    AlertDialog alert = builder.create();
-                    alert.setTitle(getString(R.string.exit_confirmation));
-                    alert.show();
+
 
                 });
+        AlertDialog alert = builder.create();
+        alert.setTitle(getString(R.string.exit_confirmation));
+        alert.show();
     }
 
 

@@ -16,7 +16,6 @@
 
 
     <ScrollView
-
         android:id="@+id/ScrollView01"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -56,18 +55,6 @@
                 android:fontFamily="@font/latoregular"
                 android:textSize="18sp"
                 android:text="@string/reg_number" />
-
-            <!--Button
-                android:id="@+id/work_manager"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:background="@drawable/mybutton"
-                android:layout_marginBottom="40dp"
-
-                android:text="WorkManager"
-                tools:ignore="MissingConstraints" /-->
-
-
 
             <EditText
                 android:id="@+id/register_number"
@@ -388,14 +375,30 @@
 
         </LinearLayout>
             <!--Button to open the image selector-->
+
             <Button
+                android:id="@+id/register_picture_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/shapelogin"
+                android:padding="15dp"
+                android:shadowColor="@android:color/transparent"
+                android:backgroundTint="@color/appOrange"
+                android:text="@string/register_picture" />
+
+            <!--Button
                 android:layout_marginStart="20dp"
                 android:id="@+id/register_picture_button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
-                android:text="@string/register_picture"
-                android:background="@drawable/mybutton" />
+
+                android:background="@drawable/mybutton" /-->
             <!-- android:backgroundTint="" -->
 
 
@@ -468,20 +471,35 @@
                 android:layout_height="match_parent"
                 android:text="@string/sunday"
                 android:checked="true"/>
+
             <Button
                 android:id="@+id/register_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="50dp"
-                android:background="@drawable/mybutton"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/shapelogin"
+                android:padding="15dp"
+                android:shadowColor="@android:color/transparent"
+                android:backgroundTint="@color/appOrange"
                 android:text="@string/register_button" />
 
             <Button
                 android:id="@+id/register_reset_button"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/mybutton"
+                android:layout_gravity="center"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginEnd="10dp"
                 android:layout_marginBottom="40dp"
+                android:background="@drawable/shapelogin"
+                android:padding="15dp"
+                android:shadowColor="@android:color/transparent"
+                android:backgroundTint="@color/appOrange"
                 android:text="@string/reset_button" />
 
         </LinearLayout>

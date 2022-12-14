@@ -42,6 +42,7 @@ public class SimpleEmployeeSettings extends AppCompatActivity implements View.On
 	@Override
 	public void onClick(@NonNull View v) {
 		if(v.getId()==R.id.setting_my_account){
+			startActivity(new Intent(this,Account.class));
 
 		}
 		else if (v.getId()==R.id.setting_personal_infos){
@@ -56,7 +57,7 @@ public class SimpleEmployeeSettings extends AppCompatActivity implements View.On
 
 		}
 
-		else if (v.getId()==R.id.languages){
+		else if (v.getId()==R.id.setting_languages){
 
 			startActivity(new Intent(this, Languages.class));
 		}

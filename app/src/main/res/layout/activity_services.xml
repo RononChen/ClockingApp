@@ -7,73 +7,78 @@
     android:layout_height="match_parent"
     tools:context=".View.activity.Services">
     <TextView
+        android:layout_marginTop="10dp"
+        android:textSize="17sp"
         android:id="@+id/title"
         android:text="@string/cliquer_longuement_pour_supprimer_ncliquer_pour_diter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <EditText
+            android:id="@+id/edit_service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:hint="@string/add_service"
+            android:autofillHints=""
+            android:inputType="textAutoComplete" />
+
+        <Button
+            android:layout_marginStart="60dp"
+            android:id="@+id/add_service"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/add"
+            style="?android:attr/buttonBarButtonStyle" />
+
+
+    </LinearLayout>
+
     <ListView
         android:id="@+id/service_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="250dp"
         android:layout_marginStart="13dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="20dp"
         android:divider="@color/colorPrimary"
         android:paddingBottom="5dp"
+        android:layout_marginBottom="30dp"
         android:dividerHeight="1dp"/>
+
     <LinearLayout
+        android:id="@+id/layout"
+        android:layout_marginStart="10dp"
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <Button
             android:id="@+id/cancel"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
             android:text="@string/cancel"
             style="?android:attr/buttonBarButtonStyle" />
 
         <Button
-            android:layout_marginStart="70dp"
             android:id="@+id/apply"
-            android:layout_width="wrap_content"
+            android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="@string/apply"
+            style="?android:attr/buttonBarButtonStyle" />
+        <Button
+            android:id="@+id/next"
+            android:layout_width="110dp"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:text="@string/contin"
             style="?android:attr/buttonBarButtonStyle" />
     </LinearLayout>
 
 
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <EditText
-                android:id="@+id/edit_service"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:hint="@string/add_service"
-                android:autofillHints=""
-                android:inputType="textAutoComplete" />
-
-            <Button
-                android:layout_marginStart="60dp"
-                android:id="@+id/add_service"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/add"
-                style="?android:attr/buttonBarButtonStyle" />
 
 
-        </LinearLayout>
-
-    <Button
-        android:layout_marginStart="70dp"
-        android:id="@+id/next"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        android:text="@string/contin"
-        style="?android:attr/buttonBarButtonStyle" />
 
 
 </LinearLayout>
