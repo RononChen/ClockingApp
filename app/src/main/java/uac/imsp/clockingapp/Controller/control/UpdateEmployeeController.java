@@ -3,8 +3,11 @@ package uac.imsp.clockingapp.Controller.control;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.os.AsyncTask;
 import android.text.TextUtils;
 import android.util.Patterns;
+
+import androidx.annotation.NonNull;
 
 import java.io.ByteArrayOutputStream;
 import java.util.Hashtable;
@@ -29,9 +32,9 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
    private final Context context;
     Service service;
     Planning planning;
-    String mail,type;
+    boolean serviceUpdated,typeUpdated,pictureUpdated,planningUpdated,mailUpdated;
 
-     Bitmap picture;
+
     public UpdateEmployeeController(IUpdateEmployeeView updateEmployeeView)
     {
         this.updateEmployeeView=updateEmployeeView;
@@ -118,127 +121,108 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
 
     }
     @Override
-    public void onUpdateEmployee(String mail, String selectedService, int startTime,
+    public void onUpdateEmployee(String mail, String selectedService,
+                                 int startTime,
                                  int endTime,byte[] workDays, Bitmap picture, String type) {
-        String s,e;
-
-     // handle click on Update
 
 
-        PlanningManager planningManager = new PlanningManager(context);
-        serviceManager=new ServiceManager(context) ;
+        if (mailUpdated) {
+            if (TextUtils.isEmpty(mail))
+                updateEmployeeView.onUpdateEmployeeError
+                        (0);
 
-        planningManager.open();
-        serviceManager.open();
-
-
-        this.mail=mail;
-        service=new Service(selectedService);
-        serviceManager.create(service);
-
-        s=formatTime(startTime);
-
-        e=formatTime(endTime);
-        //workDays=
-        planning=new Planning(s,e,workDays);
-
-        planningManager.create(planning);//To set the planning Id
-
-        this.picture=picture;
-        this.type=type;
-
-        employeeManager=new EmployeeManager(context);
-        employeeManager.open();
-        employeeManager.setInformations(employee);
+            else if (!Patterns.EMAIL_ADDRESS.matcher(mail).matches())
+                updateEmployeeView.onUpdateEmployeeError(0);
+            else
+                employeeManager.update(employee, mail);
+            updateEmployeeView.onSomethingchanged();
+        }
 
 
-        updateEmployeeView.askConfirmUpdate(
+        Runnable runnable= () -> {
+            String s,e;
+            PlanningManager planningManager = new PlanningManager(context);
+            serviceManager=new ServiceManager(context) ;
 
-        );
-
-
-
-    }
-
-    @Override
-    public void onConfirmResult(boolean confirmed,boolean pictureUpdated,
-                                boolean planningUpdated) {
-
-        boolean update=false;
-
-        // assert confirmed;
-        if(!confirmed)
-            return;
+            planningManager.open();
+            serviceManager.open();
 
 
+            service=new Service(selectedService);
+            serviceManager.create(service);
 
-            //compare the email entered to the real email of the emp
-        if (!Objects.equals(employee.getMailAddress(), mail))
-            {
-                if (TextUtils.isEmpty(mail))
-                    updateEmployeeView.onUpdateEmployeeError
-                            ("Email requis !");
+            s=formatTime(startTime);
 
-                else if (!Patterns.EMAIL_ADDRESS.matcher(mail).matches())
-                    updateEmployeeView.onUpdateEmployeeError("Email invalide !");
-                else {
-                    employeeManager.update(employee, mail);
-                    update = true;
-                }
-            }
+            e=formatTime(endTime);
+            //workDays=
+            planning=new Planning(s,e,workDays);
 
-            if (!Objects.equals(employee.getType(), type) &&
-                    type != null) {
+            planningManager.create(planning);//To set the planning Id
+
+
+            employeeManager=new EmployeeManager(context);
+            employeeManager.open();
+            employeeManager.setInformations(employee);
+
+            employeeManager.update(employee, mail);
+
+
+            if (typeUpdated)
                 employeeManager.changeGrade(employee, type);
-                update = true;
-            }
 
-            if (!Objects.equals(employeeManager.getService(employee).getName(), service.getName())
-            ) {
+
+            if (serviceUpdated)
+
                 employeeManager.update(employee, service);
-                update = true;
-            }
-            if (pictureUpdated) {
-                employeeManager.update(employee,getBytesFromBitmap(picture));
-                update = true;
-            }
             if(planningUpdated)
 
-            {
                 employeeManager.update(employee,planning);
-                update=true;
-            }
 
-
-            if (employee.getPicture() != getBytesFromBitmap(picture)) {
+            if (pictureUpdated)
                 employeeManager.update(employee, getBytesFromBitmap(picture));
-
-                update = true;
-            }
             employeeManager.close();
+        };
+        AsyncTask.execute(runnable);
 
-            if (update)
-                updateEmployeeView.onSomethingchanged("Employé modifié avec succès");
-            else
-                updateEmployeeView.onNothingChanged("Aucune information n'a été modifiée");
+
+
 
 
 
 
     }
 
-    private byte[] getBytesFromBitmap(Bitmap picture) {
-        if (picture != null) {
+    @NonNull
+    private byte[] getBytesFromBitmap(@NonNull Bitmap picture) {
+
             ByteArrayOutputStream stream = new ByteArrayOutputStream();
             picture.compress(Bitmap.CompressFormat.PNG, 70, stream);
             return stream.toByteArray();
-        }
-        return new byte[0];
     }
 
     @Override
     public void onReset() {
-        //updateEmployeeView.askConfirmReset("Oui","Non","Confirmation","Voulez vous vraiment annuler ces modifications ?");
+
+    }
+
+    @Override
+    public void onUpdateEmployee(boolean emailUpdated, boolean serviceUpdated,
+                                 boolean planningUpdated, boolean pictureUpdated,
+                                 boolean typeUpdated) {
+
+        if(!emailUpdated&&!serviceUpdated&&!pictureUpdated&&
+                !planningUpdated&&!typeUpdated)
+            updateEmployeeView.onNothingChanged();
+        else {
+            this.serviceUpdated=serviceUpdated;
+            this.typeUpdated=typeUpdated;
+           this.pictureUpdated=pictureUpdated;
+          this.planningUpdated=planningUpdated;
+         this.mailUpdated=emailUpdated;
+        }
+
+
+
 
     }
 

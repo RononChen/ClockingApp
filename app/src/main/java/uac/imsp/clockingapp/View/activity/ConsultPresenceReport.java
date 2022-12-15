@@ -34,7 +34,7 @@ public class ConsultPresenceReport extends AppCompatActivity
         @Override
         protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
-                setContentView(R.layout.activity_consult_presence_report2);
+                setContentView(R.layout.activity_consult_presence_report);
 
                 consultPresenceReportPresenter=
                         new ConsultPresenceReportController

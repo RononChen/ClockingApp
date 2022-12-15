@@ -181,7 +181,8 @@ public class ClockingManager {
 
 
         SQLiteStatement statement;
-        String query = "UPDATE pointage set heure_sortie=? WHERE matricule_ref=? AND date_jour_ref=?";
+        String query = "UPDATE pointage set heure_sortie=? WHERE matricule_ref=?" +
+                " AND date_jour_ref=?";
         statement = Database.compileStatement(query);
         statement.bindString(1, "TIME('NOW','LOCALTIME')");
         statement.bindLong(2, employee.getRegistrationNumber());

@@ -2,7 +2,6 @@ package uac.imsp.clockingapp;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
 
 import android.content.Context;
 
@@ -13,7 +12,6 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.Hashtable;
-import java.util.Objects;
 
 import uac.imsp.clockingapp.Controller.control.UpdateEmployeeController;
 import uac.imsp.clockingapp.View.util.IUpdateEmployeeView;
@@ -32,7 +30,7 @@ public class UpdateEmployeeTest  implements IUpdateEmployeeView {
     }
 
     @Override
-    public void onSomethingchanged(String message) {
+    public void onSomethingchanged() {
 
     }
     @Test
@@ -46,8 +44,7 @@ public class UpdateEmployeeTest  implements IUpdateEmployeeView {
 
         updateEmployeePresenter.onUpdateEmployee("kkg","Direction",
                 0,0,null,null,"");
-        updateEmployeePresenter.onConfirmResult(false,false ,false );
-        updateEmployeePresenter.onConfirmResult(true,false ,false );
+
         updateEmployeePresenter.onUpdateEmployee("ezestar@gmail.com","Direction",
                 0,0,null,null,"");
 
@@ -55,16 +52,16 @@ public class UpdateEmployeeTest  implements IUpdateEmployeeView {
     }
 
     @Override
-    public void onNothingChanged(String message) {
-        assertEquals("jbk",message);
+    public void onNothingChanged() {
+        //assertEquals("jbk",message);
 
     }
 
 
     @Override
-    public void onUpdateEmployeeError(String message) {
-        assertTrue(Objects.equals(message, "Email requis !") ||
-                Objects.equals(message, "Email invalide !"));
+    public void onUpdateEmployeeError(int errorNumber) {
+        /*assertTrue(Objects.equals(errorNumber, "Email requis !") ||
+                Objects.equals(errorNumber, "Email invalide !"));*/
 
 
 

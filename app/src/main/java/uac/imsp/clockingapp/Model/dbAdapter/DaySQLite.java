@@ -10,6 +10,7 @@ import static dbAdapter.EmployeeSQLite.COPY_EMPLOYE_TEMP_TO_EMPLOYE;
 import static dbAdapter.EmployeeSQLite.COPY_VARIABLE_TEMP_TO_VARIABLE;
 import static dbAdapter.EmployeeSQLite.CREATE_EMPLOYEE;
 import static dbAdapter.EmployeeSQLite.CREATE_VARIABLE;
+import static dbAdapter.EmployeeSQLite.DATABASE_VERSION;
 import static dbAdapter.EmployeeSQLite.DROP_EMPLOYEE_TEMP;
 import static dbAdapter.EmployeeSQLite.super_user;
 import static dbAdapter.PlanningSQLite.ALTER_PLANNING_TO_PLANNING_TEMP;
@@ -35,7 +36,7 @@ import java.security.NoSuchAlgorithmException;
 public class DaySQLite extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "Clocking_database.db";
-    public static final int DATABASE_VERSION = 1;
+   // public static final int DATABASE_VERSION = 1;
 
     public static final String TABLE_JOUR = "jour";
     public static final String COL_DATE_JOUR= "date_jour";
@@ -193,8 +194,7 @@ public class DaySQLite extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-       // db.execSQL(DROP_DAY);
-       // onCreate(db);
+
         upgradeDatabase(db);
 
     }

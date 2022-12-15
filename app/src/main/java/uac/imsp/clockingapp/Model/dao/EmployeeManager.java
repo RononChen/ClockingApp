@@ -355,7 +355,8 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
             employee.setUsername(cursor.getString(6));
             employee.setBirthdate(cursor.getString(7));
             employee.setWorkdays(cursor.getBlob(8));
-            employee.setAdmin(Objects.equals(cursor.getString(9), "true"));
+            employee.setAdmin(Objects.equals(cursor.getString(9),
+                    "true"));
 
 
         }
@@ -469,7 +470,7 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
         day = new Day(month,year);
         d=day;
         table = new String[day.getLenthOfMonth()];
-
+     retrieveAddDate(employee);
         String query="SELECT date_jour,statut FROM pointage WHERE matricule_ref=? " +
                 "AND date_jour BETWEEN ? AND ?  ";
         day=new Day(day.getYear(),month,1);
@@ -492,7 +493,10 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
         for (i = 0; i < table.length; i++) {
             //to browse the calendar especially the concerned month
             day = new Day(day.getYear(), month, i + 1);
-            table[i] = status.getOrDefault(day.getDate(), "Undefined");
+            if(day.getDate().compareTo(employee.getAddDate())<0)
+                 table[i]="Undefined";
+            else
+                 table[i] = status.getOrDefault(day.getDate(), "Undefined");
 
         }
 
@@ -576,7 +580,8 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
         statement.executeUpdateDelete();
 
     }
-    public void setDayAttendance(@NonNull Employee employee, String status, @NonNull Day day){
+    public void setDayAttendance(@NonNull Employee employee, String status,
+                                 @NonNull Day day){
         SQLiteStatement statement;
         String query;
 
@@ -604,6 +609,7 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
                 String.valueOf(day.getDate()),
         };
         Cursor cursor = Database.rawQuery(query, selectArgs);
+
         if(!cursor.moveToFirst())
             status="Sorti";
         else {

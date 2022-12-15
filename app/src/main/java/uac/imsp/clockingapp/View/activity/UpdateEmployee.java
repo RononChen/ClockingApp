@@ -27,7 +27,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.IOException;
 import java.text.ParseException;
-import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.Objects;
 
@@ -48,6 +47,7 @@ public class UpdateEmployee extends AppCompatActivity
 
 
     private EditText Email;
+    private String outgoingMail;
     private TextView Programm;
     private String selectedService, selectedType, provisionalService,provisionalType;
     private  Spinner spinnerTypes, spinnerServices;
@@ -55,10 +55,15 @@ public class UpdateEmployee extends AppCompatActivity
     private Bitmap picture;
     CheckBox monday, tuesday, wednesday, thursday, friday, satursday, sunday;
     private Integer Start, End;
-    private boolean pictureUpdated,planningUpdated;
+    private String outgoingType,outgoingService;
+    private boolean pictureUpdated,planningUpdated,
+    typeUpdated,serviceUpdated,
+            emailUpdated,someThingIsUpdated=false;
     private byte[] WorkDays;
     private CheckBox[]myTable;
-    private byte[] oldWorkDays;
+
+    private byte[] oldWorkDays,outgoingWorkDays;
+    private int outgoingStart,outgoingEnd;
     boolean notice;
 
 
@@ -92,12 +97,22 @@ public class UpdateEmployee extends AppCompatActivity
         //bouton modifier
         if (v.getId() == R.id.update_button)
         {
-            WorkDays=workDays();
-            if(!Arrays.equals(oldWorkDays, WorkDays))
+            if(!Objects.equals(outgoingMail, Email.getText().toString().trim()))
+                emailUpdated=true;
+            if(!Objects.equals(outgoingService, provisionalService))
+                serviceUpdated=true;
+            if(!Objects.equals(outgoingType, provisionalType))
+                typeUpdated=true;
+            if(Start!=outgoingStart||outgoingEnd!=End||
+                    WorkDays!=outgoingWorkDays)
                 planningUpdated=true;
-            updateEmployeePresenter.onUpdateEmployee(toString(Email), provisionalService,
 
-                    Start, End, WorkDays,picture, provisionalType);
+
+
+            updateEmployeePresenter.onUpdateEmployee(
+                    emailUpdated, serviceUpdated,
+
+                    planningUpdated,pictureUpdated, typeUpdated);
 
         } else if (v.getId() == R.id.register_reset_button) {
             updateEmployeePresenter.onReset();
@@ -154,7 +169,9 @@ public class UpdateEmployee extends AppCompatActivity
             e.printStackTrace();
         }
         selectedService = (String) informations.get("service");
+        outgoingService = (String) informations.get("service");
         selectedType = (String) informations.get("type");
+        outgoingType=(String) informations.get("type");
         provisionalService=selectedService;
         provisionalType=selectedType;
         EditText number = findViewById(R.id.register_number);
@@ -170,10 +187,14 @@ public class UpdateEmployee extends AppCompatActivity
 
         if (informations.containsKey("start") &&
                 informations.containsKey("end")&&
-        informations.containsKey("workDays")) {
+        informations.containsKey("workDays"))
+        {
             Start = (Integer) informations.get("start");
+            outgoingStart=Start;
             End = (Integer) informations.get("end");
+            outgoingEnd=End;
             WorkDays= (byte[]) informations.get("workDays");
+            outgoingWorkDays=WorkDays;
             oldWorkDays=WorkDays;
             start.setValue(Start);
             end.setValue(End);
@@ -220,7 +241,8 @@ if(informations.get("picture")!=null)
         lastname.setText(Objects.requireNonNull(informations.get("lastname")).toString());
         firstname.setText(Objects.requireNonNull(informations.get("firstname")).toString());
         lastname.setText(Objects.requireNonNull(informations.get("lastname")).toString());
-        Email.setText(Objects.requireNonNull(informations.get("email")).toString());
+       outgoingMail=Objects.requireNonNull(informations.get("email")).toString();
+        Email.setText(outgoingMail);
         username.setText(Objects.requireNonNull(informations.get("username")).toString());
 
 
@@ -243,8 +265,6 @@ if(informations.get("picture")!=null)
         firstname.setLongClickable(false);
         lastname.setFocusable(false);
         lastname.setLongClickable(false);
-       /* Email.setFocusable(false);
-        Email.setLongClickable(false);*/
 
         birthdate.setFocusable(false);
         birthdate.setLongClickable(false);
@@ -344,19 +364,17 @@ if(informations.get("picture")!=null)
     }
 
     @Override
-    public void onSomethingchanged(String message) {
-         new ToastMessage(this, message);
-        String subject="Notification de mise à jour d'employé";
-        String msg="Certaines de vos informations ont été modifiées";
-        new ToastMessage(this, message);
-        sendEmail(new String[]{Email.getText().toString()},subject,msg);
+    public void onSomethingchanged() {
+         new ToastMessage(this, getString(R.string.update_succcessful));
+        sendEmail(new String[]{Email.getText().toString().trim()},
+                getString(R.string.notification_title),getString(R.string.notification));
 
 
     }
 
     @Override
-    public void onNothingChanged(String message) {
-        new ToastMessage(this, message);
+    public void onNothingChanged() {
+        new ToastMessage(this,getString(R.string.noting_changed) );
 
 
     }
@@ -364,8 +382,20 @@ if(informations.get("picture")!=null)
 
 
     @Override
-    public void onUpdateEmployeeError(String message) {
-         new ToastMessage(this, message);
+    public void onUpdateEmployeeError(int errorNumber) {
+        switch (errorNumber){
+
+            case 0:
+                new ToastMessage(this, getString(R.string.mail_required));
+                break;
+            case 1:
+                new ToastMessage(this, getString(R.string.mail_invalid));
+                break;
+            default:
+                break;
+
+        }
+
 
 
 
@@ -382,15 +412,16 @@ if(informations.get("picture")!=null)
                 .setCancelable(false)
                 .setPositiveButton(pos, (dialog, which) -> {
 
-                    new ToastMessage(UpdateEmployee.this,"Confirmé");
-                    updateEmployeePresenter.onConfirmResult(true,
-                            pictureUpdated,planningUpdated );
+                    //new ToastMessage(UpdateEmployee.this,"Confirmé");
+                    updateEmployeePresenter.onUpdateEmployee(Email.getText().toString(),
+                            selectedService,Start,End,WorkDays,picture,selectedType);
+
 
                 })
                 .setNegativeButton(neg, (dialog, which) -> {
                     new ToastMessage(UpdateEmployee.this,"Annulé");
 
-                    updateEmployeePresenter.onConfirmResult(false,pictureUpdated ,planningUpdated );
+                    //updateEmployeePresenter.onConfirmResult(false,pictureUpdated ,planningUpdated );
                     UpdateEmployee.this.finish();
                     startActivity(getIntent());
                 });
@@ -431,7 +462,7 @@ if(informations.get("picture")!=null)
     }
 
     @Override
-    public void onValueChange(NumberPicker picker, int oldVal, int newVal) {
+    public void onValueChange(@NonNull NumberPicker picker, int oldVal, int newVal) {
         planningUpdated=true;
 
         if(picker.getId()==R.id.register_planning_start_choose

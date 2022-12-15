@@ -101,6 +101,11 @@
     <string name="welcomes">Bienvenue sur ClockingApp, une application permettant
         de suivre la présence des employés</string>
     <string name="todo">TODO</string>
+    <string name="update_succcessful">Employé modifié avec succès</string>
+    <string name="notification_title">Notification de mise à jour d\'employé</string>
+    <string name="notification">Certaines de vos informations ont été modifiées</string>
+
+    <string name="noting_changed">Aucune information modifiée</string>
     <string name="tod">TODO</string>
     <string name="more">Plus</string>
     <string name="quit">Quitter</string>

@@ -15,6 +15,7 @@ import static dbAdapter.EmployeeSQLite.COPY_EMPLOYE_TEMP_TO_EMPLOYE;
 import static dbAdapter.EmployeeSQLite.COPY_VARIABLE_TEMP_TO_VARIABLE;
 import static dbAdapter.EmployeeSQLite.CREATE_EMPLOYEE;
 import static dbAdapter.EmployeeSQLite.CREATE_VARIABLE;
+import static dbAdapter.EmployeeSQLite.DATABASE_VERSION;
 import static dbAdapter.EmployeeSQLite.DROP_EMPLOYEE_TEMP;
 import static dbAdapter.EmployeeSQLite.super_user;
 import static dbAdapter.PlanningSQLite.ALTER_PLANNING_TO_PLANNING_TEMP;
@@ -36,7 +37,7 @@ import java.security.NoSuchAlgorithmException;
 public class ServiceSQLite  extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "Clocking_database.db";
-    private static final int DATABASE_VERSION = 1;
+   // private static final int DATABASE_VERSION = 1;
         private static final String TABLE_SERVICE = "service";
     private static final String COL_ID_SERVICE = "id_service";
     private static final String COL_NOM_SERVICE="nom";

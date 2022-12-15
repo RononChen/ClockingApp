@@ -15,6 +15,7 @@ import static entity.Employee.INVALID_USERNAME;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.os.AsyncTask;
 
 import androidx.annotation.NonNull;
 
@@ -30,9 +31,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Objects;
 
+import dao.DayManager;
 import dao.EmployeeManager;
 import dao.PlanningManager;
 import dao.ServiceManager;
+import entity.Day;
 import entity.Employee;
 import entity.Planning;
 import entity.Service;
@@ -92,9 +95,9 @@ public class RegisterEmployeeController implements IRegisterEmployeeController
 String gend;
         int registerCode;
         int n;
-        Service service;
+        final Service[] service = new Service[1];
         Employee employee = null;
-        byte[] qrCode;
+        final byte[][] qrCode = new byte[1][1];
         number=number.trim();
         lastname=lastname.trim();
         firstname=firstname.trim();
@@ -103,8 +106,8 @@ String gend;
         password=password.trim();
         passwordConfirm=passwordConfirm.trim();
 
-        PlanningManager planningManager;
-        Planning planning;
+        final PlanningManager[] planningManager = new PlanningManager[1];
+        final Planning[] planning = new Planning[1];
         EmployeeManager employeeManager;
         try {
             n = Integer.parseInt(number);
@@ -168,56 +171,76 @@ String gend;
 
 
        else {
-
-
            gend = employee.getGender() == 'M' ? "Monsieur" : "Madame";
-
-           try {
-
-               fileName = "qr_code_" + employee.getRegistrationNumber() + "_" +
-                       employee.getFirstname() + "_" + employee.getLastname() +
-                       ".png";
-               file = new File(context.getFilesDir(), fileName);
-
-               assert (file.createNewFile());
-
-           } catch (IOException e) {
-               e.printStackTrace();
-           }
+           fileName = "qr_code_" + employee.getRegistrationNumber() + "_" +
+                   employee.getFirstname() + "_" + employee.getLastname() +
+                   ".png";
+           String finalNumber = number;
+           Employee finalEmployee = employee;
 
 
-           qrCode = generateQRCode(number);//byte array
-           try {
-               qrCodeFileOutputStream = new FileOutputStream(file);
-               qrCodeFileOutputStream.write(qrCode);
-               qrCodeFileOutputStream.flush();
-               qrCodeFileOutputStream.close();
-           } catch (IOException e) {
-               e.printStackTrace();
+           Runnable runnable= () -> {
 
-           }
-           planning = new Planning(formatTime(startTime), formatTime(endTime),workdays);
-           planningManager = new PlanningManager(context);
-           planningManager.open();
-           planningManager.create(planning);
-           planningManager.close();
+               try {
+
+                   file = new File(context.getFilesDir(), fileName);
+
+                   assert (file.createNewFile());
+
+               } catch (IOException e) {
+                   e.printStackTrace();
+               }
 
 
+               qrCode[0] = generateQRCode(finalNumber);//byte array
+               try {
+                   qrCodeFileOutputStream = new FileOutputStream(file);
+                   qrCodeFileOutputStream.write(qrCode[0]);
+                   qrCodeFileOutputStream.flush();
+                   qrCodeFileOutputStream.close();
+               } catch (IOException e) {
+                   e.printStackTrace();
 
-           service = new Service(selectedService);
-           serviceManager=new ServiceManager(context);
-           serviceManager.open();
-           serviceManager.searchService(service);
-           serviceManager.close();
-
-           employee.setPassword(employee.getPassword());
-           employeeManager.create(employee);
-           employeeManager.update(employee, planning);
-           employeeManager.update(employee, service);
+               }
+               planning[0] = new Planning(formatTime(startTime), formatTime(endTime),workdays);
+               planningManager[0] = new PlanningManager(context);
+               planningManager[0].open();
+               planningManager[0].create(planning[0]);
+               planningManager[0].close();
 
 
-           if (employee.getPicture() != null)
-               employeeManager.update(employee, employee.getPicture());
+
+               service[0] = new Service(selectedService);
+               serviceManager=new ServiceManager(context);
+               serviceManager.open();
+               serviceManager.searchService(service[0]);
+               serviceManager.close();
+
+               finalEmployee.setPassword(finalEmployee.getPassword());
+               employeeManager.create(finalEmployee);
+               employeeManager.update(finalEmployee, planning[0]);
+               employeeManager.update(finalEmployee, service[0]);
+
+
+               if (finalEmployee.getPicture() != null)
+                   employeeManager.update(finalEmployee, finalEmployee.getPicture());
+              Day day=new Day();
+               DayManager dayManager=new DayManager(context);
+               dayManager.open();
+               dayManager.create(day);
+               employeeManager.setDayAttendance(finalEmployee,
+                       employeeManager.shouldNotWorkToday(finalEmployee)
+                       ? "Hors service":"Absent",day);
+
+               employeeManager.close();
+           };
+           AsyncTask.execute(runnable);
+
+
+
+
+
+
 
            registerEmployeeView.onRegisterEmployeeSuccess();
            registerEmployeeView.sendEmail( new String[]{employee.getMailAddress()},
@@ -226,7 +249,7 @@ String gend;
                    employee.getPassword(), gend
                    );
        }
-       employeeManager.close();
+
 
 
        }

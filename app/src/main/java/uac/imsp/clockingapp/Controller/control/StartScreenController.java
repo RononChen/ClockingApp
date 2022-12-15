@@ -2,6 +2,7 @@ package uac.imsp.clockingapp.Controller.control;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 
 import java.util.Objects;
 
@@ -15,12 +16,16 @@ import uac.imsp.clockingapp.View.util.IStartScreenView;
 public class StartScreenController  implements IStartScreenController {
     private final IStartScreenView startScreenView;
     private final Context context;
+    Runnable runnable;
 
     public StartScreenController(IStartScreenView startScreenView){
         this.startScreenView=startScreenView;
         context=(Context) this.startScreenView;
 
-        updateDailyAttendance();
+        runnable= this::updateDailyAttendance;
+        AsyncTask.execute(runnable);
+
+
 
 
     }
@@ -131,7 +136,6 @@ public class StartScreenController  implements IStartScreenController {
                else
                   status="Absent";
                 employeeManager.setDayAttendance(employee,status,day);
-                //employee.setCurrentStatus(status);
 
         }
         employeeManager.updateVariable();

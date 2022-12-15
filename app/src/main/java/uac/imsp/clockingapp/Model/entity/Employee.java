@@ -289,4 +289,5 @@ return  !Patterns.EMAIL_ADDRESS.matcher(MailAddress).matches();
     public boolean isAdmin() {
         return isAdmin;
     }
+
 }

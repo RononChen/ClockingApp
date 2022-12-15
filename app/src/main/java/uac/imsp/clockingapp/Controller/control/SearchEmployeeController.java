@@ -45,7 +45,6 @@ public class SearchEmployeeController  implements
         employeeManager.open();
 
         employeeSet =employeeManager.search(data);
-        //employeeManager.close();
 
         if(employeeSet.length==0)
             searchEmployeeView.onNoEmployeeFound();

@@ -1,6 +1,7 @@
 package uac.imsp.clockingapp.Controller.control;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.text.TextUtils;
 
 import java.security.MessageDigest;
@@ -86,10 +87,16 @@ public String md5(String password) {
 
                 changePasswordView.onWrongPassword();
             else {
-                employeeManager=new EmployeeManager(context);
-                employeeManager.open();
-                employeeManager.changePassword(employee, (newPassword));
-                employeeManager.close();
+                Runnable runnable=new Runnable() {
+                    @Override
+                    public void run() {
+                        employeeManager=new EmployeeManager(context);
+                        employeeManager.open();
+                        employeeManager.changePassword(employee, (newPassword));
+                        employeeManager.close();
+                    }
+                };
+                 AsyncTask.execute(runnable);
                 changePasswordView.onSuccess();
             }
         }

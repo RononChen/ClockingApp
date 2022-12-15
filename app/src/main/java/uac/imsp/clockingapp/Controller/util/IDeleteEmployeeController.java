@@ -12,9 +12,6 @@ public interface IDeleteEmployeeController {
 
 
     void onDeleteEmployee(int adminNumber);
-    void onConfirmResult(Boolean confirmed);
-
-
-
+    void onConfirmResult(boolean confirmed);
 
 }

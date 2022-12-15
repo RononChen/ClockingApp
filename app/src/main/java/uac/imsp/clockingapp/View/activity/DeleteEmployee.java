@@ -177,6 +177,9 @@ public class DeleteEmployee extends AppCompatActivity
         String msg="Vous avez été supprimé de la liste des employés";
          new ToastMessage(this, message);
          sendEmail(new String[]{email.getText().toString()},subject,msg);
+         Intent intent=new Intent(this,SearchEmployee.class);
+         finish();
+         startActivity(intent);
 
     }
 

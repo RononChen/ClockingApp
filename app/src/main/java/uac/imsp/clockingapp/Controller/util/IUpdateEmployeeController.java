@@ -17,10 +17,11 @@ public interface IUpdateEmployeeController {
 
 
                           int endTime,byte[] workDays, Bitmap picture, String type);
-    void onConfirmResult(boolean confirmed,boolean pictureUpdated,boolean planningUpdated);
+    //void onConfirmResult(boolean confirmed,boolean pictureUpdated,boolean planningUpdated);
 
 
 
     void onReset();
 
+	void onUpdateEmployee(boolean emailUpdated, boolean serviceUpdated, boolean planningUpdated, boolean pictureUpdated, boolean typeUpdated);
 }

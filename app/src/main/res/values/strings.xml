@@ -102,13 +102,17 @@
     <string name="todo">TODO</string>
     <string name="tod">TODO</string>
     <string name="more">Plus</string>
+    <string name="noting_changed">Aucune information modifiée</string>
     <string name="quit">Quitter</string>
+    <string name="update_succcessful">Employé modifié avec succès</string>
     <string name="welcome_">Accueil</string>
     <string name="param_tres">Paramètres</string>
     <string name="old_password">Ancien mot de passe</string>
     <string name="confirm_new_password">Confirmer le nouveau mot de passe</string>
     <string name="new_password">Nouveau mot de passe</string>
     <string name="modify">Modifier</string>
+    <string name="notification_title">Notification de mise à jour d\'employé</string>
+    <string name="notification">Certaines de vos informations ont été modifiées</string>
 
     <string-array name="employee_types">
         <item>Simple</item>

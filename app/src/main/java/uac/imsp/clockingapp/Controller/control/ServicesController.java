@@ -1,6 +1,7 @@
 package uac.imsp.clockingapp.Controller.control;
 
 import android.content.Context;
+import android.os.AsyncTask;
 
 import androidx.annotation.NonNull;
 
@@ -62,9 +63,11 @@ public class ServicesController  implements IServicesController {
 
 	@Override
 	public void onDeleteConfirm(boolean confirmed) {
+		Runnable runnable;
 
 		if(confirmed)
 		{
+
 			ServiceManager serviceManager=new ServiceManager(context);
 			serviceManager.open();
 			if(!serviceManager.exists(currentService))
@@ -72,7 +75,10 @@ public class ServicesController  implements IServicesController {
 			else if(serviceManager.hasEmployee(currentService))
 			servicesView.onDeleteError(1);
 			else {
-				serviceManager.delete(currentService);
+
+				 runnable= () -> serviceManager.delete(currentService);
+				AsyncTask.execute(runnable);
+
 				servicesView.onDeleteSucessful();
 			}
 

@@ -109,6 +109,11 @@
     <string name="registration_title">Enter employee informations please</string>
     <string name="menu_delete_button">Delete employee</string>
     <string name="delete_button">Delete</string>
+    <string name="update_succcessful">Employé modifié avec succès</string>
+    <string name="notification_title">Notification de mise à jour d\'employé</string>
+    <string name="notification">Certaines de vos informations ont été modifiées</string>
+
+    <string name="noting_changed">Aucune information modifiée</string>
     <string name="delete">Delete</string>
     <string name="suppression_d_employ">Employee deletion</string>
     <string name="sexe">Gender</string>
