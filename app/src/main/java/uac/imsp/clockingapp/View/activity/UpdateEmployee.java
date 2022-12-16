@@ -27,6 +27,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.IOException;
 import java.text.ParseException;
+import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.Objects;
 
@@ -42,40 +43,42 @@ public class UpdateEmployee extends AppCompatActivity
                            implements View.OnClickListener,
                            AdapterView.OnItemSelectedListener,
         NumberPicker.OnValueChangeListener , NumberPicker.Formatter,
-        IUpdateEmployeeView
-{
+        IUpdateEmployeeView {
 
-
+    Hashtable<String, Object> informations = new Hashtable<>();
     private EditText Email;
     private String outgoingMail;
     private TextView Programm;
-    private String selectedService, selectedType, provisionalService,provisionalType;
-    private  Spinner spinnerTypes, spinnerServices;
+    private String selectedService, selectedType, provisionalService, provisionalType;
+    private Spinner spinnerTypes, spinnerServices;
     private CircleImageView image;
     private Bitmap picture;
     CheckBox monday, tuesday, wednesday, thursday, friday, satursday, sunday;
     private Integer Start, End;
-    private String outgoingType,outgoingService;
-    private boolean pictureUpdated,planningUpdated,
-    typeUpdated,serviceUpdated,
-            emailUpdated,someThingIsUpdated=false;
+    private String outgoingType, outgoingService;
+    private boolean pictureUpdated, planningUpdated,
+            typeUpdated, serviceUpdated,
+            emailUpdated;
     private byte[] WorkDays;
-    private CheckBox[]myTable;
+    private CheckBox[] myTable;
 
-    private byte[] oldWorkDays,outgoingWorkDays;
-    private int outgoingStart,outgoingEnd;
+    EditText number ,lastname,firstname ,username, birthdate;
+    NumberPicker start ,end ;
+    RadioGroup gender;
+
+    private byte[]  outgoingWorkDays;
+    private int outgoingStart, outgoingEnd;
     boolean notice;
 
 
     IUpdateEmployeeController updateEmployeePresenter;
 
-    public UpdateEmployee() {
-    }
-    public void  retrieveSharedPreferences(){
-        String PREFS_NAME="MyPrefsFile";
-        SharedPreferences preferences= getApplicationContext().getSharedPreferences(PREFS_NAME,
+
+    public void retrieveSharedPreferences() {
+       final String PREFS_NAME = "MyPrefsFile";
+        SharedPreferences preferences = getApplicationContext().getSharedPreferences(PREFS_NAME,
                 Context.MODE_PRIVATE);
-        notice=preferences.getBoolean("notifyDelete",true);
+        notice = preferences.getBoolean("notifyDelete", true);
 
     }
 
@@ -87,6 +90,7 @@ public class UpdateEmployee extends AppCompatActivity
         updateEmployeePresenter = new UpdateEmployeeController(this);
 
         initView();
+        loadData();
 
 
     }
@@ -95,29 +99,28 @@ public class UpdateEmployee extends AppCompatActivity
     public void onClick(@NonNull View v) {
 
         //bouton modifier
-        if (v.getId() == R.id.update_button)
-        {
-            if(!Objects.equals(outgoingMail, Email.getText().toString().trim()))
-                emailUpdated=true;
-            if(!Objects.equals(outgoingService, provisionalService))
-                serviceUpdated=true;
-            if(!Objects.equals(outgoingType, provisionalType))
-                typeUpdated=true;
-            if(Start!=outgoingStart||outgoingEnd!=End||
-                    WorkDays!=outgoingWorkDays)
-                planningUpdated=true;
-
+        if (v.getId() == R.id.update_button) {
+            if (!Objects.equals(outgoingMail, Email.getText().toString().trim()))
+                emailUpdated = true;
+            if (!Objects.equals(outgoingService, provisionalService))
+                serviceUpdated = true;
+            if (!Objects.equals(outgoingType, provisionalType))
+                typeUpdated = true;
+            WorkDays = workDays();
+            if (Start != outgoingStart || outgoingEnd != End ||
+                   !Arrays.equals(WorkDays, outgoingWorkDays))
+                planningUpdated = true;
 
 
             updateEmployeePresenter.onUpdateEmployee(
                     emailUpdated, serviceUpdated,
 
-                    planningUpdated,pictureUpdated, typeUpdated);
+                    planningUpdated, pictureUpdated, typeUpdated);
 
         } else if (v.getId() == R.id.register_reset_button) {
             updateEmployeePresenter.onReset();
-            provisionalType=selectedType;
-            provisionalService=selectedService;
+            provisionalType = selectedType;
+            provisionalService = selectedService;
         } else if (v.getId() == R.id.register_picture_button)
 
             imageChooser();
@@ -127,24 +130,22 @@ public class UpdateEmployee extends AppCompatActivity
 
     public void sendEmail(String[] to, String subject, String message) {
 
-    Intent emailIntent=new Intent(Intent.ACTION_SEND);
-    emailIntent.putExtra(Intent.EXTRA_EMAIL,to);
-    emailIntent.putExtra(Intent.EXTRA_SUBJECT,subject);
-    emailIntent.putExtra(Intent.EXTRA_TEXT,message);
-    emailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
-    startActivity(Intent.createChooser(emailIntent, "Envoyer avec"));
-}
+        Intent emailIntent = new Intent(Intent.ACTION_SEND);
+        emailIntent.putExtra(Intent.EXTRA_EMAIL, to);
+        emailIntent.putExtra(Intent.EXTRA_SUBJECT, subject);
+        emailIntent.putExtra(Intent.EXTRA_TEXT, message);
+        emailIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+        startActivity(Intent.createChooser(emailIntent, "Envoyer avec"));
+    }
 
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         if (spinnerServices.getId() == R.id.register_service) {
-          provisionalService=  parent.getItemAtPosition(position).toString();
-
-
+            provisionalService = parent.getItemAtPosition(position).toString();
 
 
         } else if (spinnerTypes.getId() == R.id.register_type)
-          provisionalType= (String) parent.getItemAtPosition(position);
+            provisionalType = (String) parent.getItemAtPosition(position);
 
 
     }
@@ -155,109 +156,40 @@ public class UpdateEmployee extends AppCompatActivity
 
     }
 
-    public void initView()  {
+    public void initView() {
 
-        int position;
-        int actionNumber = getIntent().getIntExtra("ACTION_NUMBER", 1);
-
-        Hashtable<String, Object> informations = new Hashtable<>();
-        String[] employeTypes = getResources().getStringArray(R.array.employee_types);
-        String[] services = new String[0];
-        try {
-            services = updateEmployeePresenter.onLoad(actionNumber, informations);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        selectedService = (String) informations.get("service");
-        outgoingService = (String) informations.get("service");
-        selectedType = (String) informations.get("type");
-        outgoingType=(String) informations.get("type");
-        provisionalService=selectedService;
-        provisionalType=selectedType;
-        EditText number = findViewById(R.id.register_number);
-        EditText lastname = findViewById(R.id.register_lastname);
+        number = findViewById(R.id.register_number);
         Email = findViewById(R.id.register_email);
-        EditText firstname = findViewById(R.id.register_firstname);
-        EditText username = findViewById(R.id.register_username);
-        EditText birthdate = findViewById(R.id.register_birthdate);
-        NumberPicker start = findViewById(R.id.register_planning_start_choose);
-        NumberPicker end = findViewById(R.id.register_planning_end_choose);
+         firstname = findViewById(R.id.register_firstname);
+         lastname=findViewById(R.id.register_lastname);
+         username = findViewById(R.id.register_username);
+         birthdate = findViewById(R.id.register_birthdate);
+         start = findViewById(R.id.register_planning_start_choose);
+         end = findViewById(R.id.register_planning_end_choose);
         start.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
         end.setDescendantFocusability(NumberPicker.FOCUS_BLOCK_DESCENDANTS);
-
-        if (informations.containsKey("start") &&
-                informations.containsKey("end")&&
-        informations.containsKey("workDays"))
-        {
-            Start = (Integer) informations.get("start");
-            outgoingStart=Start;
-            End = (Integer) informations.get("end");
-            outgoingEnd=End;
-            WorkDays= (byte[]) informations.get("workDays");
-            outgoingWorkDays=WorkDays;
-            oldWorkDays=WorkDays;
-            start.setValue(Start);
-            end.setValue(End);
-
-        }
-        Programm=findViewById(R.id.prog);
-        Programm.setText(programm());
-
         image = findViewById(R.id.register_preview_image);
         Button update = findViewById(R.id.update_button);
         Button selectPicture = findViewById(R.id.register_picture_button);
-        RadioGroup gender = findViewById(R.id.register_gender);
+        gender = findViewById(R.id.register_gender);
 
-        gender.getChildAt(0).setFocusable(false);
-        gender.getChildAt(1).setFocusable(false);
-        gender.getChildAt(0).setClickable(false);
-        gender.getChildAt(1).setClickable(false);
-
+        Programm = findViewById(R.id.prog);
         spinnerServices = findViewById(R.id.register_service);
         spinnerTypes = findViewById(R.id.register_type);
 
-        ArrayAdapter<String> dataAdapterR = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, services);
-
-        dataAdapterR.setDropDownViewResource(android.R.layout.
-                simple_spinner_dropdown_item);
-        spinnerServices.setAdapter(dataAdapterR);
-        position=dataAdapterR.getPosition(selectedService);
-        spinnerServices.setSelection(position);
-
-        dataAdapterR = new ArrayAdapter<>(this,
-                android.R.layout.simple_spinner_item, employeTypes);
-
-        dataAdapterR.setDropDownViewResource(android.R.layout.
-                simple_spinner_dropdown_item);
-        spinnerTypes.setAdapter(dataAdapterR);
-        position=dataAdapterR.getPosition(selectedType);
-        spinnerTypes.setSelection(position);
-        initNumberPicker(start, 6, 9);
-        initNumberPicker(end, 16, 19);
-if(informations.get("picture")!=null)
-        image.setImageBitmap((Bitmap) informations.get("picture"));
-        number.setText(Objects.requireNonNull(informations.get("number")).toString());
-        lastname.setText(Objects.requireNonNull(informations.get("lastname")).toString());
-        firstname.setText(Objects.requireNonNull(informations.get("firstname")).toString());
-        lastname.setText(Objects.requireNonNull(informations.get("lastname")).toString());
-       outgoingMail=Objects.requireNonNull(informations.get("email")).toString();
-        Email.setText(outgoingMail);
-        username.setText(Objects.requireNonNull(informations.get("username")).toString());
+        monday = findViewById(R.id.monday);
+        tuesday = findViewById(R.id.tuesday);
+        wednesday = findViewById(R.id.wednesday);
+        thursday = findViewById(R.id.thursday);
+        friday = findViewById(R.id.friday);
+        satursday = findViewById(R.id.satursday);
+        sunday = findViewById(R.id.sunday);
 
 
-        birthdate.setText(Objects.requireNonNull(informations.get("birthdate")).toString());
-        if (Objects.equals(informations.get("gender"), 'F'))
-            gender.setId(R.id.register_girl);
-         monday=findViewById(R.id.monday);
-                tuesday=findViewById(R.id.tuesday);
-                wednesday=findViewById(R.id.wednesday);
-                thursday=findViewById(R.id.thursday);
-                friday=findViewById(R.id.friday);
-                satursday=findViewById(R.id.satursday);
-                sunday=findViewById(R.id.sunday);
-        checkWorkdays(); //check workdays boxes
-
+        username.setFocusable(false);
+        username.setLongClickable(false);
+        gender.setFocusable(false);
+        gender.setClickable(false);
         //Not updatable
         number.setFocusable(false);
         number.setLongClickable(false);
@@ -269,18 +201,6 @@ if(informations.get("picture")!=null)
         birthdate.setFocusable(false);
         birthdate.setLongClickable(false);
 
-        if (Objects.requireNonNull(informations.get("birthdate")).toString().equals(""))
-        {
-            findViewById(R.id.tv).setVisibility(View.GONE);
-            birthdate.setVisibility(View.GONE);
-
-        }
-
-        username.setFocusable(false);
-        username.setLongClickable(false);
-        gender.setFocusable(false);
-        gender.setClickable(false);
-
         // Listeners
         update.setOnClickListener(this);
         selectPicture.setOnClickListener(this);
@@ -290,7 +210,100 @@ if(informations.get("picture")!=null)
         start.setFormatter(this);
         end.setFormatter(this);
 
+        gender.getChildAt(0).setFocusable(false);
+        gender.getChildAt(1).setFocusable(false);
+        gender.getChildAt(0).setClickable(false);
+        gender.getChildAt(1).setClickable(false);
+
+        initNumberPicker(start, 6, 9);
+        initNumberPicker(end, 16, 19);
+
     }
+
+    public void loadData() {
+
+
+        int position;
+        int actionNumber = getIntent().getIntExtra("ACTION_NUMBER", 1);
+
+
+        String[] employeTypes = getResources().getStringArray(R.array.employee_types);
+
+
+        String[] services = new String[0];
+        try {
+            services = updateEmployeePresenter.onLoad(actionNumber, informations);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        selectedService = (String) informations.get("service");
+        outgoingService = selectedService;
+        selectedType = (String) informations.get("type");
+        outgoingType = selectedType;
+        provisionalService = selectedService;
+        provisionalType = selectedType;
+
+        if (informations.containsKey("start") &&
+                informations.containsKey("end") &&
+                informations.containsKey("workDays"))
+        {
+            Start = (Integer) informations.get("start");
+            outgoingStart = Start;
+            End = (Integer) informations.get("end");
+            outgoingEnd = End;
+            WorkDays = (byte[]) informations.get("workDays");
+            outgoingWorkDays = WorkDays;
+            start.setValue(Start);
+            end.setValue(End);
+
+        }
+
+        Programm.setText(programm());
+
+
+        ArrayAdapter<String> dataAdapterR = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, services);
+
+        dataAdapterR.setDropDownViewResource(android.R.layout.
+                simple_spinner_dropdown_item);
+        spinnerServices.setAdapter(dataAdapterR);
+        position = dataAdapterR.getPosition(selectedService);
+        spinnerServices.setSelection(position);
+
+        dataAdapterR = new ArrayAdapter<>(this,
+                android.R.layout.simple_spinner_item, employeTypes);
+
+        dataAdapterR.setDropDownViewResource(android.R.layout.
+                simple_spinner_dropdown_item);
+        spinnerTypes.setAdapter(dataAdapterR);
+        position = dataAdapterR.getPosition(selectedType);
+        spinnerTypes.setSelection(position);
+
+        if (informations.get("picture") != null)
+            image.setImageBitmap((Bitmap) informations.get("picture"));
+        number.setText(Objects.requireNonNull(informations.get("number")).toString());
+        lastname.setText(Objects.requireNonNull(informations.get("lastname")).toString());
+        firstname.setText(Objects.requireNonNull(informations.get("firstname")).toString());
+        lastname.setText(Objects.requireNonNull(informations.get("lastname")).toString());
+        outgoingMail = Objects.requireNonNull(informations.get("email")).toString();
+        Email.setText(outgoingMail);
+        username.setText(Objects.requireNonNull(informations.get("username")).toString());
+        birthdate.setText(Objects.requireNonNull(informations.get("birthdate")).toString());
+        if (Objects.equals(informations.get("gender"), 'F'))
+            gender.setId(R.id.register_girl);
+
+
+        checkWorkdays(); //check workdays boxes
+
+
+        if (Objects.requireNonNull(informations.get("birthdate")).toString().equals("")) {
+            findViewById(R.id.tv).setVisibility(View.GONE);
+            birthdate.setVisibility(View.GONE);
+
+        }
+
+    }
+
 
     public void initNumberPicker(NumberPicker n, int min, int max) {
         if (n != null) {
@@ -366,15 +379,17 @@ if(informations.get("picture")!=null)
     @Override
     public void onSomethingchanged() {
          new ToastMessage(this, getString(R.string.update_succcessful));
-        sendEmail(new String[]{Email.getText().toString().trim()},
-                getString(R.string.notification_title),getString(R.string.notification));
 
+        //sendEmail(new String[]{Email.getText().toString().trim()},
+                //getString(R.string.notification_title),getString(R.string.notification));
+loadData();
 
     }
 
     @Override
     public void onNothingChanged() {
         new ToastMessage(this,getString(R.string.noting_changed) );
+        loadData();
 
 
     }
@@ -403,31 +418,16 @@ if(informations.get("picture")!=null)
 
     @Override
     public void askConfirmUpdate() {
-        String pos=getString(R.string.yes);
-        String neg=getString(R.string.no);
-        String title=getString(R.string.confirmation);
-        String message=getString(R.string.confirmation_update);
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(message)
+        builder.setMessage(getString(R.string.confirmation_update))
                 .setCancelable(false)
-                .setPositiveButton(pos, (dialog, which) -> {
-
-                    //new ToastMessage(UpdateEmployee.this,"Confirmé");
-                    updateEmployeePresenter.onUpdateEmployee(Email.getText().toString(),
-                            selectedService,Start,End,WorkDays,picture,selectedType);
-
-
-                })
-                .setNegativeButton(neg, (dialog, which) -> {
-                    new ToastMessage(UpdateEmployee.this,"Annulé");
-
-                    //updateEmployeePresenter.onConfirmResult(false,pictureUpdated ,planningUpdated );
-                    UpdateEmployee.this.finish();
-                    startActivity(getIntent());
-                });
+                .setPositiveButton(getString(R.string.yes), (dialog, which) -> updateEmployeePresenter.onUpdateEmployee
+                        (Email.getText().toString(),
+                        selectedService,Start,End,WorkDays,picture,selectedType))
+                .setNegativeButton(getString(R.string.no), (dialog, which) -> loadData());
 
                 AlertDialog alert = builder.create();
-                alert.setTitle(title);
+                alert.setTitle(getString(R.string.confirmation));
                 alert.show();
 
 
@@ -438,10 +438,11 @@ if(informations.get("picture")!=null)
         int i;
         for(i=0;i<7;i++)
         {
-            if(myTable[i].isChecked())
+            /*if(myTable[i].isChecked())
                 tab[i]='T'; //for true
             else
-                tab[i]='F';
+                tab[i]='F';*/
+            tab[i]= (byte) (myTable[i].isChecked()?'T':'F');
 
 
         }
@@ -454,8 +455,7 @@ if(informations.get("picture")!=null)
 
     @Override
     public String format(int value) {
-        String str;
-        str = String.valueOf(value);
+        String str= String.valueOf(value);
         if (value < 10)
             str = "0" + value;
         return str;
@@ -468,13 +468,13 @@ if(informations.get("picture")!=null)
         if(picker.getId()==R.id.register_planning_start_choose
                 && 5<newVal && 10>newVal) {
             Start = newVal;
-            Programm.setText(programm());
         }
 
         else if (picker.getId()==R.id.register_planning_end_choose && 15<newVal && 20>newVal) {
             End = newVal;
-            Programm.setText(programm());
+
         }
+        Programm.setText(programm());
     }
 
     public String toString(@NonNull EditText e) {

@@ -39,7 +39,7 @@ public class ConsultPresenceReportController implements IConsultPresenceReportCo
         employee=new Employee(number);
         employeeManager = new EmployeeManager(context);
         employeeManager.open();
-       // employeeManager.retrieveAddDate(employee);
+        employeeManager.retrieveAddDate(employee);
         //the month following the current one
         d=new Day();
 

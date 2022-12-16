@@ -3,7 +3,6 @@ package uac.imsp.clockingapp.Controller.control;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.os.AsyncTask;
 import android.text.TextUtils;
 import android.util.Patterns;
 
@@ -132,14 +131,21 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
                         (0);
 
             else if (!Patterns.EMAIL_ADDRESS.matcher(mail).matches())
-                updateEmployeeView.onUpdateEmployeeError(0);
-            else
+                updateEmployeeView.onUpdateEmployeeError(1);
+            else {
+
+                updateEmployeeView.onSomethingchanged();
+                employeeManager=new EmployeeManager(context);
+                employeeManager.open();
                 employeeManager.update(employee, mail);
-            updateEmployeeView.onSomethingchanged();
+            }
+
         }
+        else
+            updateEmployeeView.onSomethingchanged();
 
 
-        Runnable runnable= () -> {
+
             String s,e;
             PlanningManager planningManager = new PlanningManager(context);
             serviceManager=new ServiceManager(context) ;
@@ -181,14 +187,6 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
             if (pictureUpdated)
                 employeeManager.update(employee, getBytesFromBitmap(picture));
             employeeManager.close();
-        };
-        AsyncTask.execute(runnable);
-
-
-
-
-
-
 
     }
 
@@ -214,11 +212,13 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
                 !planningUpdated&&!typeUpdated)
             updateEmployeeView.onNothingChanged();
         else {
+
             this.serviceUpdated=serviceUpdated;
             this.typeUpdated=typeUpdated;
            this.pictureUpdated=pictureUpdated;
           this.planningUpdated=planningUpdated;
          this.mailUpdated=emailUpdated;
+         updateEmployeeView.askConfirmUpdate();
         }
 
 
