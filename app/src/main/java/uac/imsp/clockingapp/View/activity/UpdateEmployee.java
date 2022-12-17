@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,10 +24,10 @@ import android.widget.TextView;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.io.IOException;
-import java.text.ParseException;
 import java.util.Arrays;
 import java.util.Hashtable;
 import java.util.Objects;
@@ -86,6 +87,11 @@ public class UpdateEmployee extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_update_employee);
+        // calling the action bar
+        ActionBar actionBar = getSupportActionBar();
+// showing the back button in action bar
+        assert actionBar != null;
+        actionBar.setDisplayHomeAsUpEnabled(true);
         retrieveSharedPreferences();
         updateEmployeePresenter = new UpdateEmployeeController(this);
 
@@ -110,6 +116,7 @@ public class UpdateEmployee extends AppCompatActivity
             if (Start != outgoingStart || outgoingEnd != End ||
                    !Arrays.equals(WorkDays, outgoingWorkDays))
                 planningUpdated = true;
+
 
 
             updateEmployeePresenter.onUpdateEmployee(
@@ -141,11 +148,11 @@ public class UpdateEmployee extends AppCompatActivity
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         if (spinnerServices.getId() == R.id.register_service) {
-            provisionalService = parent.getItemAtPosition(position).toString();
+            selectedService= parent.getItemAtPosition(position).toString();
 
 
         } else if (spinnerTypes.getId() == R.id.register_type)
-            provisionalType = (String) parent.getItemAtPosition(position);
+            selectedService = (String) parent.getItemAtPosition(position);
 
 
     }
@@ -215,14 +222,28 @@ public class UpdateEmployee extends AppCompatActivity
         gender.getChildAt(0).setClickable(false);
         gender.getChildAt(1).setClickable(false);
 
-        initNumberPicker(start, 6, 9);
-        initNumberPicker(end, 16, 19);
 
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+    /**
+     * Called when a key shortcut event is not handled by any of the views in the Activity.
+     * Override this method to implement global key shortcuts for the Activity.
+     * Key shortcuts can also be implemented by setting the
+     * {@link MenuItem#setShortcut(char, char) shortcut} property of menu items.
+     *
+     */
+
     public void loadData() {
 
-
+pictureUpdated=false;
+emailUpdated=false;
+planningUpdated=false;
+serviceUpdated=false;
+typeUpdated=false;
         int position;
         int actionNumber = getIntent().getIntExtra("ACTION_NUMBER", 1);
 
@@ -230,18 +251,25 @@ public class UpdateEmployee extends AppCompatActivity
         String[] employeTypes = getResources().getStringArray(R.array.employee_types);
 
 
-        String[] services = new String[0];
-        try {
-            services = updateEmployeePresenter.onLoad(actionNumber, informations);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
+        String[] services;
+        Object[] tab;
+        //try {
+        tab=updateEmployeePresenter.onLoad(actionNumber);
+        services= (String[]) tab[0];
+        informations= (Hashtable<String, Object>) tab[1];
+        // } catch (ParseException e) {
+           // e.printStackTrace();
+       // }
+
+
         selectedService = (String) informations.get("service");
         outgoingService = selectedService;
         selectedType = (String) informations.get("type");
         outgoingType = selectedType;
         provisionalService = selectedService;
         provisionalType = selectedType;
+        initNumberPicker(start, 6, 9);
+        initNumberPicker(end, 16, 19);
 
         if (informations.containsKey("start") &&
                 informations.containsKey("end") &&
@@ -315,6 +343,16 @@ public class UpdateEmployee extends AppCompatActivity
     }
 
     @Override
+    protected void onRestart() {
+        super.onRestart();
+        pictureUpdated=false;
+        emailUpdated=false;
+        planningUpdated=false;
+        serviceUpdated=false;
+        typeUpdated=false;
+    }
+
+    @Override
     protected void onDestroy() {
         super.onDestroy();
            }
@@ -325,6 +363,14 @@ public class UpdateEmployee extends AppCompatActivity
         i.setAction(Intent.ACTION_GET_CONTENT);
 
         launchSomeActivity.launch(i);
+    }
+
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     ActivityResultLauncher<Intent> launchSomeActivity
@@ -349,7 +395,9 @@ public class UpdateEmployee extends AppCompatActivity
                         } catch (IOException e) {
                             e.printStackTrace();
                         }
-                        image.setImageBitmap(
+                        if(selectedImageBitmap!=null)
+
+                           image.setImageBitmap(
                                 selectedImageBitmap);
                         //picture is updated if selected bitmap is not null
                         pictureUpdated= selectedImageBitmap != null;
@@ -380,9 +428,11 @@ public class UpdateEmployee extends AppCompatActivity
     public void onSomethingchanged() {
          new ToastMessage(this, getString(R.string.update_succcessful));
 
-        //sendEmail(new String[]{Email.getText().toString().trim()},
-                //getString(R.string.notification_title),getString(R.string.notification));
-loadData();
+         if(notice)
+        sendEmail(new String[]{Email.getText().toString().trim()},
+                getString(R.string.notification_title),getString(R.string.notification));
+//loadData();
+        onRestart();
 
     }
 
@@ -402,9 +452,15 @@ loadData();
 
             case 0:
                 new ToastMessage(this, getString(R.string.mail_required));
+                loadData();
                 break;
             case 1:
                 new ToastMessage(this, getString(R.string.mail_invalid));
+                loadData();
+                break;
+            case 2:
+                new ToastMessage(this, getString(R.string.no_workday_choosen));
+                loadData();
                 break;
             default:
                 break;
@@ -421,7 +477,8 @@ loadData();
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setMessage(getString(R.string.confirmation_update))
                 .setCancelable(false)
-                .setPositiveButton(getString(R.string.yes), (dialog, which) -> updateEmployeePresenter.onUpdateEmployee
+                .setPositiveButton(getString(R.string.yes), (dialog, which) ->
+                        updateEmployeePresenter.onUpdateEmployee
                         (Email.getText().toString(),
                         selectedService,Start,End,WorkDays,picture,selectedType))
                 .setNegativeButton(getString(R.string.no), (dialog, which) -> loadData());
@@ -438,10 +495,7 @@ loadData();
         int i;
         for(i=0;i<7;i++)
         {
-            /*if(myTable[i].isChecked())
-                tab[i]='T'; //for true
-            else
-                tab[i]='F';*/
+
             tab[i]= (byte) (myTable[i].isChecked()?'T':'F');
 
 

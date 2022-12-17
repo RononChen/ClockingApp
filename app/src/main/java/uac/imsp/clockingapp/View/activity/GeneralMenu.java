@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import uac.imsp.clockingapp.Controller.control.GeneralMenuController;
@@ -25,15 +26,25 @@ public class GeneralMenu extends AppCompatActivity implements View.OnClickListen
     private int currentUser;
 
 
+    @Override
+    public void onBackPressed() {
+        //super.onBackPressed();
+        menuPresenter.onExit();
 
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_general_menu);
+        ActionBar actionBar = getSupportActionBar();
+// showing the back button in action bar
+        assert actionBar != null;
+        actionBar.setDisplayHomeAsUpEnabled(true);
        initView();
        menuPresenter= new GeneralMenuController(this) ;
        currentUser=getIntent().getIntExtra("CURRENT_USER",0);
+
     }
         @Override
 
@@ -41,6 +52,7 @@ public class GeneralMenu extends AppCompatActivity implements View.OnClickListen
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
         MenuInflater inflater=getMenuInflater();
         inflater.inflate(R.menu.general_menu,menu);
+       // menu.add("");
         return super.onCreateOptionsMenu(menu);
     }
 
@@ -50,6 +62,7 @@ public class GeneralMenu extends AppCompatActivity implements View.OnClickListen
         switch (item.getItemId())
         {
 
+
             case R.id.settings :
 
                 startActivity(new Intent(this, MainSetting.class));
@@ -58,6 +71,16 @@ public class GeneralMenu extends AppCompatActivity implements View.OnClickListen
             case R.id.logout:
 
                 menuPresenter.onExit();
+                break;
+            case  android.R.id.home:
+                finish();
+                startActivity(new Intent(this, StartScreen.class));
+
+            break;
+            default:
+                break;
+
+
 
         }
         return super.onOptionsItemSelected(item);
@@ -66,15 +89,15 @@ public class GeneralMenu extends AppCompatActivity implements View.OnClickListen
     @Override
     public void onClick(@NonNull View v) {
         boolean presenter;
-        Intent intent;
          if(v.getId()==R.id.menu_register)
          {
 
             presenter= menuPresenter.onRegisterEmployeeMenu(currentUser);
            if(!presenter)//there is no service
            {
-               intent=new Intent(GeneralMenu.this,NoServiceAvailable.class);
-               intent.putExtra("CURRENT_USER",currentUser);
+               startActivity(new Intent(GeneralMenu.this,NoServiceAvailable.class).
+                       putExtra("CURRENT_USER",currentUser));
+
 
            }
          }
@@ -94,35 +117,28 @@ public class GeneralMenu extends AppCompatActivity implements View.OnClickListen
 
     @Override
     public void onSearchEmployeeMenuSuccessfull() {
-        Intent intent ;
-        intent = new Intent(this, SearchEmployee.class);
-        intent.putExtra("CURRENT_USER",currentUser);
-        startActivity(intent);
+
+        startActivity((new Intent(this, SearchEmployee.class).putExtra("CURRENT_USER",currentUser)));
 
     }
 
     @Override
     public void onUpdateEmployeeMenuSuccessfull() {
-        Intent intent ;
-        intent = new Intent(this, UpdateEmployee.class);
-        startActivity(intent);
+
+        startActivity( new Intent(this, UpdateEmployee.class));
 
     }
 
     @Override
     public void onDeleteEmployeeMenuSucessfull() {
-        Intent intent ;
-        intent = new Intent(this, DeleteEmployee.class);
-        startActivity(intent);
+
+        startActivity(new Intent(this, DeleteEmployee.class));
 
     }
 
     @Override
     public void onRegisterEmployeeMenuSuccessful() {
-        Intent intent ;
-        intent = new Intent(this, RegisterEmployee.class);
-
-        startActivity(intent);
+        startActivity(new Intent(this, RegisterEmployee.class));
 
     }
 

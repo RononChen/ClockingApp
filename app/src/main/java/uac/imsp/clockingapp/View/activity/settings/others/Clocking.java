@@ -3,10 +3,12 @@ package uac.imsp.clockingapp.View.activity.settings.others;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import uac.imsp.clockingapp.Controller.control.settings.others.ClockingController;
@@ -23,12 +25,22 @@ public class Clocking extends AppCompatActivity
 	boolean UseQRCode;
 	IClockingController clockingPresenter;
 	final  String PREFS_NAME="MyPrefsFile";
-
+	public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+		if (item.getItemId() == android.R.id.home) {
+			finish();
+			onBackPressed();
+		}
+		return super.onOptionsItemSelected(item);
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_clocking);
+		ActionBar actionBar = getSupportActionBar();
+// showing the back button in action bar
+		assert actionBar != null;
+		actionBar.setDisplayHomeAsUpEnabled(true);
 		clockingPresenter=new ClockingController(this);
 		retrieveSharedPreferences();
 		initView();

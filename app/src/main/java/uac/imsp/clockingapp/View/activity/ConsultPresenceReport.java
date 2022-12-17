@@ -2,6 +2,7 @@
 
         import android.graphics.Color;
         import android.os.Bundle;
+        import android.view.MenuItem;
         import android.view.View;
         import android.widget.Button;
         import android.widget.TableLayout;
@@ -9,6 +10,7 @@
         import android.widget.TextView;
 
         import androidx.annotation.NonNull;
+        import androidx.appcompat.app.ActionBar;
         import androidx.appcompat.app.AppCompatActivity;
 
         import java.text.MessageFormat;
@@ -31,9 +33,21 @@ public class ConsultPresenceReport extends AppCompatActivity
         IConsultPresenceReportController consultPresenceReportPresenter;
 
 
-        @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+    @Override
         protected void onCreate(Bundle savedInstanceState) {
                 super.onCreate(savedInstanceState);
+            // calling the action bar
+            ActionBar actionBar = getSupportActionBar();
+// showing the back button in action bar
+            assert actionBar != null;
+            actionBar.setDisplayHomeAsUpEnabled(true);
                 setContentView(R.layout.activity_consult_presence_report);
 
                 consultPresenceReportPresenter=
@@ -43,7 +57,7 @@ public class ConsultPresenceReport extends AppCompatActivity
 
         }
         public void initView(){
-            int actionNumber = getIntent().getIntExtra("CURRENT_NUMBER", 1);
+            int actionNumber = getIntent().getIntExtra("CURRENT_NUMBER", 0);
 
             previous = findViewById(R.id.report_previous);
                 next = findViewById(R.id.report_next);

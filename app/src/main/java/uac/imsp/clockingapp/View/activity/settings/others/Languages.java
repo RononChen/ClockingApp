@@ -5,10 +5,12 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.Objects;
@@ -30,11 +32,21 @@ public class Languages extends AppCompatActivity implements ILanguagesView,
 	final  String PREFS_NAME="MyPrefsFile";
 	int cpt=0;
 
-
+	public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+		if (item.getItemId() == android.R.id.home) {
+			finish();
+			onBackPressed();
+		}
+		return super.onOptionsItemSelected(item);
+	}
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_languages);
+		ActionBar actionBar = getSupportActionBar();
+// showing the back button in action bar
+		assert actionBar != null;
+		actionBar.setDisplayHomeAsUpEnabled(true);
 		languagesPresenter=new LanguagesController(this);
 		retrievePreferences();
 		initView();

@@ -3,11 +3,13 @@ package uac.imsp.clockingapp.View.activity;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -49,9 +51,14 @@ public class ConsultStatisticsByEmployee extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_consult_statistics_by_employee);
+        // calling the action bar
+        ActionBar actionBar = getSupportActionBar();
+// showing the back button in action bar
+        assert actionBar != null;
+        actionBar.setDisplayHomeAsUpEnabled(true);
        initView();
 
-        int actionNumber = getIntent().getIntExtra("ACTION_NUMBER", 1);
+        int actionNumber = getIntent().getIntExtra("ACTION_NUMBER", 0);
         consultStatisticsByEmployeePresenter=new ConsultStatisticsByEmployeeController(this);
 
         consultStatisticsByEmployeePresenter.onConsultStatisticsForEmployee(actionNumber);
@@ -152,6 +159,16 @@ public void initView(){
             this.next.setClickable(true);
         else
             this.previous.setClickable(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            onBackPressed();
+        }
+
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

@@ -3,12 +3,14 @@ package uac.imsp.clockingapp.View.activity.settings;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.material.switchmaterial.SwitchMaterial;
@@ -26,14 +28,20 @@ CompoundButton.OnCheckedChangeListener{
     SharedPreferences.Editor editor;
     boolean EmailAsUsername,GenPwd, EditUsername, EditPassword,Add,Update,Delete;
     CheckBox add,update,delete;
-    final  String PREFS_NAME="MyPrefsFile";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manage_username);
-        initView();
         retrieveSharedPreferences();
-        emailAsUsername.setChecked(EmailAsUsername);
+        // calling the action bar
+        ActionBar actionBar = getSupportActionBar();
+// showing the back button in action bar
+        assert actionBar != null;
+        actionBar.setDisplayHomeAsUpEnabled(true);
+        initView();
+
+        //emailAsUsername.setChecked(EmailAsUsername);
         generatePassword.setChecked(GenPwd);
         editUsername.setChecked(EditUsername);
         showPassword.setChecked(EditPassword);
@@ -54,7 +62,17 @@ CompoundButton.OnCheckedChangeListener{
         add.setOnCheckedChangeListener(this);
 
     }
+
+
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            onBackPressed();
+        }   onBackPressed();
+        return super.onOptionsItemSelected(item);
+    }
     public void retrieveSharedPreferences(){
+        final  String PREFS_NAME="MyPrefsFile";
         preferences= getApplicationContext().getSharedPreferences(PREFS_NAME,
                 Context.MODE_PRIVATE);
         editor=preferences.edit();
@@ -83,7 +101,7 @@ CompoundButton.OnCheckedChangeListener{
         {
             editor.putBoolean("generatePassword", checkedId == R.id.generate_password);
         }
-        else if(group.getId()==R.id.edit_username)
+        else if(group.getId()==R.id.username_group)
             editor.putBoolean("editUsername",checkedId==R.id.edit_username);
         editor.apply();
     }

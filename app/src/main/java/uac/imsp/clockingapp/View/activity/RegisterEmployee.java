@@ -15,8 +15,6 @@ import android.text.InputType;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
@@ -33,6 +31,7 @@ import android.widget.TextView;
 import androidx.activity.result.ActivityResultLauncher;
 import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.FileProvider;
 
@@ -71,7 +70,7 @@ public class RegisterEmployee extends AppCompatActivity
     private String gend;
     private String SelectedService,SelectedType;
     private int Start=8,End=17;
-    final  String PREFS_NAME="MyPrefsFile";
+
     boolean editUsername,useMailAsUsername,generatePassword,notice;
      CheckBox monday,tuesday,wednesday,thursday,friday,satursday,sunday;
      //private Button workManager;
@@ -89,11 +88,18 @@ public class RegisterEmployee extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register_employee);
 
+        // calling the action bar
+        ActionBar actionBar = getSupportActionBar();
+// showing the back button in action bar
+        assert actionBar != null;
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         initView();
         retrieveSharedPreferences();
         if(useMailAsUsername) {
-            Username.setEnabled(false);
-            //Username.addTextChangedListener(this);
+            Username.setFocusable(false);
+            Username.setLongClickable(false);
+
             Email.addTextChangedListener(this);
         }
         if(generatePassword)
@@ -112,15 +118,16 @@ public class RegisterEmployee extends AppCompatActivity
 
             }
 
-    @Override
+    /*@Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater=getMenuInflater();
         inflater.inflate(R.menu.general_menu,menu);
         return super.onCreateOptionsMenu(menu);
+    }*/
 
-    }
+
     public void retrieveSharedPreferences(){
-
+        final  String PREFS_NAME="MyPrefsFile";
         SharedPreferences preferences= getApplicationContext().getSharedPreferences(PREFS_NAME,
                 Context.MODE_PRIVATE);
         editUsername=preferences.getBoolean("editUsername",true);
@@ -135,12 +142,10 @@ public class RegisterEmployee extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-      /* *switch (item.getItemId())
-        {
-            case R.id.more:
-
-                //
-        }*/
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            onBackPressed();
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -248,14 +253,14 @@ public class RegisterEmployee extends AppCompatActivity
     }
     public  void resetInput() {
 
-        Number.setText("");
-        Lastname.setText("");
-        Firstname.setText("");
-        Birthdate.setText("");
-        Email.setText("");
-        Username.setText("");
-        Password.setText("");
-        PasswordConfirm.setText("");
+        Number.getText().clear();
+        Lastname.getText().clear();
+        Firstname.getText().clear();
+        Birthdate.getText().clear();
+        Email.getText().clear();
+        Username.getText().clear();
+        Password.getText().clear();
+        PasswordConfirm.getText().clear();
 
     }
 
@@ -475,7 +480,6 @@ public class RegisterEmployee extends AppCompatActivity
         Username = findViewById(R.id.register_username);
         Password = findViewById(R.id.register_password);
         PasswordConfirm = findViewById(R.id.register_password_confirm);
-        //PreviewImage = findViewById(R.id.register_preview_image);
         circlePicture=findViewById(R.id.register_preview_image);
         Button register = findViewById(R.id.register_button);
         Button reset = findViewById(R.id.register_reset_button);

@@ -1,13 +1,13 @@
 package uac.imsp.clockingapp.View.activity.settings.others;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.CompoundButton;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
@@ -27,12 +27,23 @@ public class DarkMode extends AppCompatActivity
 	IDarkModeController darkModePresenter;
 	String 	PREFS_NAME="MyPrefsFile";
 	boolean isChecked;
+	public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+		if (item.getItemId() == android.R.id.home) {
+			finish();
+			onBackPressed();
+		}
+		return super.onOptionsItemSelected(item);
+	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		darkModePresenter=new DarkModeController(this);
 		setContentView(R.layout.activity_dark_mode);
+		ActionBar actionBar = getSupportActionBar();
+// showing the back button in action bar
+		assert actionBar != null;
+		actionBar.setDisplayHomeAsUpEnabled(true);
 		initView();
 		retrieveSharedPreferences();
 		darkMode.setChecked(DarkMode);
@@ -73,11 +84,11 @@ if(buttonView.getId()==R.id.dark_mode)
 
 
 	}
-	public void restartApp() {
+	/*public void restartApp() {
 		PackageManager pm = getPackageManager();
 		Intent intent = pm.getLaunchIntentForPackage(getPackageName());
 		finishAffinity(); // Finishes all activities.
 		startActivity(intent);    // Start the launch activity
 		overridePendingTransition(0, 0);
-	}
+	}*/
 }

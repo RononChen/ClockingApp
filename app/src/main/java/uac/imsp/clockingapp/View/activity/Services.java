@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -17,6 +18,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.util.ArrayList;
@@ -48,6 +50,14 @@ public class Services extends AppCompatActivity implements IServicesView,
 
 	SharedPreferences.Editor editor;
 	SharedPreferences preferences;
+
+	public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+		if (item.getItemId() == android.R.id.home) {
+			finish();
+			onBackPressed();
+		}
+		return super.onOptionsItemSelected(item);
+	}
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		final String PREFS_NAME="MyPrefsFile";
@@ -55,6 +65,11 @@ public class Services extends AppCompatActivity implements IServicesView,
 		editor=preferences.edit();
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_services);
+		// calling the action bar
+		ActionBar actionBar = getSupportActionBar();
+// showing the back button in action bar
+		assert actionBar != null;
+		actionBar.setDisplayHomeAsUpEnabled(true);
 		initView();
 		servicesPresenter=new ServicesController(this);
 		servicesPresenter.onStart();

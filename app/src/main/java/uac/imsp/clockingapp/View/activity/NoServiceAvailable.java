@@ -2,6 +2,7 @@ package uac.imsp.clockingapp.View.activity;
 
 import android.os.Bundle;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import uac.imsp.clockingapp.R;
@@ -13,6 +14,11 @@ public class NoServiceAvailable extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_no_service_available);
+        // calling the action bar
+        ActionBar actionBar = getSupportActionBar();
+// showing the back button in action bar
+        assert actionBar != null;
+        actionBar.setDisplayHomeAsUpEnabled(true);
     }
     public void initView(){
         /*TextView errorMesssage = findViewById(R.id.no_service_message);

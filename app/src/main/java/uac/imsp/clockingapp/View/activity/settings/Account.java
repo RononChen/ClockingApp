@@ -7,6 +7,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import uac.imsp.clockingapp.Controller.control.ChangePasswordController;
@@ -24,6 +26,11 @@ public class Account extends AppCompatActivity implements View.OnClickListener, 
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_account);
+		// calling the action bar
+		ActionBar actionBar = getSupportActionBar();
+// showing the back button in action bar
+		assert actionBar != null;
+		actionBar.setDisplayHomeAsUpEnabled(true);
 		initView();
 		changePasswordPresenter=new ChangePasswordController(this) ;
 
@@ -39,7 +46,7 @@ public class Account extends AppCompatActivity implements View.OnClickListener, 
 	}
 
 	@Override
-	public void onClick(View v) {
+	public void onClick(@NonNull View v) {
 		if(v.getId()==R.id.password) {
 			password.setVisibility(View.VISIBLE);
 			newPassword = findViewById(R.id.change_password_new_password);

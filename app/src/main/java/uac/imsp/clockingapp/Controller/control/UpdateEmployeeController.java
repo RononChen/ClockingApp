@@ -57,7 +57,8 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
     //get service list and employee informations on load
 
 
-    public  String [] onLoad(int number, Hashtable <String,Object> informations) {
+    public  Object [] onLoad(int number) {
+        Hashtable <String,Object> informations;
         Day day;
 
   Service service;
@@ -83,46 +84,44 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
        serviceManager.searchService(service);//set id
         serviceManager.close();
 
-
+       informations=new Hashtable<>();
        informations.put("number",String.valueOf(employee.getRegistrationNumber()));
        informations.put("lastname",employee.getLastname());
         informations.put("firstname",employee.getFirstname());
-        try {
+       // try {
+            if(employee.getPicture()!=null&&employee.getPicture().length!=0)
+                informations.put("picture",getBitMapFromBytes(employee.getPicture()));
 
-            informations.put("picture", getBitMapFromBytes(employee.getPicture()));
-        }
-        catch (NullPointerException e){
-            e.printStackTrace();
-        }
 
         informations.put("email",employee.getMailAddress());
         informations.put("username",employee.getUsername());
         informations.put("gender",employee.getGender());
-        try {
-            day = new Day(employee.getBirthdate());
-            birthdate=day.getFrenchFormat();
-
-        }
-        catch (NullPointerException e){
-            birthdate="";
-
-            e.printStackTrace();
-
-        }
-        informations.put("birthdate",birthdate);
-
         informations.put("type",employee.getType());
         informations.put("service",service.getName());
         informations.put("start",Integer.parseInt(Objects.requireNonNull(planning.extractHours().get("start"))));
         informations.put("end",Integer.parseInt(Objects.requireNonNull(planning.extractHours().get("end"))));
         informations.put("workDays",planning.getWorkDays());
-        return serviceList;
+        try {
+            day = new Day(employee.getBirthdate());
+            birthdate=day.getFrenchFormat();
+
+
+        } catch (Exception e) {
+            birthdate="";
+
+            e.printStackTrace();
+        }
+        informations.put("birthdate",birthdate);
+
+
+        return new Object[]{serviceList,informations};
 
     }
     @Override
     public void onUpdateEmployee(String mail, String selectedService,
                                  int startTime,
-                                 int endTime,byte[] workDays, Bitmap picture, String type) {
+                                 int endTime,byte[] workDays,
+                                 Bitmap picture, String type) {
 
 
         if (mailUpdated) {
@@ -132,45 +131,62 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
 
             else if (!Patterns.EMAIL_ADDRESS.matcher(mail).matches())
                 updateEmployeeView.onUpdateEmployeeError(1);
+
             else {
 
-                updateEmployeeView.onSomethingchanged();
-                employeeManager=new EmployeeManager(context);
-                employeeManager.open();
-                employeeManager.update(employee, mail);
+
+
+                    employeeManager = new EmployeeManager(context);
+                    employeeManager.open();
+                    employeeManager.update(employee, mail);
+
+                    updateEmployeeView.onSomethingchanged();
+
+
             }
 
         }
-        else
+        else if(planningUpdated)
+        {
+            int cpt=0;
+            for(byte b:workDays)
+                if(b=='T')
+                    cpt++;
+            if (cpt==0)
+                updateEmployeeView.onUpdateEmployeeError(2);
+            else
+            {
+                String s,e;
+                s=formatTime(startTime);
+
+                e=formatTime(endTime);
+                //workDays=
+                planning=new Planning(s,e,workDays);
+                PlanningManager planningManager = new PlanningManager(context);
+                planningManager.open();
+                planningManager.create(planning);//To set the planning Id
+                planningManager.close();
+                employeeManager=new EmployeeManager(context);
+                employeeManager.open();
+                employeeManager.update(employee,planning);
+                updateEmployeeView.onSomethingchanged();
+
+            }
+        }
+        else {
             updateEmployeeView.onSomethingchanged();
 
 
-
-            String s,e;
-            PlanningManager planningManager = new PlanningManager(context);
-            serviceManager=new ServiceManager(context) ;
-
-            planningManager.open();
             serviceManager.open();
 
 
-            service=new Service(selectedService);
+            service = new Service(selectedService);
             serviceManager.create(service);
+            serviceManager = new ServiceManager(context);
 
-            s=formatTime(startTime);
-
-            e=formatTime(endTime);
-            //workDays=
-            planning=new Planning(s,e,workDays);
-
-            planningManager.create(planning);//To set the planning Id
-
-
-            employeeManager=new EmployeeManager(context);
+            employeeManager = new EmployeeManager(context);
             employeeManager.open();
-            employeeManager.setInformations(employee);
-
-            employeeManager.update(employee, mail);
+            //employeeManager.setInformations(employee);
 
 
             if (typeUpdated)
@@ -180,14 +196,11 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
             if (serviceUpdated)
 
                 employeeManager.update(employee, service);
-            if(planningUpdated)
-
-                employeeManager.update(employee,planning);
 
             if (pictureUpdated)
-                employeeManager.update(employee, getBytesFromBitmap(picture));
+                    employeeManager.update(employee, getBytesFromBitmap(picture));
             employeeManager.close();
-
+        }
     }
 
     @NonNull
@@ -225,6 +238,7 @@ public class UpdateEmployeeController implements IUpdateEmployeeController {
 
 
     }
+
 
 
     public String formatTime(int time) {

@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import uac.imsp.clockingapp.Controller.control.SimpleEmployeeMenuController;
@@ -25,6 +26,10 @@ public class SimpleEmployeeMenu extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_simple_employee_menu);
+        ActionBar actionBar = getSupportActionBar();
+// showing the back button in action bar
+        assert actionBar != null;
+        actionBar.setDisplayHomeAsUpEnabled(true);
         initView();
         simpleEmployeeMenuPresenter =
                 new SimpleEmployeeMenuController(this);

@@ -8,12 +8,14 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.text.method.HideReturnsTransformationMethod;
 import android.text.method.PasswordTransformationMethod;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import uac.imsp.clockingapp.Controller.control.LoginController;
@@ -35,12 +37,32 @@ public class Login extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        // calling the action bar
+        ActionBar actionBar = getSupportActionBar();
+// showing the back button in action bar
+        assert actionBar != null;
+        actionBar.setDisplayHomeAsUpEnabled(true);
         initView();
         loginPresenter = new LoginController(this);
 
 
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            finish();
+            onBackPressed();
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
+        startActivity((new Intent(this, StartScreen.class)));
+    }
 
     @Override
     public void onClick(@NonNull View v) {
@@ -74,8 +96,8 @@ new ToastMessage(this,getString(R.string.simple_login));
 
     @Override
     public void onClocking() {
-    Intent intent=new Intent(Login.this,ClockInOut.class);
-    startActivity(intent);
+
+    startActivity(new Intent(Login.this,ClockInOut.class));
 
     }
 
@@ -117,14 +139,11 @@ new ToastMessage(this,getString(R.string.simple_login));
 
     @Override
     public void onMaxAttempsReached(String message) {
-        Intent intent;
-        intent = new Intent(Login.this,StartScreen.class);
-
          new ToastMessage(this,message);
 
 
         finish();
-        startActivity(intent);
+        startActivity(new Intent(Login.this,StartScreen.class));
     }
 
     @Override

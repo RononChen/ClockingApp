@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -13,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.RadioGroup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import java.text.ParseException;
@@ -36,11 +38,21 @@ public class DeleteEmployee extends AppCompatActivity
     IDeleteEmployeeController deleteEmployeePresenter;
     boolean notice;
     EditText email;
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        onBackPressed();
+        return super.onOptionsItemSelected(item);
+    }
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // calling the action bar
+        ActionBar actionBar = getSupportActionBar();
+// showing the back button in action bar
+        assert actionBar != null;
+        actionBar.setDisplayHomeAsUpEnabled(true);
+
         retrieveSharedPreferences();
         setContentView(R.layout.activity_delete_employee);
 
@@ -177,9 +189,9 @@ public class DeleteEmployee extends AppCompatActivity
         String msg="Vous avez été supprimé de la liste des employés";
          new ToastMessage(this, message);
          sendEmail(new String[]{email.getText().toString()},subject,msg);
-         Intent intent=new Intent(this,SearchEmployee.class);
+        // Intent intent=;
          finish();
-         startActivity(intent);
+         startActivity(new Intent(this,SearchEmployee.class));
 
     }
 

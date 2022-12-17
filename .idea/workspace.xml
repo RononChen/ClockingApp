@@ -24,11 +24,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="7ddeb6ea-e00f-4cf2-88d3-89cbf60c105a" name="Changes" comment="&quot;Asynchronous tasks handled&quot;">
+      <change afterPath="$PROJECT_DIR$/app/src/androidTest/java/Test.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/7.4/fileHashes/fileHashes.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/buildOutputCleanup.lock" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/buildOutputCleanup/outputFiles.bin" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.gradle/file-system.probe" beforeDir="false" afterPath="$PROJECT_DIR$/.gradle/file-system.probe" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/assetWizardSettings.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/ConsultPresenceReportController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/ConsultPresenceReportController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/AndroidManifest.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/UpdateEmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/UpdateEmployeeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/util/IUpdateEmployeeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/util/IUpdateEmployeeController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/ClockInOut.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/ClockInOut.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/ConsultPresenceReport.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/ConsultPresenceReport.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/ConsultStatisticsByEmployee.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/ConsultStatisticsByEmployee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/ConsultStatisticsByService.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/ConsultStatisticsByService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/DeleteEmployee.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/DeleteEmployee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/GeneralMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/GeneralMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/Login.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/Login.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/NoServiceAvailable.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/NoServiceAvailable.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/RegisterEmployee.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/RegisterEmployee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/Savefingerprint.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/Savefingerprint.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/SearchEmployee.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/SearchEmployee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/Services.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/Services.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/ShowAdminAccount.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/ShowAdminAccount.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/SimpleEmployeeMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/SimpleEmployeeMenu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/UpdateEmployee.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/UpdateEmployee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/Account.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/Account.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/MainSetting.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/MainSetting.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/ManageUsername.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/ManageUsername.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/Overview.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/Overview.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/ShareAppViaQRCode.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/ShareAppViaQRCode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/others/Clocking.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/others/Clocking.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/others/DarkMode.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/others/DarkMode.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/others/Help.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/others/Help.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/others/Languages.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/others/Languages.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/others/ReportProblem.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/others/ReportProblem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-en/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-en/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-fr/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-fr/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values-night/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values-night/strings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/res/values/strings.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -141,8 +175,9 @@
     <property name="android-custom-view/home/firminsh/Android/Sdk/sources/android-32/android/widget/RadioGroup.java_SELECTED" value="RadioGroup" />
     <property name="android-custom-view/home/firminsh/Android/Sdk/sources/android-32/android/widget/ScrollView.java_SELECTED" value="ScrollView" />
     <property name="android-custom-view/home/firminsh/Android/Sdk/sources/android-33/android/view/View.java_SELECTED" value="View" />
+    <property name="android-custom-view/home/firminsh/Android/Sdk/sources/android-33/android/widget/NumberPicker.java_SELECTED" value="NumberPicker" />
     <property name="cidr.known.project.marker" value="true" />
-    <property name="com.android.tools.idea.sqlite.queryhistory" value="SELECT * FROM EMPLOYE WHERE ID_SERVICE_REF='1' &#10;CREATE  TABLE IF NOT EXISTS variable AS SELECT '1970-01-01' AS last_update &#10;CREATE TABLE  IF NOT EXISTS employe (matricule INTEGER NOT NULL  PRIMARY KEY, nom TEXT NOT NULL ,prenom TEXT NOT NULL,sexe TEXT NOT NULL ,couriel TEXT UNIQUE NOT NULL,birthdate TEXT , photo  BLOB ,username TEXT UNIQUE NOT NULL ,password TEXT NOT NULL , est_adminTEXT DEFAULT 'false',type TEXT DEFAULT 'Simple', id_planning_ref INTEGER  , id_service_ref INTEGER   ,statut TEXT DEFAULT 'Hors Service',date_ajout TEXT , FOREIGN KEY(id_service_ref ) REFERENCES service(id_service ), FOREIGN KEY(id_planning_ref ) REFERENCES planning(id_planning ))&#10;INSERT INTO employe(matricule,username,password,type,sexe,couriel,id_service_ref,id_planning_ref,nom,prenom,birthdate,date_ajout,est_admin) VALUES ('','','','','','','','','','','',DATE('NOW','LOCALTIME'),'')&#10;CREATE TABLE IF NOT EXISTS pointage (id_pointage INTEGER NOT NULL  PRIMARY KEY AUTOINCREMENT, id_jour_ref TEXT    ,date_jour TEXT,heure_entree   TEXT ,heure_sortie TEXT ,statut TEXT DEFAULT NULL ,matricule_ref INTEGER NOT NULL , FOREIGN KEY(matricule_ref ) REFERENCES employe(matricule ),  FOREIGN KEY(id_jour_ref ) REFERENCES jour(id_jour ))&#10;SELECT statut FROM pointage WHERE matricule_ref='1' AND date_jour='2022-12-08'&#10;SELECT statut FROM pointage WHERE matricule_ref='1' AND date_jour='2022-12-08'  " />
+    <property name="com.android.tools.idea.sqlite.queryhistory" value="SELECT  COURIEL FROM EMPLOYE &#10;SELECT * FROM PLANNING&#10;SELECT * FROM EMPLOYE WHERE ID_SERVICE_REF='1' &#10;CREATE  TABLE IF NOT EXISTS variable AS SELECT '1970-01-01' AS last_update &#10;CREATE TABLE  IF NOT EXISTS employe (matricule INTEGER NOT NULL  PRIMARY KEY, nom TEXT NOT NULL ,prenom TEXT NOT NULL,sexe TEXT NOT NULL ,couriel TEXT UNIQUE NOT NULL,birthdate TEXT , photo  BLOB ,username TEXT UNIQUE NOT NULL ,password TEXT NOT NULL , est_adminTEXT DEFAULT 'false',type TEXT DEFAULT 'Simple', id_planning_ref INTEGER  , id_service_ref INTEGER   ,statut TEXT DEFAULT 'Hors Service',date_ajout TEXT , FOREIGN KEY(id_service_ref ) REFERENCES service(id_service ), FOREIGN KEY(id_planning_ref ) REFERENCES planning(id_planning ))&#10;INSERT INTO employe(matricule,username,password,type,sexe,couriel,id_service_ref,id_planning_ref,nom,prenom,birthdate,date_ajout,est_admin) VALUES ('','','','','','','','','','','',DATE('NOW','LOCALTIME'),'')&#10;CREATE TABLE IF NOT EXISTS pointage (id_pointage INTEGER NOT NULL  PRIMARY KEY AUTOINCREMENT, id_jour_ref TEXT    ,date_jour TEXT,heure_entree   TEXT ,heure_sortie TEXT ,statut TEXT DEFAULT NULL ,matricule_ref INTEGER NOT NULL , FOREIGN KEY(matricule_ref ) REFERENCES employe(matricule ),  FOREIGN KEY(id_jour_ref ) REFERENCES jour(id_jour ))" />
     <property name="com.intellij.openapi.externalSystem.service.settings.ExternalSystemGroupConfigurable" value="ALL" />
     <property name="full.screen.before.presentation.mode" value="false" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/app/src/main/res/drawable" />
@@ -461,60 +496,6 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
-    <configuration name="testWith_12_15_2022()" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
-      <module name="ClockingApp.app.androidTest" />
-      <option name="TESTING_TYPE" value="3" />
-      <option name="METHOD_NAME" value="testWith_12_15_2022" />
-      <option name="CLASS_NAME" value="uac.imsp.clockingapp.ClockInTest" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="TEST_NAME_REGEX" value="" />
-      <option name="INSTRUMENTATION_RUNNER_CLASS" value="" />
-      <option name="EXTRA_OPTIONS" value="" />
-      <option name="RETENTION_ENABLED" value="No" />
-      <option name="RETENTION_MAX_SNAPSHOTS" value="2" />
-      <option name="RETENTION_COMPRESS_SNAPSHOTS" value="false" />
-      <option name="CLEAR_LOGCAT" value="false" />
-      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="false" />
-      <option name="INSPECTION_WITHOUT_ACTIVITY_RESTART" value="false" />
-      <option name="TARGET_SELECTION_MODE" value="DEVICE_AND_SNAPSHOT_COMBO_BOX" />
-      <option name="SELECTED_CLOUD_MATRIX_CONFIGURATION_ID" value="-1" />
-      <option name="SELECTED_CLOUD_MATRIX_PROJECT_ID" value="" />
-      <option name="DEBUGGER_TYPE" value="Auto" />
-      <Auto>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Auto>
-      <Hybrid>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Hybrid>
-      <Java />
-      <Native>
-        <option name="USE_JAVA_AWARE_DEBUGGER" value="false" />
-        <option name="SHOW_STATIC_VARS" value="true" />
-        <option name="WORKING_DIR" value="" />
-        <option name="TARGET_LOGGING_CHANNELS" value="lldb process:gdb-remote packets" />
-        <option name="SHOW_OPTIMIZED_WARNING" value="true" />
-      </Native>
-      <Profilers>
-        <option name="ADVANCED_PROFILING_ENABLED" value="false" />
-        <option name="STARTUP_PROFILING_ENABLED" value="false" />
-        <option name="STARTUP_CPU_PROFILING_ENABLED" value="false" />
-        <option name="STARTUP_CPU_PROFILING_CONFIGURATION_NAME" value="Java/Kotlin Method Sample (legacy)" />
-        <option name="STARTUP_NATIVE_MEMORY_PROFILING_ENABLED" value="false" />
-        <option name="NATIVE_MEMORY_SAMPLE_RATE_BYTES" value="2048" />
-        <option name="PROFILING_MODE" value="NOT_SET" />
-      </Profilers>
-      <method v="2">
-        <option name="Android.Gradle.BeforeRunTask" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="testWith_12_16_2022()" type="AndroidTestRunConfigurationType" factoryName="Android Instrumented Tests" temporary="true" nameIsGenerated="true">
       <module name="ClockingApp.app.androidTest" />
       <option name="TESTING_TYPE" value="3" />
@@ -623,6 +604,13 @@
         <option name="Android.Gradle.BeforeRunTask" enabled="true" />
       </method>
     </configuration>
+    <configuration name="Test" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="Test" />
+      <module name="ClockingApp.app.androidTest" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ClockingApp [javadoc]" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
         <option name="executionName" />
@@ -647,19 +635,19 @@
     <list>
       <item itemvalue="Android App.app" />
       <item itemvalue="Android App.Menu" />
-      <item itemvalue="Android Instrumented Tests.testWith_12_15_2022()" />
       <item itemvalue="Android Instrumented Tests.testWith_12_16_2022()" />
       <item itemvalue="Android Instrumented Tests.testFrom_01_12_2022_To_06_12_2012()" />
       <item itemvalue="Android Instrumented Tests.test()" />
+      <item itemvalue="Application.Test" />
       <item itemvalue="Gradle.ClockingApp [javadoc]" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.Test" />
         <item itemvalue="Gradle.ClockingApp [javadoc]" />
         <item itemvalue="Android Instrumented Tests.test()" />
         <item itemvalue="Android Instrumented Tests.testFrom_01_12_2022_To_06_12_2012()" />
         <item itemvalue="Android Instrumented Tests.testWith_12_16_2022()" />
-        <item itemvalue="Android Instrumented Tests.testWith_12_15_2022()" />
       </list>
     </recent_temporary>
   </component>
@@ -671,13 +659,6 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1657575710173</updated>
-    </task>
-    <task id="LOCAL-00048" summary="&quot;ok&quot;">
-      <created>1669014996977</created>
-      <option name="number" value="00048" />
-      <option name="presentableId" value="LOCAL-00048" />
-      <option name="project" value="LOCAL" />
-      <updated>1669014996977</updated>
     </task>
     <task id="LOCAL-00049" summary="&quot;Login and StartScreen features are corrected&quot;">
       <created>1669027679019</created>
@@ -1015,7 +996,14 @@
       <option name="project" value="LOCAL" />
       <updated>1671095600322</updated>
     </task>
-    <option name="localTasksCounter" value="97" />
+    <task id="LOCAL-00097" summary="&quot;Asynchronous tasks handled&quot;">
+      <created>1671174556301</created>
+      <option name="number" value="00097" />
+      <option name="presentableId" value="LOCAL-00097" />
+      <option name="project" value="LOCAL" />
+      <updated>1671174556302</updated>
+    </task>
+    <option name="localTasksCounter" value="98" />
     <servers />
   </component>
   <component name="UnknownFeatures">
@@ -1085,12 +1073,12 @@
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/others/Clocking.java</url>
-          <line>66</line>
+          <line>78</line>
           <option name="timeStamp" value="64" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/settings/others/DarkMode.java</url>
-          <line>67</line>
+          <line>78</line>
           <option name="timeStamp" value="74" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="java-line">
@@ -1110,17 +1098,17 @@
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/ConsultStatisticsByService.java</url>
-          <line>51</line>
+          <line>61</line>
           <option name="timeStamp" value="183" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/Services.java</url>
-          <line>198</line>
+          <line>213</line>
           <option name="timeStamp" value="249" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/Services.java</url>
-          <line>340</line>
+          <line>355</line>
           <option name="timeStamp" value="251" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="java-line">
@@ -1130,17 +1118,17 @@
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/Services.java</url>
-          <line>329</line>
+          <line>344</line>
           <option name="timeStamp" value="253" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/Services.java</url>
-          <line>311</line>
+          <line>326</line>
           <option name="timeStamp" value="254" />
         </line-breakpoint>
         <line-breakpoint suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/Services.java</url>
-          <line>308</line>
+          <line>323</line>
           <option name="timeStamp" value="255" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
@@ -1170,43 +1158,39 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/UpdateEmployeeController.java</url>
-          <line>148</line>
-          <option name="timeStamp" value="280" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/UpdateEmployeeController.java</url>
-          <line>213</line>
+          <line>226</line>
           <option name="timeStamp" value="284" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/UpdateEmployee.java</url>
-          <line>295</line>
-          <option name="timeStamp" value="288" />
+          <url>file://$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/UpdateEmployeeController.java</url>
+          <line>209</line>
+          <option name="timeStamp" value="307" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
+          <url>file://$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/UpdateEmployeeController.java</url>
+          <line>109</line>
+          <option name="timeStamp" value="311" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
           <url>file://$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/UpdateEmployee.java</url>
-          <line>288</line>
-          <option name="timeStamp" value="289" />
+          <line>260</line>
+          <option name="timeStamp" value="315" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/UpdateEmployee.java</url>
-          <line>391</line>
-          <option name="timeStamp" value="290" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/UpdateEmployee.java</url>
-          <line>400</line>
-          <option name="timeStamp" value="291" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="java-line">
-          <url>file://$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/View/activity/UpdateEmployee.java</url>
-          <line>436</line>
-          <option name="timeStamp" value="292" />
+          <url>file://$PROJECT_DIR$/app/src/main/java/uac/imsp/clockingapp/Controller/control/UpdateEmployeeController.java</url>
+          <line>134</line>
+          <option name="timeStamp" value="326" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="AndroidRunConfigurationType">
+        <watch expression="outgoingMail" language="JAVA" />
+      </configuration>
+    </watches-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/ClockingApp$ClockingApp__javadoc_.ic" NAME="ClockingApp [javadoc] Coverage Results" MODIFIED="1670804915744" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/ClockingApp$Test.ic" NAME="Test Coverage Results" MODIFIED="1671205942799" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
   </component>
 </project>

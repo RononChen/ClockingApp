@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import uac.imsp.clockingapp.Controller.control.ShowAdminAcountController;
@@ -32,6 +33,10 @@ public class ShowAdminAccount extends AppCompatActivity
 		super.onCreate(savedInstanceState);
 		preferences = getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
 		setContentView(R.layout.activity_show_admin_account);
+		ActionBar actionBar = getSupportActionBar();
+// showing the back button in action bar
+		assert actionBar != null;
+		actionBar.setDisplayHomeAsUpEnabled(true);
 		initView();
 		showAdminAcountPresenter=new ShowAdminAcountController(this);
 		showAdminAcountPresenter.onLoad();

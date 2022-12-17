@@ -101,6 +101,9 @@
     <string name="welcomes">Bienvenue sur ClockingApp, une application permettant
         de suivre la présence des employés</string>
     <string name="todo">TODO</string>
+    <string name="manage_services">Gérer les services</string>
+
+    <string name="save_fingerprint">Enreisterer des empreintes</string>
     <string name="update_succcessful">Employé modifié avec succès</string>
     <string name="notification_title">Notification de mise à jour d\'employé</string>
     <string name="notification">Certaines de vos informations ont été modifiées</string>
@@ -309,6 +312,10 @@
     <string name="service_management">Gestion des Services</string>
     <string name="my_account">Mon compte</string>
    <string name="personal_informations">Informations personnelles</string>
+    <string name="menu_statistics_by_service">Statistiques par services</string>
+    <string name="menu">Menu</string>
+    <string name="wlc">Accueil</string>
+    <string name="account_management">Gestion de compte</string>
 
 
 </resources>

@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -17,8 +18,8 @@ import java.util.ArrayList;
 import uac.imsp.clockingapp.Controller.control.SearchEmployeeController;
 import uac.imsp.clockingapp.Controller.util.Result;
 import uac.imsp.clockingapp.R;
-import uac.imsp.clockingapp.View.util.IsearchEmployeeView;
 import uac.imsp.clockingapp.View.util.EmployeeListViewAdapter;
+import uac.imsp.clockingapp.View.util.IsearchEmployeeView;
 import uac.imsp.clockingapp.View.util.ToastMessage;
 
 public class SearchEmployee extends AppCompatActivity
@@ -45,13 +46,24 @@ public class SearchEmployee extends AppCompatActivity
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_search_employee);
+        // calling the action bar
+        //ActionBar actionBar = getSupportActionBar();
+// showing the back button in action bar
+       /* assert actionBar != null;
+        actionBar.setDisplayHomeAsUpEnabled(true);*/
         initView();
         searchEmployeePresenter=new SearchEmployeeController(this);
         //get employees list onStart
         searchEmployeePresenter.onStart();
     }
 
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        onBackPressed();
+        return super.onOptionsItemSelected(item);
+    }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -91,10 +103,8 @@ public class SearchEmployee extends AppCompatActivity
 
     @Override
     public void onUpdate() {
-        intent=new Intent(SearchEmployee.this,UpdateEmployee.class);
-        intent.putExtra("ACTION_NUMBER",Number);
 
-        startActivity(intent);
+        startActivity( (new Intent(SearchEmployee.this,UpdateEmployee.class)).putExtra("ACTION_NUMBER",Number));
     }
 
     @Override
@@ -109,17 +119,17 @@ public class SearchEmployee extends AppCompatActivity
 
     @Override
     public void onPresenceReport() {
-        intent=new Intent(SearchEmployee.this,ConsultPresenceReport.class);
-        intent.putExtra("ACTION_NUMBER",Number);
-        startActivity(intent);
+
+        startActivity((new Intent(SearchEmployee.this,ConsultPresenceReport.class)).
+                putExtra("ACTION_NUMBER",Number));
 
     }
 
     @Override
     public void onStatistics() {
-        intent=new Intent(SearchEmployee.this, ConsultStatisticsByEmployee.class);
-        intent.putExtra("NUMBER",Number);
-        startActivity(intent);
+
+        startActivity((new Intent(SearchEmployee.this,ConsultStatisticsByEmployee.class)).
+                putExtra("NUMBER",Number));
 
     }
 

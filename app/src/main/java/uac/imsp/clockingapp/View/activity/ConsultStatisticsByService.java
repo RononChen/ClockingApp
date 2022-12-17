@@ -2,6 +2,7 @@ package uac.imsp.clockingapp.View.activity;
 
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -10,6 +11,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.mikephil.charting.animation.Easing;
@@ -41,12 +43,20 @@ implements IConsultStatisticsByServiceView, AdapterView.OnItemSelectedListener,
     private int Status=0;
     //private String selectedStatus;
     Spinner spinnerStatus;
-
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        onBackPressed();
+        return super.onOptionsItemSelected(item);
+    }
 
         @Override
         protected void onCreate(Bundle savedInstanceState) {
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_consult_statistic_by_service);
+            // calling the action bar
+            ActionBar actionBar = getSupportActionBar();
+// showing the back button in action bar
+            assert actionBar != null;
+            actionBar.setDisplayHomeAsUpEnabled(true);
            initView();
             consultStatisticsByServicePresenter=new
                     ConsultStatisticsByServiceController(this);
