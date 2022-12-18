@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
@@ -19,15 +20,15 @@ import uac.imsp.clockingapp.R;
 
 public class ManageUsername extends AppCompatActivity
         implements RadioGroup.OnCheckedChangeListener,
-CompoundButton.OnCheckedChangeListener{
+CompoundButton.OnCheckedChangeListener {
 
-    RadioButton emailAsUsername,generatePassword,editUsername;
-    RadioGroup radioGroup;
+    RadioButton emailAsUsername, editUsername;
+    RadioGroup usernameGroup;
     SwitchMaterial showPassword;
     SharedPreferences preferences;
     SharedPreferences.Editor editor;
-    boolean EmailAsUsername,GenPwd, EditUsername, EditPassword,Add,Update,Delete;
-    CheckBox add,update,delete;
+    boolean GenPwd, EditUsername, EditPassword, Add, Update, Delete;
+    CheckBox add, update, delete, generatePassword;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,25 +42,34 @@ CompoundButton.OnCheckedChangeListener{
         actionBar.setDisplayHomeAsUpEnabled(true);
         initView();
 
-        //emailAsUsername.setChecked(EmailAsUsername);
+    }
+
+    public void initView() {
+        //radioGroup=findViewById(R.id.password_group);
+        emailAsUsername = findViewById(R.id.use_email);
+        generatePassword = findViewById(R.id.generate_password);
+        editUsername = findViewById(R.id.edit_username);
+        showPassword = findViewById(R.id.switch_show_password);
+        usernameGroup = findViewById(R.id.username_group);
+        add = findViewById(R.id.setting_add);
+        update = findViewById(R.id.setting_update);
+        delete = findViewById(R.id.setting_delete);
+
+
+        if (!GenPwd)
+            showPassword.setVisibility(View.GONE);
         generatePassword.setChecked(GenPwd);
         editUsername.setChecked(EditUsername);
+        emailAsUsername.setChecked(!EditUsername);
         showPassword.setChecked(EditPassword);
         add.setChecked(Add);
         update.setChecked(Update);
         delete.setChecked(Delete);
-    }
-    public void initView(){
-        emailAsUsername=findViewById(R.id.use_email);
-        generatePassword=findViewById(R.id.generate_password);
-        editUsername =findViewById(R.id.edit_username);
-        showPassword=findViewById(R.id.switch_show_password);
-        radioGroup=findViewById(R.id.password_group);
-        radioGroup.setOnCheckedChangeListener(this);
-        add=findViewById(R.id.setting_add);
-        update=findViewById(R.id.setting_update);
-        delete=findViewById(R.id.setting_delete);
+        usernameGroup.setOnCheckedChangeListener(this);
+        // radioGroup.setOnCheckedChangeListener(this);
+        showPassword.setOnCheckedChangeListener(this);
         add.setOnCheckedChangeListener(this);
+        generatePassword.setOnCheckedChangeListener(this);
 
     }
 
@@ -68,56 +78,57 @@ CompoundButton.OnCheckedChangeListener{
         if (item.getItemId() == android.R.id.home) {
             finish();
             onBackPressed();
-        }   onBackPressed();
+        }
+        onBackPressed();
         return super.onOptionsItemSelected(item);
     }
-    public void retrieveSharedPreferences(){
-        final  String PREFS_NAME="MyPrefsFile";
-        preferences= getApplicationContext().getSharedPreferences(PREFS_NAME,
-                Context.MODE_PRIVATE);
-        editor=preferences.edit();
-        EmailAsUsername=preferences.getBoolean("emailAsUsername",false);
 
-        GenPwd=preferences.getBoolean("generatePassword",false);
-       EditUsername =preferences.getBoolean("editUsername",true);
-        EditPassword =preferences.getBoolean("showPasswordDuringAdd",true);
-       Add=preferences.getBoolean("notifyAdd",true);
-        Delete=preferences.getBoolean("notifyDelete",false);
-        Update=preferences.getBoolean("notifyUpdate",false);
+    public void retrieveSharedPreferences() {
+        final String PREFS_NAME = "MyPrefsFile";
+        preferences = getApplicationContext().getSharedPreferences(PREFS_NAME,
+                Context.MODE_PRIVATE);
+        editor = preferences.edit();
+        //EmailAsUsername=preferences.getBoolean("emailAsUsername",false);
+
+        GenPwd = preferences.getBoolean("generatePassword", false);
+        EditUsername = preferences.getBoolean("editUsername", true);
+        EditPassword = preferences.getBoolean("showPasswordDuringAdd", true);
+        Add = preferences.getBoolean("notifyAdd", true);
+        Delete = preferences.getBoolean("notifyDelete", false);
+        Update = preferences.getBoolean("notifyUpdate", false);
 
     }
 
     @Override
     public void onCheckedChanged(@NonNull RadioGroup group, int checkedId) {
-        if (group.getId() == R.id.username_group)
-        {
+        if (group.getId() == R.id.username_group) {
 
-             if (checkedId == R.id.use_email)
-            {
-                editor.putBoolean("generateUsername",false);
+            if (checkedId == R.id.use_email) {
+                editor.putBoolean("editUsername", false);
+            } else if (checkedId == R.id.edit_username) {
+                editor.putBoolean("editUsername", true);
             }
+            editor.apply();
         }
-        else if(group.getId()==R.id.password_group)
-        {
-            editor.putBoolean("generatePassword", checkedId == R.id.generate_password);
-        }
-        else if(group.getId()==R.id.username_group)
-            editor.putBoolean("editUsername",checkedId==R.id.edit_username);
-        editor.apply();
     }
 
     @Override
     public void onCheckedChanged(@NonNull CompoundButton buttonView, boolean isChecked) {
-        if (buttonView.getId()==R.id.switch_show_password)
-            editor.putBoolean("showPasswordDuringAdd",isChecked);
+        if (buttonView.getId() == R.id.switch_show_password)
+            editor.putBoolean("showPasswordDuringAdd", isChecked);
 
-        else if(buttonView.getId()==R.id.setting_add)
-            editor.putBoolean("notifyAdd",isChecked);
-        else if(buttonView.getId()==R.id.setting_update)
-            editor.putBoolean("notifyUpdate",isChecked);
-        else if(buttonView.getId()==R.id.setting_delete)
-            editor.putBoolean("notifyDelete",isChecked);
+        else if (buttonView.getId() == R.id.setting_add)
+            editor.putBoolean("notifyAdd", isChecked);
+        else if (buttonView.getId() == R.id.setting_update)
+            editor.putBoolean("notifyUpdate", isChecked);
+        else if (buttonView.getId() == R.id.setting_delete)
+            editor.putBoolean("notifyDelete", isChecked);
+        else if (buttonView.getId() == R.id.generate_password) {
+            editor.putBoolean("generatePassword", isChecked);
+            showPassword.setVisibility(isChecked ? View.VISIBLE : View.GONE);
+        }
 
         editor.apply();
     }
+
 }

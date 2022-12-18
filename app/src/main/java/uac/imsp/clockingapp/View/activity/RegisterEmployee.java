@@ -38,7 +38,10 @@ import androidx.core.content.FileProvider;
 import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+import java.util.Random;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import uac.imsp.clockingapp.Controller.control.RegisterEmployeeController;
@@ -71,7 +74,7 @@ public class RegisterEmployee extends AppCompatActivity
     private String SelectedService,SelectedType;
     private int Start=8,End=17;
 
-    boolean editUsername,useMailAsUsername,generatePassword,notice;
+    boolean editUsername,generatePassword,notice,showPassword;
      CheckBox monday,tuesday,wednesday,thursday,friday,satursday,sunday;
      //private Button workManager;
 
@@ -96,18 +99,28 @@ public class RegisterEmployee extends AppCompatActivity
 
         initView();
         retrieveSharedPreferences();
-        if(useMailAsUsername) {
+        if(!editUsername) {
             Username.setFocusable(false);
             Username.setLongClickable(false);
-
             Email.addTextChangedListener(this);
         }
+
         if(generatePassword)
         {
-            Password.setText(generatePassword());
-            Password.setEnabled(false);
-            PasswordConfirm.setText(generatePassword());
-            PasswordConfirm.setEnabled(false);
+
+            String generetedPassword=generatePassword();
+            Password.setText(generetedPassword);
+            Password.setFocusable(false);
+            Password.setLongClickable(false);
+            PasswordConfirm.setText(generetedPassword);
+            PasswordConfirm.setFocusable(false);
+            PasswordConfirm.setLongClickable(false);
+            if(!showPassword){
+                findViewById(R.id.password_textview).setVisibility(View.GONE);
+                findViewById(R.id.password_confirm_textview).setVisibility(View.GONE);
+               findViewById(R.id.password_layout).setVisibility(View.GONE);
+                findViewById(R.id.password_confirm_layout).setVisibility(View.GONE);
+            }
 
         }
 
@@ -118,12 +131,38 @@ public class RegisterEmployee extends AppCompatActivity
 
             }
 
-    /*@Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        MenuInflater inflater=getMenuInflater();
-        inflater.inflate(R.menu.general_menu,menu);
-        return super.onCreateOptionsMenu(menu);
-    }*/
+
+    @NonNull
+    public  String shuffle(@NonNull String input){
+        List<Character> characters = new ArrayList<>();
+        for(char c:input.toCharArray()){
+            characters.add(c);
+        }
+        StringBuilder output = new StringBuilder(input.length());
+        while(characters.size()!=0){
+            int randPicker = (int)(Math.random()*characters.size());
+            output.append(characters.remove(randPicker));
+        }
+        return output.toString();
+
+    }
+
+    @NonNull
+    public  String generateTwoChars(@NonNull String str){
+        Random r = new Random();
+        String  res=String.valueOf(str.charAt(r.nextInt(str.length())));
+        res+=String.valueOf(str.charAt(r.nextInt(str.length())));
+        return shuffle(res);
+    }
+    public  String generatePassword (){
+        String upper="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        String lower=upper.toLowerCase();
+        String digits="0123456789";
+        String specialChars ="&'(-)=}]@^`[#~%*+-:;,?.§";
+        return generateTwoChars(upper)+ generateTwoChars(lower)+ generateTwoChars(digits)+ generateTwoChars(specialChars);
+
+    }
+
 
 
     public void retrieveSharedPreferences(){
@@ -131,12 +170,9 @@ public class RegisterEmployee extends AppCompatActivity
         SharedPreferences preferences= getApplicationContext().getSharedPreferences(PREFS_NAME,
                 Context.MODE_PRIVATE);
         editUsername=preferences.getBoolean("editUsername",true);
-       // generateUsername=preferences.getBoolean("generateUsername",false);
-        useMailAsUsername=preferences.getBoolean("emailAsUsername",false);
         generatePassword=preferences.getBoolean("generatePassword",false);
         notice=preferences.getBoolean("notifyDuringAdd",true);
-
-
+      showPassword=  preferences.getBoolean("showPasswordDuringAdd",true);
     }
 
 
@@ -248,9 +284,6 @@ public class RegisterEmployee extends AppCompatActivity
         return null;
     }
 
-    public String  generatePassword(){
-        return "Aab10%";
-    }
     public  void resetInput() {
 
         Number.getText().clear();
@@ -372,15 +405,13 @@ public class RegisterEmployee extends AppCompatActivity
     @Override
     public void onShowHidePassword(int passwordId, int eyeId) {
          ImageView eye=findViewById(eyeId);
-         EditText pwd=findViewById(passwordId);
-        if(pwd.getTransformationMethod().
+         EditText Password =findViewById(passwordId);
+        if(Password.getTransformationMethod().
                 equals(PasswordTransformationMethod.getInstance()))
         {
             eye.setImageResource(R.drawable.ic_baseline_visibility_off_18);
 
-
-            //show password
-            pwd.setTransformationMethod(HideReturnsTransformationMethod.
+            Password.setTransformationMethod(HideReturnsTransformationMethod.
                     getInstance());
         }
         else{
@@ -388,7 +419,7 @@ public class RegisterEmployee extends AppCompatActivity
 
 
             //hide password
-            pwd.setTransformationMethod(PasswordTransformationMethod.
+            Password.setTransformationMethod(PasswordTransformationMethod.
                     getInstance());
         }
 

@@ -236,7 +236,7 @@ public class Employee implements IEmployee {
     public  boolean hasInvalidUsername() {
 
 
-        return !Username.matches("^[A-Z][A-Za-z0-9]{5,29}$")
+        return !Username.matches("^[A-Z][A-Za-z0-9]{5,29}$")&& !hasInvalidEmail()
                 &&!Patterns.EMAIL_ADDRESS.matcher(Username).matches();
     }
 
@@ -267,10 +267,13 @@ return  !Patterns.EMAIL_ADDRESS.matcher(MailAddress).matches();
     }
     public  boolean hasInvalidPassword() {
 
-        return !(Password.length()>=6&& is_in_the_range("[A-Z]")&&
-
-                is_in_the_range("[a-z]")&&is_in_the_range("[0-9]")&&
-                is_in_the_range("\\W"));
+        return !(
+                Password.length()>=6&&
+                isInTheRange("[A-Z]")&&
+                isInTheRange("[a-z]")&&
+                isInTheRange("[0-9]")&&
+                isInTheRange("\\W")
+        );
     }
     public int nb_occur(String str, String pattern){
 
@@ -280,7 +283,7 @@ return  !Patterns.EMAIL_ADDRESS.matcher(MailAddress).matches();
             count++;
         return count;
     }
-    public boolean is_in_the_range(String pattern){
+    public boolean isInTheRange(String pattern){
         return 1<= nb_occur(Password,pattern);
 
 

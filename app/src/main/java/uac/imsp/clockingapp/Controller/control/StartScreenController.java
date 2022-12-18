@@ -79,7 +79,7 @@ public class StartScreenController  implements IStartScreenController {
             editor.putBoolean("emailAsUsername",false);
             editor.putBoolean("editUsername",true);
             editor.putBoolean("generatePassword",false);
-            editor.putBoolean("showPasswordDuringAdd",false);
+            editor.putBoolean("showPasswordDuringAdd",true);
             //For others settings
             editor.putBoolean("darkMode",false);
             editor.putString("language","Français");

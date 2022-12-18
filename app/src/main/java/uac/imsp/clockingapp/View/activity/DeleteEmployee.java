@@ -117,7 +117,8 @@ public class DeleteEmployee extends AppCompatActivity
         Button delete = findViewById(R.id.delete_button);
         RadioGroup gender = findViewById(R.id.register_gender);
         EditText programm = findViewById(R.id.prog);
-        previewImage.setImageBitmap((Bitmap) informations.get("picture"));
+        if (informations.get("picture") != null)
+            previewImage.setImageBitmap((Bitmap) informations.get("picture"));
         number.setText(Objects.requireNonNull(informations.get("number")).toString());
         lastname.setText(Objects.requireNonNull(informations.get("lastname")).toString());
         firstname.setText(Objects.requireNonNull(informations.get("firstname")).toString());

@@ -68,18 +68,18 @@
             android:text="@string/during_emp_add"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
-        <RadioGroup
+        <!--RadioGroup
             android:layout_marginTop="10dp"
             android:id="@+id/password_group"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-            <RadioButton
+            android:layout_height="wrap_content"-->
+            <CheckBox
                 android:textSize="14sp"
                 android:text="@string/generate_password"
                 android:id="@+id/generate_password"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
-        </RadioGroup>
+        <!--/RadioGroup-->
         <com.google.android.material.switchmaterial.SwitchMaterial
             android:textSize="14sp"
             android:id="@+id/switch_show_password"

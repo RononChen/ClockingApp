@@ -69,17 +69,19 @@ public class DeleteEmployeeController implements IDeleteEmployeeController {
     informations.put("lastname",employee.getLastname());
     informations.put("firstname",employee.getFirstname());
 
-    try {
 
+    if(employee.getPicture()!=null&&employee.getPicture().length!=0)
         informations.put("picture", getBitMapFromBytes(employee.getPicture()));
-    }
-    catch (NullPointerException e){
-        e.printStackTrace();
-    }
 
     informations.put("email",employee.getMailAddress());
     informations.put("username",employee.getUsername());
     informations.put("gender",employee.getGender());
+
+
+        informations.put("type",employee.getType());
+        informations.put("service",service.getName());
+        informations.put("start",Integer.parseInt(Objects.requireNonNull(planning.extractHours().get("start"))));
+        informations.put("end",Integer.parseInt(Objects.requireNonNull(planning.extractHours().get("end"))));
     try {
         day = new Day(employee.getBirthdate());
         birthdate=day.getFrenchFormat();
@@ -91,11 +93,7 @@ public class DeleteEmployeeController implements IDeleteEmployeeController {
         e.printStackTrace();
 
     }
-    informations.put("birthdate",birthdate);
-    informations.put("type",employee.getType());
-    informations.put("service",service.getName());
-    informations.put("start",Integer.parseInt(Objects.requireNonNull(planning.extractHours().get("start"))));
-    informations.put("end",Integer.parseInt(Objects.requireNonNull(planning.extractHours().get("end"))));
+        informations.put("birthdate",birthdate);
 
 /*};
         AsyncTask.execute(runnable);*/
@@ -111,15 +109,9 @@ if(employee.getRegistrationNumber()==adminNumber)
     deleteEmployeeView.onError(0);
 else {
 
-   // employeeManager = new EmployeeManager(context);
-    //employeeManager.open();
-
-    /*if (employeeManager.getAdminCount() == 1 )
-        deleteEmployeeView.onError(1);*/
-    //else
         deleteEmployeeView.askConfirmDelete(
     );
-    //employeeManager.close();
+
 }
 
 
