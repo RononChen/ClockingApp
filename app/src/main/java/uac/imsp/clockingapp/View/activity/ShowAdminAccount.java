@@ -25,7 +25,6 @@ public class ShowAdminAccount extends AppCompatActivity
 	 TextView username, password;
 	IShowAdminAcountController showAdminAcountPresenter;
 	SharedPreferences preferences;
-			SharedPreferences.Editor editor;
 	final String PREFS_NAME="MyPrefsFile";
 
 	@Override

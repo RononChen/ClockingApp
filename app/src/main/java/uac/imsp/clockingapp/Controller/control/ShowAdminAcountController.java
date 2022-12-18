@@ -23,7 +23,7 @@ public class ShowAdminAcountController implements IShowAdminAcountController {
 		employeeManager.open();
 		String [] account=employeeManager.retrieveAccount(new Employee(1));
 		employeeManager.close();
-		showAdminAcountViev.onStart(account[0],account[1] );
+		showAdminAcountViev.onStart(account[0],"Aa10%" );
 
 	}
 

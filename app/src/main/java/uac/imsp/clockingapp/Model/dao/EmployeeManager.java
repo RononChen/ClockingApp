@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteStatement;
 
 import androidx.annotation.NonNull;
 
+import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -63,7 +64,7 @@ public class EmployeeManager {
         regNumber = cursor.getInt(0);
         correctPassword = cursor.getString(1);//get  encrypted password
         cursor.close();
-        if (nb_employee == 1 && correctPassword.equals(md5(givenPassword))) {
+        if (nb_employee == 1 && correctPassword.equals(getMd5(givenPassword))) {
             employee.setRegistrationNumber(regNumber);
             setInformations(employee);
             return 0;
@@ -104,7 +105,7 @@ public class EmployeeManager {
         statement.bindString(4, Character.toString(employee.getGender()));
         statement.bindString(5, employee.getMailAddress());
         statement.bindString(6, employee.getUsername());
-        statement.bindString(7, md5(employee.getPassword()));
+        statement.bindString(7, getMd5(employee.getPassword()));
         statement.bindString(8, employee.getType());
         statement.bindString(9, "NOW");
         statement.bindString(10, "LOCALTIME");
@@ -149,7 +150,7 @@ public class EmployeeManager {
         String query = "UPDATE employe SET password=? WHERE matricule=?";
 
         SQLiteStatement statement = Database.compileStatement(query);
-        statement.bindString(1, md5(newPassword));
+        statement.bindString(1, getMd5(newPassword));
 
         statement.bindLong(2, employee.getRegistrationNumber());
 
@@ -517,25 +518,32 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
 
     }
 
-    public String md5(@NonNull String password) {
-        MessageDigest digest;
-        byte[] messageDigest;
-        StringBuilder hexString;
+    public String getMd5(@NonNull String password) {
+
         try {
 
-            digest = java.security.MessageDigest.getInstance("MD5");
-            digest.update(password.getBytes());
-            messageDigest = digest.digest();
-            hexString = new StringBuilder();
-            for (byte element : messageDigest) {
-                hexString.append(Integer.toHexString(0xFF & element));
-                return hexString.toString();
+            // Static getInstance method is called with hashing MD5
+            MessageDigest md = MessageDigest.getInstance("MD5");
 
+            // digest() method is called to calculate message digest
+            // of an input digest() return array of byte
+            byte[] messageDigest = md.digest(password.getBytes());
+
+            // Convert byte array into signum representation
+            BigInteger no = new BigInteger(1, messageDigest);
+
+            // Convert message digest into hex value
+            String hashtext = no.toString(16);
+            while (hashtext.length() < 32) {
+                hashtext = "0" + hashtext;
             }
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
+            return hashtext;
         }
-        return null;
+
+        // For specifying wrong message digest algorithms
+        catch (NoSuchAlgorithmException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public boolean shouldNotWorkThatDay(@NonNull Employee employee, @NonNull Day day) {

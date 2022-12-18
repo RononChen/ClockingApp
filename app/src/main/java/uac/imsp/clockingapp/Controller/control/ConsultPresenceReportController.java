@@ -43,6 +43,7 @@ public class ConsultPresenceReportController implements IConsultPresenceReportCo
         //the month following the current one
         d=new Day();
 
+
         if (day.addMonth().getMonthPart().compareTo(currentDay.getMonthPart()) > 0) {
             consultPresenceReportView.onReportNotAccessible(true);
             accessible =false;

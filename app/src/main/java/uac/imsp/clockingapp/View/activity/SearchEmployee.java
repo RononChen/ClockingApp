@@ -129,7 +129,7 @@ public class SearchEmployee extends AppCompatActivity
     public void onStatistics() {
 
         startActivity((new Intent(SearchEmployee.this,ConsultStatisticsByEmployee.class)).
-                putExtra("NUMBER",Number));
+                putExtra("ACTION_NUMBER",Number));
 
     }
 

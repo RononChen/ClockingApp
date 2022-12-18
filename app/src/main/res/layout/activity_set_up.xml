@@ -10,16 +10,22 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/thanks"/>
+
     <ImageView
-        android:src="@drawable/ic_baseline_fingerprint_50"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:contentDescription="@string/todo" />
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:layout_width="336dp"
+        android:layout_height="400dp"
+        android:contentDescription="@string/todo"
+        android:src="@drawable/ic_baseline_qr_code_scanner_200" />
+
     <Button
         android:id="@+id/set_up_continue"
-        android:text="@string/contin"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_marginEnd="30dp"
+        android:text="@string/contin" />
 
 
 </LinearLayout>

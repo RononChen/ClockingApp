@@ -9,7 +9,6 @@ import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 
 import uac.imsp.clockingapp.BuildConfig;
 import uac.imsp.clockingapp.Controller.control.StartScreenController;
@@ -31,18 +30,21 @@ implements View.OnClickListener  , IStartScreenView {
     SharedPreferences.Editor editor;
     SharedPreferences preferences;
     String lang;
+
   boolean dark;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         preferences = getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
+
         //lang = preferences.getString("lang", "fr");
        // lang="en";
-        lang="fr";
+       // lang="fr";
         dark=preferences.getBoolean("dark",false);
         //if(dark)
-           AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+          // AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+        lang=preferences.getString("lang","fr");
         LocalHelper.setLocale(StartScreen.this, lang);
 
 

@@ -16,6 +16,7 @@ import static dbAdapter.EmployeeSQLite.CREATE_EMPLOYEE;
 import static dbAdapter.EmployeeSQLite.CREATE_VARIABLE;
 import static dbAdapter.EmployeeSQLite.DATABASE_VERSION;
 import static dbAdapter.EmployeeSQLite.DROP_EMPLOYEE_TEMP;
+import static dbAdapter.EmployeeSQLite.DROP_VARIABLE_TEMP;
 import static dbAdapter.EmployeeSQLite.super_user;
 import static dbAdapter.ServiceSQLite.ALTER_SERVICE_TO_PLANNING_TEMP;
 import static dbAdapter.ServiceSQLite.COPY_SERVICE_TEMP_TO_SERVICE;
@@ -94,7 +95,7 @@ public class PlanningSQLite extends SQLiteOpenHelper {
         SQLiteStatement statement= db.compileStatement(super_user);
         statement.bindLong(1,1);
         statement.bindString(2,"User10");
-        statement.bindString(3,md5("Aab10%"));
+        statement.bindString(3, getMd5("Aab10%"));
         statement.bindString(4,"Directeur");
         statement.bindString(5,"M");
         statement.bindString(6,"super@gmail.com");
@@ -150,7 +151,7 @@ public class PlanningSQLite extends SQLiteOpenHelper {
 
     }
 
-    public String md5(@NonNull String password) {
+    public String getMd5(@NonNull String password) {
         MessageDigest digest;
         byte[] messageDigest;
         StringBuilder hexString;
@@ -179,7 +180,7 @@ public class PlanningSQLite extends SQLiteOpenHelper {
         db.execSQL(ALTER_VARIABLE_TO_VARIABLE_TEMP);
         db.execSQL(CREATE_VARIABLE);
         db.execSQL(COPY_VARIABLE_TEMP_TO_VARIABLE);
-        db.execSQL(DROP_EMPLOYEE_TEMP);
+        db.execSQL(DROP_VARIABLE_TEMP);
 
         db.execSQL(ALTER_PLANNING_TO_PLANNING_TEMP);
         db.execSQL(CREATE_PLANNING);

@@ -25,7 +25,7 @@ public class UpdateEmployeeTest  implements IUpdateEmployeeView {
 
         updateEmployeePresenter=new UpdateEmployeeController(this,appContext);
         assertNotNull(updateEmployeePresenter);
-        updateEmployeePresenter.onLoad( 1,  informations) ;
+        //updateEmployeePresenter.onLoad( 1,  informations) ;
         assertNotNull(informations);
     }
 

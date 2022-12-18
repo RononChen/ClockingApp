@@ -178,7 +178,7 @@
     <string name="during_delete">During delete</string>
     <string name="during_update">During update</string>
     <string name="no_service">No service available. Press the button to add more</string>
-    <string name="add">Ajouter</string>
+    <string name="add">Add</string>
     <string name="overview">Overview</string>
     <string name="version">App version:</string>
     <string name="device_name">Device name:</string>
@@ -266,7 +266,7 @@
     <string name="pass" >Password: </string>
     <string name="qr" >Also receive your QR code as an attachment.\n
         It will allow you to record your entries and exits.</string>
-    <string name="apply">Appliquer</string>
+    <string name="apply">Apply</string>
     <string name="service_deleted">Service deleted successfully</string>
     <string name="no_such_service">No such service</string>
     <string name="confirm_delete_service">Delete service</string>
@@ -274,18 +274,18 @@
     because at least one employee is registered there</string>
     <string name="confirm_update_service_title">Change Confirmation</string>
     <string name="confirm_update_service">Do you want to make these changes?</string>
-    <string name="add_service">Ajouter un service</string>
+    <string name="add_service">Add a department</string>
     <string name="no_service_updated">No services have been changed
 
 </string>
-    <string name="cliquer_longuement_pour_supprimer_ncliquer_pour_diter">Cliquer longuement pour supprimer\nCliquer pour éditer</string>
+    <string name="cliquer_longuement_pour_supprimer_ncliquer_pour_diter">Long click to delete\nClick to edit</string>
     <string name="thanks">Merci d\'avoir installé l\'application</string>
     <string name="contin">Continuer</string>
     <string name="settings">Paramètres</string>
     <string name="exit">Quitter</string>
     <string name="presence_stat">Mes statistiques de présence</string>
     <string name="my_presence_report">Mes rapports de présence</string>
-    <string name="service_management">Gestion des Services</string>
+    <string name="service_management">Services management</string>
     <string name="my_account">Mon compte</string>
     <string name="personal_informations">Informations personnelles</string>
     <string name="menu_statistics_by_service">Statistiques par services</string>

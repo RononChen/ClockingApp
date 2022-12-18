@@ -57,7 +57,8 @@ public class ConsultPresenceReport extends AppCompatActivity
 
         }
         public void initView(){
-            int actionNumber = getIntent().getIntExtra("CURRENT_NUMBER", 0);
+            int actionNumber = getIntent().
+                    getIntExtra("ACTION_NUMBER", 0);
 
             previous = findViewById(R.id.report_previous);
                 next = findViewById(R.id.report_next);

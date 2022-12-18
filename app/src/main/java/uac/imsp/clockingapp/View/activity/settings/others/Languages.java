@@ -29,7 +29,7 @@ public class Languages extends AppCompatActivity implements ILanguagesView,
 	SharedPreferences preferences;
 	SharedPreferences.Editor editor;
 	ILanguagesController languagesPresenter;
-	final  String PREFS_NAME="MyPrefsFile";
+
 	int cpt=0;
 
 	public boolean onOptionsItemSelected(@NonNull MenuItem item) {
@@ -63,6 +63,7 @@ public class Languages extends AppCompatActivity implements ILanguagesView,
 		radioGroup.setOnCheckedChangeListener(this);
 	}
 	public void retrievePreferences(){
+		final  String PREFS_NAME="MyPrefsFile";
 		preferences= getApplicationContext().getSharedPreferences(PREFS_NAME,
 				Context.MODE_PRIVATE);
 
