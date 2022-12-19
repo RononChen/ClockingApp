@@ -3,6 +3,7 @@ package entity;
 import android.text.TextUtils;
 import android.util.Patterns;
 
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -293,4 +294,16 @@ return  !Patterns.EMAIL_ADDRESS.matcher(MailAddress).matches();
         return isAdmin;
     }
 
+    public int validUser() {
+        if(Objects.equals(getUsername(), ""))
+            return EMPTY_USERNAME;
+        if(hasInvalidUsername())
+            return  INVALID_USERNAME;
+        if(Objects.equals(getPassword(), ""))
+            return EMPTY_PASSWORD;
+        if(hasInvalidPassword())
+            return INVALID_PASSWORD;
+
+        return 0;
+    }
 }

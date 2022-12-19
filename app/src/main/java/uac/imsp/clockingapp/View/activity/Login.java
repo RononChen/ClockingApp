@@ -98,9 +98,29 @@ new ToastMessage(this,getString(R.string.simple_login));
 
     @Override
 
-    public void onLoginError(String message) {
+    public void onLoginError(int errorNumber) {
+        switch (errorNumber)
+        {
+            case 0:
+            new ToastMessage(this,getString(R.string.username_required));
+            break;
+            case 1:
+                new ToastMessage(this,getString(R.string.username_invalid));
+                break;
+            case 2:
+                new ToastMessage(this,getString(R.string.password_required));
+                break;
+            case 3:
+                new ToastMessage(this,getString(R.string.password_invalid));
+                break;
+            case 4:
+                new ToastMessage(this,getString(R.string.user_or_password));
+                break;
+            default:
+                break;
+        }
 
-        new ToastMessage(this,message);
+
     }
 
     @Override
@@ -117,8 +137,23 @@ new ToastMessage(this,getString(R.string.simple_login));
     }
 
     @Override
-    public void onUsernameError(String message) {
-        Username.setError(message);
+    public void onUsernameError(int errorNumber) {
+        switch (errorNumber){
+            case 0:
+                Username.setError(getString(R.string.required));
+                break;
+            case 1:
+                Username.setError(getString(R.string.at_least));
+                break;
+            case 2:
+                Username.setError(getString(R.string.at_most));
+                break;
+            default:
+                break;
+
+
+        }
+
 
     }
 
@@ -147,8 +182,8 @@ new ToastMessage(this,getString(R.string.simple_login));
         }
 
     @Override
-    public void onMaxAttempsReached(String message) {
-         new ToastMessage(this,message);
+    public void onMaxAttempsReached() {
+         new ToastMessage(this,getString(R.string.max_reached));
 
 
         finish();

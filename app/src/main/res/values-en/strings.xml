@@ -281,6 +281,8 @@
     <string name="cliquer_longuement_pour_supprimer_ncliquer_pour_diter">Long click to delete\nClick to edit</string>
     <string name="thanks">Merci d\'avoir installé l\'application</string>
     <string name="contin">Continuer</string>
+    <string name="user_or_password" translatable="false"> Username ou mot de passe incorrect !
+    </string>
     <string name="settings">Paramètres</string>
     <string name="exit">Quitter</string>
     <string name="presence_stat">Mes statistiques de présence</string>
@@ -292,6 +294,7 @@
     <string name="menu">Menu</string>
     <string name="wlc">Accueil</string>
     <string name="account_management">Gestion de compte</string>
+    <string name="max_reached">Trois tentatives d\'authentification échouées !</string>
 
 
 </resources>

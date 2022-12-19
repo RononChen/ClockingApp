@@ -199,6 +199,8 @@
     <string name="during_emp_add">Lors d\'un ajout d\'employé</string>
     <string name="generate_password">G\én\érer le mot de passe</string>
     <string name="show_password">Afficher le mot de passe</string>
+    <string name="user_or_password" translatable="false"> Username ou mot de passe incorrect !
+    </string>
     <string name="emp_not">Notifications employé</string>
     <string name="during_delete">Lors de la suppression</string>
     <string name="during_update">Lors de la modification</string>
@@ -316,6 +318,7 @@
     <string name="menu">Menu</string>
     <string name="wlc">Accueil</string>
     <string name="account_management">Gestion de compte</string>
+    <string name="max_reached">Trois tentatives d\'authentification échouées !</string>
 
 
 </resources>

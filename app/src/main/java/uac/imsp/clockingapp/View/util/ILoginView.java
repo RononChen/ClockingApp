@@ -3,12 +3,12 @@ package uac.imsp.clockingapp.View.util;
 public interface ILoginView {
     void onLoginSuccess(int number);
     void onSimpleEmployeeLogin();
-    void onLoginError(String message);
+    void onLoginError(int message);
     void onClocking();
     void onPasswordError(String message);
-    void onUsernameError(String username);
+    void onUsernameError(int username);
     void onShowHidePassword();
-    void onMaxAttempsReached(String message);
+    void onMaxAttempsReached();
     void askWish();
     void onPositiveResponse();
     void onNegativeResponse();

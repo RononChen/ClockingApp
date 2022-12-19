@@ -307,6 +307,9 @@
     <string name="my_presence_report">Mes rapports de présence</string>
     <string name="service_management">Gestion des Services</string>
     <string name="x_y" translatable="false">x.y</string>
+    <string name="user_or_password" translatable="false"> Username ou mot de passe incorrect !
+    </string>
+
     <string name="share_via">Partager via</string>
     <string name="download_link">Suivez facilement la présence de vos
  employés avec l\'application ClockinApp
@@ -320,6 +323,7 @@
     <string name="menu">Menu</string>
     <string name="wlc">Accueil</string>
     <string name="account_management">Gestion de compte</string>
+    <string name="max_reached">Trois tentatives d\'authentification échouées !</string>
 
 
     "Version du système d'exploitation:\n"+
