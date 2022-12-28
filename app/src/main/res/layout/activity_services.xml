@@ -1,25 +1,35 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".View.activity.Services">
     <TextView
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="10dp"
         android:textSize="17sp"
         android:id="@+id/title"
         android:text="@string/cliquer_longuement_pour_supprimer_ncliquer_pour_diter"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/my_layout"
         android:orientation="horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <EditText
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/edit_service"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:hint="@string/add_service"
@@ -27,7 +37,10 @@
             android:inputType="textAutoComplete" />
 
         <Button
-            android:layout_marginStart="60dp"
+            app:layout_goneMarginStart="50dp"
+            app:layout_constraintStart_toEndOf="@id/edit_service"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="100dp"
             android:id="@+id/add_service"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -35,9 +48,11 @@
             style="?android:attr/buttonBarButtonStyle" />
 
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ListView
+        app:layout_constraintTop_toBottomOf="@+id/my_layout"
+        app:layout_constraintStart_toStartOf="parent"
         android:id="@+id/service_list"
         android:layout_width="match_parent"
         android:layout_height="250dp"
@@ -48,13 +63,19 @@
         android:layout_marginBottom="30dp"
         android:dividerHeight="1dp"/>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/service_list"
         android:id="@+id/layout"
+        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <Button
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             android:id="@+id/cancel"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
@@ -62,23 +83,28 @@
             style="?android:attr/buttonBarButtonStyle" />
 
         <Button
+            app:layout_constraintEnd_toStartOf="@+id/next"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/cancel"
             android:id="@+id/apply"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:text="@string/apply"
             style="?android:attr/buttonBarButtonStyle" />
         <Button
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             android:id="@+id/next"
             android:layout_width="110dp"
             android:layout_height="wrap_content"
-            android:visibility="gone"
+            android:layout_marginEnd="0dp"
             android:text="@string/contin"
             style="?android:attr/buttonBarButtonStyle" />
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 
 
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
