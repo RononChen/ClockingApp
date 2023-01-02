@@ -68,8 +68,8 @@ public class ConsultStatisticsByEmployee extends AppCompatActivity
 public void initView(){
     barChart = findViewById(R.id.chart);
     reportPeriod =findViewById(R.id.stat_date);
-     previous = findViewById(R.id.stat_previous);
-    next = findViewById(R.id.stat__next);
+     previous = findViewById(R.id.report_previous);
+    next = findViewById(R.id.report_next);
     previous.setOnClickListener(this);
     next.setOnClickListener(this);
 
@@ -173,7 +173,7 @@ public void initView(){
 
     @Override
     public void onClick(@NonNull View v) {
-if (v.getId()==R.id.stat_previous)
+if (v.getId()==R.id.report_previous)
 
     consultStatisticsByEmployeePresenter.onPreviousMonth();
 

@@ -69,6 +69,7 @@
         android:id="@+id/layout"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="10dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="10dp"
         android:orientation="horizontal"
         android:layout_width="match_parent"

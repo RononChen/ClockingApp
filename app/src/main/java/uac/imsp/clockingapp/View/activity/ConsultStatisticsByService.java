@@ -68,8 +68,8 @@ implements IConsultStatisticsByServiceView, AdapterView.OnItemSelectedListener,
         public void initView(){
             pieChart = findViewById(R.id.pieChart_view);
             initPieChart();
-            previous=findViewById(R.id.stat_previous);
-            next=findViewById(R.id.stat__next);
+            previous=findViewById(R.id.report_previous);
+            next=findViewById(R.id.report_next);
             previous.setOnClickListener(this);
             next.setOnClickListener(this);
              spinnerStatus = findViewById(R.id.stat__status);
@@ -207,7 +207,7 @@ implements IConsultStatisticsByServiceView, AdapterView.OnItemSelectedListener,
 
     @Override
     public void onClick(@NonNull View v) {
-        if (v.getId()==R.id.stat_previous)
+        if (v.getId()==R.id.report_next)
 
             consultStatisticsByServicePresenter.onPreviousMonth();
 

@@ -1,2 +1,2 @@
 # ClockingApp
-This is a clocking in-out jandroid application written with java
+This is a clocking in-out android application written with java
