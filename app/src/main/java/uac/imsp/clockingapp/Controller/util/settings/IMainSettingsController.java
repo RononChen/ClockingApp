@@ -30,4 +30,5 @@ public interface IMainSettingsController {
 	void onHelp();
 	void onReportProblem();
 
+	void onSwitch();
 }

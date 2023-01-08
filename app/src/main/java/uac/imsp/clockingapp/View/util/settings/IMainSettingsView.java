@@ -19,4 +19,6 @@ public interface IMainSettingsView {
 	void onHelp();
 
 	void onLogout();
+
+	void onSwitch();
 }

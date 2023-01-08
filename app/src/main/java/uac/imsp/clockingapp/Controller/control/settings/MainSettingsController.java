@@ -153,6 +153,13 @@ mainSettingsView.onService();
 		mainSettingsView.onProblem();
 
 	}
+
+	@Override
+	public void onSwitch() {
+		mainSettingsView.onSwitch();
+
+	}
+
 	public  void deleteCache() {
 		try {
 			File dir = context.getCacheDir();

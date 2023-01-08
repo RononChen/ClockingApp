@@ -351,10 +351,23 @@
             android:layout_marginTop="10dp"
             android:textSize="16sp"
             android:layout_width="wrap_content"
+            android:text="@string/switch_simple"
+            android:id="@+id/switch_to_simple"
+            android:layout_height="wrap_content"
+            app:drawableStartCompat="@drawable/ic_baseline_logout_25" />
+
+
+        <TextView
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/switch_to_simple"
+            android:layout_marginTop="10dp"
+            android:textSize="16sp"
+            android:layout_width="wrap_content"
             android:text="@string/logout"
             android:id="@+id/logout"
             android:layout_height="wrap_content"
             app:drawableStartCompat="@drawable/ic_baseline_logout_25" />
+
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

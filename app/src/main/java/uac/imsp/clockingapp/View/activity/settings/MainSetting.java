@@ -24,6 +24,7 @@ import uac.imsp.clockingapp.Controller.control.settings.MainSettingsController;
 import uac.imsp.clockingapp.Controller.util.settings.IMainSettingsController;
 import uac.imsp.clockingapp.R;
 import uac.imsp.clockingapp.View.activity.Services;
+import uac.imsp.clockingapp.View.activity.SimpleEmployeeMenu;
 import uac.imsp.clockingapp.View.activity.settings.others.Clocking;
 import uac.imsp.clockingapp.View.activity.settings.others.DarkMode;
 import uac.imsp.clockingapp.View.activity.settings.others.Help;
@@ -33,7 +34,7 @@ import uac.imsp.clockingapp.View.util.settings.IMainSettingsView;
 
 public class MainSetting extends AppCompatActivity implements View.OnClickListener, IMainSettingsView {
 TextView share,shareViaQR,overview,appVersion,clearCache,cacheSize,name,clock,dark,lang,problem,help,
-		email,desc,accountSettings,service,logout;
+		email,desc,accountSettings,service,logout,simple;
 	EditText input;
 Intent intent;
 ConstraintLayout nameLayout;
@@ -79,6 +80,8 @@ IMainSettingsController mainSettingsPresenter;
 		clearCache=findViewById(R.id.setting_clear_cache);
 		cacheSize=findViewById(R.id.setting_cache_size);
 		nameLayout=findViewById(R.id.setting_name_layout);
+		simple=findViewById(R.id.switch_to_simple);
+		simple.setOnClickListener(this);
 		logout=findViewById(R.id.logout);
 		logout.setOnClickListener(this);
 		nameLayout.setOnClickListener(this);
@@ -150,6 +153,8 @@ else if(v.getId()==R.id.setting_problem)
 	mainSettingsPresenter.onReportProblem();
 else if(v.getId()==R.id.logout)
 	mainSettingsPresenter.onLogout();
+else if(v.getId()==R.id.switch_to_simple)
+	mainSettingsPresenter.onSwitch();
 
 }
 
@@ -279,6 +284,11 @@ startActivity(intent);
 		AlertDialog alert = builder.create();
 		alert.setTitle(getString(R.string.exit_confirmation));
 		alert.show();
+	}
+
+	@Override
+	public void onSwitch() {
+startActivity(new Intent(this, SimpleEmployeeMenu.class));
 	}
 
 	public void cacheSize(){
