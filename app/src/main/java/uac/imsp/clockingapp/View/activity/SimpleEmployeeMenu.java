@@ -37,8 +37,8 @@ public class SimpleEmployeeMenu extends AppCompatActivity
 
     }
     public void initView(){
-       final Button password=findViewById(R.id.menu_password);
-        password.setOnClickListener(this);
+       //final Button password=findViewById(R.id.menu_password);
+        //password.setOnClickListener(this);
         final Button clock=findViewById(R.id.menu_clock),
                 report=findViewById(R.id.menu_presence_report),
                 statistics=findViewById(R.id.menu_my_presence_statistics),
@@ -95,9 +95,9 @@ else if(v.getId()==R.id.menu_my_presence_statistics)
 else if(v.getId()==R.id.menu_settings)
     simpleEmployeeMenuPresenter.onSettings();
 
-else if(v.getId()==R.id.menu_password)
+//else if(v.getId()==R.id.menu_password)
 
-    startActivity(new Intent(this,ChangePassword.class));
+    //startActivity(new Intent(this,ChangePassword.class));
 
     }
 }

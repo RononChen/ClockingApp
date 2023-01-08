@@ -1,16 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
     xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".View.activity.SimpleEmployeeMenu"
     android:layout_gravity="center_horizontal"
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     android:layout_marginTop="10dp"
     app:layout_constraintTop_toTopOf="parent"
-    tools:context=".View.activity.SimpleEmployeeMenu"
+
     android:id="@+id/LinearLayout02"
 
     android:orientation="vertical">
@@ -25,12 +27,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        >
         <Button
             android:id="@+id/menu_clock"
             android:layout_width="120dp"
             android:layout_height="150dp"
-            android:layout_marginStart="25dp"
             android:layout_marginTop="20dp"
             android:drawableTop="@drawable/ic_baseline_timer_50"
             android:paddingTop="20dp"
@@ -47,7 +49,7 @@
             android:id="@+id/menu_presence_report"
             android:layout_width="120dp"
             android:layout_height="150dp"
-            android:layout_marginStart="25dp"
+            android:layout_marginStart="20dp"
             android:layout_marginTop="20dp"
             android:drawableTop="@drawable/ic_baseline_menu_book_50"
             android:paddingTop="20dp"
@@ -60,6 +62,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         app:layout_constraintTop_toBottomOf="@+id/LinearLayout1"
         android:id="@+id/LinearLayout2"
+        android:layout_marginTop="20dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:foregroundGravity="center"
@@ -71,7 +74,6 @@
             android:id="@+id/menu_my_presence_statistics"
             android:layout_width="120dp"
             android:layout_height="150dp"
-            android:layout_marginStart="25dp"
             android:drawableTop="@drawable/ic_baseline_pie_chart_50"
             android:paddingTop="20dp"
             android:background="@color/colorPrimary"
@@ -84,16 +86,15 @@
             android:id="@+id/menu_settings"
             android:layout_width="120dp"
             android:layout_height="150dp"
-            android:layout_marginStart="25dp"
-            android:layout_marginTop="20dp"
-            android:paddingTop="20dp"
+            android:layout_marginStart="20dp"
             android:drawableTop="@drawable/ic_baseline_app_settings_alt_50"
             android:background="@color/colorPrimary"
             android:text="@string/settings"
+            android:paddingTop="20dp"
             android:gravity="center"
             style="?android:attr/buttonBarButtonStyle" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <Button
+    <!--Button
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toEndOf="@id/LinearLayout2"
         android:id="@+id/menu_password"
@@ -104,7 +105,7 @@
         android:layout_marginTop="16dp"
         android:background="@drawable/mybutton"
         android:text="@string/login_password_text"
-        android:gravity="center"/>
+        android:gravity="center"/-->
 
 
 
