@@ -33,7 +33,7 @@ import uac.imsp.clockingapp.View.util.settings.IMainSettingsView;
 
 public class MainSetting extends AppCompatActivity implements View.OnClickListener, IMainSettingsView {
 TextView share,shareViaQR,overview,appVersion,clearCache,cacheSize,name,clock,dark,lang,problem,help,
-		email,desc,accountSettings,service;
+		email,desc,accountSettings,service,logout;
 	EditText input;
 Intent intent;
 ConstraintLayout nameLayout;
@@ -79,6 +79,8 @@ IMainSettingsController mainSettingsPresenter;
 		clearCache=findViewById(R.id.setting_clear_cache);
 		cacheSize=findViewById(R.id.setting_cache_size);
 		nameLayout=findViewById(R.id.setting_name_layout);
+		logout=findViewById(R.id.logout);
+		logout.setOnClickListener(this);
 		nameLayout.setOnClickListener(this);
 		name=findViewById(R.id.setting_name);
 		email=findViewById(R.id.setting_mail);
@@ -146,6 +148,8 @@ else if(v.getId()==R.id.setting_help)
 	mainSettingsPresenter.onHelp();
 else if(v.getId()==R.id.setting_problem)
 	mainSettingsPresenter.onReportProblem();
+else if(v.getId()==R.id.logout)
+	mainSettingsPresenter.onLogout();
 
 }
 
@@ -256,6 +260,25 @@ startActivity(intent);
 		intent=new Intent(MainSetting.this, Help.class);
 		startActivity(intent);
 
+	}
+
+	@Override
+	public void onLogout() {
+		AlertDialog.Builder builder = new AlertDialog.Builder(this);
+		builder.setMessage(getString(R.string.exit_confirmation_message))
+				.setCancelable(false)
+				.setNegativeButton(getString(R.string.no), (dialog, which) -> dialog.cancel())
+				.setPositiveButton(getString(R.string.yes), (dialog, which) -> {
+					moveTaskToBack(true);
+					//android.os.Process.killProcess(android.os.Process.myPid());
+					//System.exit(0);
+					finishAffinity();
+
+
+				});
+		AlertDialog alert = builder.create();
+		alert.setTitle(getString(R.string.exit_confirmation));
+		alert.show();
 	}
 
 	public void cacheSize(){

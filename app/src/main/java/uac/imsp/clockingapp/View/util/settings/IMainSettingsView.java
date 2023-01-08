@@ -17,4 +17,6 @@ public interface IMainSettingsView {
 	void onLanguage();
 	void onProblem();
 	void onHelp();
+
+	void onLogout();
 }

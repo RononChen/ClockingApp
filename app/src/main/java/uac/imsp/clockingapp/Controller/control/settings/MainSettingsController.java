@@ -52,6 +52,12 @@ mainSettingsView.onAccount();
 	}
 
 	@Override
+	public void onLogout() {
+		mainSettingsView.onLogout();
+
+	}
+
+	@Override
 	public void onClearAppCache() {
 		deleteCache();
 

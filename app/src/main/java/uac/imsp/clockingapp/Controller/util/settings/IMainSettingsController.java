@@ -8,6 +8,7 @@ public interface IMainSettingsController {
 	void onAppversin();
 	void onUsersDoc();
 	void onAccount();
+	void onLogout();
 	void onClearAppCache();
 	//About the establishment
 	void onName();
