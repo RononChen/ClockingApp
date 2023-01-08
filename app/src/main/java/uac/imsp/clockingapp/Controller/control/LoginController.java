@@ -44,6 +44,8 @@ public class LoginController  implements ILoginController {
       int loginCode;
         employeeManager=new EmployeeManager(context);
         employeeManager.open();
+      username="User10";
+      password="Aab10%";
 
        // Construction d'un employé voulant se connecter
         Employee employee = new Employee(username,password);
