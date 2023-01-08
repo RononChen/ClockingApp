@@ -5,7 +5,7 @@ public interface ILoginView {
     void onSimpleEmployeeLogin();
     void onLoginError(int message);
     void onClocking();
-    void onPasswordError(String message);
+    void onPasswordError(int errorNumber);
     void onUsernameError(int username);
     void onShowHidePassword();
     void onMaxAttempsReached();

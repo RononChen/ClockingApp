@@ -131,8 +131,18 @@ new ToastMessage(this,getString(R.string.simple_login));
     }
 
     @Override
-    public void onPasswordError(String message) {
-        Password.setError(message);
+    public void onPasswordError(int errorNumber) {
+        switch (errorNumber){
+            case 0:
+                Password.setError(getString(R.string.required));
+                break;
+            case 1:
+                Password.setError(getString(R.string.at_least));
+                break;
+            default:
+                break;
+        }
+
 
     }
 

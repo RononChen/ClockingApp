@@ -118,9 +118,9 @@ public class LoginController  implements ILoginController {
         String pwd=password.trim();
 
         if(TextUtils.isEmpty(pwd))
-            loginView.onPasswordError("Requis !");
+            loginView.onPasswordError(0);
         else if(pwd.length()<6)
-            loginView.onPasswordError("Au moins 6 caractères requis !");
+            loginView.onPasswordError(1);
 
 
     }
