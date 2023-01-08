@@ -15,6 +15,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.io.File;
 
@@ -35,9 +36,9 @@ TextView share,shareViaQR,overview,appVersion,clearCache,cacheSize,name,clock,da
 		email,desc,accountSettings,service;
 	EditText input;
 Intent intent;
-LinearLayout nameLayout;
-	LinearLayout emailLayout;
-	LinearLayout descLayout;
+ConstraintLayout nameLayout;
+	ConstraintLayout emailLayout;
+	ConstraintLayout descLayout;
 	long cacheSizeValue;
 String dialogInput;
 
