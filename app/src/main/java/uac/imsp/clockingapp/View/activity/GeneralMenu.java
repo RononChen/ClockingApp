@@ -172,8 +172,9 @@ public class GeneralMenu extends AppCompatActivity implements View.OnClickListen
                 .setNegativeButton(getString(R.string.no), (dialog, which) -> dialog.cancel())
                 .setPositiveButton(getString(R.string.yes), (dialog, which) -> {
                     moveTaskToBack(true);
-                    android.os.Process.killProcess(android.os.Process.myPid());
-                    System.exit(0);
+                   // android.os.Process.killProcess(android.os.Process.myPid());
+                   // System.exit(0);
+                    finishAffinity();
 
 
                 });
