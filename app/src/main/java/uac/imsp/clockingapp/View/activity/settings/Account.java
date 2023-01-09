@@ -4,12 +4,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import uac.imsp.clockingapp.Controller.control.ChangePasswordController;
 import uac.imsp.clockingapp.Controller.util.IChangePasswordController;
@@ -18,7 +18,7 @@ import uac.imsp.clockingapp.View.util.IAccountView;
 import uac.imsp.clockingapp.View.util.ToastMessage;
 
 public class Account extends AppCompatActivity implements View.OnClickListener, IAccountView {
-	LinearLayout password;
+	ConstraintLayout password;
 	private IChangePasswordController changePasswordPresenter;
 	EditText oldPassword,newPassword,newPasswordConfirm;
 	TextView username;
