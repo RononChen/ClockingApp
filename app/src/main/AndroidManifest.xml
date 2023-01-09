@@ -153,9 +153,11 @@
             android:label="@string/simple_employee_menu"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".View.activity.ConsultStatisticsByEmployee"
             android:label="@string/menu_statistics_by_employee"
-            android:exported="false" />
+            android:exported="false"
+            tools:ignore="LockedOrientationActivity" />
         <activity
             android:name=".View.activity.Login"
             android:label="@string/login_button_text"
@@ -169,10 +171,12 @@
             android:label="@string/menu_presence_report"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".View.activity.ConsultStatisticsByService"
             android:label="@string/menu_statistics_by_service"
             android:exported="false" />
         <activity
+            android:screenOrientation="portrait"
             android:name=".View.activity.SearchEmployee"
             android:label="@string/menu_search_button"
             android:exported="false"
