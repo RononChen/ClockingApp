@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -45,6 +46,16 @@ public class ShowAdminAccount extends AppCompatActivity
 	public void onStart(String username, String password) {
 		this.username.setText(username);
 		this.password.setText(password);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+		if(item.getItemId()==android.R.id.home)
+		{
+			finish();
+			onBackPressed();
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 	@Override

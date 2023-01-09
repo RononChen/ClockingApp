@@ -326,6 +326,9 @@
     <string name="max_reached">Trois tentatives d\'authentification échouées !</string>
     <string name="switch_simple">Switch to simple employee account</string>
     <string name="change_password">Change password</string>
+    <string name="simple_employee_menu">Simple Employee Menu</string>
+    <string name="acccount_informations">Informations de compte</string>
+    <string name="get_started">Démarrer</string>
 
 
     "Version du système d'exploitation:\n"+
