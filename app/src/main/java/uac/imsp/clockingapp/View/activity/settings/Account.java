@@ -17,11 +17,13 @@ import uac.imsp.clockingapp.R;
 import uac.imsp.clockingapp.View.util.IAccountView;
 import uac.imsp.clockingapp.View.util.ToastMessage;
 
-public class Account extends AppCompatActivity implements View.OnClickListener, IAccountView {
+public class Account extends AppCompatActivity implements View.OnClickListener,
+		IAccountView {
 	ConstraintLayout passwordLayout;
 	private IChangePasswordController changePasswordPresenter;
 	EditText oldPassword,newPassword,newPasswordConfirm;
 	TextView username;
+	Button changePassword,update;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -39,8 +41,10 @@ public class Account extends AppCompatActivity implements View.OnClickListener, 
 	}
 
 	public void initView(){
-		final Button changePassword=findViewById(R.id.change_password);
-		 username=findViewById(R.id.change_password_username);
+		 changePassword=findViewById(R.id.change_password);
+		 update=findViewById(R.id.change_password_button);
+		 update.setOnClickListener(this);
+		 username=findViewById(R.id.username);
 		  passwordLayout =findViewById(R.id.password_layout);
 		changePassword.setOnClickListener(this);
 	}
@@ -48,12 +52,14 @@ public class Account extends AppCompatActivity implements View.OnClickListener, 
 	@Override
 	public void onClick(@NonNull View v) {
 		if(v.getId()==R.id.change_password) {
+			username.setVisibility(View.GONE);
+			changePassword.setVisibility(View.GONE);
 			passwordLayout.setVisibility(View.VISIBLE);
 			newPassword = findViewById(R.id.change_password_new_password);
 			oldPassword = findViewById(R.id.change_password_old_password);
 			newPasswordConfirm = findViewById(R.id.change_password_new_password_confirm);
 		}
-		else {
+		else if(v.getId()==R.id.change_password_button) {
 
 			changePasswordPresenter.onSubmit(oldPassword.getText().toString().trim(),
 					newPassword.getText().toString().trim(),
