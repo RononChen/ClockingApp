@@ -2,10 +2,12 @@ package uac.imsp.clockingapp.View.activity.settings;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import uac.imsp.clockingapp.R;
@@ -21,6 +23,12 @@ public class SimpleEmployeeSettings extends AppCompatActivity implements View.On
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_simple_employee_settings);
+
+		setContentView(R.layout.activity_general_menu);
+		ActionBar actionBar = getSupportActionBar();
+// showing the back button in action bar
+		assert actionBar != null;
+		actionBar.setDisplayHomeAsUpEnabled(true);
 		initView();
 	}
 	public void initView(){
@@ -37,6 +45,12 @@ public class SimpleEmployeeSettings extends AppCompatActivity implements View.On
 		personalInfos.setOnClickListener(this);
 		accountSettings.setOnClickListener(this);
 
+	}
+
+	public boolean onCreateOptionsMenu(android.view.Menu menu) {
+		MenuInflater inflater=getMenuInflater();
+		inflater.inflate(R.menu.general_menu,menu);
+		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override

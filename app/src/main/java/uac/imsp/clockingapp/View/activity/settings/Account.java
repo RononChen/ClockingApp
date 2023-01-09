@@ -1,6 +1,7 @@
 package uac.imsp.clockingapp.View.activity.settings;
 
 import android.os.Bundle;
+import android.view.MenuInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -75,6 +76,12 @@ public class Account extends AppCompatActivity implements View.OnClickListener,
 		new ToastMessage(this,message);
 
 
+	}
+
+	public boolean onCreateOptionsMenu(android.view.Menu menu) {
+		MenuInflater inflater=getMenuInflater();
+		inflater.inflate(R.menu.general_menu,menu);
+		return super.onCreateOptionsMenu(menu);
 	}
 
 	@Override

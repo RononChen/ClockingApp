@@ -52,7 +52,6 @@ public class GeneralMenu extends AppCompatActivity implements View.OnClickListen
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
         MenuInflater inflater=getMenuInflater();
         inflater.inflate(R.menu.general_menu,menu);
-       // menu.add("");
         return super.onCreateOptionsMenu(menu);
     }
 
