@@ -1,8 +1,11 @@
 package uac.imsp.clockingapp.View.activity;
 
+import android.annotation.SuppressLint;
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
@@ -38,11 +41,39 @@ public class SimpleEmployeeMenu extends AppCompatActivity
 
     }
 
+
+
     public boolean onCreateOptionsMenu(android.view.Menu menu) {
         MenuInflater inflater=getMenuInflater();
         inflater.inflate(R.menu.general_menu,menu);
+        menu.removeItem(R.id.settings);
         return super.onCreateOptionsMenu(menu);
     }
+
+
+    @SuppressLint("NonConstantResourceId")
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId())
+        {
+
+            case R.id.logout:
+                simpleEmployeeMenuPresenter.onExit();
+
+                break;
+            case android.R.id.home:
+                finish();
+                onBackPressed();
+                break;
+            default:
+                break;
+
+
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
     public void initView(){
        //final Button password=findViewById(R.id.menu_password);
         //password.setOnClickListener(this);
@@ -87,8 +118,19 @@ public class SimpleEmployeeMenu extends AppCompatActivity
 
     @Override
     public void onExit() {
-  startActivity(new Intent(this,SimpleEmployeeMenu.class));
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(getString(R.string.exit_confirmation_message))
+                .setCancelable(false)
+                .setNegativeButton(getString(R.string.no), (dialog, which) -> dialog.cancel())
+                .setPositiveButton(getString(R.string.yes), (dialog, which) -> {
+                    moveTaskToBack(true);
+                    finishAffinity();
 
+
+                });
+        AlertDialog alert = builder.create();
+        alert.setTitle(getString(R.string.exit_confirmation));
+        alert.show();
     }
 
     @Override
@@ -102,9 +144,6 @@ else if(v.getId()==R.id.menu_my_presence_statistics)
 else if(v.getId()==R.id.menu_settings)
     simpleEmployeeMenuPresenter.onSettings();
 
-//else if(v.getId()==R.id.menu_password)
-
-    //startActivity(new Intent(this,ChangePassword.class));
 
     }
 }

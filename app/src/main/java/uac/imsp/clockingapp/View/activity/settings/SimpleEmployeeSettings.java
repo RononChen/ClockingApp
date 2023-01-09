@@ -2,7 +2,7 @@ package uac.imsp.clockingapp.View.activity.settings;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -10,21 +10,25 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import uac.imsp.clockingapp.Controller.control.SimpleEmployeeMenuController;
+import uac.imsp.clockingapp.Controller.util.ISimpleEmployeeMenuController;
 import uac.imsp.clockingapp.R;
 import uac.imsp.clockingapp.View.activity.settings.others.DarkMode;
 import uac.imsp.clockingapp.View.activity.settings.others.Help;
 import uac.imsp.clockingapp.View.activity.settings.others.Languages;
 import uac.imsp.clockingapp.View.activity.settings.others.ReportProblem;
+import uac.imsp.clockingapp.View.util.ISimpleEmployeeMenuView;
 
-public class SimpleEmployeeSettings extends AppCompatActivity implements View.OnClickListener {
+public class SimpleEmployeeSettings extends AppCompatActivity
+		implements View.OnClickListener, ISimpleEmployeeMenuView {
+	private ISimpleEmployeeMenuController simpleEmployeeMenuPresenter;
 
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_simple_employee_settings);
-
-		setContentView(R.layout.activity_general_menu);
+		simpleEmployeeMenuPresenter=new SimpleEmployeeMenuController(this);
 		ActionBar actionBar = getSupportActionBar();
 // showing the back button in action bar
 		assert actionBar != null;
@@ -47,11 +51,7 @@ public class SimpleEmployeeSettings extends AppCompatActivity implements View.On
 
 	}
 
-	public boolean onCreateOptionsMenu(android.view.Menu menu) {
-		MenuInflater inflater=getMenuInflater();
-		inflater.inflate(R.menu.general_menu,menu);
-		return super.onCreateOptionsMenu(menu);
-	}
+
 
 	@Override
 	public void onClick(@NonNull View v) {
@@ -85,6 +85,40 @@ public class SimpleEmployeeSettings extends AppCompatActivity implements View.On
 			startActivity(new Intent(this, Help.class));
 
 		}
+
+	}
+
+		@Override
+	public void onConsultatisticsMenuSuccessful() {
+
+	}
+
+	@Override
+	public void onClocking() {
+
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+		if(item.getItemId()==android.R.id.home){
+			finish();
+			onBackPressed();
+		}
+		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	public void onSettings() {
+
+	}
+
+	@Override
+	public void onConsultPresenceReport() {
+
+	}
+
+	@Override
+	public void onExit() {
 
 	}
 }

@@ -27,7 +27,7 @@
 
         <RadioButton
             android:id="@+id/languages_fr"
-            android:layout_width="69dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:text="@string/french"

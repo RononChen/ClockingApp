@@ -1,7 +1,7 @@
 package uac.imsp.clockingapp.View.activity.settings;
 
 import android.os.Bundle;
-import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -78,17 +78,20 @@ public class Account extends AppCompatActivity implements View.OnClickListener,
 
 	}
 
-	public boolean onCreateOptionsMenu(android.view.Menu menu) {
-		MenuInflater inflater=getMenuInflater();
-		inflater.inflate(R.menu.general_menu,menu);
-		return super.onCreateOptionsMenu(menu);
-	}
-
 	@Override
 	public void onWrongPassword() {
 		String message=getString(R.string.password_invalid);
 		new ToastMessage(this,message);
 
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+		if (item.getItemId() == android.R.id.home) {
+			finish();
+			onBackPressed();
+		}
+		return super.onOptionsItemSelected(item);
 	}
 
 	@Override
