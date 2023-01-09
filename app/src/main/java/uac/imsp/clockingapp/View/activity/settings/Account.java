@@ -18,7 +18,7 @@ import uac.imsp.clockingapp.View.util.IAccountView;
 import uac.imsp.clockingapp.View.util.ToastMessage;
 
 public class Account extends AppCompatActivity implements View.OnClickListener, IAccountView {
-	ConstraintLayout password;
+	ConstraintLayout passwordLayout;
 	private IChangePasswordController changePasswordPresenter;
 	EditText oldPassword,newPassword,newPasswordConfirm;
 	TextView username;
@@ -41,14 +41,14 @@ public class Account extends AppCompatActivity implements View.OnClickListener, 
 	public void initView(){
 		final Button changePassword=findViewById(R.id.change_password);
 		 username=findViewById(R.id.change_password_username);
-		  password=findViewById(R.id.password);
+		  passwordLayout =findViewById(R.id.password_layout);
 		changePassword.setOnClickListener(this);
 	}
 
 	@Override
 	public void onClick(@NonNull View v) {
-		if(v.getId()==R.id.password) {
-			password.setVisibility(View.VISIBLE);
+		if(v.getId()==R.id.change_password) {
+			passwordLayout.setVisibility(View.VISIBLE);
 			newPassword = findViewById(R.id.change_password_new_password);
 			oldPassword = findViewById(R.id.change_password_old_password);
 			newPasswordConfirm = findViewById(R.id.change_password_new_password_confirm);
