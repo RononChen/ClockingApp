@@ -15,6 +15,7 @@
         tools:targetApi="31">
         <activity
             android:name=".View.activity.settings.Account"
+            android:label="@string/my_account"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -22,6 +23,7 @@
         </activity>
         <activity
             android:name=".View.activity.settings.SimpleEmployeeSettings"
+            android:label="@string/settings"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -36,6 +38,7 @@
         </activity>
         <activity
             android:name=".View.activity.ShowAdminAccount"
+            android:label="@string/acccount_informations"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -147,6 +150,7 @@
             android:exported="false" />
         <activity
             android:name=".View.activity.SimpleEmployeeMenu"
+            android:label="@string/simple_employee_menu"
             android:exported="false" />
         <activity
             android:name=".View.activity.ConsultStatisticsByEmployee"
@@ -158,6 +162,7 @@
             android:exported="false" />
         <activity
             android:name=".View.activity.SetUp"
+            android:label="@string/get_started"
             android:exported="false" />
         <activity
             android:name=".View.activity.ConsultPresenceReport"
