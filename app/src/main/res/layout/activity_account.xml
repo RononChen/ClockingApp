@@ -1,32 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
+<androidx.constraintlayout.widget.ConstraintLayout
     android:orientation="vertical"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".View.activity.settings.Account">
+    tools:context=".View.activity.settings.Account"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
     <TextView
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         android:id="@+id/username"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
     <Button
+        android:text="@string/change_password"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/username"
         android:id="@+id/change_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        app:layout_constraintTop_toBottomOf="@+id/change_password"
+        app:layout_constraintStart_toStartOf="parent"
         android:id="@+id/password"
-        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
         >
         <TextView
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/change_password_username"
             android:layout_width="wrap_content"
             android:text="@string/register_username_text"
             android:layout_height="wrap_content"/>
         <EditText
+            app:layout_constraintTop_toBottomOf="@+id/change_password_username"
+           app:layout_constraintStart_toStartOf="parent"
             android:id="@+id/change_password_old_password"
             android:hint="@string/old_password"
             android:layout_width="wrap_content"
@@ -34,6 +45,8 @@
             android:autofillHints=""
             android:inputType="textPassword" />
         <EditText
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/change_password_old_password"
             android:id="@+id/change_password_new_password"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -41,6 +54,8 @@
             android:hint="@string/new_password"
             android:inputType="textPassword" />
         <EditText
+            app:layout_constraintTop_toBottomOf="@id/change_password_new_password"
+            app:layout_constraintStart_toStartOf="parent"
             android:id="@+id/change_password_new_password_confirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -48,6 +63,8 @@
             android:hint="@string/confirm_new_password"
             android:inputType="textPassword" />
         <Button
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/change_password_new_password_confirm"
             android:id="@+id/change_password_button"
             android:background="@drawable/mybutton"
             android:text="@string/modify"
@@ -55,6 +72,6 @@
             android:layout_height="wrap_content"/>
 
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
