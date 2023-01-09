@@ -325,6 +325,7 @@
     <string name="account_management">Gestion de compte</string>
     <string name="max_reached">Trois tentatives d\'authentification échouées !</string>
     <string name="switch_simple">Switch to simple employee account</string>
+    <string name="change_password">Change password</string>
 
 
     "Version du système d'exploitation:\n"+
