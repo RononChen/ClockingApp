@@ -329,6 +329,7 @@
     <string name="simple_employee_menu">Simple Employee Menu</string>
     <string name="acccount_informations">Informations de compte</string>
     <string name="get_started">Démarrer</string>
+    <string name="ok">Okay</string>
 
 
     "Version du système d'exploitation:\n"+
