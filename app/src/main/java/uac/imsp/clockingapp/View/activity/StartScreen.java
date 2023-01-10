@@ -13,6 +13,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import uac.imsp.clockingapp.BuildConfig;
 import uac.imsp.clockingapp.Controller.control.StartScreenController;
 import uac.imsp.clockingapp.Controller.util.IStartScreenController;
+import uac.imsp.clockingapp.LocalHelper;
 import uac.imsp.clockingapp.R;
 import uac.imsp.clockingapp.View.util.IStartScreenView;
 import uac.imsp.clockingapp.View.util.ToastMessage;
@@ -43,6 +44,8 @@ implements View.OnClickListener  , IStartScreenView {
 
 
         lang=preferences.getString("lang","fr");
+        //String loc= LocalHelper.getSelectedLanguage(this);
+        LocalHelper.changeAppLanguage(this,lang);
 
 
 
