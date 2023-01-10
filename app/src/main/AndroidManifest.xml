@@ -14,17 +14,24 @@
         android:theme="@style/MyAppTheme"
         tools:targetApi="31">
         <activity
-            android:name=".View.activity.settings.Account"
-            android:label="@string/my_account"
+            android:name=".PersonalInformations"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
+            android:name=".View.activity.settings.Account"
+            android:exported="false"
+            android:label="@string/my_account">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".View.activity.settings.SimpleEmployeeSettings"
-            android:label="@string/settings"
-            android:exported="false">
+            android:exported="false"
+            android:label="@string/settings">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -38,88 +45,88 @@
         </activity>
         <activity
             android:name=".View.activity.ShowAdminAccount"
-            android:label="@string/acccount_informations"
-            android:exported="false">
+            android:exported="false"
+            android:label="@string/acccount_informations">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".View.activity.Services"
-            android:label="@string/manage_services"
-            android:exported="false">
+            android:exported="false"
+            android:label="@string/manage_services">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".View.activity.Savefingerprint"
-            android:label="@string/save_fingerprint"
-            android:exported="false">
+            android:exported="false"
+            android:label="@string/save_fingerprint">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".View.activity.settings.others.Help"
-            android:label="@string/help"
-            android:exported="false">
+            android:exported="false"
+            android:label="@string/help">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".View.activity.settings.others.ReportProblem"
-            android:label="@string/report_problem"
-            android:exported="false">
+            android:exported="false"
+            android:label="@string/report_problem">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".View.activity.settings.others.Languages"
-            android:label="@string/languages"
-            android:exported="false">
+            android:exported="false"
+            android:label="@string/languages">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".View.activity.settings.others.DarkMode"
-            android:label="@string/dark"
-            android:exported="false">
+            android:exported="false"
+            android:label="@string/dark">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".View.activity.settings.others.Clocking"
-            android:label="@string/attendance_gesture"
-            android:exported="false">
+            android:exported="false"
+            android:label="@string/attendance_gesture">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".View.activity.settings.Overview"
-            android:label="@string/overview"
-            android:exported="false">
+            android:exported="false"
+            android:label="@string/overview">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".View.activity.settings.ShareAppViaQRCode"
-            android:label="@string/share_via_qr"
-            android:exported="false">
+            android:exported="false"
+            android:label="@string/share_via_qr">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
             android:name=".View.activity.settings.MainSetting"
-            android:label="@string/settings"
-            android:exported="false">
+            android:exported="false"
+            android:label="@string/settings">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
@@ -150,32 +157,32 @@
             android:exported="false" />
         <activity
             android:name=".View.activity.SimpleEmployeeMenu"
-            android:label="@string/simple_employee_menu"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/simple_employee_menu" />
         <activity
             android:name=".View.activity.ConsultStatisticsByEmployee"
-            android:label="@string/menu_statistics_by_employee"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/menu_statistics_by_employee" />
         <activity
             android:name=".View.activity.Login"
-            android:label="@string/login_button_text"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/login_button_text" />
         <activity
             android:name=".View.activity.SetUp"
-            android:label="@string/get_started"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/get_started" />
         <activity
             android:name=".View.activity.ConsultPresenceReport"
-            android:label="@string/menu_presence_report"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/menu_presence_report" />
         <activity
             android:name=".View.activity.ConsultStatisticsByService"
-            android:label="@string/menu_statistics_by_service"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/menu_statistics_by_service" />
         <activity
             android:name=".View.activity.SearchEmployee"
-            android:label="@string/menu_search_button"
             android:exported="false"
+            android:label="@string/menu_search_button"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
@@ -187,31 +194,31 @@
         </activity>
         <activity
             android:name=".View.activity.UpdateEmployee"
-            android:label="@string/menu_update_button"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/menu_update_button" />
         <activity
             android:name=".View.activity.settings.ManageUsername"
-            android:label="@string/account_management"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/account_management" />
         <activity
             android:name=".View.activity.Generator"
             android:exported="false" />
         <activity
             android:name=".View.activity.ClockInOut"
-            android:label="@string/clocking_text"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/clocking_text" />
         <activity
             android:name=".View.activity.DeleteEmployee"
-            android:label="@string/menu_delete_button"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/menu_delete_button" />
         <activity
             android:name=".View.activity.GeneralMenu"
-            android:label="@string/menu"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/menu" />
         <activity
             android:name=".View.activity.RegisterEmployee"
-            android:label="@string/general_menu_register"
-            android:exported="false" />
+            android:exported="false"
+            android:label="@string/general_menu_register" />
         <activity
             android:name=".View.activity.StartScreen"
             android:exported="true">
