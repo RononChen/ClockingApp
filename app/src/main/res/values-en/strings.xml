@@ -4,6 +4,17 @@
     <string name="register_lastname_text">Lastname</string>
     <string name="login_username_hint">Username</string>
     <string name="login_password_hint">Password</string>
+
+
+    <string name="max_reached">Trois tentatives d\'authentification échouées !</string>
+<string name="switch_simple">Switch to simple employee account</string>
+<string name="change_password">Change password</string>
+<string name="simple_employee_menu">Simple Employee Menu</string>
+<string name="acccount_informations">Account informations</string>
+<string name="get_started">Set Up</string>
+<string name="ok">Okay</string>
+
+
     <string name="copied">Copied</string>
     <string name="simple_login">Connected</string>
     <string name="admin_delete_error">At least one admin required!</string>
@@ -294,7 +305,7 @@
     <string name="menu">Menu</string>
     <string name="wlc">Accueil</string>
     <string name="account_management">Gestion de compte</string>
-    <string name="max_reached">Trois tentatives d\'authentification échouées !</string>
+
 
 
 </resources>

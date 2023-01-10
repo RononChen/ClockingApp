@@ -21,6 +21,15 @@
     <string name="simple_login">Connection effectuée</string>
 
 
+
+    <string name="switch_simple">Passer au compte simple employé</string>
+    <string name="change_password">Changer le mot de passe</string>
+    <string name="simple_employee_menu">Menu simple employé</string>
+    <string name="acccount_informations">Account informations</string>
+    <string name="get_started">Set Up</string>
+    <string name="ok">Okay</string>
+
+
     <string-array name="months">
         <item>Janvier</item>
         <item>Février</item>
@@ -227,7 +236,7 @@
     <string name="at_most" >Au plus 30 caractères requis \!</string>
     <string name="notify_admin_login" >Vous \êtes connecté en tant qu\'administrateur \!</string>
     <string name="notify_simple_login" >Vous \êtes connecté en tant que simple employé  \!</string>
-    <string name="all__fields_required">Tousles champs sont requis  \!</string>
+    <string name="all__fields_required">Tous les champs sont requis  \!</string>
     <string name="invalid_password">Mot de passe invalide  \!</string>
     <string name="incorrect_password">Mot de passe incorrect  \!</string>
     <string name="chech_and_retry">Vérifiez le mot de passe précédent et reessayez  \!</string>
