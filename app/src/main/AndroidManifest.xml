@@ -14,7 +14,7 @@
         android:theme="@style/MyAppTheme"
         tools:targetApi="31">
         <activity
-            android:name=".PersonalInformations"
+            android:name=".View.activity.settings.PersonalInformations"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
