@@ -311,7 +311,7 @@
                                 <PersistentState>
                                   <option name="values">
                                     <map>
-                                      <entry key="url" value="file:$USER_HOME$/Android/Sdk/icons/material/materialicons/qr_code_scanner/baseline_qr_code_scanner_24.xml" />
+                                      <entry key="url" value="file:$USER_HOME$/Android/Sdk/icons/material/materialicons/switch_account/baseline_switch_account_24.xml" />
                                     </map>
                                   </option>
                                 </PersistentState>
@@ -322,7 +322,7 @@
                         <option name="values">
                           <map>
                             <entry key="opacityPercent" value="98" />
-                            <entry key="outputName" value="ic_baseline_qr_code_scanner_200" />
+                            <entry key="outputName" value="ic_baseline_switch_account_25" />
                           </map>
                         </option>
                       </PersistentState>

@@ -96,6 +96,7 @@ public class ConsultPresenceReport extends AppCompatActivity
                 this.firstDayNumberInWeek=firstDayNumberInWeek;
                 setReportVisible();
         }
+
         public void setReportVisible(){
                 TableRow tableRow;
                 boolean allBrowsed=false;

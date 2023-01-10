@@ -44,6 +44,12 @@
         <item name="windowNoTitle">false</item>
 
     </style>
+    <style name="MyAppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+        <!-- Customize your theme here -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
 
     <style name="AppTheme.CustomStyle">
         <!-- Customize your theme here. -->
@@ -54,6 +60,8 @@
         <item name="android:windowTranslucentStatus"  tools="NewApi">true</item>
         <item name="android:windowCloseOnTouchOutside">true</item>
     </style>
+
+
 
     <style name="AppTheme.NoActionBar">
         <item name="windowActionBar">false</item>
@@ -77,35 +85,6 @@
 
 
 
-    <!--style name="EditText" parent="@android:style/Widget.EditText">
 
-    <item name="android:textSize">@dimen/small_text</item>
-
-
-    <item name="android:background">@drawable/edit_text_bg</item>
-
-    <item name="android:paddingLeft">@dimen/edittext_padding_l</item>
-
-    <item name="android:paddingTop">@dimen/edittext_padding_tb</item>
-
-    <item name="android:paddingBottom">@dimen/edittext_padding_tb</item>
-
-    <item name="android:textAppearance">?android:textAppearanceLarge</item>
-
-    <item name="android:layout_width">fill_parent</item>
-
-    <item name="android:layout_height">wrap_content</item>
-
-    <item name="android:layout_marginTop">@dimen/one_step</item>
-
-    <item name="android:maxLines">1</item>
-
-    <item name="android:singleLine">true</item>
-
-    <item name="android:drawablePadding">@dimen/edittext_drawable_padding_l</item>
-        <!style name="AppTheme.NoActionBar">
-            <item name="windowActionBar">false</item>
-            <item name="windowNoTitle">true</item>
-        </style-->
 
 </resources>
