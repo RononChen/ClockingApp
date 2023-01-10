@@ -64,6 +64,7 @@ public class ClockInOut extends AppCompatActivity
 // showing the back button in action bar
         assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle(R.string.clocking_text);
         retrieveSharedPreferences();
         setContentView(useQRcode? R.layout.activity_scanner:R.layout.fingerprint_gesture);
         initViews();

@@ -92,6 +92,7 @@ public class UpdateEmployee extends AppCompatActivity
 // showing the back button in action bar
         assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle(R.string.menu_update_button);
         retrieveSharedPreferences();
         updateEmployeePresenter = new UpdateEmployeeController(this);
 

@@ -34,7 +34,6 @@ public class SearchEmployee extends AppCompatActivity
     AlertDialog dialog;
     SearchEmployeeController searchEmployeePresenter;
 
-    private Intent intent;
     private int  Number;
     private  androidx.appcompat.widget.SearchView search;
 
@@ -109,7 +108,7 @@ public class SearchEmployee extends AppCompatActivity
 
     @Override
     public void onDelete() {
-        intent=new Intent(SearchEmployee.this,DeleteEmployee.class);
+        Intent intent = new Intent(SearchEmployee.this, DeleteEmployee.class);
         intent.putExtra("CURRENT_USER",getIntent().getIntExtra("CURRENT_USER",0)
         );
         intent.putExtra("ACTION_NUMBER",Number);

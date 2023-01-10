@@ -56,6 +56,7 @@ public class ConsultStatisticsByEmployee extends AppCompatActivity
 // showing the back button in action bar
         assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle(R.string.menu_statistics_by_employee);
        initView();
 
         int actionNumber = getIntent().getIntExtra("ACTION_NUMBER", 0);

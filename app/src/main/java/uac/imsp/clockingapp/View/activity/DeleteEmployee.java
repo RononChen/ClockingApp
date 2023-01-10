@@ -52,7 +52,7 @@ public class DeleteEmployee extends AppCompatActivity
 // showing the back button in action bar
         assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
-
+        actionBar.setTitle(R.string.menu_delete_button);
         retrieveSharedPreferences();
         setContentView(R.layout.activity_delete_employee);
 

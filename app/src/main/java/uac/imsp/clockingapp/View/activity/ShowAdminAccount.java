@@ -37,6 +37,7 @@ public class ShowAdminAccount extends AppCompatActivity
 // showing the back button in action bar
 		assert actionBar != null;
 		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setTitle(R.string.acccount_informations);
 		initView();
 		showAdminAcountPresenter=new ShowAdminAcountController(this);
 		showAdminAcountPresenter.onLoad();

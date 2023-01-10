@@ -57,6 +57,7 @@ implements IConsultStatisticsByServiceView, AdapterView.OnItemSelectedListener,
 // showing the back button in action bar
             assert actionBar != null;
             actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.setTitle(R.string.menu_statistics_by_service);
            initView();
             consultStatisticsByServicePresenter=new
                     ConsultStatisticsByServiceController(this);

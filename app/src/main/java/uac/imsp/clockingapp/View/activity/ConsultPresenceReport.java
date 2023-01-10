@@ -48,6 +48,7 @@ public class ConsultPresenceReport extends AppCompatActivity
 // showing the back button in action bar
             assert actionBar != null;
             actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle(R.string.menu_presence_report);
                 setContentView(R.layout.activity_consult_presence_report);
 
                 consultPresenceReportPresenter=

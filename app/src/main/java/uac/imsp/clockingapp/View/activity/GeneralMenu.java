@@ -41,6 +41,7 @@ public class GeneralMenu extends AppCompatActivity implements View.OnClickListen
 // showing the back button in action bar
         assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle(R.string.menu);
        initView();
        menuPresenter= new GeneralMenuController(this) ;
        currentUser=getIntent().getIntExtra("CURRENT_USER",0);

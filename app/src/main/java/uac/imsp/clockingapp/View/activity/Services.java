@@ -70,6 +70,7 @@ public class Services extends AppCompatActivity implements IServicesView,
 // showing the back button in action bar
 		assert actionBar != null;
 		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setTitle(R.string.service_management);
 		initView();
 		servicesPresenter=new ServicesController(this);
 		servicesPresenter.onStart();

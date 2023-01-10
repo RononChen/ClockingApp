@@ -19,6 +19,7 @@ public class NoServiceAvailable extends AppCompatActivity
 // showing the back button in action bar
         assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle(R.string.no_service_available);
     }
     public void initView(){
         /*TextView errorMesssage = findViewById(R.id.no_service_message);
