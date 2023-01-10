@@ -60,6 +60,7 @@ public class SimpleEmployeeSettings extends AppCompatActivity
 
 		}
 		else if (v.getId()==R.id.setting_personal_infos){
+			startActivity(new Intent(this, PersonalInformations.class));
 
 		}
 		else if (v.getId()==R.id.setting_docs){
