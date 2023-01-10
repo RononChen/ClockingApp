@@ -129,16 +129,22 @@ public class StartScreenController  implements IStartScreenController {
          if the employees daily attendence is not already updated the current day
          */
         if(!Objects.equals(lastUpdate, day.getDate()))
-           for(Employee employee:employees)
-           {
-               if(employeeManager.shouldNotWorkToday(employee))
-                  status="Hors service";
-               else
-                  status="Absent";
-                employeeManager.setDayAttendance(employee,status,day);
+        {
+            Day d=new Day(lastUpdate);
+            while(d.getDate().compareTo(day.getDate()) <=0) {
+                for (Employee employee : employees) {
+                    if (employeeManager.shouldNotWorkThatDay(employee, d))
+                        status = "Hors service";
+                    else
+                        status = "Absent";
+                    employeeManager.setDayAttendance(employee, status, day);
+                }
+                d=d.addADay();
+            }
 
-        }
+
+
         employeeManager.updateVariable();
         employeeManager.close();
     }
-}
+}}
