@@ -43,7 +43,7 @@ public class SimpleEmployeeMenu extends AppCompatActivity
 
 
 
-    public boolean onCreateOptionsMenu(android.view.Menu menu) {
+    public boolean onCreateOptionsMenu(@NonNull android.view.Menu menu) {
         MenuInflater inflater=getMenuInflater();
         inflater.inflate(R.menu.general_menu,menu);
         menu.removeItem(R.id.settings);
