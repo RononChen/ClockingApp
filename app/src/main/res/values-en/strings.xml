@@ -6,7 +6,7 @@
     <string name="login_password_hint">Password</string>
 
 
-    <string name="max_reached">Trois tentatives d\'authentification échouées !</string>
+    <string name="max_reached">Three failed authentication attempts!</string>
 <string name="switch_simple">Switch to simple employee account</string>
 <string name="change_password">Change password</string>
 <string name="simple_employee_menu">Simple Employee Menu</string>
@@ -120,13 +120,13 @@
     <string name="registration_title">Enter employee informations please</string>
     <string name="menu_delete_button">Delete employee</string>
     <string name="delete_button">Delete</string>
-    <string name="manage_services">Gérer les services</string>
-    <string name="save_fingerprint">Enreisterer des empreintes</string>
-    <string name="update_succcessful">Employé modifié avec succès</string>
-    <string name="notification_title">Notification de mise à jour d\'employé</string>
-    <string name="notification">Certaines de vos informations ont été modifiées</string>
+    <string name="manage_services">Manage services</string>
+    <string name="save_fingerprint">Register fingerprints</string>
+    <string name="update_succcessful">Employee updated successfully</string>
+    <string name="notification_title">Employee update notification</string>
+    <string name="notification">Some of your information has been changed</string>
 
-    <string name="noting_changed">Aucune information modifiée</string>
+    <string name="noting_changed">No modified information</string>
     <string name="delete">Delete</string>
     <string name="suppression_d_employ">Employee deletion</string>
     <string name="sexe">Gender</string>
@@ -271,7 +271,7 @@
         <item>Exited</item>
     </string-array>
 
-    <string name="subject_registration" >Informations de compte employé</string>
+    <string name="subject_registration" >Employee account informations</string>
     <string name="has_been" >, you have been registered as employee.\nCheck below
      your account information.\n Username: </string>
     <string name="pass" >Password: </string>
@@ -290,21 +290,21 @@
 
 </string>
     <string name="cliquer_longuement_pour_supprimer_ncliquer_pour_diter">Long click to delete\nClick to edit</string>
-    <string name="thanks">Merci d\'avoir installé l\'application</string>
-    <string name="contin">Continuer</string>
-    <string name="user_or_password" translatable="false"> Username ou mot de passe incorrect !
+    <string name="thanks">Thank\'s for installing the app</string>
+    <string name="contin">Continue</string>
+    <string name="user_or_password" translatable="false">Incorect username or password !
     </string>
     <string name="settings">Paramètres</string>
     <string name="exit">Quitter</string>
-    <string name="presence_stat">Mes statistiques de présence</string>
-    <string name="my_presence_report">Mes rapports de présence</string>
+    <string name="presence_stat">My attendance statistics</string>
+    <string name="my_presence_report">My presence reports</string>
     <string name="service_management">Services management</string>
-    <string name="my_account">Mon compte</string>
-    <string name="personal_informations">Informations personnelles</string>
-    <string name="menu_statistics_by_service">Statistiques par services</string>
+    <string name="my_account">My account</string>
+    <string name="personal_informations">Personal informations</string>
+    <string name="menu_statistics_by_service">Statistics by service</string>
     <string name="menu">Menu</string>
-    <string name="wlc">Accueil</string>
-    <string name="account_management">Gestion de compte</string>
+    <string name="wlc">Home</string>
+    <string name="account_management">Account management</string>
 
 
 
