@@ -1,6 +1,5 @@
 package uac.imsp.clockingapp.View.activity.settings.others;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
@@ -63,21 +62,21 @@ public class Languages extends AppCompatActivity implements ILanguagesView,
 		radioGroup.setOnCheckedChangeListener(this);
 	}
 	public void retrievePreferences(){
-		final  String PREFS_NAME="MyPrefsFile";
+		/*final  String PREFS_NAME="MyPrefsFile";
 		preferences= getApplicationContext().getSharedPreferences(PREFS_NAME,
 				Context.MODE_PRIVATE);
 
-		editor=preferences.edit();
-		currentLanguage=preferences.getString("lang","fr");
+		editor=preferences.edit();*/
+
+		//currentLanguage=preferences.getString("lang","fr");
+		currentLanguage=LocalHelper.getSelectedLanguage(this);
 	}
 
 	@Override
 	public  void  onLanguageChanged(String lang) {
 
 
-		LocalHelper.setLocale(Languages.this,lang);
-		editor.putString("lang",lang);
-		editor.apply();
+		LocalHelper.changeAppLanguage(Languages.this,lang);
 		if(cpt!=0)
 restartApp();
 		cpt++;

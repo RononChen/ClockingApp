@@ -45,7 +45,7 @@ public class Login extends AppCompatActivity
         String lang;
         preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         lang=preferences.getString("lang","fr");
-        LocalHelper.setLocale(this, lang);
+        LocalHelper.changeAppLanguage(this, lang);
         // calling the action bar
         ActionBar actionBar = getSupportActionBar();
 // showing the back button in action bar

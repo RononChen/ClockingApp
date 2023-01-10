@@ -38,14 +38,13 @@ implements View.OnClickListener  , IStartScreenView {
         super.onCreate(savedInstanceState);
         preferences = getSharedPreferences(PREFS_NAME,Context.MODE_PRIVATE);
 
-        //lang = preferences.getString("lang", "fr");
-       // lang="en";
-       // lang="fr";
+
         dark=preferences.getBoolean("dark",false);
         //if(dark)
           // AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-        lang=preferences.getString("lang","fr");
-        LocalHelper.setLocale(StartScreen.this, lang);
+
+        //LocalHelper.changeAppLanguage(StartScreen.this, lang);
+        lang= LocalHelper.getSelectedLanguage(this);
 
 
 
