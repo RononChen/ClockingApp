@@ -86,6 +86,29 @@ return Integer.parseInt(FormatedYear);
         return day;
     }
 
+    public  Day addADay(){
+        int year=getYear(),month=getMonth(),d=getDayOfMonth();
+        Day day;
+        if(getDayOfMonth()==getLenthOfMonth()) {
+
+            if(getMonth()==12){
+                year++;
+                month=1;
+
+            }
+            else {
+                month++;
+            }
+            d=1;
+        }
+        else
+            d++;
+
+            day=new Day(year,month,d);
+        return day;
+    }
+
+
     public  Day subtractMonth(){
         Day day;
         if(this.getMonth()==1)
