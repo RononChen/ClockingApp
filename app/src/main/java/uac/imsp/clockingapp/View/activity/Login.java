@@ -2,9 +2,7 @@ package uac.imsp.clockingapp.View.activity;
 
 
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -22,7 +20,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import uac.imsp.clockingapp.Controller.control.LoginController;
 import uac.imsp.clockingapp.Controller.util.ILoginController;
-import uac.imsp.clockingapp.LocalHelper;
 import uac.imsp.clockingapp.R;
 import uac.imsp.clockingapp.View.util.ILoginView;
 import uac.imsp.clockingapp.View.util.ToastMessage;
@@ -40,17 +37,13 @@ public class Login extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        final String PREFS_NAME="MyPrefsFile";
-        SharedPreferences preferences;
-        String lang;
-        preferences = getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        lang=preferences.getString("lang","fr");
-        LocalHelper.changeAppLanguage(this, lang);
+
         // calling the action bar
         ActionBar actionBar = getSupportActionBar();
 // showing the back button in action bar
         assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
+        actionBar.setTitle(getString(R.string.login_button_text));
         initView();
         loginPresenter = new LoginController(this);
 

@@ -13,7 +13,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import uac.imsp.clockingapp.BuildConfig;
 import uac.imsp.clockingapp.Controller.control.StartScreenController;
 import uac.imsp.clockingapp.Controller.util.IStartScreenController;
-import uac.imsp.clockingapp.LocalHelper;
 import uac.imsp.clockingapp.R;
 import uac.imsp.clockingapp.View.util.IStartScreenView;
 import uac.imsp.clockingapp.View.util.ToastMessage;
@@ -40,11 +39,12 @@ implements View.OnClickListener  , IStartScreenView {
 
 
         dark=preferences.getBoolean("dark",false);
-        //if(dark)
-          // AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
 
-        //LocalHelper.changeAppLanguage(StartScreen.this, lang);
-        lang= LocalHelper.getSelectedLanguage(this);
+
+
+        lang=preferences.getString("lang","fr");
+
+
 
 
 
@@ -63,7 +63,6 @@ implements View.OnClickListener  , IStartScreenView {
         //update the shared preferences with the current version code
         editor.putInt(PREF_VERSION_CODE_KEY, currentVersionCode);
         editor.apply();
-        setContentView(R.layout.activity_start_screen);
 
         startScreenPresenter = new StartScreenController(this);
         initView();
@@ -76,8 +75,6 @@ implements View.OnClickListener  , IStartScreenView {
     public void initView(){
 
         Button login = findViewById(R.id.start_screen_login_button);
-        // -Button handler=findViewById(R.id.start_screen_file_handler);
-        //-handler.setOnClickListener(this);
         Button clocking = findViewById(R.id.start_screen_clock_button);
         login.setOnClickListener(this);
         clocking.setOnClickListener(this);
@@ -94,13 +91,10 @@ implements View.OnClickListener  , IStartScreenView {
 
     @Override
     public void onClick(@NonNull View v) {
-        //-Intent intent =new Intent(this,FileHandler.class) ;
         if(v.getId()==R.id.start_screen_login_button)
             startScreenPresenter.onLogin();
         else if(v.getId()==R.id.start_screen_clock_button)
             startScreenPresenter.onClocking();
-        /* - else if(v.getId()==R.id.start_screen_file_handler)
-            startActivity(intent);*/
 
 
     }
@@ -126,11 +120,6 @@ implements View.OnClickListener  , IStartScreenView {
 
         Intent intent=new Intent(StartScreen.this, SetUp.class);
         StartScreen.this.finish();
-        //stop StartScreen activity
-
-        //For entreprise informations settings
-
-        // start SetUp activity
         startActivity(intent);
 
     }
