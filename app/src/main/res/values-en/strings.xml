@@ -294,7 +294,7 @@
     <string name="contin">Continue</string>
     <string name="user_or_password" translatable="false">Incorect username or password !
     </string>
-    <string name="settings">Paramètres</string>
+    <string name="settings">Setting</string>
     <string name="exit">Quitter</string>
     <string name="presence_stat">My attendance statistics</string>
     <string name="my_presence_report">My presence reports</string>
