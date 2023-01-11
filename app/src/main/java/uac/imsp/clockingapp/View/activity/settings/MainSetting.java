@@ -135,7 +135,7 @@ IMainSettingsController mainSettingsPresenter;
 			mainSettingsPresenter.onOverview();
         else if (v.getId()==R.id.setting_clear_cache) {
 			if(cacheSizeValue!=0)
-			mainSettingsPresenter.onClearAppCache();
+			   mainSettingsPresenter.onClearAppCache();
 		}
         else if (v.getId()==R.id.setting_name_layout)
 	        mainSettingsPresenter.onName();
@@ -152,13 +152,13 @@ IMainSettingsController mainSettingsPresenter;
 	mainSettingsPresenter.onDarkMode();
         else if(v.getId()==R.id.setting_languages)
 	mainSettingsPresenter.onLanguague();
-else if(v.getId()==R.id.setting_help)
+		else if(v.getId()==R.id.setting_help)
 	mainSettingsPresenter.onHelp();
-else if(v.getId()==R.id.setting_problem)
+		else if(v.getId()==R.id.setting_problem)
 	mainSettingsPresenter.onReportProblem();
-else if(v.getId()==R.id.logout)
+		else if(v.getId()==R.id.logout)
 	mainSettingsPresenter.onLogout();
-else if(v.getId()==R.id.switch_to_simple)
+		else if(v.getId()==R.id.switch_to_simple)
 	mainSettingsPresenter.onSwitch();
 
 }
