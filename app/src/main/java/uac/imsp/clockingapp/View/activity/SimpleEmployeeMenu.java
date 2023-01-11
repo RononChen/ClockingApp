@@ -23,7 +23,7 @@ public class SimpleEmployeeMenu extends AppCompatActivity
         implements ISimpleEmployeeMenuView , View.OnClickListener {
     ISimpleEmployeeMenuController simpleEmployeeMenuPresenter;
 
-
+int currentUser;
 
 
     @Override
@@ -39,7 +39,7 @@ public class SimpleEmployeeMenu extends AppCompatActivity
         simpleEmployeeMenuPresenter =
                 new SimpleEmployeeMenuController(this);
 
-
+        currentUser=getIntent().getIntExtra("CURRENT_USER",0);
     }
 
 
@@ -91,7 +91,8 @@ public class SimpleEmployeeMenu extends AppCompatActivity
 
     @Override
     public void onConsultatisticsMenuSuccessful() {
-        startActivity(new Intent(this, ConsultStatisticsByEmployee.class));
+        startActivity((new Intent(this,ConsultStatisticsByEmployee.class)
+        ).putExtra("ACTION_NUMBER",currentUser));
 
 
     }
@@ -106,13 +107,17 @@ public class SimpleEmployeeMenu extends AppCompatActivity
 
     @Override
     public void onSettings() {
-        startActivity(new Intent(this, SimpleEmployeeSettings.class));
+        startActivity((new Intent(this, SimpleEmployeeSettings.class)
+
+                .putExtra("CURRENT_USER",currentUser)));
+
 
     }
 
     @Override
     public void onConsultPresenceReport() {
-        startActivity(new Intent(this,ConsultPresenceReport.class));
+        startActivity((new Intent(this,ConsultPresenceReport.class)
+        ).putExtra("ACTION_NUMBER",currentUser));
 
 
     }

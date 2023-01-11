@@ -69,7 +69,7 @@ implements View.OnClickListener  , IStartScreenView {
         editor.apply();
 
         startScreenPresenter = new StartScreenController(this);
-        initView();
+       // initView();
 
 
     }

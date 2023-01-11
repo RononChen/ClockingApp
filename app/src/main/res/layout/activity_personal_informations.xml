@@ -95,9 +95,11 @@
             android:id="@+id/mail"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/mail_label"
-            android:layout_marginStart="10dp"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:autofillHints=""
+            android:inputType="textEmailAddress"
+            tools:ignore="LabelFor" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -126,15 +128,13 @@
             android:backgroundTint="@color/appOrange"
             android:padding="10dp"
             android:shadowColor="@android:color/transparent"
-
             android:text="@string/update"
-
             />
 
         <Button
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:id="@+id/okay"
+            android:id="@+id/cancel"
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
@@ -142,7 +142,7 @@
             android:backgroundTint="@color/appOrange"
             android:padding="10dp"
             android:shadowColor="@android:color/transparent"
-            android:text="@string/ok"
+            android:text="@string/cancel"
 
             />
     </androidx.constraintlayout.widget.ConstraintLayout>

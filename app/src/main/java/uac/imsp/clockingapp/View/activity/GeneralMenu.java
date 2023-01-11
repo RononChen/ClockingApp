@@ -64,8 +64,10 @@ public class GeneralMenu extends AppCompatActivity implements View.OnClickListen
 
 
             case R.id.settings :
-
-                startActivity(new Intent(this, MainSetting.class));
+                startActivity((new Intent(this, MainSetting.class))
+                        .putExtra(
+                        "CURRENT_USER",currentUser
+                ));
 
                 break;
             case R.id.logout:

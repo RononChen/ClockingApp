@@ -33,6 +33,7 @@ public class SimpleEmployeeSettings extends AppCompatActivity
 // showing the back button in action bar
 		assert actionBar != null;
 		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setTitle(R.string.settings);
 		initView();
 	}
 	public void initView(){
@@ -60,7 +61,10 @@ public class SimpleEmployeeSettings extends AppCompatActivity
 
 		}
 		else if (v.getId()==R.id.setting_personal_infos){
-			startActivity(new Intent(this, PersonalInformations.class));
+			startActivity((new Intent(this, PersonalInformations.class)
+					).putExtra("CURRENT_USER",
+					getIntent().getIntExtra("CURRENT_USER",0))
+			);
 
 		}
 		else if (v.getId()==R.id.setting_docs){

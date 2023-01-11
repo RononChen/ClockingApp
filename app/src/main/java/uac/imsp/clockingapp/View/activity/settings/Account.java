@@ -34,6 +34,7 @@ public class Account extends AppCompatActivity implements View.OnClickListener,
 // showing the back button in action bar
 		assert actionBar != null;
 		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setTitle(R.string.my_account);
 		initView();
 		changePasswordPresenter=new ChangePasswordController(this) ;
 

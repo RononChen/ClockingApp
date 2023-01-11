@@ -25,5 +25,6 @@ public class ReportProblem extends AppCompatActivity {
 // showing the back button in action bar
 		assert actionBar != null;
 		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setTitle(R.string.report_problem);
 	}
 }

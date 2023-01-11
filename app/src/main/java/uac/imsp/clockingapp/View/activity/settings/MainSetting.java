@@ -66,6 +66,7 @@ IMainSettingsController mainSettingsPresenter;
 // showing the back button in action bar
 		assert actionBar != null;
 		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setTitle(getString(R.string.settings));
 		mainSettingsPresenter=new MainSettingsController(this);
 		initView();
 		retrieveSharedPreferences();
@@ -288,7 +289,10 @@ startActivity(intent);
 
 	@Override
 	public void onSwitch() {
-startActivity(new Intent(this, SimpleEmployeeMenu.class));
+startActivity((new Intent(this, SimpleEmployeeMenu.class)
+		).putExtra("CURRENT_USER",getIntent()
+		.getIntExtra("CURRENT_USER",0))
+);
 	}
 
 	public void cacheSize(){

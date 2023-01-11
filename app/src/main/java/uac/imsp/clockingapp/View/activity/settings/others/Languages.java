@@ -46,6 +46,7 @@ public class Languages extends AppCompatActivity implements ILanguagesView,
 // showing the back button in action bar
 		assert actionBar != null;
 		actionBar.setDisplayHomeAsUpEnabled(true);
+		actionBar.setTitle(R.string.languages);
 		languagesPresenter=new LanguagesController(this);
 		retrievePreferences();
 		initView();
