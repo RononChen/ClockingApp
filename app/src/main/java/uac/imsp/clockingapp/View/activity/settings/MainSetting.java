@@ -79,6 +79,8 @@ IMainSettingsController mainSettingsPresenter;
 		overview=findViewById(R.id.setting_overview);
 		appVersion=findViewById(R.id.setting_version);
 		clearCache=findViewById(R.id.setting_clear_cache);
+
+
 		cacheSize=findViewById(R.id.setting_cache_size);
 		nameLayout=findViewById(R.id.setting_name_layout);
 		simple=findViewById(R.id.switch_to_simple);
@@ -105,9 +107,10 @@ IMainSettingsController mainSettingsPresenter;
 		emailLayout.setOnClickListener(this);
 		descLayout=findViewById(R.id.setting_description_layout);
 		descLayout.setOnClickListener(this);
+		clearCache.setOnClickListener(this);
 
 		cacheSize();
-		cacheSize.setText(String.valueOf(cacheSizeValue));
+		cacheSize.setText(String.format("%s Mo", cacheSizeValue));
 		appVersion.setText(BuildConfig.VERSION_NAME);
 		share.setOnClickListener(this);
 		shareViaQR.setOnClickListener(this);
@@ -124,29 +127,30 @@ IMainSettingsController mainSettingsPresenter;
 
 		if(v.getId()==R.id.setting_services)
 			mainSettingsPresenter.onService();
-else if(v.getId()==R.id.setting_share)
-	mainSettingsPresenter.onShareApp();
-else if(v.getId()==R.id.setting_share_with_qr)
-	mainSettingsPresenter.onShareAppViaQRCode();
-else if(v.getId()==R.id.setting_overview)
-	mainSettingsPresenter.onOverview();
-else if (v.getId()==R.id.setting_clear_cache)
-	mainSettingsPresenter.onClearAppCache();
-else if (v.getId()==R.id.setting_name_layout)
-	mainSettingsPresenter.onName();
-else if(v.getId()==R.id.setting_mail_layout)
-	mainSettingsPresenter.onEmail();
-else if(v.getId()==R.id.setting_description_layout)
-	mainSettingsPresenter.onDescription();
-else if(v.getId()==R.id.setting_account)
-mainSettingsPresenter.onAccount();
-else if (v.getId()==R.id.setting_attendance)
-{
-	mainSettingsPresenter.onClocking();
+        else if(v.getId()==R.id.setting_share)
+	        mainSettingsPresenter.onShareApp();
+        else if(v.getId()==R.id.setting_share_with_qr)
+	        mainSettingsPresenter.onShareAppViaQRCode();
+        else if(v.getId()==R.id.setting_overview)
+			mainSettingsPresenter.onOverview();
+        else if (v.getId()==R.id.setting_clear_cache) {
+			if(cacheSizeValue!=0)
+			mainSettingsPresenter.onClearAppCache();
+		}
+        else if (v.getId()==R.id.setting_name_layout)
+	        mainSettingsPresenter.onName();
+        else if(v.getId()==R.id.setting_mail_layout)
+	        mainSettingsPresenter.onEmail();
+        else if(v.getId()==R.id.setting_description_layout)
+	        mainSettingsPresenter.onDescription();
+        else if(v.getId()==R.id.setting_account)
+            mainSettingsPresenter.onAccount();
+        else if (v.getId()==R.id.setting_attendance) {
+	        mainSettingsPresenter.onClocking();
 }
-else if(v.getId()==R.id.setting_dark)
+        else if(v.getId()==R.id.setting_dark)
 	mainSettingsPresenter.onDarkMode();
-else if(v.getId()==R.id.setting_languages)
+        else if(v.getId()==R.id.setting_languages)
 	mainSettingsPresenter.onLanguague();
 else if(v.getId()==R.id.setting_help)
 	mainSettingsPresenter.onHelp();
@@ -192,7 +196,7 @@ else if(v.getId()==R.id.switch_to_simple)
 
 	@Override
 	public void onAppcacheCleared() {
-cacheSize.setText(String.valueOf(cacheSizeValue));
+cacheSize.setText(String.format("%s Mo", cacheSizeValue));
 	}
 
 	@Override
@@ -276,8 +280,6 @@ startActivity(intent);
 				.setNegativeButton(getString(R.string.no), (dialog, which) -> dialog.cancel())
 				.setPositiveButton(getString(R.string.yes), (dialog, which) -> {
 					moveTaskToBack(true);
-					//android.os.Process.killProcess(android.os.Process.myPid());
-					//System.exit(0);
 					finishAffinity();
 
 
@@ -299,9 +301,9 @@ startActivity((new Intent(this, SimpleEmployeeMenu.class)
 		cacheSizeValue=0;
 		File[] files = getCacheDir().listFiles();
 		assert files != null;
-		for (File f:files) {
-			cacheSizeValue = cacheSizeValue+f.length();
-		}
+		for (File f:files)
+			cacheSizeValue+= f.length();
+		cacheSizeValue/=(1024*1024);
 
 	}
 	public void  inputDialog(String title,String msg, String pos, String neg,int value ){

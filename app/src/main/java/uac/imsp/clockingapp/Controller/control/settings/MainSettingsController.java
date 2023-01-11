@@ -19,7 +19,6 @@ public class MainSettingsController implements IMainSettingsController {
 
 	@Override
 	public void onShareApp() {
-		;
 		mainSettingsView.onShareApp();
 
 	}
@@ -60,6 +59,7 @@ mainSettingsView.onAccount();
 	@Override
 	public void onClearAppCache() {
 		deleteCache();
+		mainSettingsView.onAppcacheCleared();
 
 	}
 
@@ -168,12 +168,12 @@ mainSettingsView.onService();
 			e.printStackTrace();
 		}
 	}
-	public static boolean deleteDir(File dir) {
-		boolean success;
+
+	public boolean deleteDir(File dir) {
 		if (dir != null && dir.isDirectory()) {
 			String[] children = dir.list();
 			for (int i = 0; i < Objects.requireNonNull(children).length; i++) {
-				success = deleteDir(new File(dir, children[i]));
+				boolean success = deleteDir(new File(dir, children[i]));
 				if (!success) {
 					return false;
 				}
@@ -185,4 +185,6 @@ mainSettingsView.onService();
 			return false;
 		}
 	}
-}
+
+
+	}
