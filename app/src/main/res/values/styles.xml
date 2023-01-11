@@ -17,6 +17,7 @@
 </style>
     <style name="SearchTextViemTheme"
         parent="android:Theme.Holo.Light.DarkActionBar">
+        <item name="backgroundColor">@color/colorPrimary</item>
         <item name="android:textColor">@color/textHint</item>
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
