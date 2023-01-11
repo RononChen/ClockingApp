@@ -191,6 +191,7 @@
     <string name="no_service">No service available. Press the button to add more</string>
     <string name="add">Add</string>
     <string name="overview">Overview</string>
+    <string name="succces">Email modifié avec succès!</string>
     <string name="version">App version:</string>
     <string name="device_name">Device name:</string>
     <string name="device_manufacturer">Device manufacturer:</string>
