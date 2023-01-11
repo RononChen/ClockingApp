@@ -17,8 +17,7 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-       android:background="@color/bar"
-       app:title="Rechercher employé"
+       android:background="@color/colorPrimary"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
         />
     <androidx.appcompat.widget.SearchView
