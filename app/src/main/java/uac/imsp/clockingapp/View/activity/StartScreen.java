@@ -10,6 +10,8 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.Locale;
+
 import uac.imsp.clockingapp.BuildConfig;
 import uac.imsp.clockingapp.Controller.control.StartScreenController;
 import uac.imsp.clockingapp.Controller.util.IStartScreenController;
@@ -43,8 +45,7 @@ implements View.OnClickListener  , IStartScreenView {
 
 
 
-        lang=preferences.getString("lang","fr");
-        //String loc= LocalHelper.getSelectedLanguage(this);
+        lang=preferences.getString("lang",Locale.getDefault().getLanguage());
         LocalHelper.changeAppLanguage(this,lang);
 
 
@@ -91,7 +92,6 @@ implements View.OnClickListener  , IStartScreenView {
 
 
     }
-
     @Override
     public void onClick(@NonNull View v) {
         if(v.getId()==R.id.start_screen_login_button)
