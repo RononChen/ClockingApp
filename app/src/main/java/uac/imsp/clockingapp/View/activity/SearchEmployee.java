@@ -47,11 +47,7 @@ public class SearchEmployee extends AppCompatActivity
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_search_employee);
-        // calling the action bar
-        //ActionBar actionBar = getSupportActionBar();
-// showing the back button in action bar
-       /* assert actionBar != null;
-        actionBar.setDisplayHomeAsUpEnabled(true);*/
+        ( (Toolbar) findViewById(R.id.toolbar)).setTitle(R.string.menu_search_button);
         initView();
         searchEmployeePresenter=new SearchEmployeeController(this);
         //get employees list onStart
@@ -60,9 +56,11 @@ public class SearchEmployee extends AppCompatActivity
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        onBackPressed();
+        if(item.getItemId()==android.R.id.home)
+            onBackPressed();
         return super.onOptionsItemSelected(item);
     }
+
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
