@@ -183,7 +183,6 @@
         <activity
             android:name=".View.activity.SearchEmployee"
             android:exported="false"
-            android:label="@string/menu_search_button"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.SEARCH" />
