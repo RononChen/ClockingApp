@@ -14,12 +14,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -107,9 +107,10 @@ public class Services extends AppCompatActivity implements IServicesView,
 		next.setOnClickListener(this);
 	}
 	else {
-		LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-				LinearLayout.LayoutParams.WRAP_CONTENT,
-				LinearLayout.LayoutParams.WRAP_CONTENT
+		ConstraintLayout.LayoutParams params =
+				new ConstraintLayout.LayoutParams(
+				ConstraintLayout.LayoutParams.WRAP_CONTENT,
+				ConstraintLayout.LayoutParams.WRAP_CONTENT
 		);
 		params.setMarginStart(20);
 		cancel.setLayoutParams(params);
