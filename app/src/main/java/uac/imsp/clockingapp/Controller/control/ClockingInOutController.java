@@ -27,8 +27,9 @@ private final Context context;
 
     public ClockingInOutController(@NonNull IClockInOutView clockInOutView, Context context) {
         this.clockInOutView=clockInOutView;
+        this.context=context;
         clockInOutView.onLoad();
-            this.context=context;
+
     }
 
     //used for android unit test
@@ -152,5 +153,10 @@ private final Context context;
             employeeManager.close();
 
         }
+
+    @Override
+    public void onSwitchCamara() {
+    clockInOutView.onSwitchCamera();
+    }
 
 }

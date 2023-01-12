@@ -90,19 +90,29 @@ implements IConsultStatisticsByServiceView, AdapterView.OnItemSelectedListener,
 
 
         ArrayList<PieEntry> pieEntries = new ArrayList<>();
-        String label = "Statistiques";
 
         //initializing data
         HashMap<String, Integer> resultMap = new HashMap<>(statistics);
         //initializing colors for the entries
         ArrayList<Integer> colors = new ArrayList<>();
-        colors.add(Color.parseColor("#304567"));
-        colors.add(Color.parseColor("#309967"));
-        colors.add(Color.parseColor("#476567"));
-        colors.add(Color.parseColor("#890567"));
-        colors.add(Color.parseColor("#a35567"));
-        colors.add(Color.parseColor("#ff5f67"));
-        colors.add(Color.parseColor("#3ca567"));
+
+
+       // pieDataSet.setColors(Color.parseColor("#F44336"),
+               colors.add(Color.parseColor("#3F51B5"));
+               colors.add(Color.parseColor("#8BC34A"));
+               colors.add( Color.parseColor("#9C27B0"));
+               colors.add(Color.parseColor("#FF5722"));
+               colors.add( Color.parseColor("#00BCD4"));
+               colors.add(Color.parseColor("#03A9F4"));
+               colors.add(Color.parseColor("#4CAF50"));
+               colors.add(Color.parseColor("#FF9800"));
+               colors.add(Color.parseColor("#E91E63"));
+
+        colors.add(Color.parseColor("#2196F3"));
+        colors.add( Color.parseColor("#9E9E9E"));
+        colors.add(Color.parseColor("#FFEB3B"));
+        colors.add(Color.parseColor("#CDDC39"));
+        colors.add(Color.parseColor("#795548"));
 
         //input data and fit data into pie chart entry
         for(String service: resultMap.keySet()){
@@ -110,9 +120,11 @@ implements IConsultStatisticsByServiceView, AdapterView.OnItemSelectedListener,
                     (resultMap.get(service)), service));
 
         }
+        findViewById(R.id.stat__status).setMinimumHeight(100);
+       // findViewById(R.id.stat__status).setminimumHeight(100);
 
         //collecting the entries with label name
-        PieDataSet pieDataSet = new PieDataSet(pieEntries,label);
+        PieDataSet pieDataSet = new PieDataSet(pieEntries,"");
 
         //setting text size of the value
         pieDataSet.setValueTextSize(12f);
@@ -122,9 +134,15 @@ implements IConsultStatisticsByServiceView, AdapterView.OnItemSelectedListener,
         PieData pieData = new PieData(pieDataSet);
         //showing the value of the entries, default true if not set
         pieData.setDrawValues(true);
+        pieChart.getDescription().setEnabled(false);
 
         pieChart.setData(pieData);
         pieChart.invalidate();
+        pieChart.getLegend().setWordWrapEnabled(true);
+
+       // pieChart.setCenterText(label);
+       // pieChart.getDescription().setText(label);
+
     }
     private void initPieChart(){
         //using percentage as values instead of amount

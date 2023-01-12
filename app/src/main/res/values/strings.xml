@@ -331,6 +331,7 @@
     <string name="acccount_informations">Informations de compte</string>
     <string name="get_started">Démarrer</string>
     <string name="ok">Okay</string>
+    <string name="change_orientation">Changer l\'orientation de la caméra</string>
 
 
     "Version du système d'exploitation:\n"+

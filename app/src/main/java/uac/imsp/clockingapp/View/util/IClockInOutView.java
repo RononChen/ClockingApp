@@ -10,5 +10,6 @@ public interface IClockInOutView{
     //Message d'erreur de pointage ou employe non retrouvé
     void onClockingError(int errorNumber);
 
+	void onSwitchCamera();
 }
 

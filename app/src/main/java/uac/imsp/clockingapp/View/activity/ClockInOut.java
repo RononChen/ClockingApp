@@ -8,13 +8,11 @@ import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.SparseArray;
+import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
@@ -27,7 +25,7 @@ import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
 
 import java.io.IOException;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.Objects;
 
 import uac.imsp.clockingapp.Controller.control.ClockingInOutController;
 import uac.imsp.clockingapp.Controller.util.IClockInOutController;
@@ -40,18 +38,21 @@ public class ClockInOut extends AppCompatActivity
 
     SurfaceView surfaceView;
     TextView txtBarcodeValue;
+    int Number;
+    BarcodeDetector barcodeDetector;
     private  CameraSource cameraSource;
     private static final int REQUEST_CAMERA_PERMISSION = 201;
-    Button btnAction;
+    //Button btnAction;
     String intentData = "";
     IClockInOutController clockInOutPresenter;
     boolean useQRcode;
     SharedPreferences preferences;
+   boolean firstRun=true;
 
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == android.R.id.home) {
-            finish();
-            onBackPressed();
+        if (item.getItemId() == R.id.switch_camera_orientation) {
+
+            clockInOutPresenter.onSwitchCamara();
         }
         return super.onOptionsItemSelected(item);
     }
@@ -75,8 +76,7 @@ public class ClockInOut extends AppCompatActivity
     private void initViews() {
         txtBarcodeValue = findViewById(R.id.txtBarcodeValue);
         surfaceView = findViewById(R.id.surfaceView);
-        btnAction = findViewById(R.id.btnAction);
-        btnAction.setOnClickListener(this);
+
     }
 public void retrieveSharedPreferences(){
         String PREFS_NAME="MyPrefsFile";
@@ -96,9 +96,71 @@ public void retrieveSharedPreferences(){
     protected void onResume() {
 
         super.onResume();
-        onLoad();
+
+        //onLoad();
 
     }
+    public void front(){
+        cameraSource = new CameraSource.Builder(this, barcodeDetector)
+                .setFacing(CameraSource.CAMERA_FACING_FRONT)
+                .setRequestedPreviewSize(1920, 1080)
+                .setAutoFocusEnabled(true)
+                .setRequestedFps(2.0f)
+                .build();
+    }
+
+    public void back(){
+        cameraSource = new CameraSource.Builder(this, barcodeDetector)
+                .setFacing(CameraSource.CAMERA_FACING_BACK)
+                .setRequestedPreviewSize(1920, 1080)
+                .setAutoFocusEnabled(true)
+                .setRequestedFps(2.0f)
+                .build();
+    }
+
+
+    private void switchCamera(){
+        if(firstRun) {
+            back();
+            startCamera();
+            firstRun=false;
+            return;
+
+        }
+        cameraSource.stop();
+        cameraSource.release();
+
+            if (Objects.requireNonNull(cameraSource).getCameraFacing() == CameraSource.CAMERA_FACING_FRONT) {
+               back();
+            } else {
+                front();
+            }
+           startCamera();
+
+    }
+
+
+    public boolean onCreateOptionsMenu(@NonNull android.view.Menu menu) {
+        MenuInflater inflater=getMenuInflater();
+        inflater.inflate(R.menu.camera_menu,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+
+    void startCamera(){
+        try {
+            if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]
+                        {Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
+                return;
+            }
+            cameraSource.start(surfaceView.getHolder());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
 
     @Override
     public void onClick(View v) {
@@ -113,85 +175,55 @@ public void retrieveSharedPreferences(){
        new ToastMessage(this, getString(R.string.clocking_text));
         // initialise detectors and sources
 
-        BarcodeDetector barcodeDetector = new BarcodeDetector.Builder(this)
-                .setBarcodeFormats(Barcode.QR_CODE) //CHANGED
+         barcodeDetector = new BarcodeDetector.Builder(this)
+                .setBarcodeFormats(Barcode.QR_CODE)
                 .build();
 
-        CameraSource.Builder c = new CameraSource.Builder(this, barcodeDetector);
-
-        c.setFacing(CameraSource.CAMERA_FACING_FRONT)
-                .setRequestedPreviewSize(1920,1080)
-                .setAutoFocusEnabled(true);
-
-        cameraSource= c.build();
-
-
-        surfaceView.getHolder().addCallback(new SurfaceHolder.Callback() {
-            @Override
-            public void surfaceCreated(SurfaceHolder holder) {
-                try {
-                    if (ActivityCompat.checkSelfPermission(ClockInOut.this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
-                        cameraSource.start(surfaceView.getHolder());
-                    } else {
-                        ActivityCompat.requestPermissions(ClockInOut.this, new
-                                String[]{Manifest.permission.CAMERA}, REQUEST_CAMERA_PERMISSION);
-                    }
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-
-            @Override
-            public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
-            }
-
-             @Override
-            public void surfaceDestroyed(SurfaceHolder holder) {
-                cameraSource.stop();
-            }
-        });
-
-
-        barcodeDetector.setProcessor(new Detector.Processor<Barcode>() {
+        barcodeDetector.setProcessor(new Detector.Processor<Barcode>()
+        {
             @Override
             public void release() {
-                Toast.makeText(getApplicationContext(), "To prevent memory leaks barcode scanner has been stopped", Toast.LENGTH_SHORT).show();
+               new  ToastMessage(getApplicationContext(),
+                        "To prevent memory leaks barcode scanner has been stopped");
+
             }
 
             @Override
             public void receiveDetections(@NonNull Detector.Detections<Barcode> detections) {
+
+
                 final SparseArray<Barcode> barcodes = detections.getDetectedItems();
-                AtomicInteger number= new AtomicInteger();
+
                 if (barcodes.size() != 0) {
                     //@Override
                     txtBarcodeValue.post(() -> {
 
-                        btnAction.setText(R.string.LAUNCH_URL);
+
                         intentData = barcodes.valueAt(0).displayValue;
                         txtBarcodeValue.setText(intentData);
-                        try{
-                        number.set(Integer.parseInt(txtBarcodeValue.getText().toString()));
-                            //Start clocking
-                            clockInOutPresenter.onClocking(number.get());
+                        try {
+                            Number = Integer.parseInt(txtBarcodeValue.getText().toString());
 
-                        }
-                        catch (NullPointerException e){
+                        } catch (NullPointerException e) {
                             e.printStackTrace();
+                        } catch (NumberFormatException e) {
+                            Number = 0;
                         }
-
+                        clockInOutPresenter.onClocking(Number);
 
                     });
                 }
-            }
-        });
 
 
+
+                }
+            });
+
+        switchCamera();
     }
 
-
     public void onClockInSuccessful() {
-      new ToastMessage(this,getString(R.string.enter_pointed));
+      new ToastMessage(getApplicationContext(),getString(R.string.enter_pointed));
 
     }
 
@@ -205,7 +237,7 @@ public void retrieveSharedPreferences(){
         switch (errorNumber){
             case 1:
                new ToastMessage(this,getString(R.string.employee_not_found));
-                break;
+               break;
             case 2:
                 new ToastMessage(this,getString(R.string.should_not_work_today));
                 break;
@@ -219,4 +251,13 @@ public void retrieveSharedPreferences(){
 
 
     }
+
+    @Override
+    public void onSwitchCamera() {
+        if(firstRun)
+        switchCamera();
+        firstRun = false;
+
+    }
+
 }

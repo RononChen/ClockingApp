@@ -13,14 +13,16 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.components.Legend;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
-import com.github.mikephil.charting.utils.ColorTemplate;
 
 import java.text.MessageFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Hashtable;
+import java.util.Map;
 
 import uac.imsp.clockingapp.Controller.control.ConsultStatisticsByEmployeeController;
 import uac.imsp.clockingapp.Controller.util.IConsultStatisticsByEmployeeController;
@@ -97,25 +99,58 @@ public void initView(){
         barEntriesArrayList = new ArrayList<>();
         // if(statistics.containsKey('P'))
 
-        barEntriesArrayList.add(new BarEntry(1f, statistics.get('P')));
-        barEntriesArrayList.add(new BarEntry(2f,  statistics.get('R')));
-        barEntriesArrayList.add(new BarEntry(3f, statistics.get('A')));
+
+        Float valueP = statistics.get('P');
+        if (valueP != null) {
+            barEntriesArrayList.add(new BarEntry(1f, valueP));
+        }
+        Float valueR = statistics.get('R');
+        if (valueR != null) {
+            barEntriesArrayList.add(new BarEntry(2f, valueR));
+        }
+        Float valueA = statistics.get('A');
+        if (valueA != null) {
+            barEntriesArrayList.add(new BarEntry(3f, valueA));
+        }
 
 
         // creating a new bar data set.
         barDataSet = new BarDataSet(barEntriesArrayList, "");
+        // adding color to our bar data set.
+        Map<String, Integer> colorMap = new HashMap<>();
+        colorMap.put("P", Color.GREEN);
+        colorMap.put("R", Color.YELLOW);
+        colorMap.put("A", Color.RED);
+
+
+        barDataSet.setColors
+                (colorMap.get("P"), colorMap.get("R"), colorMap.get("A"));
+
+        //barDataSet.setColors(colorMap.values());
+        barDataSet.setStackLabels(colorMap.keySet().toArray(new String[colorMap.size()]));
+
+
+        // setting text color.
+        barDataSet.setValueTextColor(Color.BLACK);
+
+        // setting text size
+        barDataSet.setValueTextSize(16f);
+        barDataSet.setDrawValues(true);
 
         // creating a new bar data and
         // passing our bar data set.
         barData = new BarData(barDataSet);
 
+
+      barChart.getDescription().setEnabled(false);
         // below line is to set data
         // to our bar chart.
         barChart.setData(barData);
         barChart.setClickable(false);
         barChart.setEnabled(false);
         barChart.setDrawBarShadow(false);
-        barChart.setDrawValueAboveBar(false);
+        barChart.setDrawValueAboveBar(true);
+
         barChart.setActivated(false);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
             barChart.setAllowClickWhenDisabled(false);
@@ -131,15 +166,15 @@ public void initView(){
         barChart.setScaleYEnabled(false);
         barChart.setScaleXEnabled(false);
 
-        // adding color to our bar data set.
-        barDataSet.setColors(ColorTemplate.MATERIAL_COLORS);
 
-        // setting text color.
-        barDataSet.setValueTextColor(Color.BLACK);
 
-        // setting text size
-        barDataSet.setValueTextSize(16f);
-        barChart.getDescription().setEnabled(true);
+
+
+        barChart.getDescription().setEnabled(false);
+        Legend legend = barChart.getLegend();
+
+        legend.setEnabled(true);
+        legend.setForm(Legend.LegendForm.LINE);
 
     }
 
