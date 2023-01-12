@@ -20,6 +20,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 
 import java.util.ArrayList;
 import java.util.Hashtable;
@@ -103,24 +104,15 @@ public class Services extends AppCompatActivity implements IServicesView,
 	final 	Button apply = findViewById(R.id.apply);
 	if(preferences.getString("nextStep","none").equals("service"))
 	{
+		ConstraintLayout constraintLayout = findViewById(R.id.layout);
+		ConstraintSet constraintSet = new ConstraintSet();
+		constraintSet.clone(constraintLayout);
+		constraintSet.centerHorizontally(R.id.next, ConstraintSet.PARENT_ID);
+		constraintSet.applyTo(constraintLayout);
 		next.setVisibility(View.VISIBLE);
 		next.setOnClickListener(this);
 	}
-	else {
-		ConstraintLayout.LayoutParams params =
-				new ConstraintLayout.LayoutParams(
-				ConstraintLayout.LayoutParams.WRAP_CONTENT,
-				ConstraintLayout.LayoutParams.WRAP_CONTENT
-		);
-		params.setMarginStart(20);
-		cancel.setLayoutParams(params);
 
-		params.setMarginStart(70);
-		apply.setLayoutParams(params);
-
-
-
-	}
 
 		addService=findViewById(R.id.add_service);
 		editService=findViewById(R.id.edit_service);
