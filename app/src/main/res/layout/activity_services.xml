@@ -23,24 +23,25 @@
         app:layout_constraintStart_toStartOf="parent"
         android:id="@+id/my_layout"
         android:orientation="horizontal"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+
         android:layout_height="wrap_content">
         <EditText
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:id="@+id/edit_service"
-            android:layout_width="match_parent"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
+            android:layout_marginStart="5dp"
             android:hint="@string/add_service"
             android:autofillHints=""
             android:inputType="textAutoComplete" />
 
         <Button
             app:layout_goneMarginStart="50dp"
-            app:layout_constraintStart_toEndOf="@id/edit_service"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:layout_marginStart="100dp"
+            android:layout_marginEnd="5dp"
             android:id="@+id/add_service"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

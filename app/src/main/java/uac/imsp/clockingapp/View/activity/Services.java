@@ -117,7 +117,9 @@ public class Services extends AppCompatActivity implements IServicesView,
 		addService=findViewById(R.id.add_service);
 		editService=findViewById(R.id.edit_service);
 
-	addService.setOnClickListener(this);
+		editService.setCursorVisible(false);
+
+		addService.setOnClickListener(this);
 	addService.setSelectAllOnFocus(true);
 		cancel.setOnClickListener(this);
 		apply.setOnClickListener(this);
@@ -289,6 +291,8 @@ new ToastMessage(this,getString(R.string.no_service_updated));
 
 		if(v.getId()==R.id.add_service)
 			servicesPresenter.onAddService(editService.getText().toString().trim());
+		else if(v.getId()==R.id.edit_service)
+			editService.setCursorVisible(true);
 		else if(v.getId()==R.id.cancel)
 			servicesPresenter.onCancel(hashtable);
 		else if(v.getId()==R.id.apply)

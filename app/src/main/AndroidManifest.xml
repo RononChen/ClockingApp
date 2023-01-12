@@ -54,6 +54,7 @@
         </activity>
         <activity
             android:name=".View.activity.Services"
+            android:configChanges="orientation|screenSize"
             android:exported="false"
             android:label="@string/manage_services">
             <meta-data
