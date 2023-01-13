@@ -41,7 +41,7 @@
         android:textColor="@color/white"
         android:textColorHighlight="@color/white"
         android:textColorHint="@color/white"
-        app:queryHint="Rechercher par service, nom ou prénom" />
+        app:queryHint="@string/hint" />
 
 </com.google.android.material.appbar.AppBarLayout>
     <!--requestFocus/-->

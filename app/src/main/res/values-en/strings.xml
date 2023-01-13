@@ -295,6 +295,8 @@
     <string name="contin">Continue</string>
     <string name="user_or_password" translatable="false">Incorect username or password !
     </string>
+    <string name="change_orientation">Change camera orientation</string>
+    <string name="hint">by service, lastname or firstname</string>
     <string name="settings">Settings</string>
     <string name="exit">Quitter</string>
     <string name="presence_stat">My attendance statistics</string>

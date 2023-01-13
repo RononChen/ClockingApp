@@ -332,6 +332,7 @@
     <string name="get_started">Démarrer</string>
     <string name="ok">Okay</string>
     <string name="change_orientation">Changer l\'orientation de la caméra</string>
+    <string name="hint">par service, nom ou prénom</string>
 
 
     "Version du système d'exploitation:\n"+
