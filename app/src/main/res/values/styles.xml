@@ -26,7 +26,7 @@
     <style
         name="searchTheme"
         parent="Theme.AppCompat.Light.DarkActionBar">
-        <item name="colorPrimary">@color/appOrange</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/appOrangeDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="windowActionBar">false</item>
