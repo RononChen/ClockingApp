@@ -155,9 +155,6 @@
         </provider>
 
         <activity
-            android:name=".View.activity.ChangePassword"
-            android:exported="false" />
-        <activity
             android:name=".View.activity.SimpleEmployeeMenu"
             android:exported="false"
             android:label="@string/simple_employee_menu" />

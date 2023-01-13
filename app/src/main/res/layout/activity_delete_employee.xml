@@ -246,7 +246,7 @@
                 android:background="@drawable/shapelogin"
                 android:padding="15dp"
                 android:shadowColor="@android:color/transparent"
-                android:backgroundTint="@color/appOrange"
+                android:backgroundTint="@color/colorPrimary"
                 />
 
         </LinearLayout>

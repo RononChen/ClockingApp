@@ -388,7 +388,7 @@
                 android:background="@drawable/shapelogin"
                 android:padding="15dp"
                 android:shadowColor="@android:color/transparent"
-                android:backgroundTint="@color/appOrange"
+                android:backgroundTint="@color/colorPrimary"
                 android:text="@string/register_picture" />
 
 
@@ -481,7 +481,7 @@
                 android:background="@drawable/shapelogin"
                 android:padding="15dp"
                 android:shadowColor="@android:color/transparent"
-                android:backgroundTint="@color/appOrange"
+                android:backgroundTint="@color/colorPrimary"
                 android:text="@string/register_button" />
 
             <Button
@@ -496,7 +496,7 @@
                 android:background="@drawable/shapelogin"
                 android:padding="15dp"
                 android:shadowColor="@android:color/transparent"
-                android:backgroundTint="@color/appOrange"
+                android:backgroundTint="@color/colorPrimary"
                 android:text="@string/reset_button" />
 
         </LinearLayout>

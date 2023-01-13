@@ -22,15 +22,28 @@ app:layout_constraintTop_toTopOf="parent"
         android:text="@string/period"
         android:layout_width="wrap_content"/>
 
+    <Spinner
+        app:layout_constraintTop_toBottomOf="@id/report_date"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="10dp"
+        android:id="@+id/stat__status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:entries="@array/employee_types"
+        android:spinnerMode="dialog" />
+
+
 
     <com.github.mikephil.charting.charts.PieChart
         app:layout_constraintStart_toStartOf="parent"
 
-        app:layout_constraintTop_toBottomOf="@+id/report_date"
+        app:layout_constraintTop_toBottomOf="@+id/stat__status"
+        app:layout_constraintBottom_toTopOf="@+id/layout"
+        android:layout_marginBottom="10dp"
         android:layout_marginStart="0dp"
-
         android:layout_width="300dp"
-        android:layout_height="300dp"
+        android:layout_height="0dp"
         android:id="@+id/pieChart_view"/>
     <androidx.constraintlayout.widget.ConstraintLayout
 android:id="@+id/layout"
@@ -43,7 +56,8 @@ android:id="@+id/layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintTop_toBottomOf="@+id/pieChart_view">
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toBottomOf="parent">
 
         <Button
             app:layout_constraintTop_toTopOf="parent"
@@ -52,7 +66,7 @@ android:id="@+id/layout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/shapelogin"
-            android:backgroundTint="@color/appOrange"
+            android:backgroundTint="@color/colorPrimary"
             android:padding="10dp"
             android:shadowColor="@android:color/transparent"
 
@@ -68,24 +82,13 @@ android:id="@+id/layout"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:background="@drawable/shapelogin"
-            android:backgroundTint="@color/appOrange"
+            android:backgroundTint="@color/colorPrimary"
             android:padding="10dp"
             android:shadowColor="@android:color/transparent"
             android:text="@string/next"
 
             />
     </androidx.constraintlayout.widget.ConstraintLayout>
-    <Spinner
-        app:layout_constraintTop_toBottomOf="@id/layout"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="10dp"
-        android:id="@+id/stat__status"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="10dp"
-        android:entries="@array/employee_types"
-        android:spinnerMode="dialog" />
 
 
 

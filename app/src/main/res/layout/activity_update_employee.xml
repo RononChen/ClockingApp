@@ -313,7 +313,7 @@
                 android:background="@drawable/shapelogin"
                 android:padding="15dp"
                 android:shadowColor="@android:color/transparent"
-                android:backgroundTint="@color/appOrange"
+                android:backgroundTint="@color/colorPrimary"
                 android:text="@string/update_picture"/>
             <TextView
                 android:id="@+id/register_work_days"
@@ -384,7 +384,7 @@
                 android:background="@drawable/shapelogin"
                 android:padding="15dp"
                 android:shadowColor="@android:color/transparent"
-                android:backgroundTint="@color/appOrange"
+                android:backgroundTint="@color/colorPrimary"
                 />
 
         </LinearLayout>

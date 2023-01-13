@@ -51,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="-10dp"
             android:background="@drawable/shapelogin"
-            android:backgroundTint="@color/appOrange"
+            android:backgroundTint="@color/colorPrimary"
             android:padding="10dp"
             android:shadowColor="@android:color/transparent"
 
@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="end"
             android:background="@drawable/shapelogin"
-            android:backgroundTint="@color/appOrange"
+            android:backgroundTint="@color/colorPrimary"
             android:padding="10dp"
             android:shadowColor="@android:color/transparent"
             android:text="@string/next"

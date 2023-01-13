@@ -8,7 +8,6 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -99,8 +98,8 @@ public class Services extends AppCompatActivity implements IServicesView,
 	public void initView(){
 		final Button next=findViewById(R.id.next);
 
-		final Button cancel = findViewById(R.id.cancel);
-	final 	Button apply = findViewById(R.id.apply);
+		//final Button cancel = findViewById(R.id.cancel);
+	//final 	Button apply = findViewById(R.id.apply);
 	if(preferences.getString("nextStep","none").equals("service"))
 	{
 		ConstraintLayout constraintLayout = findViewById(R.id.layout);
@@ -120,15 +119,15 @@ public class Services extends AppCompatActivity implements IServicesView,
 
 		addService.setOnClickListener(this);
 	addService.setSelectAllOnFocus(true);
-		cancel.setOnClickListener(this);
-		apply.setOnClickListener(this);
+		//cancel.setOnClickListener(this);
+		//apply.setOnClickListener(this);
 		list=findViewById(R.id.service_list);
 		list.setVisibility(View.GONE);
 		list.setOnItemLongClickListener(this);
 		//list.setOnItemClickListener(this);
 		editService.setOnClickListener(this);
 
-		list.setOnTouchListener((v, event) -> {
+		/*list.setOnTouchListener((v, event) -> {
 			int action = event.getAction();
 			if (action == MotionEvent.ACTION_UP) {
 				new ToastMessage(getApplicationContext(),"not consummed");
@@ -138,7 +137,7 @@ public class Services extends AppCompatActivity implements IServicesView,
 				new ToastMessage(getApplicationContext(),"consumed");
 			}
 			return false;
-		});
+		});*/
 
 	}
 
