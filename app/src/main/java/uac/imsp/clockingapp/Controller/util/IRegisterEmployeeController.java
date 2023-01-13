@@ -7,7 +7,7 @@ public interface IRegisterEmployeeController {
                             String Birthdate,String mail,
                             String Username,String Password,String passwordConfirm,
                             String service,int startTime,int endTime,byte[] picture,String type,
-                            byte[] workdays);
+                            byte[] workdays,boolean isAdmin);
     byte[] generateQRCode(String myText);
     void onShowHidePassword(int viewId,int eyeId);
 

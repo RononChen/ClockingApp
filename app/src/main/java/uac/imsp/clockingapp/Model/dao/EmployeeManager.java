@@ -95,7 +95,7 @@ public class EmployeeManager {
         // open();
         SQLiteStatement statement;
         String query = "INSERT INTO employe (matricule,nom,prenom,sexe," +
-                "couriel,username,password,type,date_ajout) VALUES(?,?,?,?,?,?,?,?,DATE(?,?)) ";
+                "couriel,username,password,type,date_ajout,est_admin) VALUES(?,?,?,?,?,?,?,?,DATE(?,?),?) ";
         statement = Database.compileStatement(query);
 
         statement.bindLong(1, employee.getRegistrationNumber());
@@ -109,6 +109,7 @@ public class EmployeeManager {
         statement.bindString(8, employee.getType());
         statement.bindString(9, "NOW");
         statement.bindString(10, "LOCALTIME");
+        statement.bindString(11, employee.isAdmin()?"true":"false");
 
         statement.executeInsert();
         //if the birthdate is given
@@ -193,7 +194,7 @@ public class EmployeeManager {
         statement.executeUpdateDelete();
     }
 
-    public  int getAdminCount(){
+   /* public  int getAdminCount(){
 int adminsCount;
             String query = "SELECT COUNT(*) FROM employe WHERE est_admin='true'";
 
@@ -206,7 +207,7 @@ int adminsCount;
 
 return adminsCount;
         }
-
+*/
 
     public Planning getPlanning(@NonNull Employee employee) {
         Planning planning = null;
@@ -356,7 +357,8 @@ un tableau contenant les emplyés vérifiant le motif de recherche*/
             employee.setUsername(cursor.getString(6));
             employee.setBirthdate(cursor.getString(7));
             employee.setWorkdays(cursor.getBlob(8));
-            employee.setAdmin(Objects.equals(cursor.getString(9),
+            employee.setAdmin(Objects.equals(cursor.
+                            getString(9),
                     "true"));
 
 

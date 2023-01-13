@@ -330,6 +330,7 @@
     <string name="wlc">Accueil</string>
     <string name="account_management">Gestion de compte</string>
     <string name="max_reached">Trois tentatives d\'authentification échouées !</string>
+    <string name="admin">admin</string>
 
 
 </resources>

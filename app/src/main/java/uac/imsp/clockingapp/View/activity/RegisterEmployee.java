@@ -245,7 +245,7 @@ public class RegisterEmployee extends AppCompatActivity
             registerEmployeePresenter.onRegisterEmployee(toString(Number), toString(Lastname),
                     toString(Firstname),gend,Birth,toString(Email),username,
                     toString(Password),toString(PasswordConfirm),SelectedService,
-                    Start,End,Picture,SelectedType,days );
+                    Start,End,Picture,SelectedType,days,((CheckBox)findViewById(R.id.admin)).isChecked());
 
 
 

@@ -42,58 +42,58 @@ public class RegisterEmployeeTest  implements IRegisterEmployeeView {
          registerEmployeePresenter.onRegisterEmployee("","",
                 "","M","","","",
                 "","","",0,
-                0,null,"",new byte[]{'F','F','F','F','F','F','F'} );
+                0,null,"",new byte[]{'F','F','F','F','F','F','F'}, true);
 
        registerEmployeePresenter.onRegisterEmployee("10","",
                "","M","","","",
                "","","",0,
-               0,null,"",new byte[]{'F','F','F','F','F','F','F'} );
+               0,null,"",new byte[]{'F','F','F','F','F','F','F'}, true);
        registerEmployeePresenter.onRegisterEmployee("10","q",
                "","M","","","",
                "","","",0,
-               0,null,"",new byte[]{'F','F','F','F','F','F','F'} );
+               0,null,"",new byte[]{'F','F','F','F','F','F','F'}, true);
 
        registerEmployeePresenter.onRegisterEmployee("10","No",
                "","M","","","",
                "","","",0,
-               0,null,"",new byte[]{'F','F','F','F','F','F','F'} );
+               0,null,"",new byte[]{'F','F','F','F','F','F','F'}, true);
        registerEmployeePresenter.onRegisterEmployee("10","No",
                "1","M","","","",
                "","","",0,
-               0,null,"",new byte[]{'F','F','F','F','F','F','F'} );
+               0,null,"",new byte[]{'F','F','F','F','F','F','F'}, true);
        registerEmployeePresenter.onRegisterEmployee("10","No",
                "Jean","M","2022-08-22","","",
                "","","",0,
-               0,null,"",new byte[]{'F','F','F','F','F','F','F'} );
+               0,null,"",new byte[]{'F','F','F','F','F','F','F'}, true);
        registerEmployeePresenter.onRegisterEmployee("10","No",
                "Jean","M","2022-08-22","mhgjhii","",
                "","","",0,
-               0,null,"",new byte[]{'F','F','F','F','F','F','F'} );
+               0,null,"",new byte[]{'F','F','F','F','F','F','F'}, true);
        registerEmployeePresenter.onRegisterEmployee("10","No",
                "Jean","M","2022-08-22",
                "adedeezechiel@gmail.com","",
                "","","",0,
-               0,null,"",new byte[]{'F','F','F','F','F','F','F'} );
+               0,null,"",new byte[]{'F','F','F','F','F','F','F'}, true);
        registerEmployeePresenter.onRegisterEmployee("10","No",
                "Jean","M","2022-08-22",
                "adedeezechiel@gmail.com","km",
                "","","",0,
-               0,null,"",new byte[]{'F','F','F','F','F','F','F'} );
+               0,null,"",new byte[]{'F','F','F','F','F','F','F'}, true);
        registerEmployeePresenter.onRegisterEmployee("10","No",
                "Jean","M","2022-08-22",
                "adedeezechiel@gmail.com","User100",
                "","","",0,
-               0,null,"", new byte[]{'F','F','F','F','F','F','F'});
+               0,null,"", new byte[]{'F','F','F','F','F','F','F'}, true);
        registerEmployeePresenter.onRegisterEmployee("10","No",
                "Jean","M","2022-08-22",
                "adedeezechiel@gmail.com","User100",
                "pass","","",0,
-               0,null,"", new byte[]{'F','F','F','F','F','F','F'});
+               0,null,"", new byte[]{'F','F','F','F','F','F','F'}, true);
        registerEmployeePresenter.onRegisterEmployee("10","No",
                "Jean","M","2022-08-29",
                "adedeezechiel@gmail.com","User100",
                "password","","",0,
-               0,null,"",new byte[]{'F','F','F','F','F','F','F'} );
+               0,null,"",new byte[]{'F','F','F','F','F','F','F'}, true);
 
 
 
@@ -103,20 +103,20 @@ public class RegisterEmployeeTest  implements IRegisterEmployeeView {
                "Jean","M","2022-08-22",
                "adl@gmail.com","User1000",
                "password","password","Aucun",8,
-               18,null,"",new byte[]{'F','F','F','F','F','F','F'} );
+               18,null,"",new byte[]{'F','F','F','F','F','F','F'}, true);
        //mail exists
        registerEmployeePresenter.onRegisterEmployee("100","No",
                "Jean","M","2022-08-22",
                "super@gmail.com","User1000",
                "password","password","Aucun",8,
-               18,null,"",new byte[]{'F','F','F','F','F','F','F'} );
+               18,null,"",new byte[]{'F','F','F','F','F','F','F'}, true);
 
      //username exists
        registerEmployeePresenter.onRegisterEmployee("100","No",
                "Jean","M","2022-08-22",
                "supr@gmail.com","User10",
                "password","password","Aucun",8,
-               18,null,"",new byte[]{'F','F','F','F','F','F','F'} );
+               18,null,"",new byte[]{'F','F','F','F','F','F','F'}, true);
 
 
        //correct employee without picture

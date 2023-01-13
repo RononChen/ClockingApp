@@ -84,7 +84,7 @@ public class RegisterEmployeeController implements IRegisterEmployeeController
                                    String firstname, String gender, String birthdate, String mail,
                                    String username, String password, String passwordConfirm,
                                    String selectedService, int startTime, int endTime,
-                                   byte[] picture, String type, @NonNull byte[] workdays) {
+                                   byte[] picture, String type, @NonNull byte[] workdays,boolean isAdmin) {
         int nb_workdays=0;
         for(byte elt:workdays)
         {
@@ -215,6 +215,7 @@ String gend;
                serviceManager.open();
                serviceManager.searchService(service[0]);
                serviceManager.close();
+               finalEmployee.setAdmin(isAdmin);
 
                finalEmployee.setPassword(finalEmployee.getPassword());
                employeeManager.create(finalEmployee);

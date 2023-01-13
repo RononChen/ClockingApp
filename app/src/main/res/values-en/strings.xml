@@ -308,7 +308,7 @@
     <string name="menu">Menu</string>
     <string name="wlc">Home</string>
     <string name="account_management">Account management</string>
-
+    <string name="admin">admin</string>
 
 
 </resources>

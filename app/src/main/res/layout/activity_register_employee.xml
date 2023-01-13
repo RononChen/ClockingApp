@@ -391,18 +391,7 @@
                 android:backgroundTint="@color/appOrange"
                 android:text="@string/register_picture" />
 
-            <!--Button
-                android:layout_marginStart="20dp"
-                android:id="@+id/register_picture_button"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="32dp"
 
-                android:background="@drawable/mybutton" /-->
-            <!-- android:backgroundTint="" -->
-
-
-            <!--ImageView to preview the selected image-->
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/register_preview_image"
                 android:layout_width="match_parent"
@@ -472,6 +461,14 @@
                 android:text="@string/sunday"
                 android:checked="true"/>
 
+            <CheckBox
+                android:id="@+id/admin"
+                android:checked="true"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/admin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
             <Button
                 android:id="@+id/register_button"
                 android:layout_width="match_parent"
@@ -503,6 +500,7 @@
                 android:text="@string/reset_button" />
 
         </LinearLayout>
+
 
     </ScrollView>
 
