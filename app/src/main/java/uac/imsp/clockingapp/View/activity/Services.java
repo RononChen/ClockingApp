@@ -1,16 +1,15 @@
 package uac.imsp.clockingapp.View.activity;
 
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -23,7 +22,6 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
 
 import uac.imsp.clockingapp.Controller.control.ServicesController;
 import uac.imsp.clockingapp.Controller.util.ServiceResuslt;
@@ -33,8 +31,8 @@ import uac.imsp.clockingapp.View.util.ServiceListViewAdapter;
 import uac.imsp.clockingapp.View.util.ToastMessage;
 
 public class Services extends AppCompatActivity implements IServicesView,
-		View.OnClickListener, AdapterView.OnItemLongClickListener,
-		AdapterView.OnItemClickListener, TextWatcher ,
+		View.OnClickListener, AdapterView.OnItemLongClickListener/*,
+		AdapterView.OnItemClickListener, TextWatcher */,
 		View.OnFocusChangeListener {
 	private ListView list;
 	ServiceListViewAdapter adapter;
@@ -42,12 +40,12 @@ public class Services extends AppCompatActivity implements IServicesView,
 	ArrayList<ServiceResuslt> arrayList;
 	 Button addService;
 	 EditText editService;
-	EditText serviceListViewItemEditText;
-	int position;
-	View view;
-	ViewGroup parent;
-	String oldService,newService;
-	Hashtable<Integer, String> hashtable=new Hashtable<>();
+	//EditText serviceListViewItemEditText;
+	//int position;
+	//View view;
+	//ViewGroup parent;
+	/*String oldService,newService;
+	Hashtable<Integer, String> hashtable=new Hashtable<>();*/
 
 	SharedPreferences.Editor editor;
 	SharedPreferences preferences;
@@ -97,6 +95,7 @@ public class Services extends AppCompatActivity implements IServicesView,
 
 	}
 
+	@SuppressLint("ClickableViewAccessibility")
 	public void initView(){
 		final Button next=findViewById(R.id.next);
 
@@ -126,10 +125,20 @@ public class Services extends AppCompatActivity implements IServicesView,
 		list=findViewById(R.id.service_list);
 		list.setVisibility(View.GONE);
 		list.setOnItemLongClickListener(this);
-		list.setOnItemClickListener(this);
+		//list.setOnItemClickListener(this);
 		editService.setOnClickListener(this);
 
-
+		list.setOnTouchListener((v, event) -> {
+			int action = event.getAction();
+			if (action == MotionEvent.ACTION_UP) {
+				new ToastMessage(getApplicationContext(),"not consummed");
+				// The event is not consumed, it will reach the OnItemClickListener
+			} else if (action == MotionEvent.ACTION_CANCEL) {
+				// The event is consumed
+				new ToastMessage(getApplicationContext(),"consumed");
+			}
+			return false;
+		});
 
 	}
 
@@ -153,7 +162,7 @@ public class Services extends AppCompatActivity implements IServicesView,
 
 	}
 
-	@Override
+/*	@Override
 	public void onUpdateError(int errorNumber, int serviceIndex) {
 		int position=	getTheMatchingPosition(serviceIndex);
 		switch (errorNumber)
@@ -179,7 +188,7 @@ public class Services extends AppCompatActivity implements IServicesView,
 
 		}
 
-	}
+	}*/
 
 	@Override
 	public void onDeleteSucessful() {
@@ -205,13 +214,13 @@ public class Services extends AppCompatActivity implements IServicesView,
 	}
 
 
-	@Override
+	/*@Override
 	public void onServiceEdited() {
 		serviceListViewItemEditText.setBackgroundColor(Color.BLUE);
 		serviceListViewItemEditText.setText(newService);
 	hashtable.put(adapter.getItem(position).getId(),newService);
 
-	}
+	}*/
 
 	@Override
 	public void onAddServiceError(int errorNumber) {
@@ -243,7 +252,7 @@ switch (errorNumber){
 		servicesPresenter.onStart();
 	}
 
-	@Override
+	/*@Override
 	public void askConfirmCancel() {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setMessage(getString(R.string.cancel_confirmation_message))
@@ -284,7 +293,7 @@ switch (errorNumber){
 	public void onNothingUpdated() {
 new ToastMessage(this,getString(R.string.no_service_updated));
 
-	}
+	}*/
 
 	@Override
 	public void onClick(@NonNull View v) {
@@ -293,10 +302,10 @@ new ToastMessage(this,getString(R.string.no_service_updated));
 			servicesPresenter.onAddService(editService.getText().toString().trim());
 		else if(v.getId()==R.id.edit_service)
 			editService.setCursorVisible(true);
-		else if(v.getId()==R.id.cancel)
+		/*else if(v.getId()==R.id.cancel)
 			servicesPresenter.onCancel(hashtable);
 		else if(v.getId()==R.id.apply)
-			servicesPresenter.onUpdate(hashtable);
+			servicesPresenter.onUpdate(hashtable);*/
 		else if(v.getId()==R.id.next)
 		{
 			Intent intent=new Intent(this,ShowAdminAccount.class);
@@ -315,30 +324,7 @@ new ToastMessage(this,getString(R.string.no_service_updated));
 		return false;
 	}
 
-	@Override
-	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-		new ToastMessage(this,"");
-	serviceListViewItemEditText=adapter.getServiceNameEditText(position,
-			view,parent);
-	serviceListViewItemEditText.setSelectAllOnFocus(true);
-	serviceListViewItemEditText.addTextChangedListener(this);
-		this.parent=parent;
-		this.view=view;
-	this.position=position;
-
-
-	}
-	public int getTheMatchingPosition(int id){
-
-		for(int position = 0;position<arrayList.size(); position++) {
-			if(arrayList.get(position).getId()==id)
-				return position;
-		}
-		return -1;
-	}
-
-	@Override
+	/*@Override
 	public void beforeTextChanged(@NonNull CharSequence s, int start, int count, int after) {
 oldService=s.toString();
 	}
@@ -353,7 +339,7 @@ oldService=s.toString();
 		newService=s.toString();
 		servicesPresenter.check(oldService,newService);
 		
-	}
+	}*/
 
 	@Override
 	public void onFocusChange(@NonNull View v, boolean hasFocus) {

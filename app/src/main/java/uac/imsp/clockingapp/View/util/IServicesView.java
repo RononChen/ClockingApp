@@ -9,13 +9,13 @@ public interface IServicesView {
 	void onServiceFound(ArrayList<ServiceResuslt> list);
 
 	void askConfirmDelete();
-	void onUpdateError(int errorNumber,int serviceIndex);
+	//void onUpdateError(int errorNumber,int serviceIndex);
 	void onDeleteSucessful();
 	void onDeleteError(int errorNumber);
-	void onServiceEdited();
+	//void onServiceEdited();
 	void onAddServiceError(int errorNumber);
 	void onServiceAdded();
-	void askConfirmCancel();
-	void askConfirmUpdate();
-	void onNothingUpdated();
+	//void askConfirmCancel();
+	//void askConfirmUpdate();
+	//void onNothingUpdated();
 }

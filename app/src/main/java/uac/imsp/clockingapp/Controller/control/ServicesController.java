@@ -3,12 +3,7 @@ package uac.imsp.clockingapp.Controller.control;
 import android.content.Context;
 import android.os.AsyncTask;
 
-import androidx.annotation.NonNull;
-
 import java.util.ArrayList;
-import java.util.Enumeration;
-import java.util.Hashtable;
-import java.util.Objects;
 
 import dao.ServiceManager;
 import entity.Service;
@@ -20,7 +15,7 @@ public class ServicesController  implements IServicesController {
 	private final IServicesView servicesView;
 	private final Context context;
 	private  Service currentService;
-	Hashtable<Integer,String> stringHashtable=new Hashtable<>();
+	//Hashtable<Integer,String> stringHashtable=new Hashtable<>();
 
 	public ServicesController(IServicesView servicesView){
 		this.servicesView=servicesView;
@@ -28,7 +23,7 @@ public class ServicesController  implements IServicesController {
 	}
 
 
-	@Override
+	/*@Override
 	public void onUpdate(@NonNull Hashtable<Integer, String> hashtable) {
 
 		if(hashtable.size()==0)
@@ -41,16 +36,16 @@ public class ServicesController  implements IServicesController {
 
 
 
-	}
+	}*/
 
-	@Override
+	/*@Override
 	public void onCancel(@NonNull Hashtable<Integer, String> hashtable) {
 		if(hashtable.size()==0)
 			servicesView.onNothingUpdated();
         else
 		    servicesView.askConfirmCancel();
 
-	}
+	}*/
 
 
 	@Override
@@ -127,12 +122,12 @@ public class ServicesController  implements IServicesController {
 
 	}
 
-	@Override
+	/*@Override
 	public void check(String oldService, String newService) {
 
 		if(!Objects.equals(oldService, newService))
 			servicesView.onServiceEdited();
-			}
+			}*/
 
 	@Override
 	public void onAddService(String service) {
@@ -153,7 +148,7 @@ public class ServicesController  implements IServicesController {
 
 	}
 
-	@Override
+	/*@Override
 	public void onUpdateConfirmed() {
 		Enumeration<Integer> ids = stringHashtable.keys();
 		int id;
@@ -181,5 +176,5 @@ public class ServicesController  implements IServicesController {
 		}
 		serviceManager.close();
 
-	}
+	}*/
 }

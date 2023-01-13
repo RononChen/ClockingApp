@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -22,16 +21,16 @@ public class ServiceListViewAdapter extends ArrayAdapter<ServiceResuslt> {
 	}
 	public static class ViewHolder {
 		TextView idView;
-	 	EditText nameView;
+	 	TextView nameView;
 
 	}
-	public EditText name;
-	public EditText getServiceNameEditText(int position, View convertView,
+	//public EditText name;
+	/*public EditText getServiceNameEditText(int position, View convertView,
 										   ViewGroup parent){
 
 		getView(position,convertView,parent);
 		return name;
-	}
+	}*/
 
 
 
@@ -56,7 +55,7 @@ public class ServiceListViewAdapter extends ArrayAdapter<ServiceResuslt> {
 
 		holder.idView.setText(String.valueOf(result.getId()));
 		holder.nameView.setText(result.getName());
-		name=holder.nameView;
+		//name=holder.nameView;
 
 		return convertView;
 
